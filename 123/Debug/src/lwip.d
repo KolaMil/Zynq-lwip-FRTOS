@@ -28,9 +28,16 @@ src/lwip.o src/lwip.o: ../src/lwip.c ../src/lwip.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/ip.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/icmp.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/icmp.h \
+ ../../123_bsp/ps7_cortexa9_0/include/lwip/udp.h \
+ ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/udp.h \
+ ../../123_bsp/ps7_cortexa9_0/include/lwip/init.h \
  ../../123_bsp/ps7_cortexa9_0/include/xparameters.h \
  ../../123_bsp/ps7_cortexa9_0/include/xparameters_ps.h \
- ../../123_bsp/ps7_cortexa9_0/include/xil_types.h
+ ../../123_bsp/ps7_cortexa9_0/include/xil_types.h \
+ ../../123_bsp/ps7_cortexa9_0/include/xil_printf.h \
+ ../../123_bsp/ps7_cortexa9_0/include/xil_types.h \
+ ../../123_bsp/ps7_cortexa9_0/include/xparameters.h \
+ ../../123_bsp/ps7_cortexa9_0/include/bspconfig.h
 
 ../src/lwip.h:
 
@@ -92,8 +99,22 @@ src/lwip.o src/lwip.o: ../src/lwip.c ../src/lwip.h \
 
 ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/icmp.h:
 
+../../123_bsp/ps7_cortexa9_0/include/lwip/udp.h:
+
+../../123_bsp/ps7_cortexa9_0/include/lwip/prot/udp.h:
+
+../../123_bsp/ps7_cortexa9_0/include/lwip/init.h:
+
 ../../123_bsp/ps7_cortexa9_0/include/xparameters.h:
 
 ../../123_bsp/ps7_cortexa9_0/include/xparameters_ps.h:
 
 ../../123_bsp/ps7_cortexa9_0/include/xil_types.h:
+
+../../123_bsp/ps7_cortexa9_0/include/xil_printf.h:
+
+../../123_bsp/ps7_cortexa9_0/include/xil_types.h:
+
+../../123_bsp/ps7_cortexa9_0/include/xparameters.h:
+
+../../123_bsp/ps7_cortexa9_0/include/bspconfig.h:

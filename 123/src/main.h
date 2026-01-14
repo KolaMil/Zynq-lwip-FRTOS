@@ -15,6 +15,7 @@
 #include "task.h"
 #include "queue.h"
 #include "timers.h"
+#include "semphr.h"
 
 /* Xilinx includes. */
 #include "xil_printf.h"
@@ -26,6 +27,13 @@
 
 /* Lwip includes. */
 #include "lwip.h"
+#include "lwip/pbuf.h"
+
+/* Data Lwip */
+static const char data_imit_dma[] = "Static Data to Send";
+
+/* Freertos Semaphore*/
+static xSemaphoreHandle data_done_sem;
 
 /* Freertos defines */
 #define THREAD_STACKSIZE 512
@@ -38,5 +46,7 @@
 /*-----------------------------------------------------------*/
 static void network_init_task(void *pvParameters);
 void x1emacif_input_thread(void *arg);
+void udp_send_task(void *arg);
+void semaphore_generator_task(void *pvParameters);
 
 #endif

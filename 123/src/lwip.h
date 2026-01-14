@@ -12,8 +12,12 @@
 
 /*-----------------------------------------------------------*/
 #include "lwip/tcp.h"
+#include "lwip/udp.h"
+#include "lwip/init.h"
 #include "xparameters.h"
 #include "xil_types.h"
+#include "xil_printf.h"
+#include "lwip/pbuf.h"
 
 /*-----------------------------------------------------------*/
 struct udp_pcb *udp_pcb_conn;
@@ -23,8 +27,10 @@ struct netif server_netif;
 /*-----------------------------------------------------------*/
 void lwip_network_setup(void);
 void udp_connection(void);
+void tsp_connection_cl(void);
+err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err);
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
-err_t accept_callback(void *arg, struct tcp_pcb *newpcb, err_t err);
+
 
 /*-----------------------------------------------------------*/
 #define TCP_PORT 7

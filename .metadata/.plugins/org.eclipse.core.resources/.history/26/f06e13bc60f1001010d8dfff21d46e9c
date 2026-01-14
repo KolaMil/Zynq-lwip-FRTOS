@@ -1,0 +1,95 @@
+/*
+ ============================================================================
+ Name        : main.c
+ Author      : FET
+ Version     :
+ Description : FreeRTOS with LwIp and AxIdma
+ ============================================================================
+ */
+
+#include "main.h"
+
+int main(void)
+{
+	start_cpu1();
+	xil_printf("\nHello bratish! I'm CPU0\r\n");
+	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
+	vTaskStartScheduler();
+
+	while(1);
+}
+
+/*-----------------------------------------------------------*/
+static void network_init_task(void *pvParameters)
+{
+	const TickType_t x1second = pdMS_TO_TICKS(DELAY_1_SECOND);
+
+	// 1. Создаем семафор ОБЯЗАТЕЛЬНО до запуска задач
+	data_done_sem = xSemaphoreCreateBinary();
+	if (data_done_sem == NULL) {
+		xil_printf("Error: Could not create semaphore\r\n");
+		vTaskDelete(NULL);
+		return;
+	}
+	while(1)
+	{
+		vTaskDelay(x1second);
+		lwip_network_setup();
+		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, UDP_TASK_PRIO, NULL);
+		udp_connection();
+		tsp_connection_cl();
+		xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO, NULL);
+//		xTaskCreate(semaphore_generator_task, "SemGen", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO + 1, NULL);
+		vTaskDelete(NULL);
+	}
+}
+
+/*-----------------------------------------------------------*/
+void udp_send_task(void *arg)
+{
+    const char *msg = "Hello from FreeRTOS + UDPSENDER!\n";
+    uint16_t msg_len = strlen(msg);
+
+    xil_printf("UDP task started (simple delay 2ms)\r\n");
+
+    while(1)
+    {
+        // Просто ждем 20 мс от текущего момента
+        vTaskDelay(pdMS_TO_TICKS(2));
+
+        struct pbuf *p = pbuf_alloc(PBUF_TRANSPORT, msg_len, PBUF_POOL);
+        if(p)
+        {
+            memcpy(p->payload, msg, msg_len);
+
+            if(udp_send(udp_pcb_conn, p) != ERR_OK)
+            {
+                xil_printf("Error sending UDP packet\r\n");
+            }
+
+            pbuf_free(p);
+        }
+    }
+}
+
+/*-----------------------------------------------------------*/
+void x1emacif_input_thread(void *arg)
+{
+    struct netif *netif = (struct netif *)arg;
+
+    while(1)
+    {
+//    	if (TcpFastTmrFlag)
+//    	{
+//			tcp_fasttmr();
+//			TcpFastTmrFlag = 0;
+//		}
+//		if (TcpSlowTmrFlag)
+//		{
+//			tcp_slowtmr();
+//			TcpSlowTmrFlag = 0;
+//		}
+        xemacif_input(netif); /* из xadapter.h */
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+}

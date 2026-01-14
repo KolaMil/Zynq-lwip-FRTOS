@@ -14,6 +14,8 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
  ../../123_bsp/ps7_cortexa9_0/include/queue.h \
  ../../123_bsp/ps7_cortexa9_0/include/task.h \
  ../../123_bsp/ps7_cortexa9_0/include/timers.h \
+ ../../123_bsp/ps7_cortexa9_0/include/semphr.h \
+ ../../123_bsp/ps7_cortexa9_0/include/queue.h \
  ../../123_bsp/ps7_cortexa9_0/include/xil_printf.h \
  ../../123_bsp/ps7_cortexa9_0/include/bspconfig.h \
  ../../123_bsp/ps7_cortexa9_0/include/xparameters.h \
@@ -60,6 +62,9 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/ip.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/icmp.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/icmp.h \
+ ../../123_bsp/ps7_cortexa9_0/include/lwip/udp.h \
+ ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/udp.h \
+ ../../123_bsp/ps7_cortexa9_0/include/lwip/init.h \
  ../../123_bsp/ps7_cortexa9_0/include/xil_types.h
 
 ../src/main.h:
@@ -93,6 +98,10 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
 ../../123_bsp/ps7_cortexa9_0/include/task.h:
 
 ../../123_bsp/ps7_cortexa9_0/include/timers.h:
+
+../../123_bsp/ps7_cortexa9_0/include/semphr.h:
+
+../../123_bsp/ps7_cortexa9_0/include/queue.h:
 
 ../../123_bsp/ps7_cortexa9_0/include/xil_printf.h:
 
@@ -189,5 +198,11 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
 ../../123_bsp/ps7_cortexa9_0/include/lwip/icmp.h:
 
 ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/icmp.h:
+
+../../123_bsp/ps7_cortexa9_0/include/lwip/udp.h:
+
+../../123_bsp/ps7_cortexa9_0/include/lwip/prot/udp.h:
+
+../../123_bsp/ps7_cortexa9_0/include/lwip/init.h:
 
 ../../123_bsp/ps7_cortexa9_0/include/xil_types.h:
