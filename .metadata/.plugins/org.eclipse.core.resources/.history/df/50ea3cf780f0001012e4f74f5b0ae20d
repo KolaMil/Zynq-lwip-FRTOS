@@ -1,0 +1,16 @@
+/*
+ ============================================================================
+ Name        : main.h
+ Author      : FET
+ Version     :
+ Description : Inc for main.c
+ ============================================================================
+ */
+
+#ifndef __MAIN_H_
+#define __MAIN_H_
+
+#include "xil_printf.h"
+#include "xil_mmu.h"
+
+#endif

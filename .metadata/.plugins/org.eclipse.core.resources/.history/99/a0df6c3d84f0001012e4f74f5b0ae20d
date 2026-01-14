@@ -1,0 +1,30 @@
+/*
+ ============================================================================
+ Name        : main.c
+ Author      : FET
+ Version     :
+ Description : FreeRTOS with LwIp and AxIdma
+ ============================================================================
+ */
+
+#include "main.h"
+
+int main(void)
+{
+	start_cpu1();
+	xil_printf("\nHello bratish! I'm CPU0\r\n");
+	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
+	vTaskStartScheduler();
+
+	while(1);
+}
+
+/*-----------------------------------------------------------*/
+static void network_init_task(void *pvParameters)
+{
+	const TickType_t x1second = pdMS_TO_TICKS(DELAY_1_SECOND);
+	while(1)
+	{
+		vTaskDelay(x1second);
+	}
+}

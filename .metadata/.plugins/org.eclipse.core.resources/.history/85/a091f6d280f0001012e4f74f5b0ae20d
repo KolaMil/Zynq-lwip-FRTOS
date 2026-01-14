@@ -1,0 +1,14 @@
+/*
+ ============================================================================
+ Name        : main.c
+ Author      : FET
+ Version     :
+ Description : Ñommunication CPU1 with CPU0
+ ============================================================================
+ */
+#include "main.h"
+int main(void)
+{
+	xil_printf("\nHello bratish! I'm CPU1\r\n");
+	return 0;
+}

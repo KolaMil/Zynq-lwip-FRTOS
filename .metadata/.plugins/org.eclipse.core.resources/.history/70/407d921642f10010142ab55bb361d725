@@ -1,0 +1,35 @@
+/*
+ ============================================================================
+ Name        : lwip.c
+ Author      : FET
+ Version     :
+ Description : Init socet api lwip with
+ ============================================================================
+ */
+
+#include "lwip.h"
+
+/*-----------------------------------------------------------*/
+void lwip_network_setup(void)
+{
+    ip_addr_t ipaddr, netmask, gw;
+    unsigned char mac[] = {0x00,0x0A,0x35,0x00,0x01,0x02};
+	err_t err;
+
+    /* Инициализация библиотеки */
+    lwip_init();
+
+    IP4_ADDR(&ipaddr, 192,168,1,10);
+    IP4_ADDR(&netmask, 255,255,255,0);
+    IP4_ADDR(&gw, 192,168,1,1);
+
+    if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+    {
+        xil_printf("Error adding N/W interface\r\n");
+        vTaskDelete(NULL);
+        return;
+    }
+
+    netif_set_default(&server_netif);
+    netif_set_up(&server_netif);
+}

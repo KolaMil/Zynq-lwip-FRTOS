@@ -1,0 +1,71 @@
+15:31:03 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:19:5: warning: implicit declaration of function 'lwip_init'; did you mean 'ip_init'? [-Wimplicit-function-declaration]
+     lwip_init();
+     ^~~~~~~~~
+     ip_init
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:27:9: warning: implicit declaration of function 'xil_printf'; did you mean 'viprintf'? [-Wimplicit-function-declaration]
+         xil_printf("Error adding N/W interface\r\n");
+         ^~~~~~~~~~
+         viprintf
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'udp_connection':
+../src/lwip.c:38:17: warning: implicit declaration of function 'udp_new'; did you mean 'tcp_new'? [-Wimplicit-function-declaration]
+  udp_pcb_conn = udp_new();
+                 ^~~~~~~
+                 tcp_new
+../src/lwip.c:38:15: warning: assignment to 'struct udp_pcb *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+  udp_pcb_conn = udp_new();
+               ^
+../src/lwip.c:48:2: warning: implicit declaration of function 'udp_connect'; did you mean 'tcp_connect'? [-Wimplicit-function-declaration]
+  udp_connect(udp_pcb_conn, &remote_ip, 5005);
+  ^~~~~~~~~~~
+  tcp_connect
+../src/lwip.c: In function 'recv_callback':
+../src/lwip.c:109:23: warning: format '%u' expects argument of type 'unsigned int *', but argument 3 has type 'uint32_t *' {aka 'long unsigned int *'} [-Wformat=]
+  sscanf(p->payload, "%u", &input);
+                      ~^   ~~~~~~
+                      %lu
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:32:3: warning: implicit declaration of function 'tsp_connection_cl'; did you mean 'udp_connection'? [-Wimplicit-function-declaration]
+   tsp_connection_cl();
+   ^~~~~~~~~~~~~~~~~
+   udp_connection
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:53:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 179612	   3428	2152752	2335792	 23a430	123.elf
+'Finished building: 123.elf.size'
+' '
+
+15:31:04 Build Finished (took 848ms)
+

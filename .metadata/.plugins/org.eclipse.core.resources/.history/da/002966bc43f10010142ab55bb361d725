@@ -1,0 +1,26 @@
+/*
+ ============================================================================
+ Name        : lwip.h
+ Author      : FET
+ Version     :
+ Description : Inc for lwip.c
+ ============================================================================
+ */
+
+#ifndef __LWIP_H_
+#define __LWIP_H_
+
+/*-----------------------------------------------------------*/
+#include "lwip/tcp.h"
+#include "xparameters.h"
+
+/*-----------------------------------------------------------*/
+struct udp_pcb *udp_pcb_conn;
+struct tcp_pcb *tcp_pcb;
+struct netif server_netif;
+
+/*-----------------------------------------------------------*/
+void lwip_network_setup(void);
+void udp_connection(void);
+
+#endif
