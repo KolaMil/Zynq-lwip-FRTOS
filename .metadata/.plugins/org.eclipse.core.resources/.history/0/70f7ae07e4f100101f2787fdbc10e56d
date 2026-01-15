@@ -1,0 +1,23 @@
+/*
+ ============================================================================
+ Name        : lwip.c
+ Author      : FET
+ Version     :
+ Description : Init all peripheral devices
+ ============================================================================
+ */
+
+#include "platform.h"
+
+/*-----------------------------------------------------------*/
+void start_init_all_ISR(void)
+{
+	platform_setup_interrupts();
+}
+
+/*-----------------------------------------------------------*/
+void platform_setup_interrupts(void)
+{
+	platform_setup_interrupts();
+}
+

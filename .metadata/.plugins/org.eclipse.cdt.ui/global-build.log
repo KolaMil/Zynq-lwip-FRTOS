@@ -5454,3 +5454,1680 @@ make pre-build main-build
 a9-linaro-pre-build-step
 ' '
 make: Nothing to be done for 'main-build'.
+09:27:50 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+09:27:52 **** Auto Build of configuration Debug for project 321 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+10:22:30 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:85:10: error: 'TcpFastTmrFlag' undeclared (first use in this function)
+      if (TcpFastTmrFlag)
+          ^~~~~~~~~~~~~~
+../src/main.c:85:10: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:90:7: error: 'TcpSlowTmrFlag' undeclared (first use in this function)
+   if (TcpSlowTmrFlag)
+       ^~~~~~~~~~~~~~
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:29: src/main.o] Error 1
+10:23:37 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:85:10: error: 'TcpFastTmrFlag' undeclared (first use in this function)
+      if (TcpFastTmrFlag)
+          ^~~~~~~~~~~~~~
+../src/main.c:85:10: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:90:7: error: 'TcpSlowTmrFlag' undeclared (first use in this function)
+   if (TcpSlowTmrFlag)
+       ^~~~~~~~~~~~~~
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:32: src/main.o] Error 1
+10:23:47 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:85:10: error: 'TcpFastTmrFlag' undeclared (first use in this function)
+      if (TcpFastTmrFlag)
+          ^~~~~~~~~~~~~~
+../src/main.c:85:10: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:90:7: error: 'TcpSlowTmrFlag' undeclared (first use in this function)
+   if (TcpSlowTmrFlag)
+       ^~~~~~~~~~~~~~
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:32: src/main.o] Error 1
+10:24:48 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:85:10: error: 'TcpFastTmrFlag' undeclared (first use in this function)
+      if (TcpFastTmrFlag)
+          ^~~~~~~~~~~~~~
+../src/main.c:85:10: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:90:7: error: 'TcpSlowTmrFlag' undeclared (first use in this function)
+   if (TcpSlowTmrFlag)
+       ^~~~~~~~~~~~~~
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:32: src/main.o] Error 1
+10:25:50 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:85:10: error: 'TcpFastTmrFlag' undeclared (first use in this function)
+      if (TcpFastTmrFlag)
+          ^~~~~~~~~~~~~~
+../src/main.c:85:10: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:90:7: error: 'TcpSlowTmrFlag' undeclared (first use in this function)
+   if (TcpSlowTmrFlag)
+       ^~~~~~~~~~~~~~
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:32: src/main.o] Error 1
+10:26:13 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:85:10: error: 'TcpFastTmrFlag' undeclared (first use in this function)
+      if (TcpFastTmrFlag)
+          ^~~~~~~~~~~~~~
+../src/main.c:85:10: note: each undeclared identifier is reported only once for each function it appears in
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:90:7: error: 'TcpSlowTmrFlag' undeclared (first use in this function)
+   if (TcpSlowTmrFlag)
+       ^~~~~~~~~~~~~~
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:32: src/main.o] Error 1
+10:27:34 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180388	   3428	2152752	2336568	 23a738	123.elf
+'Finished building: 123.elf.size'
+' '
+10:29:59 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'start_init_all_ISR':
+../src/platform.c:15:2: warning: implicit declaration of function 'platform_setup_interrupts' [-Wimplicit-function-declaration]
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:19:6: warning: conflicting types for 'platform_setup_interrupts'
+ void platform_setup_interrupts(void)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:15:2: note: previous implicit declaration of 'platform_setup_interrupts' was here
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+'Finished building: ../src/platform.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180388	   3428	2152752	2336568	 23a738	123.elf
+'Finished building: 123.elf.size'
+' '
+10:30:13 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'start_init_all_ISR':
+../src/platform.c:15:2: warning: implicit declaration of function 'platform_setup_interrupts' [-Wimplicit-function-declaration]
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:19:6: warning: conflicting types for 'platform_setup_interrupts'
+ void platform_setup_interrupts(void)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:15:2: note: previous implicit declaration of 'platform_setup_interrupts' was here
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:21:2: warning: implicit declaration of function 'Xil_ExceptionInit' [-Wimplicit-function-declaration]
+  Xil_ExceptionInit();
+  ^~~~~~~~~~~~~~~~~
+../src/platform.c:23:3: warning: implicit declaration of function 'XScuGic_DeviceInitialize' [-Wimplicit-function-declaration]
+   XScuGic_DeviceInitialize(INTC_DEVICE_ID);
+   ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:23:28: error: 'INTC_DEVICE_ID' undeclared (first use in this function)
+   XScuGic_DeviceInitialize(INTC_DEVICE_ID);
+                            ^~~~~~~~~~~~~~
+../src/platform.c:23:28: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:29:3: warning: implicit declaration of function 'Xil_ExceptionRegisterHandler' [-Wimplicit-function-declaration]
+   Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_IRQ_INT,
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:29:32: error: 'XIL_EXCEPTION_ID_IRQ_INT' undeclared (first use in this function)
+   Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_IRQ_INT,
+                                ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:30:6: error: 'Xil_ExceptionHandler' undeclared (first use in this function)
+     (Xil_ExceptionHandler)XScuGic_DeviceInterruptHandler,
+      ^~~~~~~~~~~~~~~~~~~~
+../src/platform.c:30:27: error: expected ')' before 'XScuGic_DeviceInterruptHandler'
+     (Xil_ExceptionHandler)XScuGic_DeviceInterruptHandler,
+                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                           )
+../src/platform.c:37:3: warning: implicit declaration of function 'XScuGic_RegisterHandler' [-Wimplicit-function-declaration]
+   XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+   ^~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:37:27: error: 'INTC_BASE_ADDR' undeclared (first use in this function)
+   XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+                           ^~~~~~~~~~~~~~
+../src/platform.c:37:43: error: 'TIMER_IRPT_INTR' undeclared (first use in this function)
+   XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+                                           ^~~~~~~~~~~~~~~
+../src/platform.c:38:29: error: expected ')' before 'timer_callback'
+       (Xil_ExceptionHandler)timer_callback,
+                             ^~~~~~~~~~~~~~
+                             )
+../src/platform.c:43:3: warning: implicit declaration of function 'XScuGic_EnableIntr' [-Wimplicit-function-declaration]
+   XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+   ^~~~~~~~~~~~~~~~~~
+../src/platform.c:43:22: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function)
+   XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                      ^~~~~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:30:17 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'start_init_all_ISR':
+../src/platform.c:15:2: warning: implicit declaration of function 'platform_setup_interrupts' [-Wimplicit-function-declaration]
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:19:6: warning: conflicting types for 'platform_setup_interrupts'
+ void platform_setup_interrupts(void)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:15:2: note: previous implicit declaration of 'platform_setup_interrupts' was here
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:21:2: warning: implicit declaration of function 'Xil_ExceptionInit' [-Wimplicit-function-declaration]
+  Xil_ExceptionInit();
+  ^~~~~~~~~~~~~~~~~
+../src/platform.c:23:2: warning: implicit declaration of function 'XScuGic_DeviceInitialize' [-Wimplicit-function-declaration]
+  XScuGic_DeviceInitialize(INTC_DEVICE_ID);
+  ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:23:27: error: 'INTC_DEVICE_ID' undeclared (first use in this function)
+  XScuGic_DeviceInitialize(INTC_DEVICE_ID);
+                           ^~~~~~~~~~~~~~
+../src/platform.c:23:27: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:29:2: warning: implicit declaration of function 'Xil_ExceptionRegisterHandler' [-Wimplicit-function-declaration]
+  Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_IRQ_INT,
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:29:31: error: 'XIL_EXCEPTION_ID_IRQ_INT' undeclared (first use in this function)
+  Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_IRQ_INT,
+                               ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:30:5: error: 'Xil_ExceptionHandler' undeclared (first use in this function)
+    (Xil_ExceptionHandler)XScuGic_DeviceInterruptHandler,
+     ^~~~~~~~~~~~~~~~~~~~
+../src/platform.c:30:26: error: expected ')' before 'XScuGic_DeviceInterruptHandler'
+    (Xil_ExceptionHandler)XScuGic_DeviceInterruptHandler,
+                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                          )
+../src/platform.c:37:2: warning: implicit declaration of function 'XScuGic_RegisterHandler' [-Wimplicit-function-declaration]
+  XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+  ^~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:37:26: error: 'INTC_BASE_ADDR' undeclared (first use in this function)
+  XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+                          ^~~~~~~~~~~~~~
+../src/platform.c:37:42: error: 'TIMER_IRPT_INTR' undeclared (first use in this function)
+  XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+                                          ^~~~~~~~~~~~~~~
+../src/platform.c:38:28: error: expected ')' before 'timer_callback'
+      (Xil_ExceptionHandler)timer_callback,
+                            ^~~~~~~~~~~~~~
+                            )
+../src/platform.c:43:2: warning: implicit declaration of function 'XScuGic_EnableIntr' [-Wimplicit-function-declaration]
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function)
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:31:45 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'start_init_all_ISR':
+../src/platform.c:15:2: warning: implicit declaration of function 'platform_setup_interrupts' [-Wimplicit-function-declaration]
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:19:6: warning: conflicting types for 'platform_setup_interrupts'
+ void platform_setup_interrupts(void)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:15:2: note: previous implicit declaration of 'platform_setup_interrupts' was here
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:23:27: error: 'INTC_DEVICE_ID' undeclared (first use in this function); did you mean 'XST_DEVICE_BUSY'?
+  XScuGic_DeviceInitialize(INTC_DEVICE_ID);
+                           ^~~~~~~~~~~~~~
+                           XST_DEVICE_BUSY
+../src/platform.c:23:27: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:37:26: error: 'INTC_BASE_ADDR' undeclared (first use in this function); did you mean 'XPS_OCM_BASEADDR'?
+  XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+                          ^~~~~~~~~~~~~~
+                          XPS_OCM_BASEADDR
+../src/platform.c:37:42: error: 'TIMER_IRPT_INTR' undeclared (first use in this function)
+  XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+                                          ^~~~~~~~~~~~~~~
+../src/platform.c:38:28: error: 'timer_callback' undeclared (first use in this function); did you mean 'Xil_AssertCallback'?
+      (Xil_ExceptionHandler)timer_callback,
+                            ^~~~~~~~~~~~~~
+                            Xil_AssertCallback
+../src/platform.c:39:15: error: 'TimerInstance' undeclared (first use in this function)
+      (void *)&TimerInstance);
+               ^~~~~~~~~~~~~
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'XPS_WDT_BASEADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:32:52 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'start_init_all_ISR':
+../src/platform.c:15:2: warning: implicit declaration of function 'platform_setup_interrupts' [-Wimplicit-function-declaration]
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:19:6: warning: conflicting types for 'platform_setup_interrupts'
+ void platform_setup_interrupts(void)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:15:2: note: previous implicit declaration of 'platform_setup_interrupts' was here
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:37:26: error: 'INTC_BASE_ADDR' undeclared (first use in this function); did you mean 'XPS_OCM_BASEADDR'?
+  XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+                          ^~~~~~~~~~~~~~
+                          XPS_OCM_BASEADDR
+../src/platform.c:37:26: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:37:42: error: 'TIMER_IRPT_INTR' undeclared (first use in this function)
+  XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+                                          ^~~~~~~~~~~~~~~
+../src/platform.c:38:28: error: 'timer_callback' undeclared (first use in this function); did you mean 'Xil_AssertCallback'?
+      (Xil_ExceptionHandler)timer_callback,
+                            ^~~~~~~~~~~~~~
+                            Xil_AssertCallback
+../src/platform.c:39:15: error: 'TimerInstance' undeclared (first use in this function)
+      (void *)&TimerInstance);
+               ^~~~~~~~~~~~~
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'XPS_WDT_BASEADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:33:08 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'start_init_all_ISR':
+../src/platform.c:15:2: warning: implicit declaration of function 'platform_setup_interrupts' [-Wimplicit-function-declaration]
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:19:6: warning: conflicting types for 'platform_setup_interrupts'
+ void platform_setup_interrupts(void)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:15:2: note: previous implicit declaration of 'platform_setup_interrupts' was here
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:37:42: error: 'TIMER_IRPT_INTR' undeclared (first use in this function)
+  XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+                                          ^~~~~~~~~~~~~~~
+../src/platform.c:37:42: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:38:28: error: 'timer_callback' undeclared (first use in this function); did you mean 'Xil_AssertCallback'?
+      (Xil_ExceptionHandler)timer_callback,
+                            ^~~~~~~~~~~~~~
+                            Xil_AssertCallback
+../src/platform.c:39:15: error: 'TimerInstance' undeclared (first use in this function)
+      (void *)&TimerInstance);
+               ^~~~~~~~~~~~~
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'INTC_BASE_ADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:33:39 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'start_init_all_ISR':
+../src/platform.c:15:2: warning: implicit declaration of function 'platform_setup_interrupts' [-Wimplicit-function-declaration]
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:19:6: warning: conflicting types for 'platform_setup_interrupts'
+ void platform_setup_interrupts(void)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:15:2: note: previous implicit declaration of 'platform_setup_interrupts' was here
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:38:28: error: 'timer_callback' undeclared (first use in this function); did you mean 'Xil_AssertCallback'?
+      (Xil_ExceptionHandler)timer_callback,
+                            ^~~~~~~~~~~~~~
+                            Xil_AssertCallback
+../src/platform.c:38:28: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:39:15: error: 'TimerInstance' undeclared (first use in this function)
+      (void *)&TimerInstance);
+               ^~~~~~~~~~~~~
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'INTC_BASE_ADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:40:35 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'start_init_all_ISR':
+../src/platform.c:15:2: warning: implicit declaration of function 'platform_setup_interrupts' [-Wimplicit-function-declaration]
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:19:6: warning: conflicting types for 'platform_setup_interrupts'
+ void platform_setup_interrupts(void)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:15:2: note: previous implicit declaration of 'platform_setup_interrupts' was here
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:38:28: error: 'timer_callback' undeclared (first use in this function); did you mean 'Xil_AssertCallback'?
+      (Xil_ExceptionHandler)timer_callback,
+                            ^~~~~~~~~~~~~~
+                            Xil_AssertCallback
+../src/platform.c:38:28: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:39:15: error: 'TimerInstance' undeclared (first use in this function)
+      (void *)&TimerInstance);
+               ^~~~~~~~~~~~~
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'INTC_BASE_ADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:49:16: error: unknown type name 'XScuTimer'; did you mean 'XScuGic'?
+ timer_callback(XScuTimer * TimerInstance)
+                ^~~~~~~~~
+                XScuGic
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:41:48 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'start_init_all_ISR':
+../src/platform.c:15:2: warning: implicit declaration of function 'platform_setup_interrupts' [-Wimplicit-function-declaration]
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:19:6: warning: conflicting types for 'platform_setup_interrupts'
+ void platform_setup_interrupts(void)
+      ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:15:2: note: previous implicit declaration of 'platform_setup_interrupts' was here
+  platform_setup_interrupts();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:38:28: error: 'timer_callback' undeclared (first use in this function); did you mean 'Xil_AssertCallback'?
+      (Xil_ExceptionHandler)timer_callback,
+                            ^~~~~~~~~~~~~~
+                            Xil_AssertCallback
+../src/platform.c:38:28: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:39:15: error: 'TimerInstance' undeclared (first use in this function)
+      (void *)&TimerInstance);
+               ^~~~~~~~~~~~~
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'INTC_BASE_ADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:49:16: error: unknown type name 'XScuTimer'; did you mean 'XScuGic'?
+ timer_callback(XScuTimer * TimerInstance)
+                ^~~~~~~~~
+                XScuGic
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:42:15 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+In file included from ../src/platform.c:10:
+../src/platform.h:28:21: error: unknown type name 'XScuTimer'; did you mean 'XScuGic'?
+ void timer_callback(XScuTimer * TimerInstance);
+                     ^~~~~~~~~
+                     XScuGic
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:38:28: error: 'timer_callback' undeclared (first use in this function); did you mean 'Xil_AssertCallback'?
+      (Xil_ExceptionHandler)timer_callback,
+                            ^~~~~~~~~~~~~~
+                            Xil_AssertCallback
+../src/platform.c:38:28: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:39:15: error: 'TimerInstance' undeclared (first use in this function)
+      (void *)&TimerInstance);
+               ^~~~~~~~~~~~~
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'INTC_BASE_ADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:49:16: error: unknown type name 'XScuTimer'; did you mean 'XScuGic'?
+ timer_callback(XScuTimer * TimerInstance)
+                ^~~~~~~~~
+                XScuGic
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:44:27 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:39:15: error: 'TimerInstance' undeclared (first use in this function)
+      (void *)&TimerInstance);
+               ^~~~~~~~~~~~~
+../src/platform.c:39:15: note: each undeclared identifier is reported only once for each function it appears in
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'INTC_BASE_ADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'timer_callback':
+../src/platform.c:64:2: error: 'ResetRxCntr' undeclared (first use in this function)
+  ResetRxCntr++;
+  ^~~~~~~~~~~
+../src/platform.c:90:21: error: 'RESET_RX_CNTR_LIMIT' undeclared (first use in this function)
+  if (ResetRxCntr >= RESET_RX_CNTR_LIMIT) {
+                     ^~~~~~~~~~~~~~~~~~~
+../src/platform.c:91:3: warning: implicit declaration of function 'xemacpsif_resetrx_on_no_rxdata' [-Wimplicit-function-declaration]
+   xemacpsif_resetrx_on_no_rxdata(server_netif);
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:91:34: error: 'server_netif' undeclared (first use in this function)
+   xemacpsif_resetrx_on_no_rxdata(server_netif);
+                                  ^~~~~~~~~~~~
+../src/platform.c:96:29: error: 'ETH_LINK_DETECT_INTERVAL' undeclared (first use in this function)
+  if (DetectEthLinkStatus == ETH_LINK_DETECT_INTERVAL) {
+                             ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:97:3: warning: implicit declaration of function 'eth_link_detect' [-Wimplicit-function-declaration]
+   eth_link_detect(server_netif);
+   ^~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:44:28 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:39:15: error: 'TimerInstance' undeclared (first use in this function)
+      (void *)&TimerInstance);
+               ^~~~~~~~~~~~~
+../src/platform.c:39:15: note: each undeclared identifier is reported only once for each function it appears in
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'INTC_BASE_ADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'timer_callback':
+../src/platform.c:63:2: error: 'ResetRxCntr' undeclared (first use in this function)
+  ResetRxCntr++;
+  ^~~~~~~~~~~
+../src/platform.c:89:21: error: 'RESET_RX_CNTR_LIMIT' undeclared (first use in this function)
+  if (ResetRxCntr >= RESET_RX_CNTR_LIMIT) {
+                     ^~~~~~~~~~~~~~~~~~~
+../src/platform.c:90:3: warning: implicit declaration of function 'xemacpsif_resetrx_on_no_rxdata' [-Wimplicit-function-declaration]
+   xemacpsif_resetrx_on_no_rxdata(server_netif);
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:90:34: error: 'server_netif' undeclared (first use in this function)
+   xemacpsif_resetrx_on_no_rxdata(server_netif);
+                                  ^~~~~~~~~~~~
+../src/platform.c:95:29: error: 'ETH_LINK_DETECT_INTERVAL' undeclared (first use in this function)
+  if (DetectEthLinkStatus == ETH_LINK_DETECT_INTERVAL) {
+                             ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:96:3: warning: implicit declaration of function 'eth_link_detect' [-Wimplicit-function-declaration]
+   eth_link_detect(server_netif);
+   ^~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:47:02 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+In file included from ../../123_bsp/ps7_cortexa9_0/include/xscugic.h:198,
+                 from ../src/platform.h:14,
+                 from ../src/platform.c:10:
+../src/platform.c: In function 'platform_setup_interrupts':
+../src/platform.c:43:21: error: 'INTC_DIST_BASE_ADDR' undeclared (first use in this function); did you mean 'INTC_BASE_ADDR'?
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c:43:21: note: each undeclared identifier is reported only once for each function it appears in
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+                     ^~~~~~~~~~~~~~~~~~~
+../../123_bsp/ps7_cortexa9_0/include/xscugic_hw.h:686:15: note: in definition of macro 'XScuGic_WriteReg'
+  (Xil_Out32(((BaseAddress) + (RegOffset)), ((u32)(Data))))
+               ^~~~~~~~~~~
+../src/platform.c:43:2: note: in expansion of macro 'XScuGic_EnableIntr'
+  XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c: In function 'timer_callback':
+../src/platform.c:63:2: error: 'ResetRxCntr' undeclared (first use in this function)
+  ResetRxCntr++;
+  ^~~~~~~~~~~
+../src/platform.c:89:21: error: 'RESET_RX_CNTR_LIMIT' undeclared (first use in this function)
+  if (ResetRxCntr >= RESET_RX_CNTR_LIMIT) {
+                     ^~~~~~~~~~~~~~~~~~~
+../src/platform.c:90:3: warning: implicit declaration of function 'xemacpsif_resetrx_on_no_rxdata' [-Wimplicit-function-declaration]
+   xemacpsif_resetrx_on_no_rxdata(server_netif);
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:90:34: error: 'server_netif' undeclared (first use in this function)
+   xemacpsif_resetrx_on_no_rxdata(server_netif);
+                                  ^~~~~~~~~~~~
+../src/platform.c:95:29: error: 'ETH_LINK_DETECT_INTERVAL' undeclared (first use in this function)
+  if (DetectEthLinkStatus == ETH_LINK_DETECT_INTERVAL) {
+                             ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:96:3: warning: implicit declaration of function 'eth_link_detect' [-Wimplicit-function-declaration]
+   eth_link_detect(server_netif);
+   ^~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:47:42 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'timer_callback':
+../src/platform.c:63:2: error: 'ResetRxCntr' undeclared (first use in this function)
+  ResetRxCntr++;
+  ^~~~~~~~~~~
+../src/platform.c:63:2: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:89:21: error: 'RESET_RX_CNTR_LIMIT' undeclared (first use in this function)
+  if (ResetRxCntr >= RESET_RX_CNTR_LIMIT) {
+                     ^~~~~~~~~~~~~~~~~~~
+../src/platform.c:90:3: warning: implicit declaration of function 'xemacpsif_resetrx_on_no_rxdata' [-Wimplicit-function-declaration]
+   xemacpsif_resetrx_on_no_rxdata(server_netif);
+   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:90:34: error: 'server_netif' undeclared (first use in this function)
+   xemacpsif_resetrx_on_no_rxdata(server_netif);
+                                  ^~~~~~~~~~~~
+../src/platform.c:95:29: error: 'ETH_LINK_DETECT_INTERVAL' undeclared (first use in this function)
+  if (DetectEthLinkStatus == ETH_LINK_DETECT_INTERVAL) {
+                             ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:96:3: warning: implicit declaration of function 'eth_link_detect' [-Wimplicit-function-declaration]
+   eth_link_detect(server_netif);
+   ^~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/platform.o] Error 1
+10:50:23 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180540	   3428	2152752	2336720	 23a7d0	123.elf
+'Finished building: 123.elf.size'
+' '
+10:56:34 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180540	   3428	2152752	2336720	 23a7d0	123.elf
+'Finished building: 123.elf.size'
+' '
+11:01:06 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:40:3: warning: implicit declaration of function 'tsp_connection_cl'; did you mean 'tcp_connection_cl'? [-Wimplicit-function-declaration]
+   tsp_connection_cl();
+   ^~~~~~~~~~~~~~~~~
+   tcp_connection_cl
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180540	   3428	2152752	2336720	 23a7d0	123.elf
+'Finished building: 123.elf.size'
+' '
+11:01:10 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/ld.exe: ./src/main.o: in function `network_init_task':
+C:\Users\nmil\1301_w_l\123\Debug/../src/main.c:40: undefined reference to `tsp_connection_cl'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:41: 123.elf] Error 1
+11:01:20 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180540	   3428	2152752	2336720	 23a7d0	123.elf
+'Finished building: 123.elf.size'
+' '
+11:06:29 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180540	   3428	2152752	2336720	 23a7d0	123.elf
+'Finished building: 123.elf.size'
+' '
+11:06:30 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:61:20: error: 'pcb' undeclared (first use in this function)
+  err = tcp_connect(pcb, &remote_addr, TCP_CONN_PORT, tcp_client_connected);
+                    ^~~
+../src/lwip.c:61:20: note: each undeclared identifier is reported only once for each function it appears in
+../src/lwip.c:61:26: error: 'remote_addr' undeclared (first use in this function); did you mean '_remove_r'?
+  err = tcp_connect(pcb, &remote_addr, TCP_CONN_PORT, tcp_client_connected);
+                          ^~~~~~~~~~~
+                          _remove_r
+../src/lwip.c:61:39: error: 'TCP_CONN_PORT' undeclared (first use in this function); did you mean 'TCP_PORT'?
+  err = tcp_connect(pcb, &remote_addr, TCP_CONN_PORT, tcp_client_connected);
+                                       ^~~~~~~~~~~~~
+                                       TCP_PORT
+../src/lwip.c:61:54: error: 'tcp_client_connected' undeclared (first use in this function); did you mean 'client_connected'?
+  err = tcp_connect(pcb, &remote_addr, TCP_CONN_PORT, tcp_client_connected);
+                                                      ^~~~~~~~~~~~~~~~~~~~
+                                                      client_connected
+../src/lwip.c:65:3: warning: implicit declaration of function 'tcp_client_close'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+   tcp_client_close(pcb);
+   ^~~~~~~~~~~~~~~~
+   tcp_close
+make: *** [src/subdir.mk:32: src/lwip.o] Error 1
+11:07:53 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:61:20: error: 'pcb' undeclared (first use in this function)
+  err = tcp_connect(pcb, &remote_addr, TCP_CONN_PORT, tcp_client_connected);
+                    ^~~
+../src/lwip.c:61:20: note: each undeclared identifier is reported only once for each function it appears in
+../src/lwip.c:61:26: error: 'remote_addr' undeclared (first use in this function); did you mean '_remove_r'?
+  err = tcp_connect(pcb, &remote_addr, TCP_CONN_PORT, tcp_client_connected);
+                          ^~~~~~~~~~~
+                          _remove_r
+../src/lwip.c:61:39: error: 'TCP_CONN_PORT' undeclared (first use in this function); did you mean 'TCP_PORT'?
+  err = tcp_connect(pcb, &remote_addr, TCP_CONN_PORT, tcp_client_connected);
+                                       ^~~~~~~~~~~~~
+                                       TCP_PORT
+../src/lwip.c:61:54: error: 'tcp_client_connected' undeclared (first use in this function); did you mean 'client_connected'?
+  err = tcp_connect(pcb, &remote_addr, TCP_CONN_PORT, tcp_client_connected);
+                                                      ^~~~~~~~~~~~~~~~~~~~
+                                                      client_connected
+../src/lwip.c:65:3: warning: implicit declaration of function 'tcp_client_close'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+   tcp_client_close(pcb);
+   ^~~~~~~~~~~~~~~~
+   tcp_close
+make: *** [src/subdir.mk:32: src/lwip.o] Error 1
+11:08:07 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:61:20: error: 'pcb' undeclared (first use in this function)
+  err = tcp_connect(pcb, &remote_addr, TCP_PORT, tcp_client_connected);
+                    ^~~
+../src/lwip.c:61:20: note: each undeclared identifier is reported only once for each function it appears in
+../src/lwip.c:61:26: error: 'remote_addr' undeclared (first use in this function); did you mean '_remove_r'?
+  err = tcp_connect(pcb, &remote_addr, TCP_PORT, tcp_client_connected);
+                          ^~~~~~~~~~~
+                          _remove_r
+../src/lwip.c:61:49: error: 'tcp_client_connected' undeclared (first use in this function); did you mean 'client_connected'?
+  err = tcp_connect(pcb, &remote_addr, TCP_PORT, tcp_client_connected);
+                                                 ^~~~~~~~~~~~~~~~~~~~
+                                                 client_connected
+../src/lwip.c:65:3: warning: implicit declaration of function 'tcp_client_close'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+   tcp_client_close(pcb);
+   ^~~~~~~~~~~~~~~~
+   tcp_close
+make: *** [src/subdir.mk:32: src/lwip.o] Error 1
+11:08:24 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:61:20: error: 'pcb' undeclared (first use in this function)
+  err = tcp_connect(pcb, &remote_addr, TCP_PORT, client_connected);
+                    ^~~
+../src/lwip.c:61:20: note: each undeclared identifier is reported only once for each function it appears in
+../src/lwip.c:61:26: error: 'remote_addr' undeclared (first use in this function); did you mean '_remove_r'?
+  err = tcp_connect(pcb, &remote_addr, TCP_PORT, client_connected);
+                          ^~~~~~~~~~~
+                          _remove_r
+../src/lwip.c:65:3: warning: implicit declaration of function 'tcp_client_close'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+   tcp_client_close(pcb);
+   ^~~~~~~~~~~~~~~~
+   tcp_close
+make: *** [src/subdir.mk:32: src/lwip.o] Error 1
+11:09:19 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:59:8: warning: implicit declaration of function 'inet_aton' [-Wimplicit-function-declaration]
+  err = inet_aton(TCP_SERVER_IP_ADDRESS, &remote_addr);
+        ^~~~~~~~~
+../src/lwip.c:68:20: error: 'pcb' undeclared (first use in this function)
+  err = tcp_connect(pcb, &remote_addr, TCP_PORT, client_connected);
+                    ^~~
+../src/lwip.c:68:20: note: each undeclared identifier is reported only once for each function it appears in
+../src/lwip.c:72:3: warning: implicit declaration of function 'tcp_client_close'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+   tcp_client_close(pcb);
+   ^~~~~~~~~~~~~~~~
+   tcp_close
+make: *** [src/subdir.mk:32: src/lwip.o] Error 1
+11:09:35 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:59:8: warning: implicit declaration of function 'inet_aton' [-Wimplicit-function-declaration]
+  err = inet_aton(TCP_SERVER_IP_ADDRESS, &remote_addr);
+        ^~~~~~~~~
+../src/lwip.c:72:3: warning: implicit declaration of function 'tcp_client_close'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+   tcp_client_close(pcb);
+   ^~~~~~~~~~~~~~~~
+   tcp_close
+../src/lwip.c:72:20: error: 'pcb' undeclared (first use in this function)
+   tcp_client_close(pcb);
+                    ^~~
+../src/lwip.c:72:20: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [src/subdir.mk:32: src/lwip.o] Error 1
+11:10:47 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:59:8: warning: implicit declaration of function 'inet_aton' [-Wimplicit-function-declaration]
+  err = inet_aton(TCP_SERVER_IP_ADDRESS, &remote_addr);
+        ^~~~~~~~~
+../src/lwip.c:72:3: warning: implicit declaration of function 'tcp_client_close'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+   tcp_client_close(pcb);
+   ^~~~~~~~~~~~~~~~
+   tcp_close
+../src/lwip.c:72:20: error: 'pcb' undeclared (first use in this function)
+   tcp_client_close(pcb);
+                    ^~~
+../src/lwip.c:72:20: note: each undeclared identifier is reported only once for each function it appears in
+../src/lwip.c: At top level:
+../src/lwip.c:78:13: warning: conflicting types for 'tcp_client_close'
+ static void tcp_client_close(struct tcp_pcb *pcb)
+             ^~~~~~~~~~~~~~~~
+../src/lwip.c:78:13: error: static declaration of 'tcp_client_close' follows non-static declaration
+../src/lwip.c:72:3: note: previous implicit declaration of 'tcp_client_close' was here
+   tcp_client_close(pcb);
+   ^~~~~~~~~~~~~~~~
+../src/lwip.c:78:13: warning: 'tcp_client_close' defined but not used [-Wunused-function]
+ static void tcp_client_close(struct tcp_pcb *pcb)
+             ^~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/lwip.o] Error 1
+11:10:59 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:59:8: warning: implicit declaration of function 'inet_aton' [-Wimplicit-function-declaration]
+  err = inet_aton(TCP_SERVER_IP_ADDRESS, &remote_addr);
+        ^~~~~~~~~
+../src/lwip.c:72:20: error: 'pcb' undeclared (first use in this function)
+   tcp_client_close(pcb);
+                    ^~~
+../src/lwip.c:72:20: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [src/subdir.mk:32: src/lwip.o] Error 1
+11:11:16 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:59:8: warning: implicit declaration of function 'inet_aton' [-Wimplicit-function-declaration]
+  err = inet_aton(TCP_SERVER_IP_ADDRESS, &remote_addr);
+        ^~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:33,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/lwip.h:35:13: warning: 'tcp_client_close' declared 'static' but never defined [-Wunused-function]
+ static void tcp_client_close(struct tcp_pcb *pcb);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/ld.exe: ./src/lwip.o: in function `tcp_connection_cl':
+C:\Users\nmil\1301_w_l\123\Debug/../src/lwip.c:59: undefined reference to `inet_aton'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:41: 123.elf] Error 1
+11:12:34 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:59:8: warning: implicit declaration of function 'inet_aton' [-Wimplicit-function-declaration]
+  err = inet_aton(TCP_SERVER_IP_ADDRESS, &remote_addr);
+        ^~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:33,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/lwip.h:36:13: warning: 'tcp_client_close' declared 'static' but never defined [-Wunused-function]
+ static void tcp_client_close(struct tcp_pcb *pcb);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/ld.exe: ./src/lwip.o: in function `tcp_connection_cl':
+C:\Users\nmil\1301_w_l\123\Debug/../src/lwip.c:59: undefined reference to `inet_aton'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:41: 123.elf] Error 1
+11:13:25 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:33,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/lwip.h:37:13: warning: 'tcp_client_close' declared 'static' but never defined [-Wunused-function]
+ static void tcp_client_close(struct tcp_pcb *pcb);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180548	   3428	2152752	2336728	 23a7d8	123.elf
+'Finished building: 123.elf.size'
+' '
+11:15:57 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180548	   3428	2152752	2336728	 23a7d8	123.elf
+'Finished building: 123.elf.size'
+' '
+11:19:03 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180588	   3428	2152752	2336768	 23a800	123.elf
+'Finished building: 123.elf.size'
+' '
+11:19:27 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180564	   3428	2152752	2336744	 23a7e8	123.elf
+'Finished building: 123.elf.size'
+' '
+11:22:58 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+11:22:58 **** Incremental Build of configuration Debug for project 321 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+11:23:42 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:33,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/lwip.h:37:13: warning: 'tcp_client_close' declared 'static' but never defined [-Wunused-function]
+ static void tcp_client_close(struct tcp_pcb *pcb);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180564	   3428	2152752	2336744	 23a7e8	123.elf
+'Finished building: 123.elf.size'
+' '
+11:24:35 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+11:24:36 **** Incremental Build of configuration Debug for project 321 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+11:25:23 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:25:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:28:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../123_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:87:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:92:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:95:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:33,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/lwip.h:37:13: warning: 'tcp_client_close' declared 'static' but never defined [-Wunused-function]
+ static void tcp_client_close(struct tcp_pcb *pcb);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../123_bsp/ps7_cortexa9_0/lib -o "123.elf"  ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 180564	   3428	2152752	2336744	 23a7e8	123.elf
+'Finished building: 123.elf.size'
+' '
+11:25:26 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+11:25:27 **** Incremental Build of configuration Debug for project 321 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.

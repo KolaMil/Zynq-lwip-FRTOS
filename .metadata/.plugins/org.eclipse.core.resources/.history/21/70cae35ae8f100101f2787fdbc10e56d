@@ -1,0 +1,130 @@
+/*
+ ============================================================================
+ Name        : lwip.c
+ Author      : FET
+ Version     :
+ Description : Init socet api lwip with
+ ============================================================================
+ */
+
+#include "lwip.h"
+
+/*-----------------------------------------------------------*/
+void lwip_network_setup(void)
+{
+    ip_addr_t ipaddr, netmask, gw;
+    unsigned char mac[] = {0x00,0x0A,0x35,0x00,0x01,0x02};
+
+    /* Инициализация библиотеки */
+    lwip_init();
+
+    IP4_ADDR(&ipaddr, 192,168,1,10);
+    IP4_ADDR(&netmask, 255,255,255,0);
+    IP4_ADDR(&gw, 192,168,1,1);
+
+    if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+    {
+        xil_printf("Error adding N/W interface\r\n");
+        vTaskDelete(NULL);
+        return;
+    }
+    netif_set_default(&server_netif);
+    netif_set_up(&server_netif);
+}
+
+/*-----------------------------------------------------------*/
+void udp_connection(void)
+{
+	udp_pcb_conn = udp_new();
+	if(!udp_pcb_conn)
+	{
+		xil_printf("Cannot create UDP PCB\r\n");
+		vTaskDelete(NULL);
+		return;
+	}
+	ip_addr_t remote_ip;
+	IP4_ADDR(&remote_ip, 192, 168, 1, 100);
+	udp_connect(udp_pcb_conn, &remote_ip, 5005);
+}
+
+/*-----------------------------------------------------------*/
+void tsp_connection_cl(void)
+{
+	err_t err;
+	/* create new TCP PCB structure */
+	tcp_pcb = tcp_new_ip_type(IPADDR_TYPE_ANY);
+	if (!tcp_pcb)
+	{
+		xil_printf("Error creating PCB. Out of Memory\n\r");
+		return;
+	}
+
+	/* bind to specified @port */
+	err = tcp_bind(tcp_pcb, IP_ANY_TYPE, TCP_PORT);
+	if (err != ERR_OK)
+	{
+		xil_printf("Unable to bind to port %d: err = %d\n\r", TCP_PORT, err);
+		return;
+	}
+
+	/* we do not need any arguments to callback functions */
+	tcp_arg(tcp_pcb, NULL);
+
+	/* listen for connections */ /***********************************************************/
+	ip_addr_t remote_ip;
+	IP4_ADDR(&remote_ip, 192, 168, 1, 100);
+	err = tcp_connect(tcp_pcb, &remote_ip, (u16)TCP_PORT, client_connected);
+	if (err != ERR_OK)
+	{
+		xil_printf("Error initiating connection: %d\n\r", err);
+		return;
+	}
+	else
+	{
+		xil_printf("TCP cl start @ port %d\n\r", TCP_PORT);
+	}
+}
+
+/*-----------------------------------------------------------*/
+err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
+{
+    if (err != ERR_OK) {
+        xil_printf("Connection failed with error code: %d\n\r", err);
+        return err;
+    }
+
+    xil_printf("Successfully connected to server\n\r");
+
+    /* Теперь можно задать callback для приема данных от сервера */
+    tcp_recv(tpcb, recv_callback); // Эту функцию нужно создать отдельно
+
+    return ERR_OK;
+}
+/*-----------------------------------------------------------*/
+err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
+{
+	uint32_t input;
+	if (!p)
+	{
+		tcp_close(tpcb);
+		tcp_recv(tpcb, NULL);
+		return ERR_OK;
+	}
+	/* pass information about the message to stack */
+	tcp_recved(tpcb, p->len);
+
+	if (tcp_sndbuf(tpcb) > p->len)
+	{
+		err = tcp_write(tpcb, p->payload, p->len, 1);
+	}
+	else
+	{
+		xil_printf("no space in tcp_sndbuf\n\r");
+	}
+	sscanf(p->payload, "%lu", &input);
+	/* free the received pbuf */
+	pbuf_free(p);
+
+	return ERR_OK;
+}
+

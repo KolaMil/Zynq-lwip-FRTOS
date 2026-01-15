@@ -849,6 +849,8 @@
 </instance>
 <instance id="xilinx.gnu.armv7.exe.debug.2008575050;xilinx.gnu.armv7.exe.debug.2008575050.;xilinx.gnu.armv7.c.toolchain.compiler.debug.725454222;xilinx.gnu.armv7.c.compiler.input.274292257">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
+<includePath path="#undef __ARM_ASM_SYNTAX_UNIFIED__" removed="true"/>
+<includePath path="#undef __ARM_FEATURE_COPROC" removed="true"/>
 <includePath path="#undef __ARM_FEATURE_LDREX" removed="true"/>
 <includePath path="#undef __ARM_FEATURE_CLZ" removed="true"/>
 <includePath path="#undef __ARM_FEATURE_DSP" removed="true"/>

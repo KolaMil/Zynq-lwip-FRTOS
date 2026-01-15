@@ -37,7 +37,7 @@ static void network_init_task(void *pvParameters)
 		lwip_network_setup();
 		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, UDP_TASK_PRIO, NULL);
 		udp_connection();
-		tsp_connection_cl();
+		tcp_connection_cl();
 		xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO, NULL);
 //		xTaskCreate(semaphore_generator_task, "SemGen", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO + 1, NULL);
 		vTaskDelete(NULL);
@@ -82,16 +82,16 @@ void x1emacif_input_thread(void *arg)
 
     while(1)
     {
-//    	if (TcpFastTmrFlag)
-//    	{
-//			tcp_fasttmr();
-//			TcpFastTmrFlag = 0;
-//		}
-//		if (TcpSlowTmrFlag)
-//		{
-//			tcp_slowtmr();
-//			TcpSlowTmrFlag = 0;
-//		}
+    	if (TcpFastTmrFlag)
+    	{
+			tcp_fasttmr();
+			TcpFastTmrFlag = 0;
+		}
+		if (TcpSlowTmrFlag)
+		{
+			tcp_slowtmr();
+			TcpSlowTmrFlag = 0;
+		}
         xemacif_input(netif); /* из xadapter.h */
         vTaskDelay(pdMS_TO_TICKS(1));
     }

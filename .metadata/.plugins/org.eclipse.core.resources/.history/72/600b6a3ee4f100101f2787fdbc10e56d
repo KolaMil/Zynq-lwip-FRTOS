@@ -1,0 +1,16 @@
+/*
+ ============================================================================
+ Name        : main.h
+ Author      : FET
+ Version     :
+ Description : Inc for platform.c
+ ============================================================================
+ */
+
+#ifndef __PLATFORM_H_
+#define __PLATFORM_H_
+
+volatile int TcpFastTmrFlag = 0;
+volatile int TcpSlowTmrFlag = 0;
+
+#endif

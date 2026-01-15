@@ -48,9 +48,16 @@ void udp_connection(void)
 }
 
 /*-----------------------------------------------------------*/
-void tsp_connection_cl(void)
+void tcp_connection_cl(void)
 {
 	err_t err;
+	ip_addr_t remote_addr;
+#if LWIP_IPV6==1
+	remote_addr.type= IPADDR_TYPE_V6;
+	err = inet6_aton(TCP_SERVER_IPV6_ADDRESS, &remote_addr);
+#else
+	err = inet_aton(TCP_SERVER_IP_ADDRESS, &remote_addr);
+#endif /* LWIP_IPV6 */
 	/* create new TCP PCB structure */
 	tcp_pcb = tcp_new_ip_type(IPADDR_TYPE_ANY);
 	if (!tcp_pcb)
@@ -58,28 +65,29 @@ void tsp_connection_cl(void)
 		xil_printf("Error creating PCB. Out of Memory\n\r");
 		return;
 	}
-
-	/* bind to specified @port */
-	err = tcp_bind(tcp_pcb, IP_ANY_TYPE, TCP_PORT);
-	if (err != ERR_OK)
+	err = tcp_connect(tcp_pcb, &remote_addr, TCP_PORT, client_connected);
+	if (err)
 	{
-		xil_printf("Unable to bind to port %d: err = %d\n\r", TCP_PORT, err);
+		xil_printf("Error on tcp_connect: %d\r\n", err);
+		tcp_client_close(tcp_pcb);
 		return;
 	}
+}
 
-	/* we do not need any arguments to callback functions */
-	tcp_arg(tcp_pcb, NULL);
+/*-----------------------------------------------------------*/
+static void tcp_client_close(struct tcp_pcb *pcb)
+{
+	err_t err;
 
-	/* listen for connections */ /***********************************************************/
-	ip_addr_t remote_ip;
-	IP4_ADDR(&remote_ip, 192, 168, 1, 100);
-	err = tcp_connect(tcp_pcb, &remote_ip, (u16)TCP_PORT, client_connected);
-	if (err != ERR_OK)
-	{
-		xil_printf("Error initiating connection: %d\n\r", err);
-		return;
+	if (pcb != NULL) {
+		tcp_sent(pcb, NULL);
+		tcp_err(pcb, NULL);
+		err = tcp_close(pcb);
+		if (err != ERR_OK) {
+			/* Free memory with abort */
+			tcp_abort(pcb);
+		}
 	}
-	xil_printf("TCP cl start @ port %d\n\r", TCP_PORT);
 }
 
 /*-----------------------------------------------------------*/
@@ -92,8 +100,7 @@ err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
 
     xil_printf("Successfully connected to server\n\r");
 
-    /* Теперь можно задать callback для приема данных от сервера */
-    tcp_recv(tpcb, recv_callback); // Эту функцию нужно создать отдельно
+    tcp_recv(tpcb, recv_callback);
 
     return ERR_OK;
 }
@@ -119,6 +126,7 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 		xil_printf("no space in tcp_sndbuf\n\r");
 	}
 	sscanf(p->payload, "%lu", &input);
+	xil_printf("get from TCP: %lu\n\r", &input);
 	/* free the received pbuf */
 	pbuf_free(p);
 

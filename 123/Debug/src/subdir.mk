@@ -9,17 +9,20 @@ LD_SRCS += \
 C_SRCS += \
 ../src/cpu1_init.c \
 ../src/lwip.c \
-../src/main.c 
+../src/main.c \
+../src/platform.c 
 
 OBJS += \
 ./src/cpu1_init.o \
 ./src/lwip.o \
-./src/main.o 
+./src/main.o \
+./src/platform.o 
 
 C_DEPS += \
 ./src/cpu1_init.d \
 ./src/lwip.d \
-./src/main.d 
+./src/main.d \
+./src/platform.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

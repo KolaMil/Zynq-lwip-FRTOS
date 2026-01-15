@@ -10,6 +10,10 @@
 #ifndef __MAIN_H_
 #define __MAIN_H_
 
+/* Platform variables */
+extern volatile int TcpFastTmrFlag;
+extern volatile int TcpSlowTmrFlag;
+
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
 #include "task.h"

@@ -62,6 +62,7 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/ip.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/icmp.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/icmp.h \
+ ../../123_bsp/ps7_cortexa9_0/include/lwip/inet.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/udp.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/udp.h \
  ../../123_bsp/ps7_cortexa9_0/include/lwip/init.h \
@@ -198,6 +199,8 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
 ../../123_bsp/ps7_cortexa9_0/include/lwip/icmp.h:
 
 ../../123_bsp/ps7_cortexa9_0/include/lwip/prot/icmp.h:
+
+../../123_bsp/ps7_cortexa9_0/include/lwip/inet.h:
 
 ../../123_bsp/ps7_cortexa9_0/include/lwip/udp.h:
 
