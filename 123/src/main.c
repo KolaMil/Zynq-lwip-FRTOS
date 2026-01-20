@@ -15,6 +15,7 @@ int main(void)
 	init_platform();
 	xil_printf("\nHello bratish! I'm CPU0\r\n");
 	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
+	vInitialiseTimer();
 	vTaskStartScheduler();
 
 	while(1);
@@ -87,15 +88,8 @@ void udp_send_task(void *arg)
 void x1emacif_input_thread(void *arg)
 {
     struct netif *netif = (struct netif *)arg;
-    u32 sum = 0;
     while(1)
     {
-    	sum = XScuTimer_GetCounterValue(&TimerInstance);
-//    	if (sum > 835991 && sum < 17784961)
-//    	{
-//    		xil_printf("1: %u", sum);
-//    	}
-//    	if(sum)
         xemacif_input(netif); /* из xadapter.h */
         vTaskDelay(pdMS_TO_TICKS(1));
     }

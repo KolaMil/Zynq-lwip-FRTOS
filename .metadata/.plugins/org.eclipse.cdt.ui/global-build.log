@@ -12444,3 +12444,1050 @@ arm-none-eabi-size 123.elf  |tee "123.elf.size"
  184556	   3500	2152752	2340808	 23b7c8	123.elf
 'Finished building: 123.elf.size'
 ' '
+12:33:10 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:99:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+../src/main.c:90:9: warning: variable 'sum' set but not used [-Wunused-but-set-variable]
+     u32 sum = 0;
+         ^~~
+In file included from ../src/main.h:39,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/lwip.h:37:13: warning: 'tcp_client_close' declared 'static' but never defined [-Wunused-function]
+ static void tcp_client_close(struct tcp_pcb *pcb);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 184556	   3500	2152752	2340808	 23b7c8	123.elf
+'Finished building: 123.elf.size'
+' '
+12:33:43 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:39,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/lwip.h:37:13: warning: 'tcp_client_close' declared 'static' but never defined [-Wunused-function]
+ static void tcp_client_close(struct tcp_pcb *pcb);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 184492	   3500	2152752	2340744	 23b788	123.elf
+'Finished building: 123.elf.size'
+' '
+12:33:53 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:24:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:27:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+../src/lwip.c: At top level:
+../src/lwip.c:77:13: error: static declaration of 'tcp_client_close' follows non-static declaration
+ static void tcp_client_close(struct tcp_pcb *pcb)
+             ^~~~~~~~~~~~~~~~
+In file included from ../src/lwip.c:10:
+../src/lwip.h:37:6: note: previous declaration of 'tcp_client_close' was here
+ void tcp_client_close(struct tcp_pcb *pcb);
+      ^~~~~~~~~~~~~~~~
+../src/lwip.c:77:13: warning: 'tcp_client_close' defined but not used [-Wunused-function]
+ static void tcp_client_close(struct tcp_pcb *pcb)
+             ^~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:35: src/lwip.o] Error 1
+12:33:58 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:24:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c:27:9: warning: implicit declaration of function 'vTaskDelete' [-Wimplicit-function-declaration]
+         vTaskDelete(NULL);
+         ^~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 184492	   3500	2152752	2340744	 23b788	123.elf
+'Finished building: 123.elf.size'
+' '
+12:35:47 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/gpio.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/gpio.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/gpio.d" -MT"src/gpio.o" -o "src/gpio.o" "../src/gpio.c"
+'Finished building: ../src/gpio.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 184492	   3500	2152752	2340744	 23b788	123.elf
+'Finished building: 123.elf.size'
+' '
+12:35:58 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+12:38:00 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'prvSetupHardware':
+../src/platform.c:92:2: error: unknown type name 'BaseType_t'
+  BaseType_t xStatus;
+  ^~~~~~~~~~
+../src/platform.c:98:2: warning: implicit declaration of function 'portDISABLE_INTERRUPTS' [-Wimplicit-function-declaration]
+  portDISABLE_INTERRUPTS();
+  ^~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:105:2: warning: implicit declaration of function 'configASSERT' [-Wimplicit-function-declaration]
+  configASSERT( pxGICConfig );
+  ^~~~~~~~~~~~
+../src/platform.c:106:49: error: 'configINTERRUPT_CONTROLLER_BASE_ADDRESS' undeclared (first use in this function)
+  configASSERT( pxGICConfig->CpuBaseAddress == ( configINTERRUPT_CONTROLLER_BASE_ADDRESS + configINTERRUPT_CONTROLLER_CPU_INTERFACE_OFFSET ) );
+                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:106:49: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:106:91: error: 'configINTERRUPT_CONTROLLER_CPU_INTERFACE_OFFSET' undeclared (first use in this function)
+  configASSERT( pxGICConfig->CpuBaseAddress == ( configINTERRUPT_CONTROLLER_BASE_ADDRESS + configINTERRUPT_CONTROLLER_CPU_INTERFACE_OFFSET ) );
+                                                                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:110:36: error: 'xInterruptController' undeclared (first use in this function); did you mean 'InterruptController'?
+  xStatus = XScuGic_CfgInitialize( &xInterruptController, pxGICConfig, pxGICConfig->CpuBaseAddress );
+                                    ^~~~~~~~~~~~~~~~~~~~
+                                    InterruptController
+../src/platform.c:115:2: warning: implicit declaration of function 'vParTestInitialise' [-Wimplicit-function-declaration]
+  vParTestInitialise();
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c:121:2: warning: implicit declaration of function 'vPortInstallFreeRTOSVectorTable' [-Wimplicit-function-declaration]
+  vPortInstallFreeRTOSVectorTable();
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/platform.c:124:2: warning: implicit declaration of function 'XUartPs_ResetHw' [-Wimplicit-function-declaration]
+  XUartPs_ResetHw( 0xE0000000 );
+  ^~~~~~~~~~~~~~~
+../src/platform.c:125:2: warning: implicit declaration of function 'XUartPs_WriteReg'; did you mean 'XScuGic_WriteReg'? [-Wimplicit-function-declaration]
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+  ^~~~~~~~~~~~~~~~
+  XScuGic_WriteReg
+../src/platform.c:125:31: error: 'XUARTPS_CR_OFFSET' undeclared (first use in this function); did you mean 'XSCUTIMER_ISR_OFFSET'?
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+                               ^~~~~~~~~~~~~~~~~
+                               XSCUTIMER_ISR_OFFSET
+../src/platform.c:126:11: error: 'XUARTPS_CR_RX_DIS' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+           ^~~~~~~~~~~~~~~~~
+../src/platform.c:126:36: error: 'XUARTPS_CR_TX_EN' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+                                    ^~~~~~~~~~~~~~~~
+../src/platform.c:127:12: error: 'XUARTPS_CR_STOPBRK' undeclared (first use in this function)
+       (u32)XUARTPS_CR_STOPBRK));
+            ^~~~~~~~~~~~~~~~~~
+At top level:
+../src/platform.c:90:13: warning: 'prvSetupHardware' defined but not used [-Wunused-function]
+ static void prvSetupHardware( void )
+             ^~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:38: src/platform.o] Error 1
+12:40:18 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/platform.h:16,
+                 from ../src/main.h:22,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:235:3: error: #error Invalid configUNIQUE_INTERRUPT_PRIORITIES setting. configUNIQUE_INTERRUPT_PRIORITIES must be set to the number of unique priorities implemented by the target hardware
+  #error Invalid configUNIQUE_INTERRUPT_PRIORITIES setting.  configUNIQUE_INTERRUPT_PRIORITIES must be set to the number of unique priorities implemented by the target hardware
+   ^~~~~
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:38: src/main.o] Error 1
+12:42:23 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/platform.h:16,
+                 from ../src/main.h:22,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:235:3: error: #error Invalid configUNIQUE_INTERRUPT_PRIORITIES setting. configUNIQUE_INTERRUPT_PRIORITIES must be set to the number of unique priorities implemented by the target hardware
+  #error Invalid configUNIQUE_INTERRUPT_PRIORITIES setting.  configUNIQUE_INTERRUPT_PRIORITIES must be set to the number of unique priorities implemented by the target hardware
+   ^~~~~
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:38: src/main.o] Error 1
+12:43:46 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'prvSetupHardware':
+../src/platform.c:110:36: error: 'xInterruptController' undeclared (first use in this function); did you mean 'InterruptController'?
+  xStatus = XScuGic_CfgInitialize( &xInterruptController, pxGICConfig, pxGICConfig->CpuBaseAddress );
+                                    ^~~~~~~~~~~~~~~~~~~~
+                                    InterruptController
+../src/platform.c:110:36: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:115:2: warning: implicit declaration of function 'vParTestInitialise'; did you mean 'vPortInitialiseBlocks'? [-Wimplicit-function-declaration]
+  vParTestInitialise();
+  ^~~~~~~~~~~~~~~~~~
+  vPortInitialiseBlocks
+../src/platform.c:124:2: warning: implicit declaration of function 'XUartPs_ResetHw' [-Wimplicit-function-declaration]
+  XUartPs_ResetHw( 0xE0000000 );
+  ^~~~~~~~~~~~~~~
+../src/platform.c:125:2: warning: implicit declaration of function 'XUartPs_WriteReg'; did you mean 'XScuGic_WriteReg'? [-Wimplicit-function-declaration]
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+  ^~~~~~~~~~~~~~~~
+  XScuGic_WriteReg
+../src/platform.c:125:31: error: 'XUARTPS_CR_OFFSET' undeclared (first use in this function); did you mean 'XSCUTIMER_ISR_OFFSET'?
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+                               ^~~~~~~~~~~~~~~~~
+                               XSCUTIMER_ISR_OFFSET
+../src/platform.c:126:11: error: 'XUARTPS_CR_RX_DIS' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+           ^~~~~~~~~~~~~~~~~
+../src/platform.c:126:36: error: 'XUARTPS_CR_TX_EN' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+                                    ^~~~~~~~~~~~~~~~
+../src/platform.c:127:12: error: 'XUARTPS_CR_STOPBRK' undeclared (first use in this function)
+       (u32)XUARTPS_CR_STOPBRK));
+            ^~~~~~~~~~~~~~~~~~
+At top level:
+../src/platform.c:90:13: warning: 'prvSetupHardware' defined but not used [-Wunused-function]
+ static void prvSetupHardware( void )
+             ^~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:38: src/platform.o] Error 1
+12:43:52 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/platform.h:16,
+                 from ../src/main.h:22,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:235:3: error: #error Invalid configUNIQUE_INTERRUPT_PRIORITIES setting. configUNIQUE_INTERRUPT_PRIORITIES must be set to the number of unique priorities implemented by the target hardware
+  #error Invalid configUNIQUE_INTERRUPT_PRIORITIES setting.  configUNIQUE_INTERRUPT_PRIORITIES must be set to the number of unique priorities implemented by the target hardware
+   ^~~~~
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:38: src/main.o] Error 1
+12:45:24 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/platform.h:16,
+                 from ../src/main.h:22,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:235:3: error: #error Invalid configUNIQUE_INTERRUPT_PRIORITIES setting. configUNIQUE_INTERRUPT_PRIORITIES must be set to the number of unique priorities implemented by the target hardware
+  #error Invalid configUNIQUE_INTERRUPT_PRIORITIES setting.  configUNIQUE_INTERRUPT_PRIORITIES must be set to the number of unique priorities implemented by the target hardware
+   ^~~~~
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+make: *** [src/subdir.mk:38: src/main.o] Error 1
+12:46:44 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'prvSetupHardware':
+../src/platform.c:110:36: error: 'xInterruptController' undeclared (first use in this function); did you mean 'InterruptController'?
+  xStatus = XScuGic_CfgInitialize( &xInterruptController, pxGICConfig, pxGICConfig->CpuBaseAddress );
+                                    ^~~~~~~~~~~~~~~~~~~~
+                                    InterruptController
+../src/platform.c:110:36: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:115:2: warning: implicit declaration of function 'vParTestInitialise' [-Wimplicit-function-declaration]
+  vParTestInitialise();
+  ^~~~~~~~~~~~~~~~~~
+../src/platform.c:124:2: warning: implicit declaration of function 'XUartPs_ResetHw' [-Wimplicit-function-declaration]
+  XUartPs_ResetHw( 0xE0000000 );
+  ^~~~~~~~~~~~~~~
+../src/platform.c:125:2: warning: implicit declaration of function 'XUartPs_WriteReg'; did you mean 'XScuGic_WriteReg'? [-Wimplicit-function-declaration]
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+  ^~~~~~~~~~~~~~~~
+  XScuGic_WriteReg
+../src/platform.c:125:31: error: 'XUARTPS_CR_OFFSET' undeclared (first use in this function); did you mean 'XSCUTIMER_ISR_OFFSET'?
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+                               ^~~~~~~~~~~~~~~~~
+                               XSCUTIMER_ISR_OFFSET
+../src/platform.c:126:11: error: 'XUARTPS_CR_RX_DIS' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+           ^~~~~~~~~~~~~~~~~
+../src/platform.c:126:36: error: 'XUARTPS_CR_TX_EN' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+                                    ^~~~~~~~~~~~~~~~
+../src/platform.c:127:12: error: 'XUARTPS_CR_STOPBRK' undeclared (first use in this function)
+       (u32)XUARTPS_CR_STOPBRK));
+            ^~~~~~~~~~~~~~~~~~
+At top level:
+../src/platform.c:90:13: warning: 'prvSetupHardware' defined but not used [-Wunused-function]
+ static void prvSetupHardware( void )
+             ^~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:38: src/platform.o] Error 1
+12:46:58 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'prvSetupHardware':
+../src/platform.c:110:36: error: 'xInterruptController' undeclared (first use in this function); did you mean 'InterruptController'?
+  xStatus = XScuGic_CfgInitialize( &xInterruptController, pxGICConfig, pxGICConfig->CpuBaseAddress );
+                                    ^~~~~~~~~~~~~~~~~~~~
+                                    InterruptController
+../src/platform.c:110:36: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:115:2: warning: implicit declaration of function 'vParTestInitialise'; did you mean 'vPortInitialiseBlocks'? [-Wimplicit-function-declaration]
+  vParTestInitialise();
+  ^~~~~~~~~~~~~~~~~~
+  vPortInitialiseBlocks
+../src/platform.c:124:2: warning: implicit declaration of function 'XUartPs_ResetHw' [-Wimplicit-function-declaration]
+  XUartPs_ResetHw( 0xE0000000 );
+  ^~~~~~~~~~~~~~~
+../src/platform.c:125:2: warning: implicit declaration of function 'XUartPs_WriteReg'; did you mean 'XScuGic_WriteReg'? [-Wimplicit-function-declaration]
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+  ^~~~~~~~~~~~~~~~
+  XScuGic_WriteReg
+../src/platform.c:125:31: error: 'XUARTPS_CR_OFFSET' undeclared (first use in this function); did you mean 'XSCUTIMER_ISR_OFFSET'?
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+                               ^~~~~~~~~~~~~~~~~
+                               XSCUTIMER_ISR_OFFSET
+../src/platform.c:126:11: error: 'XUARTPS_CR_RX_DIS' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+           ^~~~~~~~~~~~~~~~~
+../src/platform.c:126:36: error: 'XUARTPS_CR_TX_EN' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+                                    ^~~~~~~~~~~~~~~~
+../src/platform.c:127:12: error: 'XUARTPS_CR_STOPBRK' undeclared (first use in this function)
+       (u32)XUARTPS_CR_STOPBRK));
+            ^~~~~~~~~~~~~~~~~~
+At top level:
+../src/platform.c:90:13: warning: 'prvSetupHardware' defined but not used [-Wunused-function]
+ static void prvSetupHardware( void )
+             ^~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:38: src/platform.o] Error 1
+12:48:40 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'prvSetupHardware':
+../src/platform.c:115:2: warning: implicit declaration of function 'vParTestInitialise'; did you mean 'vPortInitialiseBlocks'? [-Wimplicit-function-declaration]
+  vParTestInitialise();
+  ^~~~~~~~~~~~~~~~~~
+  vPortInitialiseBlocks
+../src/platform.c:124:2: warning: implicit declaration of function 'XUartPs_ResetHw' [-Wimplicit-function-declaration]
+  XUartPs_ResetHw( 0xE0000000 );
+  ^~~~~~~~~~~~~~~
+../src/platform.c:125:2: warning: implicit declaration of function 'XUartPs_WriteReg'; did you mean 'XScuGic_WriteReg'? [-Wimplicit-function-declaration]
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+  ^~~~~~~~~~~~~~~~
+  XScuGic_WriteReg
+../src/platform.c:125:31: error: 'XUARTPS_CR_OFFSET' undeclared (first use in this function); did you mean 'XSCUTIMER_ISR_OFFSET'?
+  XUartPs_WriteReg(0xE0000000, XUARTPS_CR_OFFSET,
+                               ^~~~~~~~~~~~~~~~~
+                               XSCUTIMER_ISR_OFFSET
+../src/platform.c:125:31: note: each undeclared identifier is reported only once for each function it appears in
+../src/platform.c:126:11: error: 'XUARTPS_CR_RX_DIS' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+           ^~~~~~~~~~~~~~~~~
+../src/platform.c:126:36: error: 'XUARTPS_CR_TX_EN' undeclared (first use in this function)
+     ((u32)XUARTPS_CR_RX_DIS | (u32)XUARTPS_CR_TX_EN |
+                                    ^~~~~~~~~~~~~~~~
+../src/platform.c:127:12: error: 'XUARTPS_CR_STOPBRK' undeclared (first use in this function)
+       (u32)XUARTPS_CR_STOPBRK));
+            ^~~~~~~~~~~~~~~~~~
+At top level:
+../src/platform.c:90:13: warning: 'prvSetupHardware' defined but not used [-Wunused-function]
+ static void prvSetupHardware( void )
+             ^~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:38: src/platform.o] Error 1
+12:48:44 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'prvSetupHardware':
+../src/platform.c:115:2: warning: implicit declaration of function 'vParTestInitialise'; did you mean 'vPortInitialiseBlocks'? [-Wimplicit-function-declaration]
+  vParTestInitialise();
+  ^~~~~~~~~~~~~~~~~~
+  vPortInitialiseBlocks
+At top level:
+../src/platform.c:90:13: warning: 'prvSetupHardware' defined but not used [-Wunused-function]
+ static void prvSetupHardware( void )
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/platform.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/ld.exe: ./src/platform.o: in function `prvSetupHardware':
+C:\Users\nmil\1301_w_l\123\Debug/../src/platform.c:115: undefined reference to `vParTestInitialise'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:41: 123.elf] Error 1
+12:48:51 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c:90:13: warning: 'prvSetupHardware' defined but not used [-Wunused-function]
+ static void prvSetupHardware( void )
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/platform.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 184700	   3500	2152752	2340952	 23b858	123.elf
+'Finished building: 123.elf.size'
+' '
+12:49:21 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/IntQueueTimer.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/IntQueueTimer.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/IntQueueTimer.d" -MT"src/IntQueueTimer.o" -o "src/IntQueueTimer.o" "../src/IntQueueTimer.c"
+../src/IntQueueTimer.c: In function 'prvTimerHandler':
+../src/IntQueueTimer.c:150:27: warning: unused variable 'd2' [-Wunused-variable]
+  volatile long double d1, d2;
+                           ^~
+../src/IntQueueTimer.c:150:23: warning: unused variable 'd1' [-Wunused-variable]
+  volatile long double d1, d2;
+                       ^~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portable.h:52,
+                 from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOS.h:62,
+                 from ../src/IntQueueTimer.c:28:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:80:4: warning: 'xYieldRequired' is used uninitialized in this function [-Wuninitialized]
+  if( xSwitchRequired != pdFALSE )   \
+    ^
+../src/IntQueueTimer.c:145:12: note: 'xYieldRequired' was declared here
+ BaseType_t xYieldRequired;
+            ^~~~~~~~~~~~~~
+'Finished building: ../src/IntQueueTimer.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 184700	   3500	2152752	2340952	 23b858	123.elf
+'Finished building: 123.elf.size'
+' '
+12:50:16 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+../src/platform.c: In function 'init_platform':
+../src/platform.c:17:2: warning: implicit declaration of function 'prvSetupHardware' [-Wimplicit-function-declaration]
+  prvSetupHardware();
+  ^~~~~~~~~~~~~~~~
+../src/platform.c: At top level:
+../src/platform.c:88:13: warning: conflicting types for 'prvSetupHardware'
+ static void prvSetupHardware( void )
+             ^~~~~~~~~~~~~~~~
+../src/platform.c:88:13: error: static declaration of 'prvSetupHardware' follows non-static declaration
+../src/platform.c:17:2: note: previous implicit declaration of 'prvSetupHardware' was here
+  prvSetupHardware();
+  ^~~~~~~~~~~~~~~~
+../src/platform.c:88:13: warning: 'prvSetupHardware' defined but not used [-Wunused-function]
+ static void prvSetupHardware( void )
+             ^~~~~~~~~~~~~~~~
+make: *** [src/subdir.mk:38: src/platform.o] Error 1
+12:50:37 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/IntQueueTimer.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/IntQueueTimer.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/IntQueueTimer.d" -MT"src/IntQueueTimer.o" -o "src/IntQueueTimer.o" "../src/IntQueueTimer.c"
+../src/IntQueueTimer.c: In function 'prvTimerHandler':
+../src/IntQueueTimer.c:150:27: warning: unused variable 'd2' [-Wunused-variable]
+  volatile long double d1, d2;
+                           ^~
+../src/IntQueueTimer.c:150:23: warning: unused variable 'd1' [-Wunused-variable]
+  volatile long double d1, d2;
+                       ^~
+In file included from ../src/IntQueueTimer.c:29:
+../src/IntQueueTimer.c: At top level:
+../src/platform.h:39:13: warning: 'prvSetupHardware' declared 'static' but never defined [-Wunused-function]
+ static void prvSetupHardware(void);
+             ^~~~~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portable.h:52,
+                 from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOS.h:62,
+                 from ../src/IntQueueTimer.c:28:
+../src/IntQueueTimer.c: In function 'prvTimerHandler':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:80:4: warning: 'xYieldRequired' is used uninitialized in this function [-Wuninitialized]
+  if( xSwitchRequired != pdFALSE )   \
+    ^
+../src/IntQueueTimer.c:145:12: note: 'xYieldRequired' was declared here
+ BaseType_t xYieldRequired;
+            ^~~~~~~~~~~~~~
+'Finished building: ../src/IntQueueTimer.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:22,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/platform.h:39:13: warning: 'prvSetupHardware' declared 'static' but never defined [-Wunused-function]
+ static void prvSetupHardware(void);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 184700	   3500	2152752	2340952	 23b858	123.elf
+'Finished building: 123.elf.size'
+' '
+12:50:53 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 183500	   3500	2152752	2339752	 23b3a8	123.elf
+'Finished building: 123.elf.size'
+' '
+12:50:58 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 183500	   3500	2152752	2339752	 23b3a8	123.elf
+'Finished building: 123.elf.size'
+' '
+12:51:04 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/IntQueueTimer.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/IntQueueTimer.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/IntQueueTimer.d" -MT"src/IntQueueTimer.o" -o "src/IntQueueTimer.o" "../src/IntQueueTimer.c"
+../src/IntQueueTimer.c: In function 'prvTimerHandler':
+../src/IntQueueTimer.c:150:27: warning: unused variable 'd2' [-Wunused-variable]
+  volatile long double d1, d2;
+                           ^~
+../src/IntQueueTimer.c:150:23: warning: unused variable 'd1' [-Wunused-variable]
+  volatile long double d1, d2;
+                       ^~
+In file included from ../src/IntQueueTimer.c:29:
+../src/IntQueueTimer.c: At top level:
+../src/platform.h:36:13: warning: 'prvSetupHardware' declared 'static' but never defined [-Wunused-function]
+ static void prvSetupHardware(void);
+             ^~~~~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portable.h:52,
+                 from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOS.h:62,
+                 from ../src/IntQueueTimer.c:28:
+../src/IntQueueTimer.c: In function 'prvTimerHandler':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:80:4: warning: 'xYieldRequired' is used uninitialized in this function [-Wuninitialized]
+  if( xSwitchRequired != pdFALSE )   \
+    ^
+../src/IntQueueTimer.c:145:12: note: 'xYieldRequired' was declared here
+ BaseType_t xYieldRequired;
+            ^~~~~~~~~~~~~~
+'Finished building: ../src/IntQueueTimer.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:26,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:22,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/platform.h:36:13: warning: 'prvSetupHardware' declared 'static' but never defined [-Wunused-function]
+ static void prvSetupHardware(void);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/platform.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+'Finished building: ../src/platform.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 183500	   3500	2152752	2339752	 23b3a8	123.elf
+'Finished building: 123.elf.size'
+' '
+12:52:43 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/IntQueueTimer.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/IntQueueTimer.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/IntQueueTimer.d" -MT"src/IntQueueTimer.o" -o "src/IntQueueTimer.o" "../src/IntQueueTimer.c"
+../src/IntQueueTimer.c: In function 'prvTimerHandler':
+../src/IntQueueTimer.c:150:27: warning: unused variable 'd2' [-Wunused-variable]
+  volatile long double d1, d2;
+                           ^~
+../src/IntQueueTimer.c:150:23: warning: unused variable 'd1' [-Wunused-variable]
+  volatile long double d1, d2;
+                       ^~
+In file included from ../src/IntQueueTimer.c:29:
+../src/IntQueueTimer.c: At top level:
+../src/platform.h:36:13: warning: 'prvSetupHardware' declared 'static' but never defined [-Wunused-function]
+ static void prvSetupHardware(void);
+             ^~~~~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portable.h:52,
+                 from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOS.h:62,
+                 from ../src/IntQueueTimer.c:28:
+../src/IntQueueTimer.c: In function 'prvTimerHandler':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:80:4: warning: 'xYieldRequired' is used uninitialized in this function [-Wuninitialized]
+  if( xSwitchRequired != pdFALSE )   \
+    ^
+../src/IntQueueTimer.c:145:12: note: 'xYieldRequired' was declared here
+ BaseType_t xYieldRequired;
+            ^~~~~~~~~~~~~~
+'Finished building: ../src/IntQueueTimer.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 183500	   3500	2152752	2339752	 23b3a8	123.elf
+'Finished building: 123.elf.size'
+' '
+12:53:02 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:41:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:92:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:22,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/platform.h:36:13: warning: 'prvSetupHardware' declared 'static' but never defined [-Wunused-function]
+ static void prvSetupHardware(void);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 183500	   3500	2152752	2339752	 23b3a8	123.elf
+'Finished building: 123.elf.size'
+' '
+12:53:04 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:42:82: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                  ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:93:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+         xemacif_input(netif); /* из xadapter.h */
+         ^~~~~~~~~~~~~
+         netif_input
+In file included from ../src/main.h:22,
+                 from ../src/main.c:10:
+../src/main.c: At top level:
+../src/platform.h:36:13: warning: 'prvSetupHardware' declared 'static' but never defined [-Wunused-function]
+ static void prvSetupHardware(void);
+             ^~~~~~~~~~~~~~~~
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 183500	   3500	2152752	2339752	 23b3a8	123.elf
+'Finished building: 123.elf.size'
+' '
+12:53:18 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/IntQueueTimer.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/IntQueueTimer.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/IntQueueTimer.d" -MT"src/IntQueueTimer.o" -o "src/IntQueueTimer.o" "../src/IntQueueTimer.c"
+../src/IntQueueTimer.c: In function 'prvTimerHandler':
+../src/IntQueueTimer.c:150:27: warning: unused variable 'd2' [-Wunused-variable]
+  volatile long double d1, d2;
+                           ^~
+../src/IntQueueTimer.c:150:23: warning: unused variable 'd1' [-Wunused-variable]
+  volatile long double d1, d2;
+                       ^~
+In file included from ../src/IntQueueTimer.c:29:
+../src/IntQueueTimer.c: At top level:
+../src/platform.h:36:13: warning: 'prvSetupHardware' declared 'static' but never defined [-Wunused-function]
+ static void prvSetupHardware(void);
+             ^~~~~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portable.h:52,
+                 from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOS.h:62,
+                 from ../src/IntQueueTimer.c:28:
+../src/IntQueueTimer.c: In function 'prvTimerHandler':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:80:4: warning: 'xYieldRequired' is used uninitialized in this function [-Wuninitialized]
+  if( xSwitchRequired != pdFALSE )   \
+    ^
+../src/IntQueueTimer.c:145:12: note: 'xYieldRequired' was declared here
+ BaseType_t xYieldRequired;
+            ^~~~~~~~~~~~~~
+'Finished building: ../src/IntQueueTimer.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 183500	   3500	2152752	2339752	 23b3a8	123.elf
+'Finished building: 123.elf.size'
+' '

@@ -17,13 +17,15 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xil_exception.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xscutimer.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xscutimer_hw.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOSConfig.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOS.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOSConfig.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/projdefs.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portable.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/deprecated_definitions.h \
- ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/mpu_wrappers.h \
+ ../src/IntQueueTimer.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/list.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/queue.h \
@@ -108,6 +110,10 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xscutimer_hw.h:
 
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOSConfig.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:
+
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOS.h:
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOSConfig.h:
@@ -118,9 +124,9 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/deprecated_definitions.h:
 
-../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:
-
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/mpu_wrappers.h:
+
+../src/IntQueueTimer.h:
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:
 

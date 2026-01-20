@@ -13,6 +13,10 @@
 /* Includes */
 #include "xscugic.h"
 #include "xscutimer.h"
+#include "FreeRTOSConfig.h"
+#include "portmacro.h"
+#include "FreeRTOS.h"
+#include "xparameters.h"
 
 /* Define */
 #define TIMER_DEVICE_ID		XPAR_SCUTIMER_DEVICE_ID
@@ -24,12 +28,11 @@
 /* Variables */
 //volatile int TcpFastTmrFlag = 0;
 //volatile int TcpSlowTmrFlag = 0;
+XScuGic xInterruptController;
 extern XScuTimer TimerInstance;
 
 /*-----------------------------------------------------------*/
 void init_platform(void);
-void platform_setup_timer(void);
-void platform_setup_interrupts(void);
-void timer_callback(XScuTimer * TimerInstance);
+static void prvSetupHardware(void);
 
 #endif

@@ -20,6 +20,7 @@ extern volatile int TcpSlowTmrFlag;
 
 /* Platform includes */
 #include "platform.h"
+#include "IntQueueTimer.h"
 
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
@@ -45,7 +46,7 @@ static const char data_imit_dma[] = "Static Data to Send";
 /* Freertos Semaphore*/
 static xSemaphoreHandle data_done_sem;
 
-volatile TaskHandle_t xIrqTaskHandle;
+volatile TaskHandle_t xIrqTaskHandle = NULL;
 
 /* Freertos defines */
 #define THREAD_STACKSIZE 512

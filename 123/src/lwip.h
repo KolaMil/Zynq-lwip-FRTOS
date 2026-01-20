@@ -34,7 +34,7 @@ struct netif server_netif;
 void lwip_network_setup(void);
 void udp_connection(void);
 void tcp_connection_cl(void);
-static void tcp_client_close(struct tcp_pcb *pcb);
+void tcp_client_close(struct tcp_pcb *pcb);
 err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err);
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
 

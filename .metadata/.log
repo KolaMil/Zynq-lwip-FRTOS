@@ -4539,3 +4539,290 @@ java.lang.NullPointerException
 
 !ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:27:23.772
 !MESSAGE XSCT command with result: [::hsi::utils::closesw C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Result: [null, ]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.341
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss ], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.343
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss ], Result: [null, ]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.343
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.345
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "freertos10_xilinx",
+"osver": "1.3",
+}]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.345
+!MESSAGE XSCT Command: [::hsi::utils::get_libs_from_sw C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.346
+!MESSAGE XSCT command with result: [::hsi::utils::get_libs_from_sw C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss], Result: [null, lwip211]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.347
+!MESSAGE XSCT Command: [::hsi::utils::get_sw_libs -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.348
+!MESSAGE XSCT command with result: [::hsi::utils::get_sw_libs -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss], Result: [null, {"lwip211": "1.0",
+}]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.349
+!MESSAGE XSCT Command: [::hsi::utils::get_drivers_for_sw -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.353
+!MESSAGE XSCT command with result: [::hsi::utils::get_drivers_for_sw -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_1/system.hdf C:/Users/nmil/1301_w_l/123_bsp/system.mss], Result: [null, {"axi_dma_0": {"name": "axidma",
+"ver": "9.9",
+},
+"ps7_afi_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_afi_1": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_afi_2": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_afi_3": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_can_0": {"name": "canps",
+"ver": "3.2",
+},
+"ps7_coresight_comp_0": {"name": "coresightps_dcc",
+"ver": "1.5",
+},
+"ps7_ddr_0": {"name": "ddrps",
+"ver": "1.0",
+},
+"ps7_ddrc_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_dev_cfg_0": {"name": "devcfg",
+"ver": "3.5",
+},
+"ps7_dma_ns": {"name": "dmaps",
+"ver": "2.4",
+},
+"ps7_dma_s": {"name": "dmaps",
+"ver": "2.4",
+},
+"ps7_ethernet_0": {"name": "emacps",
+"ver": "3.9",
+},
+"ps7_globaltimer_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_gpio_0": {"name": "gpiops",
+"ver": "3.5",
+},
+"ps7_gpv_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_intc_dist_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_iop_bus_config_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_l2cachec_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_ocmc_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_pl310_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_pmu_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_qspi_0": {"name": "qspips",
+"ver": "3.6",
+},
+"ps7_qspi_linear_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_ram_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_ram_1": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_scuc_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_scugic_0": {"name": "scugic",
+"ver": "4.0",
+},
+"ps7_scutimer_0": {"name": "scutimer",
+"ver": "2.1",
+},
+"ps7_scuwdt_0": {"name": "scuwdt",
+"ver": "2.1",
+},
+"ps7_sd_0": {"name": "sdps",
+"ver": "3.7",
+},
+"ps7_sd_1": {"name": "sdps",
+"ver": "3.7",
+},
+"ps7_slcr_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_uart_0": {"name": "uartps",
+"ver": "3.7",
+},
+"ps7_uart_1": {"name": "uartps",
+"ver": "3.7",
+},
+"ps7_usb_0": {"name": "usbps",
+"ver": "2.4",
+},
+"ps7_xadc_0": {"name": "xadcps",
+"ver": "2.3",
+},
+"ps7_cortexa9_0": {"name": "cpu_cortexa9",
+"ver": "2.7",
+},
+}]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.355
+!MESSAGE XSCT Command: [::hsi::utils::closesw C:/Users/nmil/1301_w_l/123_bsp/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:38:58.356
+!MESSAGE XSCT command with result: [::hsi::utils::closesw C:/Users/nmil/1301_w_l/123_bsp/system.mss], Result: [null, ]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.095
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss ], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.099
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss ], Result: [null, ]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.099
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.101
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "freertos10_xilinx",
+"osver": "1.3",
+}]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.101
+!MESSAGE XSCT Command: [::hsi::utils::get_libs_from_sw C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.102
+!MESSAGE XSCT command with result: [::hsi::utils::get_libs_from_sw C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Result: [null, lwip211]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.102
+!MESSAGE XSCT Command: [::hsi::utils::get_sw_libs -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.104
+!MESSAGE XSCT command with result: [::hsi::utils::get_sw_libs -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Result: [null, {"lwip211": "1.0",
+}]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.104
+!MESSAGE XSCT Command: [::hsi::utils::get_drivers_for_sw -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.108
+!MESSAGE XSCT command with result: [::hsi::utils::get_drivers_for_sw -json C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Result: [null, {"ps7_afi_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_afi_1": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_afi_2": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_afi_3": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_coresight_comp_0": {"name": "coresightps_dcc",
+"ver": "1.5",
+},
+"ps7_ddr_0": {"name": "ddrps",
+"ver": "1.0",
+},
+"ps7_ddrc_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_dev_cfg_0": {"name": "devcfg",
+"ver": "3.5",
+},
+"ps7_dma_ns": {"name": "dmaps",
+"ver": "2.4",
+},
+"ps7_dma_s": {"name": "dmaps",
+"ver": "2.4",
+},
+"ps7_globaltimer_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_gpio_0": {"name": "gpiops",
+"ver": "3.5",
+},
+"ps7_gpv_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_intc_dist_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_iop_bus_config_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_l2cachec_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_ocmc_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_pl310_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_pmu_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_ram_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_ram_1": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_scuc_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_scugic_0": {"name": "scugic",
+"ver": "4.0",
+},
+"ps7_scutimer_0": {"name": "scutimer",
+"ver": "2.1",
+},
+"ps7_scuwdt_0": {"name": "scuwdt",
+"ver": "2.1",
+},
+"ps7_slcr_0": {"name": "generic",
+"ver": "2.0",
+},
+"ps7_ttc_0": {"name": "ttcps",
+"ver": "3.9",
+},
+"ps7_uart_0": {"name": "uartps",
+"ver": "3.7",
+},
+"ps7_xadc_0": {"name": "xadcps",
+"ver": "2.3",
+},
+"ps7_ethernet_0": {"name": "emacps",
+"ver": "3.9",
+},
+"ps7_cortexa9_0": {"name": "cpu_cortexa9",
+"ver": "2.7",
+},
+}]. Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.109
+!MESSAGE XSCT Command: [::hsi::utils::closesw C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Thread: main
+
+!ENTRY com.xilinx.sdk.utils 0 0 2026-01-20 10:39:15.110
+!MESSAGE XSCT command with result: [::hsi::utils::closesw C:/Users/nmil/1301_w_l/freertos10_xilinx_bsp_0/system.mss], Result: [null, ]. Thread: main

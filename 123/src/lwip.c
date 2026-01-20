@@ -74,7 +74,7 @@ void tcp_connection_cl(void)
 }
 
 /*-----------------------------------------------------------*/
-static void tcp_client_close(struct tcp_pcb *pcb)
+void tcp_client_close(struct tcp_pcb *pcb)
 {
 	err_t err;
 

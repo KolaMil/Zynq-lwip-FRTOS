@@ -26,6 +26,7 @@
 
 /* Scheduler includes. */
 #include "FreeRTOS.h"
+#include "platform.h"
 
 /* Demo includes. */
 #include "IntQueueTimer.h"
@@ -78,13 +79,13 @@ static XTtcPs xTimerInstances[ tmrTIMERS_USED ];
 /*-----------------------------------------------------------*/
 void vInitialiseTimer( void )
 {
-BaseType_t xStatus;
-TmrCntrSetup *pxTimerSettings;
-extern XScuGic xInterruptController;
-BaseType_t xTimer;
-XTtcPs *pxTimerInstance;
-XTtcPs_Config *pxTimerConfiguration;
-const uint8_t ucRisingEdge = 3;
+	BaseType_t xStatus;
+	TmrCntrSetup *pxTimerSettings;
+	extern XScuGic xInterruptController;
+	BaseType_t xTimer;
+	XTtcPs *pxTimerInstance;
+	XTtcPs_Config *pxTimerConfiguration;
+	const uint8_t ucRisingEdge = 3;
 
 	for( xTimer = 0; xTimer < tmrTIMERS_USED; xTimer++ )
 	{
