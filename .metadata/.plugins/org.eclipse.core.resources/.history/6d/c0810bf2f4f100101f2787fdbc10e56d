@@ -1,0 +1,47 @@
+/*
+ ============================================================================
+ Name        : timer.c
+ Author      : FET
+ Version     :
+ Description : Setting up a 200u timer
+ ============================================================================
+ */
+
+#include "timer.h"
+
+/*-----------------------------------------------------------*/
+int Timer_init(XTtcPs *TimerPtr, u32 DeviceId)
+{
+    XTtcPs_Config *ConfigPtr;
+    ConfigPtr = XTtcPs_LookupConfig(DeviceId);
+    if (ConfigPtr == NULL)
+    {
+        return XST_FAILURE;
+    }
+    return XTtcPs_CfgInitialize(TimerPtr, ConfigPtr, ConfigPtr->BaseAddress);
+}
+
+/*-----------------------------------------------------------*/
+void Timer_start(XTtcPs *TimerPtr)
+{
+    XTtcPs_Start(TimerPtr);
+}
+
+/*-----------------------------------------------------------*/
+int Timer_Full_Config_200us(XScuGic *GicPtr, XTtcPs *TtcPtr)
+{
+	int Status;
+	u16 Interval;
+	u8 Prescaler;
+	Status = Timer_init(TtcPtr, XPAR_XTTCPS_0_DEVICE_ID);
+	if (Status != XST_SUCCESS) return XST_FAILURE;
+	Timer_Setup_Intr_System(GicPtr, TtcPtr, XPAR_XTTCPS_0_INTR);
+	XScuGic_InterruptMaptoCpu(GicPtr, 0x02, XPAR_XTTCPS_0_INTR);
+	XTtcPs_SetOptions(TtcPtr, XTTCPS_OPTION_INTERVAL_MODE);
+	//5000 Ãö
+	XTtcPs_CalcIntervalFromFreq(TtcPtr, 5000, &Interval, &Prescaler);
+	XTtcPs_SetInterval(TtcPtr, Interval);
+	XTtcPs_SetPrescaler(TtcPtr, Prescaler);
+	Timer_start(TtcPtr);
+	return XST_SUCCESS;
+}

@@ -1,0 +1,40 @@
+/*
+ ============================================================================
+ Name        : gic.h
+ Author      : FET
+ Version     :
+ Description : Inc for gic.c
+ ============================================================================
+ */
+
+#ifndef TIMER_INTR_H_
+#define TIMER_INTR_H_
+
+/*-----------------------------------------------------------*/
+#include <stdio.h>
+#include "xadcps.h"
+#include "xil_types.h"
+#include "xscugic.h"
+#include "xil_exception.h"
+#include "xscutimer.h"
+#include "xscugic.h"
+//#include "xttcps.h"
+#include "xil_types.h"
+
+/*-----------------------------------------------------------*/
+#define INTC_DEVICE_ID	     XPAR_SCUGIC_SINGLE_DEVICE_ID
+#define SHARE_BASE  	     0xffff0000
+#define SOFT_INTR_ID_TO_CPU1 1
+#define TIMER_DEVICE_ID     XPAR_XSCUTIMER_0_DEVICE_ID
+#define TIMER_IRPT_INTR     XPAR_SCUTIMER_INTR
+
+/*-----------------------------------------------------------*/
+extern volatile int usec;
+
+/*-----------------------------------------------------------*/
+void TimerAxiDmaInterruptSimulation(void *CallBackRef);
+void Timer_Setup_Intr_System(XScuGic *GicInstancePtr, XTtcPs *TimerInstancePtr, u16 TimerIntrId);
+void soft_intr_handler(void *CallbackRef);
+void cpu1_intr_init(XScuGic *intc_ptr);
+
+#endif /* TIMER_INTR_H_ */

@@ -1,0 +1,94 @@
+/*
+ ============================================================================
+ Name        : lwip.c
+ Author      : FET
+ Version     :
+ Description : Init all peripheral devices
+ ============================================================================
+ */
+
+#include "platform.h"
+XScuTimer TimerInstance;
+XScuGic InterruptController;
+
+/*-----------------------------------------------------------*/
+void init_platform(void)
+{
+	platform_setup_timer();
+	platform_setup_interrupts();
+	Xil_ExceptionEnable();
+	return;
+}
+
+/*-----------------------------------------------------------*/
+void platform_setup_interrupts(void)
+{
+    XScuGic_Config *IntcConfig;
+    int Status;
+
+    // 1. Поиск конфигурации и инициализация GIC
+    IntcConfig = XScuGic_LookupConfig(INTC_DEVICE_ID);
+    Status = XScuGic_CfgInitialize(&InterruptController, IntcConfig, IntcConfig->CpuBaseAddress);
+    if (Status != XST_SUCCESS) return;
+
+    // 2. Инициализация исключений процессора
+    Xil_ExceptionInit();
+
+    // 3. Регистрация общего обработчика GIC в процессоре
+    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_IRQ_INT,
+            (Xil_ExceptionHandler)XScuGic_InterruptHandler,
+            &InterruptController);
+
+    // 4. Привязка вашего обработчика таймера к конкретному ID прерывания
+    Status = XScuGic_Connect(&InterruptController, TIMER_IRPT_INTR,
+            (Xil_ExceptionHandler)timer_callback,
+            (void *)&TimerInstance);
+    if (Status != XST_SUCCESS) return;
+
+    // 5. ВКЛЮЧЕНИЕ входа прерывания в GIC для таймера
+    XScuGic_Enable(&InterruptController, TIMER_IRPT_INTR);
+
+    // 6. Глобальное включение прерываний процессора (можно оставить здесь)
+    Xil_ExceptionEnable();
+}
+
+
+/*-----------------------------------------------------------*/
+void platform_setup_interrupts(void)
+{
+	Xil_ExceptionInit();
+
+	XScuGic_DeviceInitialize(INTC_DEVICE_ID);
+
+	/*
+	 * Connect the interrupt controller interrupt handler to the hardware
+	 * interrupt handling logic in the processor.
+	 */
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_IRQ_INT,
+			(Xil_ExceptionHandler)XScuGic_DeviceInterruptHandler,
+			(void *)INTC_DEVICE_ID);
+	/*
+	 * Connect the device driver handler that will be called when an
+	 * interrupt for the device occurs, the handler defined above performs
+	 * the specific interrupt processing for the device.
+	 */
+	XScuGic_RegisterHandler(INTC_BASE_ADDR, TIMER_IRPT_INTR,
+					(Xil_ExceptionHandler)timer_callback,
+					(void *)&TimerInstance);
+//	portTICK_RATE_MS
+	/*
+	 * Enable the interrupt for scu timer.
+	 */
+	XScuGic_EnableIntr(INTC_DIST_BASE_ADDR, TIMER_IRPT_INTR);
+
+	return;
+}
+
+/*-----------------------------------------------------------*/
+void timer_callback(XScuTimer * TimerInstance)
+{
+	xil_printf("1\r\n");
+	XScuTimer_ClearInterruptStatus(TimerInstance);
+	return;
+}
+

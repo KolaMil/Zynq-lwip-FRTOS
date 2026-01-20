@@ -1,0 +1,6 @@
+10:16:23 **** Build of project freertos10_xilinx_bsp_1 ****
+make -k all 
+make: *** No rule to make target 'all'.
+
+10:16:23 Build Finished (took 93ms)
+

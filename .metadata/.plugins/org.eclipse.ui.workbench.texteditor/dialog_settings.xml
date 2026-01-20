@@ -2,16 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="tcp_write" key="selection"/>
+		<item value="sizeof(data_imit_dma)" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="InterruptController"/>
+			<item value="Status"/>
+			<item value="TCP"/>
+			<item value="INTC_DEVICE_ID"/>
+			<item value="tcp_fasttmr"/>
+			<item value="tcp_tmr"/>
 			<item value="tcp_write"/>
 			<item value="recv_callback"/>
-			<item value="accept_callback"/>
-			<item value="vTaskDelete"/>
 		</list>
 		<list key="replacehistory">
 		</list>

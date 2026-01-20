@@ -1,0 +1,62 @@
+/*
+ ============================================================================
+ Name        : main.h
+ Author      : FET
+ Version     :
+ Description : Inc for main
+ ============================================================================
+ */
+
+#ifndef __MAIN_H_
+#define __MAIN_H_
+
+/* Axi dma */
+#include "xaxidma_sinit.h"
+
+/* Platform variables */
+extern volatile int TcpFastTmrFlag;
+extern volatile int TcpSlowTmrFlag;
+
+/* Platform includes */
+#include "platform.h"
+
+/* FreeRTOS includes. */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "timers.h"
+#include "semphr.h"
+
+/* Xilinx includes. */
+#include "xil_printf.h"
+#include "xparameters.h"
+#include "xaxidma.h"
+
+/* Dual core includes. */
+#include "cpu1_init.h"
+
+/* Lwip includes. */
+#include "lwip.h"
+#include "lwip/pbuf.h"
+
+/* Data Lwip */
+static const char data_imit_dma[] = "Static Data to Send";
+
+/* Freertos Semaphore*/
+static xSemaphoreHandle data_done_sem;
+
+/* Freertos defines */
+#define THREAD_STACKSIZE 512
+#define TIMER_ID	1
+#define DELAY_10_SECONDS	10000UL
+#define DELAY_1_SECOND		1000UL
+#define TIMER_CHECK_THRESHOLD	9
+#define UDP_TASK_PRIO (tskIDLE_PRIORITY + 2)
+
+/*-----------------------------------------------------------*/
+static void network_init_task(void *pvParameters);
+void x1emacif_input_thread(void *arg);
+void udp_send_task(void *arg);
+void semaphore_generator_task(void *pvParameters);
+
+#endif

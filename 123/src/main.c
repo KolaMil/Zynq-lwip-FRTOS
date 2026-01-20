@@ -12,6 +12,7 @@
 int main(void)
 {
 	start_cpu1();
+	init_platform();
 	xil_printf("\nHello bratish! I'm CPU0\r\n");
 	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
 	vTaskStartScheduler();
@@ -24,7 +25,6 @@ static void network_init_task(void *pvParameters)
 {
 	const TickType_t x1second = pdMS_TO_TICKS(DELAY_1_SECOND);
 
-	// 1. Ñîçäàåì ñåìàôîğ ÎÁßÇÀÒÅËÜÍÎ äî çàïóñêà çàäà÷
 	data_done_sem = xSemaphoreCreateBinary();
 	if (data_done_sem == NULL) {
 		xil_printf("Error: Could not create semaphore\r\n");
@@ -38,13 +38,23 @@ static void network_init_task(void *pvParameters)
 		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, UDP_TASK_PRIO, NULL);
 		udp_connection();
 		tcp_connection_cl();
-		xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO, NULL);
-//		xTaskCreate(semaphore_generator_task, "SemGen", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO + 1, NULL);
+		xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
 		vTaskDelete(NULL);
 	}
 }
 
 /*-----------------------------------------------------------*/
+/*
+	void udp_send_task(void *arg)
+	{
+		while(1)
+		{
+			ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
+			xil_printf("ISQ\n\r");
+		}
+}
+*/
+
 void udp_send_task(void *arg)
 {
 	struct pbuf *p = pbuf_alloc(PBUF_TRANSPORT, sizeof(data_imit_dma) + 1, PBUF_POOL);
@@ -53,15 +63,13 @@ void udp_send_task(void *arg)
 		xil_printf("Failed to alloc pbuf\r\n");
 		vTaskDelete(NULL);
 	}
-	// Ïğèâÿçûâàåì íàø ìàññèâ ê payload
 	p->payload = (void *)data_imit_dma;
 	memcpy(p->payload, data_imit_dma, sizeof(data_imit_dma));
 	uint8_t i = 0;
     xil_printf("UDP task started (simple delay 2ms)\r\n");
     while(1)
     {
-        // Ïğîñòî æäåì 20 ìñ îò òåêóùåãî ìîìåíòà
-        vTaskDelay(pdMS_TO_TICKS(5));
+        vTaskDelay(pdMS_TO_TICKS(1));
         ((uint8_t*)p->payload)[sizeof(data_imit_dma)] = '0' + i;
 		if(udp_send(udp_pcb_conn, p) != ERR_OK)
 		{
@@ -79,19 +87,15 @@ void udp_send_task(void *arg)
 void x1emacif_input_thread(void *arg)
 {
     struct netif *netif = (struct netif *)arg;
-
+    u32 sum = 0;
     while(1)
     {
-    	if (TcpFastTmrFlag)
-    	{
-			tcp_fasttmr();
-			TcpFastTmrFlag = 0;
-		}
-		if (TcpSlowTmrFlag)
-		{
-			tcp_slowtmr();
-			TcpSlowTmrFlag = 0;
-		}
+    	sum = XScuTimer_GetCounterValue(&TimerInstance);
+//    	if (sum > 835991 && sum < 17784961)
+//    	{
+//    		xil_printf("1: %u", sum);
+//    	}
+//    	if(sum)
         xemacif_input(netif); /* èç xadapter.h */
         vTaskDelay(pdMS_TO_TICKS(1));
     }

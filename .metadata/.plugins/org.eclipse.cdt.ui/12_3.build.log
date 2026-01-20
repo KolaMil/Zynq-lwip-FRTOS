@@ -1,0 +1,6 @@
+10:08:44 **** Build of project 12_3 ****
+make -k all 
+make: *** No rule to make target 'all'.
+
+10:08:44 Build Finished (took 90ms)
+

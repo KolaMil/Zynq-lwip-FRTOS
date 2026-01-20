@@ -10,9 +10,16 @@
 #ifndef __MAIN_H_
 #define __MAIN_H_
 
+/* Axi dma */
+#include "xparameters.h"
+//#include "xaxidma.h"
+
 /* Platform variables */
 extern volatile int TcpFastTmrFlag;
 extern volatile int TcpSlowTmrFlag;
+
+/* Platform includes */
+#include "platform.h"
 
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
@@ -24,7 +31,6 @@ extern volatile int TcpSlowTmrFlag;
 /* Xilinx includes. */
 #include "xil_printf.h"
 #include "xparameters.h"
-#include "xaxidma.h"
 
 /* Dual core includes. */
 #include "cpu1_init.h"
@@ -38,6 +44,8 @@ static const char data_imit_dma[] = "Static Data to Send";
 
 /* Freertos Semaphore*/
 static xSemaphoreHandle data_done_sem;
+
+volatile TaskHandle_t xIrqTaskHandle;
 
 /* Freertos defines */
 #define THREAD_STACKSIZE 512

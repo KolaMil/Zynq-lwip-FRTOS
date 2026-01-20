@@ -1,0 +1,29 @@
+/*
+ ============================================================================
+ Name        : timer.h
+ Author      : FET
+ Version     :
+ Description : Inc for timer.c
+ ============================================================================
+ */
+
+#ifndef TIMER_INTR_H_
+#define TIMER_INTR_H_
+
+/*-----------------------------------------------------------*/
+#include "xscugic.h"
+#include "xttcps.h"
+#include "gic.h"
+
+/*-----------------------------------------------------------*/
+#define TIMER_DEVICE_ID     XPAR_XSCUTIMER_0_DEVICE_ID
+#define TIMER_IRPT_INTR     XPAR_SCUTIMER_INTR
+
+extern volatile int usec;
+
+int Timer_init(XTtcPs *TimerPtr, u32 DeviceId);
+void Timer_start(XTtcPs *TimerPtr);
+int Timer_Full_Config_200us(XScuGic *GicPtr, XTtcPs *TtcPtr);
+
+
+#endif /* TIMER_INTR_H_ */

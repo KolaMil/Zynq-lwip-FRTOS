@@ -15,7 +15,6 @@ void lwip_network_setup(void)
     ip_addr_t ipaddr, netmask, gw;
     unsigned char mac[] = {0x00,0x0A,0x35,0x00,0x01,0x02};
 
-    /* Инициализация библиотеки */
     lwip_init();
 
     IP4_ADDR(&ipaddr, 192,168,1,10);
@@ -97,17 +96,14 @@ err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
         xil_printf("Connection failed with error code: %d\n\r", err);
         return err;
     }
-
     xil_printf("Successfully connected to server\n\r");
-
     tcp_recv(tpcb, recv_callback);
-
     return ERR_OK;
 }
 /*-----------------------------------------------------------*/
+uint32_t input;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
-	uint32_t input;
 	if (!p)
 	{
 		tcp_close(tpcb);
@@ -126,10 +122,9 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 		xil_printf("no space in tcp_sndbuf\n\r");
 	}
 	sscanf(p->payload, "%lu", &input);
-	xil_printf("get from TCP: %lu\n\r", &input);
+	xil_printf("get from TCP: %d\n\r", &input);
 	/* free the received pbuf */
 	pbuf_free(p);
 
 	return ERR_OK;
 }
-

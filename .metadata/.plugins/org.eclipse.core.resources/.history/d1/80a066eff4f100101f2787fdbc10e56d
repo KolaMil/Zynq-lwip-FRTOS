@@ -1,0 +1,59 @@
+/*
+ ============================================================================
+ Name        : gic.c
+ Author      : FET
+ Version     :
+ Description : Setting up interrupts
+ ============================================================================
+ */
+
+#include "gic.h"
+
+extern volatile uint8_t soft_intr_flag;
+
+/*-----------------------------------------------------------*/
+void TimerAxiDmaInterruptSimulation(void *CallBackRef)
+{
+    usec++;
+
+    XTtcPs *TimerInstancePtr = (XTtcPs *) CallBackRef;
+    u32 StatusEvent = XTtcPs_GetInterruptStatus(TimerInstancePtr);
+    XTtcPs_ClearInterruptStatus(TimerInstancePtr, StatusEvent);
+}
+
+/*-----------------------------------------------------------*/
+void Timer_Setup_Intr_System(XScuGic *GicInstancePtr, XTtcPs *TimerInstancePtr, u16 TimerIntrId)
+{
+
+	 XScuGic_Connect(GicInstancePtr, TimerIntrId,
+	                    (Xil_ExceptionHandler)TimerAxiDmaInterruptSimulation,
+	                    (void *)TimerInstancePtr);
+
+	XScuGic_SetPriorityTriggerType(GicInstancePtr, TimerIntrId, 0xA0, 0x03);
+
+	XScuGic_InterruptMaptoCpu(GicInstancePtr, 0x02, TimerIntrId);
+    XScuGic_Enable(GicInstancePtr, TimerIntrId);
+    XTtcPs_EnableInterrupts(TimerInstancePtr, XTTCPS_IXR_INTERVAL_MASK);
+}
+
+/*-----------------------------------------------------------*/
+void soft_intr_handler(void *CallbackRef)
+{
+    soft_intr_flag = 1;
+}
+
+/*-----------------------------------------------------------*/
+void cpu1_intr_init(XScuGic *intc_ptr)
+{
+    XScuGic_Config *intc_cfg_ptr;
+    intc_cfg_ptr = XScuGic_LookupConfig(INTC_DEVICE_ID);
+    XScuGic_CfgInitialize(intc_ptr, intc_cfg_ptr, intc_cfg_ptr->CpuBaseAddress);
+    Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
+            (Xil_ExceptionHandler)XScuGic_InterruptHandler, intc_ptr);
+    Xil_ExceptionEnable();
+    // Настройка программного прерывания (SGI)
+    XScuGic_Connect(intc_ptr, SOFT_INTR_ID_TO_CPU1,
+          (Xil_ExceptionHandler)soft_intr_handler, (void *)intc_ptr);
+    XScuGic_Enable(intc_ptr, SOFT_INTR_ID_TO_CPU1);
+}
+
