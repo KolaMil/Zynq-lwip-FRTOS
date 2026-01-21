@@ -15,13 +15,13 @@ int main(void)
 	init_platform();
 	xil_printf("\nHello bratish! I'm CPU0\r\n");
 	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
-	vInitialiseTimer();
 	vTaskStartScheduler();
 
 	while(1);
 }
 
 /*-----------------------------------------------------------*/
+extern u8 stat_tcp_con;
 static void network_init_task(void *pvParameters)
 {
 	const TickType_t x1second = pdMS_TO_TICKS(DELAY_1_SECOND);
@@ -40,22 +40,13 @@ static void network_init_task(void *pvParameters)
 		udp_connection();
 		tcp_connection_cl();
 		xTaskCreate(udp_send_task, "UDP Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+		vInitialiseTimer();
 		vTaskDelete(NULL);
 	}
 }
 
 /*-----------------------------------------------------------*/
-/*
-	void udp_send_task(void *arg)
-	{
-		while(1)
-		{
-			ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
-			xil_printf("ISQ\n\r");
-		}
-}
-*/
-
+extern u8 flag_tcp;
 void udp_send_task(void *arg)
 {
 	struct pbuf *p = pbuf_alloc(PBUF_TRANSPORT, sizeof(data_imit_dma) + 1, PBUF_POOL);
@@ -68,28 +59,36 @@ void udp_send_task(void *arg)
 	memcpy(p->payload, data_imit_dma, sizeof(data_imit_dma));
 	uint8_t i = 0;
     xil_printf("UDP task started (simple delay 2ms)\r\n");
+    u8 flag = 0;
+
     while(1)
     {
-        vTaskDelay(pdMS_TO_TICKS(1));
-        ((uint8_t*)p->payload)[sizeof(data_imit_dma)] = '0' + i;
+		ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
+		flag ^= 1;
+		vParTestSetGPIO(1, flag);
+		((uint8_t*)p->payload)[21] = '0' + i;
 		if(udp_send(udp_pcb_conn, p) != ERR_OK)
 		{
 			xil_printf("Error sending UDP packet\r\n");
 		}
+		vParTestSetGPIO(2, flag);
 		i++;
 		if(i > 9)
 		{
 			i = 0;
 		}
+
     }
 }
-
+//u8 flag1 = 0;
 /*-----------------------------------------------------------*/
 void x1emacif_input_thread(void *arg)
 {
     struct netif *netif = (struct netif *)arg;
     while(1)
     {
+//    	flag1 ^= 1;
+//    	vParTestSetGPIO(1, flag1);
         xemacif_input(netif); /* из xadapter.h */
         vTaskDelay(pdMS_TO_TICKS(1));
     }

@@ -12,6 +12,8 @@
 /*-----------------------------------------------------------*/
 void init_platform(void)
 {
+//	init_gpio();
+//	XGpioPs_SetDirectionPin(&psGpioInstancePtr, 54,1);
 	prvSetupHardware();
 	return;
 }
@@ -41,12 +43,60 @@ static void prvSetupHardware(void)
 	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
 
 	/* Initialise the LED port. */
-//	vParTestInitialise();
+	vParTestInitialise();
 
 	/* The Xilinx projects use a BSP that do not allow the start up code to be
 	altered easily.  Therefore the vector table used by FreeRTOS is defined in
 	FreeRTOS_asm_vectors.S, which is part of this project.  Switch to use the
 	FreeRTOS vector table. */
 	vPortInstallFreeRTOSVectorTable();
+}
+
+/*-----------------------------------------------------------*/
+static XGpioPs xGpio;
+
+void vParTestInitialise(void)
+{
+	XGpioPs_Config *pxConfigPtr;
+	BaseType_t xStatus;
+
+	/* Initialise the GPIO driver. */
+	pxConfigPtr = XGpioPs_LookupConfig( XPAR_XGPIOPS_0_DEVICE_ID );
+	xStatus = XGpioPs_CfgInitialize( &xGpio, pxConfigPtr, pxConfigPtr->BaseAddr );
+	configASSERT( xStatus == XST_SUCCESS );
+	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
+
+	/* Enable outputs and set low. */
+	XGpioPs_SetDirectionPin( &xGpio, partstGPIO_56_OUTPUT, partstDIRECTION_OUTPUT );
+	XGpioPs_SetOutputEnablePin( &xGpio, partstGPIO_56_OUTPUT, partstOUTPUT_ENABLED );
+	XGpioPs_WritePin( &xGpio, partstGPIO_56_OUTPUT, 0x0 );
+	XGpioPs_SetDirectionPin( &xGpio, partstGPIO_57_OUTPUT, partstDIRECTION_OUTPUT );
+	XGpioPs_SetOutputEnablePin( &xGpio, partstGPIO_57_OUTPUT, partstOUTPUT_ENABLED );
+	XGpioPs_WritePin( &xGpio, partstGPIO_57_OUTPUT, 0x0 );
+	XGpioPs_SetDirectionPin( &xGpio, partstGPIO_58_OUTPUT, partstDIRECTION_OUTPUT );
+	XGpioPs_SetOutputEnablePin( &xGpio, partstGPIO_58_OUTPUT, partstOUTPUT_ENABLED );
+	XGpioPs_WritePin( &xGpio, partstGPIO_58_OUTPUT, 0x0 );
+
+}
+
+/*-----------------------------------------------------------*/
+
+void vParTestSetGPIO(UBaseType_t uxPIN, BaseType_t xValue)
+{
+	(void) uxPIN;
+	switch (uxPIN)
+	{
+	case 1:
+		XGpioPs_WritePin( &xGpio, partstGPIO_56_OUTPUT, xValue );
+		break;
+	case 2:
+		XGpioPs_WritePin( &xGpio, partstGPIO_57_OUTPUT, xValue );
+		break;
+	case 3:
+		XGpioPs_WritePin( &xGpio, partstGPIO_58_OUTPUT, xValue );
+		break;
+	default:
+		break;
+	}
 }
 

@@ -26,6 +26,9 @@ src/IntQueueTimer.o src/IntQueueTimer.o: ../src/IntQueueTimer.c \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOSConfig.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xparameters.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xgpiops.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xgpiops_hw.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xplatform_info.h \
  ../src/IntQueueTimer.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xttcps.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xttcps_hw.h \
@@ -85,6 +88,12 @@ src/IntQueueTimer.o src/IntQueueTimer.o: ../src/IntQueueTimer.c \
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xparameters.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xgpiops.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xgpiops_hw.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xplatform_info.h:
 
 ../src/IntQueueTimer.h:
 

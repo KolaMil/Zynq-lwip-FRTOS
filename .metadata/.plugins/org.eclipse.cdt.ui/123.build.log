@@ -1,45 +1,8 @@
-12:53:18 **** Auto Build of configuration Debug for project 123 ****
+12:01:15 **** Incremental Build of configuration Debug for project 123 ****
 make pre-build main-build 
 a9-linaro-pre-build-step
 ' '
-'Building file: ../src/IntQueueTimer.c'
-'Invoking: ARM v7 gcc compiler'
-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/IntQueueTimer.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/IntQueueTimer.d" -MT"src/IntQueueTimer.o" -o "src/IntQueueTimer.o" "../src/IntQueueTimer.c"
-../src/IntQueueTimer.c: In function 'prvTimerHandler':
-../src/IntQueueTimer.c:150:27: warning: unused variable 'd2' [-Wunused-variable]
-  volatile long double d1, d2;
-                           ^~
-../src/IntQueueTimer.c:150:23: warning: unused variable 'd1' [-Wunused-variable]
-  volatile long double d1, d2;
-                       ^~
-In file included from ../src/IntQueueTimer.c:29:
-../src/IntQueueTimer.c: At top level:
-../src/platform.h:36:13: warning: 'prvSetupHardware' declared 'static' but never defined [-Wunused-function]
- static void prvSetupHardware(void);
-             ^~~~~~~~~~~~~~~~
-In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portable.h:52,
-                 from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/FreeRTOS.h:62,
-                 from ../src/IntQueueTimer.c:28:
-../src/IntQueueTimer.c: In function 'prvTimerHandler':
-../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portmacro.h:80:4: warning: 'xYieldRequired' is used uninitialized in this function [-Wuninitialized]
-  if( xSwitchRequired != pdFALSE )   \
-    ^
-../src/IntQueueTimer.c:145:12: note: 'xYieldRequired' was declared here
- BaseType_t xYieldRequired;
-            ^~~~~~~~~~~~~~
-'Finished building: ../src/IntQueueTimer.c'
-' '
-'Building target: 123.elf'
-'Invoking: ARM v7 gcc linker'
-arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/gpio.o ./src/lwip.o ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
-'Finished building target: 123.elf'
-' '
-'Invoking: ARM v7 Print Size'
-arm-none-eabi-size 123.elf  |tee "123.elf.size"
-   text	   data	    bss	    dec	    hex	filename
- 183500	   3500	2152752	2339752	 23b3a8	123.elf
-'Finished building: 123.elf.size'
-' '
+make: Nothing to be done for 'main-build'.
 
-12:53:19 Build Finished (took 584ms)
+12:01:15 Build Finished (took 155ms)
 

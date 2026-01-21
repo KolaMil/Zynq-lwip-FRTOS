@@ -47,6 +47,7 @@ void udp_connection(void)
 }
 
 /*-----------------------------------------------------------*/
+volatile u8 stat_tcp_con = 0;
 void tcp_connection_cl(void)
 {
 	err_t err;
@@ -97,11 +98,13 @@ err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
         return err;
     }
     xil_printf("Successfully connected to server\n\r");
+    stat_tcp_con = 1;
     tcp_recv(tpcb, recv_callback);
     return ERR_OK;
 }
 /*-----------------------------------------------------------*/
 uint32_t input;
+volatile u8 flag_tcp = 0;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
 	if (!p)
@@ -123,6 +126,8 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	}
 	sscanf(p->payload, "%lu", &input);
 	xil_printf("get from TCP: %d\n\r", &input);
+	flag_tcp ^= 1;
+//	vParTestSetGPIO(3, flag_tcp);
 	/* free the received pbuf */
 	pbuf_free(p);
 

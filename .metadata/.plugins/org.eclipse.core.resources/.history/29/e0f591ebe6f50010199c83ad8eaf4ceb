@@ -1,0 +1,19 @@
+#include "gpio.h"
+
+void init_gpio(void)
+{
+	static XGpioPs  psGpioInstancePtr;
+	XGpioPs_Config* GpioConfigPtr;
+	int             xStatus;
+
+    GpioConfigPtr = XGpioPs_LookupConfig(XPAR_PS7_GPIO_0_DEVICE_ID);
+	if(GpioConfigPtr == NULL)
+		return XST_FAILURE;
+
+	xStatus = XGpioPs_CfgInitialize(&psGpioInstancePtr,GpioConfigPtr, GpioConfigPtr->BaseAddr);
+	if(XST_SUCCESS != xStatus)
+		print(" PS GPIO INIT FAILED \n\r");
+
+	xil_printf("EMIO driver initialized");
+
+}

@@ -41,15 +41,15 @@ extern volatile int TcpSlowTmrFlag;
 #include "lwip/pbuf.h"
 
 /* Data Lwip */
-static const char data_imit_dma[] = "Static Data to Send";
+static const char data_imit_dma[8192] = "Static Data to Send";
 
 /* Freertos Semaphore*/
 static xSemaphoreHandle data_done_sem;
-
+//extern XGpioPs  psGpioInstancePtr;
 volatile TaskHandle_t xIrqTaskHandle = NULL;
 
 /* Freertos defines */
-#define THREAD_STACKSIZE 512
+#define THREAD_STACKSIZE 1024
 #define TIMER_ID	1
 #define DELAY_10_SECONDS	10000UL
 #define DELAY_1_SECOND		1000UL

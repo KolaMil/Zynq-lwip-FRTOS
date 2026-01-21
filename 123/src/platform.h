@@ -17,6 +17,7 @@
 #include "portmacro.h"
 #include "FreeRTOS.h"
 #include "xparameters.h"
+#include "xgpiops.h"
 
 /* Define */
 #define TIMER_DEVICE_ID		XPAR_SCUTIMER_DEVICE_ID
@@ -24,15 +25,18 @@
 #define INTC_BASE_ADDR		XPAR_SCUGIC_0_CPU_BASEADDR
 #define TIMER_IRPT_INTR		XPAR_SCUTIMER_INTR
 #define INTC_DIST_BASE_ADDR	XPAR_SCUGIC_0_DIST_BASEADDR
+#define partstGPIO_56_OUTPUT		( 56 )
+#define partstGPIO_57_OUTPUT		( 57 )
+#define partstGPIO_58_OUTPUT		( 59 )
+#define partstDIRECTION_OUTPUT	( 1 )
+#define partstOUTPUT_ENABLED	( 1 )
 
 /* Variables */
-//volatile int TcpFastTmrFlag = 0;
-//volatile int TcpSlowTmrFlag = 0;
 XScuGic xInterruptController;
-extern XScuTimer TimerInstance;
 
 /*-----------------------------------------------------------*/
 void init_platform(void);
 static void prvSetupHardware(void);
+void vParTestSetGPIO(UBaseType_t uxPIN, BaseType_t xValue);
 
 #endif

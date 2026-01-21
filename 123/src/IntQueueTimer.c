@@ -37,7 +37,7 @@
 #include "xscugic.h"
 
 #define tmrTIMERS_USED	3
-#define tmrTIMER_0_FREQUENCY	( 100UL )
+#define tmrTIMER_0_FREQUENCY	( 5000UL )
 #define tmrTIMER_1_FREQUENCY	( 2UL )
 #define tmrTIMER_2_FREQUENCY	( 200UL )
 
@@ -87,7 +87,7 @@ void vInitialiseTimer( void )
 	XTtcPs_Config *pxTimerConfiguration;
 	const uint8_t ucRisingEdge = 3;
 
-	for( xTimer = 0; xTimer < tmrTIMERS_USED; xTimer++ )
+	for( xTimer = 0; xTimer < 1; xTimer++ )
 	{
 		/* Look up the timer's configuration. */
 		pxTimerInstance = &( xTimerInstances[ xTimer ] );
@@ -164,12 +164,12 @@ BaseType_t xHPW = pdFALSE;
 		vTaskNotifyGiveFromISR(xIrqTaskHandle, &xHPW);
 		portYIELD_FROM_ISR( xHPW );
 	}
-	else if( pxTimer->Config.DeviceId == xDeviceIDs[ 1 ] )
-	{
-	}
-	else
-	{
-	}
-	portYIELD_FROM_ISR( xYieldRequired );
+//	else if( pxTimer->Config.DeviceId == xDeviceIDs[ 1 ] )
+//	{
+//	}
+//	else
+//	{
+//	}
+//	portYIELD_FROM_ISR( xYieldRequired );
 }
 

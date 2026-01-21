@@ -23,7 +23,10 @@ src/platform.o src/platform.o: ../src/platform.c ../src/platform.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/portable.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/deprecated_definitions.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/mpu_wrappers.h \
- ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xparameters.h
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xparameters.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xgpiops.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xgpiops_hw.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xplatform_info.h
 
 ../src/platform.h:
 
@@ -76,3 +79,9 @@ src/platform.o src/platform.o: ../src/platform.c ../src/platform.h \
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/mpu_wrappers.h:
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xparameters.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xgpiops.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xgpiops_hw.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xplatform_info.h:

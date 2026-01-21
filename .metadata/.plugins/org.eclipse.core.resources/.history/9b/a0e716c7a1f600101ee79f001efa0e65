@@ -1,0 +1,135 @@
+/*
+ ============================================================================
+ Name        : lwip.c
+ Author      : FET
+ Version     :
+ Description : Init socet api lwip with
+ ============================================================================
+ */
+
+#include "lwip.h"
+
+/*-----------------------------------------------------------*/
+void lwip_network_setup(void)
+{
+    ip_addr_t ipaddr, netmask, gw;
+    unsigned char mac[] = {0x00,0x0A,0x35,0x00,0x01,0x02};
+
+    lwip_init();
+
+    IP4_ADDR(&ipaddr, 192,168,1,10);
+    IP4_ADDR(&netmask, 255,255,255,0);
+    IP4_ADDR(&gw, 192,168,1,1);
+
+    if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+    {
+        xil_printf("Error adding N/W interface\r\n");
+        vTaskDelete(NULL);
+        return;
+    }
+    netif_set_default(&server_netif);
+    netif_set_up(&server_netif);
+}
+
+/*-----------------------------------------------------------*/
+void udp_connection(void)
+{
+	udp_pcb_conn = udp_new();
+	if(!udp_pcb_conn)
+	{
+		xil_printf("Cannot create UDP PCB\r\n");
+		vTaskDelete(NULL);
+		return;
+	}
+	ip_addr_t remote_ip;
+	IP4_ADDR(&remote_ip, 192, 168, 1, 100);
+	udp_connect(udp_pcb_conn, &remote_ip, 5005);
+}
+
+/*-----------------------------------------------------------*/
+volatile u8 stat_tcp_con = 0;
+void tcp_connection_cl(void)
+{
+	err_t err;
+	ip_addr_t remote_addr;
+#if LWIP_IPV6==1
+	remote_addr.type= IPADDR_TYPE_V6;
+	err = inet6_aton(TCP_SERVER_IPV6_ADDRESS, &remote_addr);
+#else
+	err = inet_aton(TCP_SERVER_IP_ADDRESS, &remote_addr);
+#endif /* LWIP_IPV6 */
+	/* create new TCP PCB structure */
+	tcp_pcb = tcp_new_ip_type(IPADDR_TYPE_ANY);
+	if (!tcp_pcb)
+	{
+		xil_printf("Error creating PCB. Out of Memory\n\r");
+		return;
+	}
+	err = tcp_connect(tcp_pcb, &remote_addr, TCP_PORT, client_connected);
+	if (err)
+	{
+		xil_printf("Error on tcp_connect: %d\r\n", err);
+		tcp_client_close(tcp_pcb);
+		return;
+	}
+}
+
+/*-----------------------------------------------------------*/
+void tcp_client_close(struct tcp_pcb *pcb)
+{
+	err_t err;
+
+	if (pcb != NULL) {
+		tcp_sent(pcb, NULL);
+		tcp_err(pcb, NULL);
+		err = tcp_close(pcb);
+		if (err != ERR_OK) {
+			/* Free memory with abort */
+			tcp_abort(pcb);
+		}
+	}
+}
+
+/*-----------------------------------------------------------*/
+err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
+{
+    if (err != ERR_OK) {
+        xil_printf("Connection failed with error code: %d\n\r", err);
+        return err;
+    }
+    xil_printf("Successfully connected to server\n\r");
+    stat_tcp_con = 1;
+    tcp_recv(tpcb, recv_callback);
+    return ERR_OK;
+}
+/*-----------------------------------------------------------*/
+uint32_t input;
+volatile u8 flag_tcp = 0;
+err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
+{
+	if (!p)
+	{
+		tcp_close(tpcb);
+		tcp_recv(tpcb, NULL);
+		return ERR_OK;
+	}
+	/* pass information about the message to stack */
+	tcp_recved(tpcb, p->len);
+
+	if (tcp_sndbuf(tpcb) > p->len)
+	{
+		err = tcp_write(tpcb, p->payload, p->len, 1);
+	}
+	else
+	{
+		xil_printf("no space in tcp_sndbuf\n\r");
+	}
+//	sscanf(p->payload, "%lu", &input);
+//	xil_printf("get from TCP: %d\n\r", &input);
+	flag_tcp ^= 1;
+//	vParTestSetGPIO(3, flag_tcp);
+	/* free the received pbuf */
+	pbuf_free(p);
+
+	return ERR_OK;
+}

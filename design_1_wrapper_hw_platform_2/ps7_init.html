@@ -1349,10 +1349,10 @@ inout
 <B>MIO 52</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-GPIO
+Enet 0
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-gpio[52]
+mdc
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
 LVCMOS 1.8V
@@ -1364,7 +1364,7 @@ slow
 enabled
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-inout
+out
 </TD>
 </TR>
 <TR valign="top">
@@ -1372,10 +1372,10 @@ inout
 <B>MIO 53</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-GPIO
+Enet 0
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-gpio[53]
+mdio
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
 LVCMOS 1.8V
@@ -1798,7 +1798,7 @@ ARM PLL
 <B>ENET0 Freq (MHz)</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-External
+IO PLL
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
 125.000000
@@ -4595,10 +4595,10 @@ SLCR_LOCK
 <B>f0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>4</B>
+<B>c</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drive the PLL_RES[3:0] input of the PLL to set the PLL loop filter resistor control.</B>
@@ -4635,10 +4635,10 @@ SLCR_LOCK
 <B>3ff000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>fa</B>
+<B>145</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>fa000</B>
+<B>145000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drive the LOCK_CNT[9:0] input of the PLL to set the number of clock cycles the PLL needs to have clkref and clkfb aligned with a certain window before staying locked.</B>
@@ -4658,7 +4658,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>fa240</B>
+<B>1452c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Configuration</B>
@@ -4743,10 +4743,10 @@ SLCR_LOCK
 <B>7f000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>36</B>
+<B>1e</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>36000</B>
+<B>1e000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provide the feedback divisor for the PLL. Note: Before changing this value, the PLL must first be bypassed and then put into reset mode. Refer to the Zynq-7000 TRM, UG585, Clocks chapter for CP/RES/CNT values for programming the PLL.</B>
@@ -4766,7 +4766,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>36000</B>
+<B>1e000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Control</B>
@@ -6042,10 +6042,10 @@ SLCR_LOCK
 <B>10</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>10</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Select the source of the Rx clock, control and data signals: 0: MIO 1: EMIO</B>
@@ -6065,7 +6065,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>11</B>
+<B>1</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>GigE 0 Rx Clock and Rx Signals Select</B>
@@ -6169,10 +6169,10 @@ SLCR_LOCK
 <B>70</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>4</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Selects the source to generate the reference clock 00x: IO PLL. 010: ARM PLL. 011: DDR PLL 1xx: Ethernet controller 0 EMIO clock</B>
@@ -6189,10 +6189,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1</B>
+<B>8</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>100</B>
+<B>800</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>First divisor for Ethernet controller 0 source clock.</B>
@@ -6232,7 +6232,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>100141</B>
+<B>100801</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>GigE 0 Ref Clock Control</B>
@@ -6376,10 +6376,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>12</B>
+<B>a</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1200</B>
+<B>a00</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Divisor for UART Controller source clock.</B>
@@ -6399,7 +6399,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1201</B>
+<B>a01</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>UART Ref Clock Control</B>
@@ -6524,10 +6524,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>9</B>
+<B>5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>900</B>
+<B>500</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -6547,7 +6547,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>901</B>
+<B>501</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PCAP Clock Control</B>
@@ -6651,10 +6651,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>6</B>
+<B>5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>600</B>
+<B>500</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider.</B>
@@ -6671,10 +6671,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>3</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>300000</B>
+<B>200000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divide</B>
@@ -6694,7 +6694,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>300600</B>
+<B>200500</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PL Clock 0 Output control</B>
@@ -42180,10 +42180,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>4</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 52 (bank 1), Input/Output 001: CAN 1 Tx, Output 010: I2C 1 Serial Clock, Input/Output 011: SWDT Clock, Input 100: MDIO 0 Clock, Output 101: MDIO 1 Clock, Output 110: reserved 111: UART 1 TxD, Output</B>
@@ -42283,7 +42283,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1200</B>
+<B>1280</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 52 Control</B>
@@ -42447,10 +42447,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>4</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 53 (bank 1), Input/Output 001: CAN 1 Rx, Input 010: I2C 1 Serial Data, Input/Output 011: SWDT Reset, Output 100: MDIO 0 Data, Input/Output 101: MDIO 1 Data, Input/Output 110: reserved 111: UART 1 RxD, Input</B>
@@ -42550,7 +42550,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1200</B>
+<B>1280</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 53 Control</B>
@@ -48787,10 +48787,10 @@ SLCR_LOCK
 <B>f0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>4</B>
+<B>c</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drive the PLL_RES[3:0] input of the PLL to set the PLL loop filter resistor control.</B>
@@ -48827,10 +48827,10 @@ SLCR_LOCK
 <B>3ff000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>fa</B>
+<B>145</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>fa000</B>
+<B>145000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drive the LOCK_CNT[9:0] input of the PLL to set the number of clock cycles the PLL needs to have clkref and clkfb aligned withth a certain window before staying locked.</B>
@@ -48850,7 +48850,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>fa240</B>
+<B>1452c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Configuration</B>
@@ -48935,10 +48935,10 @@ SLCR_LOCK
 <B>7f000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>36</B>
+<B>1e</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>36000</B>
+<B>1e000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provide the feedback divisor for the PLL. Note: Before changing this value, the PLL must first be bypassed and then put into powerdown or reset state.</B>
@@ -48958,7 +48958,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>36000</B>
+<B>1e000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Control</B>
@@ -50234,10 +50234,10 @@ SLCR_LOCK
 <B>10</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>10</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Select the source to generate the Rx clock: 0: MIO Rx clock, 1: EMIO Rx clock</B>
@@ -50257,7 +50257,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>11</B>
+<B>1</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>GigE 0 Rx Clock Control</B>
@@ -50361,10 +50361,10 @@ SLCR_LOCK
 <B>70</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>4</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Selects the source to generate the reference clock 00x: IO PLL. 010: ARM PLL. 011: DDR PLL 1xx: Ethernet controller 0 EMIO clock</B>
@@ -50381,10 +50381,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1</B>
+<B>8</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>100</B>
+<B>800</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>First divisor for Ethernet controller 0 source clock.</B>
@@ -50424,7 +50424,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>100141</B>
+<B>100801</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>GigE 0 Ref Clock Control</B>
@@ -50568,10 +50568,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>12</B>
+<B>a</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1200</B>
+<B>a00</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Divisor for UART Controller source clock.</B>
@@ -50591,7 +50591,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1201</B>
+<B>a01</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>UART Ref Clock Control</B>
@@ -50716,10 +50716,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>9</B>
+<B>5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>900</B>
+<B>500</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -50739,7 +50739,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>901</B>
+<B>501</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PCAP Clock Control</B>
@@ -50843,10 +50843,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>6</B>
+<B>5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>600</B>
+<B>500</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider.</B>
@@ -50863,10 +50863,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>3</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>300000</B>
+<B>200000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divide</B>
@@ -50886,7 +50886,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>300600</B>
+<B>200500</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PL Clock 0 Output control</B>
@@ -87501,10 +87501,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>4</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 52 (bank 1) 001: CAN 1 Tx 010: I2C 1 Serial Clock 011: SWDT Clock Input 100: MDIO 0 Clock 101: MDIO 1 Clock 110: reserved 111: UART 1 TxD</B>
@@ -87604,7 +87604,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1200</B>
+<B>1280</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 52 Control</B>
@@ -87768,10 +87768,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>4</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 53 (bank 1) 001: CAN 1 Rx 010: I2C 1 Serial Data 011: SWDT Reset Output 100: MDIO 0 Data 101: MDIO 1 Data 110: reserved 111: UART 1 RxD</B>
@@ -87871,7 +87871,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1200</B>
+<B>1280</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 53 Control</B>
@@ -94107,10 +94107,10 @@ SLCR_LOCK
 <B>f0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>4</B>
+<B>c</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>c0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drives the PLL_RES[3:0] input of the PLL to set the PLL loop filter resistor control</B>
@@ -94147,10 +94147,10 @@ SLCR_LOCK
 <B>3ff000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>fa</B>
+<B>145</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>fa000</B>
+<B>145000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Drives the LOCK_CNT[9:0] input of the PLL to set the number of clock cycles the PLL needs to have clkref and clkfb aligned withth a certain window before syaing locked.</B>
@@ -94170,7 +94170,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>fa240</B>
+<B>1452c0</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Configuration</B>
@@ -94255,10 +94255,10 @@ SLCR_LOCK
 <B>7f000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>36</B>
+<B>1e</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>36000</B>
+<B>1e000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the feedback divisor for the PLL. NOTE: Before changing this value the PLL must first be bypassed and then put into powerdown or reset state.</B>
@@ -94278,7 +94278,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>36000</B>
+<B>1e000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>IO PLL Control</B>
@@ -95554,10 +95554,10 @@ SLCR_LOCK
 <B>10</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>10</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Selects the source used to generate the clock. 0 - Source for generated clock is GEM 0 MIO RX clock. 1 - Source for generated clock is GEM 0 FMIO RX clock.</B>
@@ -95577,7 +95577,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>11</B>
+<B>1</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Gigabit Ethernet MAC 0 RX Clock Control</B>
@@ -95681,10 +95681,10 @@ SLCR_LOCK
 <B>70</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>4</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Selects the source used to generate the clock. 1xx - Source for generated clock is Ethernet 0 FMIO clock. 00x - Source for generated clock is IO PLL. 010 - Source for generated clock is ARM PLL. 011 - Source for generated clock is DDR PLL</B>
@@ -95701,10 +95701,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>1</B>
+<B>8</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>100</B>
+<B>800</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider</B>
@@ -95744,7 +95744,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>100141</B>
+<B>100801</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Gigabit Ethernet MAC 0 Ref Clock Control</B>
@@ -95888,10 +95888,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>12</B>
+<B>a</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>1200</B>
+<B>a00</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -95911,7 +95911,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1201</B>
+<B>a01</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>UART Reference Clock Control</B>
@@ -96036,10 +96036,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>9</B>
+<B>5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>900</B>
+<B>500</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency.</B>
@@ -96059,7 +96059,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>901</B>
+<B>501</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>PCAP 2X Clock Contol</B>
@@ -96163,10 +96163,10 @@ SLCR_LOCK
 <B>3f00</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>6</B>
+<B>5</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>600</B>
+<B>500</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. First cascade divider</B>
@@ -96183,10 +96183,10 @@ SLCR_LOCK
 <B>3f00000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>3</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>300000</B>
+<B>200000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Provides the divisor used to divide the source clock to generate the required generated clock frequency. Second cascade divider</B>
@@ -96206,7 +96206,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>300600</B>
+<B>200500</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>FPGA 0 Output Clock Control</B>
@@ -132183,10 +132183,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>4</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 0= gpio1, Input, gpio_1_pin_in[20]- (GPIO bank 1) 0= gpio1, Output, gpio_1_pin_out[20]- (GPIO bank 1) 1= can1, Output, can1_phy_tx- (Can TX signal) 2= i2c1, Input, i2c1_scl_input- (SCL signal) 2= i2c1, Output, i2c1_scl_out- (SCL signal) 3= wdt, Input, wdt_clk_in- (Watch Dog Timer Input clock) 4= mdio0, Output, gem0_mdc- (MDIO Clock) 5= mdio1, Output, gem1_mdc- (MDIO Clock) 6= Not Used 7= ua1, Output, ua1_txd- (UART transmitter serial output)</B>
@@ -132286,7 +132286,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1200</B>
+<B>1280</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Control for Pin 52</B>
@@ -132450,10 +132450,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>4</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>80</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 0= gpio1, Input, gpio_1_pin_in[21]- (GPIO bank 1) 0= gpio1, Output, gpio_1_pin_out[21]- (GPIO bank 1) 1= can1, Input, can1_phy_rx- (Can RX signal) 2= i2c1, Input, i2c1_sda_input- (SDA signal) 2= i2c1, Output, i2c1_sda_out- (SDA signal) 3= wdt, Output, wdt_rst_out- (Watch Dog Timer Output clock) 4= mdio0, Input, gem0_mdio_in- (MDIO Data) 4= mdio0, Output, gem0_mdio_out- (MDIO Data) 5= mdio1, Input, gem1_mdio_in- (MDIO Data) 5= mdio1, Output, gem1_mdio_out- (MDIO Data) 6= Not Used 7= ua1, Input, ua1_rxd- (UART receiver serial input)</B>
@@ -132553,7 +132553,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1200</B>
+<B>1280</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Control for Pin 53</B>
