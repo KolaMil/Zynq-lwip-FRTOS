@@ -26,6 +26,7 @@
 
 /* Scheduler includes. */
 #include "FreeRTOS.h"
+#include "task.h"
 #include "platform.h"
 
 /* Demo includes. */
@@ -165,6 +166,7 @@ uint16_t get_ttc_counter_value(uint8_t timer_ch_id)
 /*-----------------------------------------------------------*/
 #include "task.h"
 extern volatile TaskHandle_t xIrqTaskHandle;
+extern u8 status_udp_sender;
 static void prvTimerHandler( void *pvCallBackRef )
 {
 	uint32_t ulInterruptStatus;
@@ -182,7 +184,7 @@ static void prvTimerHandler( void *pvCallBackRef )
 	/* Check the channel timer */
 	if( pxTimer->Config.DeviceId == xDeviceIDs[ 0 ] )
 	{
-		if (eTaskGetState(xIrqTaskHandle) != eSuspended)
+		if(status_udp_sender)
 		{
 			vTaskNotifyGiveFromISR(xIrqTaskHandle, &xHPW);
 			portYIELD_FROM_ISR( xHPW );

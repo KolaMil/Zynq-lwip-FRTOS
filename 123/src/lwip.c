@@ -123,8 +123,12 @@ err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
 
 /*-----------------------------------------------------------*/
 #include "FreeRTOS.h"
+#include "queue.h"
 #include "task.h"
+volatile u8 flag_tcp = 0;
+extern volatile QueueHandle_t xTcpMsgQueue;
 extern volatile TaskHandle_t xIrqTaskHandle;
+volatile u8 status_udp_sender = 0;
 int parse_msg(void* p)
 {
 	uint8_t val = *((uint8_t*) p);
@@ -134,11 +138,14 @@ int parse_msg(void* p)
 		xil_printf("Stop working");
 		default_state[3] += 1;
 		// destroy_sender(sender);
+		status_udp_sender = 0;
 		break;
 
 	case CMD_START:
 		xil_printf("Start working\n");
 		default_state[3] += 2;
+		vTaskResume(xIrqTaskHandle);
+		status_udp_sender = 1;
 		break;
 
 	case CMD_WORK_TYPE:
@@ -165,10 +172,7 @@ int parse_msg(void* p)
 }
 
 /*-----------------------------------------------------------*/
-#include "FreeRTOS.h"
-#include "queue.h"
-volatile u8 flag_tcp = 0;
-extern volatile QueueHandle_t xTcpMsgQueue;
+void* last_payload_from_tcp;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
 	if (!p)
@@ -179,8 +183,9 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	}
 	/* pass information about the message to stack */
 	tcp_recved(tpcb, p->len);
-	xQueueSendFromISR(xTcpMsgQueue, p->payload, NULL);
-//	parse_msg(p->payload);
+	uint8_t buf[6] = {0};
+	memcpy(buf, p->payload, 6);
+	xQueueSendFromISR(xTcpMsgQueue, buf, NULL);
 	if (tcp_sndbuf(tpcb) > p->len)
 	{
 		err = tcp_write(tpcb, p->payload, p->len, 1);

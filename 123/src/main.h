@@ -56,7 +56,7 @@ volatile TaskHandle_t xTcpParseTaskHandle = NULL;
 #define UDP_TASK_PRIO (tskIDLE_PRIORITY + 2)
 #define TCP_PARSE_PRIO (tskIDLE_PRIORITY + 2)
 #define TCP_MSG_QUEUE_LEN 10
-#define TCP_MSG_SIZE      10
+#define TCP_MSG_SIZE      sizeof(uint8_t)
 
 //extern XGpioPs  psGpioInstancePtr;
 volatile QueueHandle_t xTcpMsgQueue;

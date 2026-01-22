@@ -34,20 +34,20 @@ static void network_init_task(void *pvParameters)
 		tcp_connection_cl();
 		xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
 		vTaskSuspend(xIrqTaskHandle);
-		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, TCP_MSG_SIZE);
+		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
 		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
 		vInitialiseTimer();
 		vTaskDelete(NULL);
 	}
 }
 
+uint16_t counter = 0;
+uint32_t average = 0;
 /*-----------------------------------------------------------*/
 void udp_send_task(void *arg)
 {
     xil_printf("UDP task started (simple delay 2ms)\r\n");
     u8 flag = 0;
-    uint16_t counter = 0;
-    uint32_t average = 0;
 
     while(1)
     {
@@ -66,13 +66,12 @@ void udp_send_task(void *arg)
 /*-----------------------------------------------------------*/
 void tcp_parse_task(void *arg)
 {
-	uint8_t buffer[TCP_MSG_SIZE];
+	uint8_t payload[6];
 	while(1)
 	{
-		if (xQueueReceive(xTcpMsgQueue, buffer, portMAX_DELAY) == pdPASS)
+		if (xQueueReceive(xTcpMsgQueue, &payload, portMAX_DELAY) == pdPASS)
 		{
-			// buffer содержит p->payload
-			parse_msg(buffer);
+			parse_msg(payload);
 		}
 	}
 }
@@ -85,7 +84,7 @@ void vStatsTask(void *arg)
     while(1)
     {
         vTaskDelay(xPeriod);
-
+        xil_printf("52");
     }
 }
 
