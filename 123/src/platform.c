@@ -18,7 +18,7 @@ void init_platform(void)
 	return;
 }
 
-static void prvSetupHardware(void)
+void prvSetupHardware(void)
 {
 	BaseType_t xStatus;
 	XScuGic_Config *pxGICConfig;

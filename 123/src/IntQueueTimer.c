@@ -87,7 +87,7 @@ void vInitialiseTimer( void )
 	XTtcPs_Config *pxTimerConfiguration;
 	const uint8_t ucRisingEdge = 3;
 
-	for( xTimer = 0; xTimer < 1; xTimer++ )
+	for( xTimer = 0; xTimer < 3; xTimer++ )
 	{
 		/* Look up the timer's configuration. */
 		pxTimerInstance = &( xTimerInstances[ xTimer ] );
@@ -118,37 +118,58 @@ void vInitialiseTimer( void )
 		XTtcPs_SetInterval( pxTimerInstance, pxTimerSettings->Interval );
 		XTtcPs_SetPrescaler( pxTimerInstance, pxTimerSettings->Prescaler );
 
-		/* The priority must be the lowest possible. */
-		XScuGic_SetPriorityTriggerType( &xInterruptController, xInterruptIDs[ xTimer ], uxInterruptPriorities[ xTimer ] << portPRIORITY_SHIFT, ucRisingEdge );
+		if (xTimer == 0)
+		{
+			/* The priority must be the lowest possible. */
+			XScuGic_SetPriorityTriggerType( &xInterruptController, xInterruptIDs[ xTimer ], uxInterruptPriorities[ xTimer ] << portPRIORITY_SHIFT, ucRisingEdge );
 
-		/* Connect to the interrupt controller. */
-		xStatus = XScuGic_Connect( &xInterruptController, xInterruptIDs[ xTimer ], ( Xil_InterruptHandler ) prvTimerHandler, ( void * ) pxTimerInstance );
-		configASSERT( xStatus == XST_SUCCESS);
+			/* Connect to the interrupt controller. */
+			xStatus = XScuGic_Connect( &xInterruptController, xInterruptIDs[ xTimer ], ( Xil_InterruptHandler ) prvTimerHandler, ( void * ) pxTimerInstance );
+			configASSERT( xStatus == XST_SUCCESS);
 
-		/* Enable the interrupt in the GIC. */
-		XScuGic_Enable( &xInterruptController, xInterruptIDs[ xTimer ] );
+			/* Enable the interrupt in the GIC. */
+			XScuGic_Enable( &xInterruptController, xInterruptIDs[ xTimer ] );
 
-		/* Enable the interrupts in the timer. */
-		XTtcPs_EnableInterrupts( pxTimerInstance, XTTCPS_IXR_INTERVAL_MASK );
+			/* Enable the interrupts in the timer. */
+			XTtcPs_EnableInterrupts( pxTimerInstance, XTTCPS_IXR_INTERVAL_MASK );
 
-		/* Start the timer. */
-		XTtcPs_Start( pxTimerInstance );
+			/* Start the timer. */
+			XTtcPs_Start( pxTimerInstance );
+		}
 	}
+}
+
+/*-----------------------------------------------------------*/
+void start_stop_ttc_timer(uint8_t timer_ch_id, uint8_t flag_start_stop)
+{
+	XTtcPs *pxTimerInstance;
+	pxTimerInstance = &(xTimerInstances[timer_ch_id]);
+	if(flag_start_stop)
+	{
+		XTtcPs_ResetCounterValue(pxTimerInstance);
+		XTtcPs_Start(pxTimerInstance);
+	}
+	else
+	{
+		XTtcPs_Stop(pxTimerInstance);
+	}
+}
+
+/*-----------------------------------------------------------*/
+uint16_t get_ttc_counter_value(uint8_t timer_ch_id)
+{
+	XTtcPs *pxTimerInstance;
+	pxTimerInstance = &(xTimerInstances[timer_ch_id]);
+	return XTtcPs_GetCounterValue(pxTimerInstance);
 }
 /*-----------------------------------------------------------*/
 #include "task.h"
 extern volatile TaskHandle_t xIrqTaskHandle;
 static void prvTimerHandler( void *pvCallBackRef )
 {
-uint32_t ulInterruptStatus;
-XTtcPs *pxTimer = ( XTtcPs * ) pvCallBackRef;
-BaseType_t xYieldRequired;
-BaseType_t xHPW = pdFALSE;
-
-#if( configASSERT_DEFINED == 1 )
-	/* Test floating point access within nested interrupts. */
-	volatile long double d1, d2;
-#endif
+	uint32_t ulInterruptStatus;
+	XTtcPs *pxTimer = ( XTtcPs * ) pvCallBackRef;
+	BaseType_t xHPW = pdFALSE;
 
 
 	/* Read the interrupt status, then write it back to clear the interrupt. */
@@ -158,18 +179,14 @@ BaseType_t xHPW = pdFALSE;
 	/* Only one interrupt event type is expected. */
 	configASSERT( ( XTTCPS_IXR_INTERVAL_MASK & ulInterruptStatus ) != 0 );
 
-	/* Check the device ID to know which IntQueue demo to call. */
+	/* Check the channel timer */
 	if( pxTimer->Config.DeviceId == xDeviceIDs[ 0 ] )
 	{
-		vTaskNotifyGiveFromISR(xIrqTaskHandle, &xHPW);
-		portYIELD_FROM_ISR( xHPW );
+		if (eTaskGetState(xIrqTaskHandle) != eSuspended)
+		{
+			vTaskNotifyGiveFromISR(xIrqTaskHandle, &xHPW);
+			portYIELD_FROM_ISR( xHPW );
+		}
 	}
-//	else if( pxTimer->Config.DeviceId == xDeviceIDs[ 1 ] )
-//	{
-//	}
-//	else
-//	{
-//	}
-//	portYIELD_FROM_ISR( xYieldRequired );
 }
 

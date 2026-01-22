@@ -32,7 +32,7 @@ void lwip_network_setup(void)
 }
 
 /*-----------------------------------------------------------*/
-void udp_connection(void)
+void udp_connection(uint8_t *data, size_t size)
 {
 	udp_pcb_conn = udp_new();
 	if(!udp_pcb_conn)
@@ -43,7 +43,19 @@ void udp_connection(void)
 	}
 	ip_addr_t remote_ip;
 	IP4_ADDR(&remote_ip, 192, 168, 1, 100);
+	sender = add_sender(udp_pcb_conn, data, size);
+	if (sender == NULL)
+	{
+		vTaskDelete(NULL);
+		return;
+	}
 	udp_connect(udp_pcb_conn, &remote_ip, 5005);
+}
+
+/*-----------------------------------------------------------*/
+void udp_package_send(void) // Maybe err_t type
+{
+	err_t err = send_udp_data(sender);
 }
 
 /*-----------------------------------------------------------*/
@@ -75,6 +87,12 @@ void tcp_connection_cl(void)
 }
 
 /*-----------------------------------------------------------*/
+uint8_t state_tcp_connection(void)
+{
+//	tcp_pcb->state
+}
+
+/*-----------------------------------------------------------*/
 void tcp_client_close(struct tcp_pcb *pcb)
 {
 	err_t err;
@@ -102,9 +120,55 @@ err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
     tcp_recv(tpcb, recv_callback);
     return ERR_OK;
 }
+
 /*-----------------------------------------------------------*/
-uint32_t input;
+#include "FreeRTOS.h"
+#include "task.h"
+extern volatile TaskHandle_t xIrqTaskHandle;
+int parse_msg(void* p)
+{
+	uint8_t val = *((uint8_t*) p);
+	switch (val)
+	{
+	case CMD_STOP:
+		xil_printf("Stop working");
+		default_state[3] += 1;
+		// destroy_sender(sender);
+		break;
+
+	case CMD_START:
+		xil_printf("Start working\n");
+		default_state[3] += 2;
+		break;
+
+	case CMD_WORK_TYPE:
+		xil_printf("Request work type\n");
+		break;
+
+	case CMD_CTRL_AMPL:
+		xil_printf("Request ampliefyer\n");
+		break;
+
+	case CMD_SEA_FILTER:
+		xil_printf("Request sea filter\n");
+		break;
+
+	case CMD_PREC_FILTER:
+		xil_printf("Request rain filter\n");
+		break;
+
+	default:
+		xil_printf("Unknown cmd");
+		break;
+	}
+	return 0;
+}
+
+/*-----------------------------------------------------------*/
+#include "FreeRTOS.h"
+#include "queue.h"
 volatile u8 flag_tcp = 0;
+extern volatile QueueHandle_t xTcpMsgQueue;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
 	if (!p)
@@ -115,7 +179,8 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	}
 	/* pass information about the message to stack */
 	tcp_recved(tpcb, p->len);
-
+	xQueueSendFromISR(xTcpMsgQueue, p->payload, NULL);
+//	parse_msg(p->payload);
 	if (tcp_sndbuf(tpcb) > p->len)
 	{
 		err = tcp_write(tpcb, p->payload, p->len, 1);
@@ -124,10 +189,9 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	{
 		xil_printf("no space in tcp_sndbuf\n\r");
 	}
-	sscanf(p->payload, "%lu", &input);
-	xil_printf("get from TCP: %d\n\r", &input);
+
 	flag_tcp ^= 1;
-//	vParTestSetGPIO(3, flag_tcp);
+
 	/* free the received pbuf */
 	pbuf_free(p);
 

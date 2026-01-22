@@ -9,26 +9,26 @@ LD_SRCS += \
 C_SRCS += \
 ../src/IntQueueTimer.c \
 ../src/cpu1_init.c \
-../src/gpio.c \
 ../src/lwip.c \
 ../src/main.c \
-../src/platform.c 
+../src/platform.c \
+../src/udp_stack.c 
 
 OBJS += \
 ./src/IntQueueTimer.o \
 ./src/cpu1_init.o \
-./src/gpio.o \
 ./src/lwip.o \
 ./src/main.o \
-./src/platform.o 
+./src/platform.o \
+./src/udp_stack.o 
 
 C_DEPS += \
 ./src/IntQueueTimer.d \
 ./src/cpu1_init.d \
-./src/gpio.d \
 ./src/lwip.d \
 ./src/main.d \
-./src/platform.d 
+./src/platform.d \
+./src/udp_stack.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

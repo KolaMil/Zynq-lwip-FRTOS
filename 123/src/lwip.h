@@ -19,6 +19,9 @@
 #include "xil_types.h"
 #include "xil_printf.h"
 #include "lwip/pbuf.h"
+#include "udp_stack.h"
+#include "cmd.h"
+
 
 /*-----------------------------------------------------------*/
 #define TCP_SERVER_IP_ADDRESS "192.168.1.100"
@@ -29,13 +32,18 @@
 struct udp_pcb *udp_pcb_conn;
 struct tcp_pcb *tcp_pcb;
 struct netif server_netif;
+udp_sender_t *sender;
 
+uint16_t last_cmd;
+extern uint8_t default_state[8192];
 /*-----------------------------------------------------------*/
 void lwip_network_setup(void);
-void udp_connection(void);
+void udp_connection(uint8_t *data, size_t size);
 void tcp_connection_cl(void);
+void udp_package_send(void);
 void tcp_client_close(struct tcp_pcb *pcb);
 err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err);
+int parse_msg(void* p);
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
 
 #endif

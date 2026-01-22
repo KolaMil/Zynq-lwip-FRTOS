@@ -43,10 +43,9 @@ extern volatile int TcpSlowTmrFlag;
 /* Data Lwip */
 static const char data_imit_dma[8192] = "Static Data to Send";
 
-/* Freertos Semaphore*/
-static xSemaphoreHandle data_done_sem;
 //extern XGpioPs  psGpioInstancePtr;
 volatile TaskHandle_t xIrqTaskHandle = NULL;
+volatile TaskHandle_t xTcpParseTaskHandle = NULL;
 
 /* Freertos defines */
 #define THREAD_STACKSIZE 1024
@@ -55,11 +54,21 @@ volatile TaskHandle_t xIrqTaskHandle = NULL;
 #define DELAY_1_SECOND		1000UL
 #define TIMER_CHECK_THRESHOLD	9
 #define UDP_TASK_PRIO (tskIDLE_PRIORITY + 2)
+#define TCP_PARSE_PRIO (tskIDLE_PRIORITY + 2)
+#define TCP_MSG_QUEUE_LEN 10
+#define TCP_MSG_SIZE      10
+
+//extern XGpioPs  psGpioInstancePtr;
+volatile QueueHandle_t xTcpMsgQueue;
+
+/* Data to send */
+uint8_t default_state[8192] = {0xAA, 0xBB, 0xCC};
 
 /*-----------------------------------------------------------*/
 static void network_init_task(void *pvParameters);
+void vStatsTask(void *arg);
 void x1emacif_input_thread(void *arg);
 void udp_send_task(void *arg);
-void semaphore_generator_task(void *pvParameters);
+void tcp_parse_task(void *arg);
 
 #endif
