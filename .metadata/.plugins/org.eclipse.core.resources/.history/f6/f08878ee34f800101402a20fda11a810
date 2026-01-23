@@ -1,0 +1,20 @@
+#ifndef __HELLOWORLD_H_
+#define __HELLOWORLD_H_
+
+#include <stdio.h>
+#include "platform.h"
+#include "xil_printf.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "xgpiops.h"
+#include "xuartps.h"
+
+#include "gpio.h"
+#include "uart.h"
+#include "tasks.h"
+
+#define LED_PIN_R     8
+#define LED_PIN_M     7
+#define UART_ID     XPAR_XUARTPS_0_DEVICE_ID
+
+#endif

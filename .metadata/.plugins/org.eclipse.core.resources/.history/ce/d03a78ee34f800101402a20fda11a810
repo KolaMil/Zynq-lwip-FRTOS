@@ -1,0 +1,10 @@
+#ifndef __GPIO_H_
+#define __GPIO_H_
+
+#include "helloworld.h"
+
+XGpioPs Gpio;
+
+void Init_gpio_pin(uint8_t pin);
+
+#endif

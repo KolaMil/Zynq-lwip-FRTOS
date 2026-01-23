@@ -1,0 +1,13 @@
+#ifndef __TASKS_H_
+#define __TASKS_H_
+
+#include "helloworld.h"
+
+void vTaskPrint(void *pvParameters);
+void vTaskBlink(void *pvParameters);
+void vTaskUartRx(void *pvParameters);
+void vTaskFromCpu1(void *pvParameters);
+
+void Init_tasks (void);
+
+#endif

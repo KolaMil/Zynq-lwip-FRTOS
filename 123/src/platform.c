@@ -76,6 +76,12 @@ void vParTestInitialise(void)
 	XGpioPs_SetDirectionPin( &xGpio, partstGPIO_58_OUTPUT, partstDIRECTION_OUTPUT );
 	XGpioPs_SetOutputEnablePin( &xGpio, partstGPIO_58_OUTPUT, partstOUTPUT_ENABLED );
 	XGpioPs_WritePin( &xGpio, partstGPIO_58_OUTPUT, 0x0 );
+	XGpioPs_SetDirectionPin(&xGpio, LED_LEFT, 1);
+	XGpioPs_SetOutputEnablePin(&xGpio, LED_LEFT, 1);
+	XGpioPs_SetDirectionPin(&xGpio, LED_MIDDLE, 1);
+	XGpioPs_SetOutputEnablePin(&xGpio, LED_MIDDLE, 1);
+	XGpioPs_SetDirectionPin(&xGpio, LED_RIGHT, 1);
+	XGpioPs_SetOutputEnablePin(&xGpio, LED_RIGHT, 1);
 
 }
 
@@ -94,6 +100,15 @@ void vParTestSetGPIO(UBaseType_t uxPIN, BaseType_t xValue)
 		break;
 	case 3:
 		XGpioPs_WritePin( &xGpio, partstGPIO_58_OUTPUT, xValue );
+		break;
+	case LED_LEFT:
+		XGpioPs_WritePin( &xGpio, LED_LEFT, xValue );
+		break;
+	case LED_MIDDLE:
+		XGpioPs_WritePin( &xGpio, LED_MIDDLE, xValue );
+		break;
+	case LED_RIGHT:
+		XGpioPs_WritePin( &xGpio, LED_RIGHT, xValue );
 		break;
 	default:
 		break;

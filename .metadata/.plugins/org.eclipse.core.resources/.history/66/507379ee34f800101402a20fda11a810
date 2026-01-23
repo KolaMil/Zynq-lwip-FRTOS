@@ -1,0 +1,11 @@
+#ifndef __UART_H_
+#define __UART_H_
+
+#include "helloworld.h"
+
+XUartPs Uart;
+XUartPs_Config *UartCfg;
+
+void Init_uart(void);
+
+#endif

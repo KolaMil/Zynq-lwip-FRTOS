@@ -1,0 +1,14 @@
+#include "helloworld.h"
+
+int main(void)
+{
+    init_platform();
+    Init_gpio_pin(LED_PIN_R);
+    Init_gpio_pin(LED_PIN_M);
+    Init_uart();
+    Init_tasks();
+
+    vTaskStartScheduler();
+
+    while(1);
+}

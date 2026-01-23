@@ -1,0 +1,102 @@
+/*
+ ============================================================================
+ Name        : main.c
+ Author      : FET
+ Version     :
+ Description : FreeRTOS with LwIp and AxIdma
+ ============================================================================
+ */
+
+#include "main.h"
+
+int main(void)
+{
+	start_cpu1();
+	init_platform();
+	xil_printf("\nHello bratish! I'm CPU0\r\n");
+	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
+	xTaskCreate(vStatsTask, "StatsTask", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO, NULL);
+	vTaskStartScheduler();
+
+	while(1);
+}
+
+/*-----------------------------------------------------------*/
+static void network_init_task(void *pvParameters)
+{
+	const TickType_t x1second = pdMS_TO_TICKS(DELAY_1_SECOND);
+	while(1)
+	{
+		vTaskDelay(x1second);
+		lwip_network_setup();
+		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, UDP_TASK_PRIO, NULL);
+		udp_connection(default_state, sizeof(default_state));
+		tcp_connection_cl();
+		xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+		vTaskSuspend(xIrqTaskHandle);
+		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
+		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+		vInitialiseTimer();
+		vTaskDelete(NULL);
+	}
+}
+
+uint16_t counter = 0;
+uint32_t average = 0;
+/*-----------------------------------------------------------*/
+void udp_send_task(void *arg)
+{
+    xil_printf("UDP task started (simple delay 2ms)\r\n");
+    u8 flag = 0;
+
+    while(1)
+    {
+		ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
+		flag ^= 1;
+		vParTestSetGPIO(IO_L24N_T3_12, flag);
+		start_stop_ttc_timer(TTC_TIMER_CHANNEL_2, 1);
+		udp_package_send();
+		start_stop_ttc_timer(TTC_TIMER_CHANNEL_2, 0);
+		counter = get_ttc_counter_value(TTC_TIMER_CHANNEL_2);
+		average = (average + counter) / 2;
+		vParTestSetGPIO(IO_L23P_T3_12, flag);
+    }
+}
+
+/*-----------------------------------------------------------*/
+void tcp_parse_task(void *arg)
+{
+	uint8_t payload[6];
+	while(1)
+	{
+		if (xQueueReceive(xTcpMsgQueue, &payload, portMAX_DELAY) == pdPASS)
+		{
+			parse_msg(payload);
+		}
+	}
+}
+
+/*-----------------------------------------------------------*/
+void vStatsTask(void *arg)
+{
+    const TickType_t xPeriod = pdMS_TO_TICKS(5000);
+
+    while(1)
+    {
+
+        vTaskDelay(xPeriod);
+        xil_printf("52");
+    }
+}
+
+
+/*-----------------------------------------------------------*/
+void x1emacif_input_thread(void *arg)
+{
+    struct netif *netif = (struct netif *)arg;
+    while(1)
+    {
+        xemacif_input(netif); /* из xadapter.h */
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+}
