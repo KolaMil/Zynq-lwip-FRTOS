@@ -122,16 +122,22 @@ err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
 }
 
 /*-----------------------------------------------------------*/
-#include "FreeRTOS.h"
-#include "queue.h"
-#include "task.h"
-volatile u8 flag_tcp = 0;
-extern volatile QueueHandle_t xTcpMsgQueue;
-extern volatile TaskHandle_t xIrqTaskHandle;
+volatile u8 flag_tcp = 0;  // static for plaicing in header?
 volatile u8 status_udp_sender = 0;
-int parse_msg(void* p)
+uint8_t cmd_array[14] = {0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xF0, 0xD0, 0xE0};
+int parse_msg(void* p, size_t size)
 {
 	uint8_t val = *((uint8_t*) p);
+	if (extend_pack)
+	{
+		xil_printf("Make a blind sector! \n");
+		// massive with data send to PL-part in BRAM
+		// coming soon
+		last_cmd = CMD_BLANK_SEC;
+	}
+
+	// uint8_t value = (uint8_t)p[2];
+
 	switch (val)
 	{
 	case CMD_STOP:
@@ -146,10 +152,13 @@ int parse_msg(void* p)
 		default_state[3] += 2;
 		vTaskResume(xIrqTaskHandle);
 		status_udp_sender = 1;
+		last_cmd = CMD_START;
 		break;
 
 	case CMD_WORK_TYPE:
-		xil_printf("Request work type\n");
+		xil_printf("Requestto change work type\n");
+		
+		last_cmd = CMD_WORK_TYPE;
 		break;
 
 	case CMD_CTRL_AMPL:
@@ -162,6 +171,35 @@ int parse_msg(void* p)
 
 	case CMD_PREC_FILTER:
 		xil_printf("Request rain filter\n");
+		break;
+
+	case CMD_VELOCITY:
+		xil_printf("Request velocity\n");
+		
+		break;
+
+	case CMD_FREQ_CHGE:
+		xil_printf("Change frequency\n");
+		break;
+
+	case CMD_TELEMETRY_REQS:
+		xil_printf("Request telemetry\n");
+		break;
+
+	case CMD_RESET_FAULTS:
+		xil_printf("Resetting faults\n");
+		break;
+
+	case CMD_WORKTYPE_REQS:
+		xil_printf("Request worktype\n");
+		break;
+
+	case CMD_TOB_POINT:
+		xil_printf("Request tob point\n");
+		break;
+
+	case CMD_TOB_VALUE_REQS:
+		xil_printf("Request value of TOB\n");
 		break;
 
 	default:
@@ -181,9 +219,16 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 		tcp_recv(tpcb, NULL);
 		return ERR_OK;
 	}
+	extend_pack = 0;
 	/* pass information about the message to stack */
 	tcp_recved(tpcb, p->len);
 	uint8_t buf[6] = {0};
+	if (p->len == 6)
+	{
+		xil_printf("This is extended pack!");  // for debug
+		extend_pack = 1;
+	}
+	
 	memcpy(buf, p->payload, 6);
 	xQueueSendFromISR(xTcpMsgQueue, buf, NULL);
 	if (tcp_sndbuf(tpcb) > p->len)

@@ -13,9 +13,9 @@ int main(void)
 {
 	start_cpu1();
 	init_platform();
-	xil_printf("\nHello bratish! I'm CPU0\r\n");
+	xil_printf("\n Start PS-part of Zynq!\r\n");
 	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
-	xTaskCreate(vStatsTask, "StatsTask", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY, NULL);
+	xTaskCreate(vStatsTask, "StatsTask", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO, NULL);
 	vTaskStartScheduler();
 
 	while(1);
@@ -42,7 +42,7 @@ static void network_init_task(void *pvParameters)
 }
 
 uint16_t counter = 0;
-uint32_t average = 0;
+int average = 0;
 /*-----------------------------------------------------------*/
 void udp_send_task(void *arg)
 {
@@ -55,10 +55,17 @@ void udp_send_task(void *arg)
 		flag ^= 1;
 		vParTestSetGPIO(IO_L24N_T3_12, flag);
 		start_stop_ttc_timer(TTC_TIMER_CHANNEL_2, 1);
-		udp_package_send();
-		start_stop_ttc_timer(TTC_TIMER_CHANNEL_2, 0);
 		counter = get_ttc_counter_value(TTC_TIMER_CHANNEL_2);
-		average = (average + counter) / 2;
+		udp_package_send();
+		counter = get_ttc_counter_value(TTC_TIMER_CHANNEL_2) - counter;
+		if (average != 0)
+		{
+			average = (average + counter) / 2;
+		}
+		else
+		{
+			average = counter;
+		}
 		vParTestSetGPIO(IO_L23P_T3_12, flag);
     }
 }
@@ -71,7 +78,7 @@ void tcp_parse_task(void *arg)
 	{
 		if (xQueueReceive(xTcpMsgQueue, &payload, portMAX_DELAY) == pdPASS)
 		{
-			parse_msg(payload);
+			parse_msg(payload, 6);
 		}
 	}
 }
@@ -79,12 +86,23 @@ void tcp_parse_task(void *arg)
 /*-----------------------------------------------------------*/
 void vStatsTask(void *arg)
 {
-    const TickType_t xPeriod = pdMS_TO_TICKS(5000);
-
+    start_stop_ttc_timer(TTC_TIMER_CHANNEL_2, 1);
+	const TickType_t xPeriod = pdMS_TO_TICKS(5000);
+	u8 flag_for_led = 0;
     while(1)
     {
-        vTaskDelay(xPeriod);
-        xil_printf("52");
+        vParTestSetGPIO(LED_LEFT, flag_for_led);
+		flag_for_led ^= 1;
+		vTaskDelay(xPeriod);
+        if (average % 100 > 10)
+		{
+        	xil_printf("Average packet sending time via UDP %u,%u\r\n", average * 900 / 100000, average % 100);
+		}
+		else
+		{
+			xil_printf("Average packet sending time via UDP %u,0%u\r\n", average * 900 / 100000, average % 100);
+		}
+		average = 0;
     }
 }
 
@@ -95,7 +113,7 @@ void x1emacif_input_thread(void *arg)
     struct netif *netif = (struct netif *)arg;
     while(1)
     {
-        xemacif_input(netif); /* из xadapter.h */
+        xemacif_input(netif); /* пїЅпїЅ xadapter.h */
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 }

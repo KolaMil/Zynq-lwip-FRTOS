@@ -1,8 +1,37 @@
-14:49:18 **** Incremental Build of configuration Debug for project 123 ****
+16:21:20 **** Auto Build of configuration Debug for project 123 ****
 make pre-build main-build 
 a9-linaro-pre-build-step
 ' '
-make: Nothing to be done for 'main-build'.
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:24:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:139:19: warning: dereferencing 'void *' pointer
+  uint8_t value = p[2];
+                   ^
+../src/lwip.c:139:18: error: void value not ignored as it ought to be
+  uint8_t value = p[2];
+                  ^
+../src/lwip.c:189:2: warning: case label value exceeds maximum value for type
+  case CMD_RESET_FAULTS:
+  ^~~~
+../src/lwip.c:139:10: warning: unused variable 'value' [-Wunused-variable]
+  uint8_t value = p[2];
+          ^~~~~
+../src/lwip.c: In function 'state_tcp_connection':
+../src/lwip.c:93:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** [src/subdir.mk:41: src/lwip.o] Error 1
 
-14:49:18 Build Finished (took 163ms)
+16:21:20 Build Finished (took 343ms)
 

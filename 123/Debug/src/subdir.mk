@@ -11,6 +11,7 @@ C_SRCS += \
 ../src/cpu1_init.c \
 ../src/lwip.c \
 ../src/main.c \
+../src/parser.c \
 ../src/platform.c \
 ../src/udp_stack.c 
 
@@ -19,6 +20,7 @@ OBJS += \
 ./src/cpu1_init.o \
 ./src/lwip.o \
 ./src/main.o \
+./src/parser.o \
 ./src/platform.o \
 ./src/udp_stack.o 
 
@@ -27,6 +29,7 @@ C_DEPS += \
 ./src/cpu1_init.d \
 ./src/lwip.d \
 ./src/main.d \
+./src/parser.d \
 ./src/platform.d \
 ./src/udp_stack.d 
 

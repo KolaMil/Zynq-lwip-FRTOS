@@ -39,8 +39,8 @@
 
 #define tmrTIMERS_USED	3
 #define tmrTIMER_0_FREQUENCY	( 5000UL )
-#define tmrTIMER_1_FREQUENCY	( 2UL )
-#define tmrTIMER_2_FREQUENCY	( 200UL )
+#define tmrTIMER_1_FREQUENCY	( 5000UL )
+#define tmrTIMER_2_FREQUENCY	( 10UL )
 
 /*-----------------------------------------------------------*/
 static void prvTimerHandler( void *CallBackRef );
@@ -118,8 +118,10 @@ void vInitialiseTimer( void )
 		/* Set the interval and prescale. */
 		XTtcPs_SetInterval( pxTimerInstance, pxTimerSettings->Interval );
 		XTtcPs_SetPrescaler( pxTimerInstance, pxTimerSettings->Prescaler );
+		xil_printf("Interval   %u\r\n", pxTimerSettings->Interval );
+		xil_printf("Prescaler  %u\r\n", pxTimerSettings->Prescaler );
 
-		if (xTimer == 0)
+		if (xTimer != 1)
 		{
 			/* The priority must be the lowest possible. */
 			XScuGic_SetPriorityTriggerType( &xInterruptController, xInterruptIDs[ xTimer ], uxInterruptPriorities[ xTimer ] << portPRIORITY_SHIFT, ucRisingEdge );
@@ -167,6 +169,7 @@ uint16_t get_ttc_counter_value(uint8_t timer_ch_id)
 #include "task.h"
 extern volatile TaskHandle_t xIrqTaskHandle;
 extern u8 status_udp_sender;
+u8 flag_for_led = 0;
 static void prvTimerHandler( void *pvCallBackRef )
 {
 	uint32_t ulInterruptStatus;
@@ -189,6 +192,11 @@ static void prvTimerHandler( void *pvCallBackRef )
 			vTaskNotifyGiveFromISR(xIrqTaskHandle, &xHPW);
 			portYIELD_FROM_ISR( xHPW );
 		}
+	}
+	else if (pxTimer->Config.DeviceId == xDeviceIDs[ 2 ])
+	{
+		flag_for_led ^= 1;
+		vParTestSetGPIO(LED_MIDDLE, flag_for_led);
 	}
 }
 

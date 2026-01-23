@@ -35,6 +35,9 @@
 #define IO_L23N_T3_12 2
 #define IO_L19P_T3_12 3
 #define IO_L19N_T3_12 4
+#define LED_LEFT 8
+#define LED_MIDDLE 7
+#define LED_RIGHT 6
 
 #define partstDIRECTION_OUTPUT	( 1 )
 #define partstOUTPUT_ENABLED	( 1 )

@@ -40,9 +40,6 @@ extern volatile int TcpSlowTmrFlag;
 #include "lwip.h"
 #include "lwip/pbuf.h"
 
-/* Data Lwip */
-static const char data_imit_dma[8192] = "Static Data to Send";
-
 //extern XGpioPs  psGpioInstancePtr;
 volatile TaskHandle_t xIrqTaskHandle = NULL;
 volatile TaskHandle_t xTcpParseTaskHandle = NULL;
@@ -63,6 +60,8 @@ volatile QueueHandle_t xTcpMsgQueue;
 
 /* Data to send */
 uint8_t default_state[8192] = {0xAA, 0xBB, 0xCC};
+uint8_t extend_pack = 0;
+// static const char data_imit_dma[8192] = "Static Data to Send";
 
 /*-----------------------------------------------------------*/
 static void network_init_task(void *pvParameters);

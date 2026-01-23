@@ -1,16 +1,11 @@
-/*
- ============================================================================
- Name        : lwip.h
- Author      : FET
- Version     :
- Description : Inc for lwip.c
- ============================================================================
- */
-
 #ifndef __LWIP_H_
 #define __LWIP_H_
 
 /*-----------------------------------------------------------*/
+#include "FreeRTOS.h"
+#include "queue.h"
+#include "task.h"
+
 #include "lwip/tcp.h"
 #include "lwip/inet.h"
 #include "lwip/udp.h"
@@ -22,7 +17,6 @@
 #include "udp_stack.h"
 #include "cmd.h"
 
-
 /*-----------------------------------------------------------*/
 #define TCP_SERVER_IP_ADDRESS "192.168.1.100"
 
@@ -33,8 +27,12 @@ struct udp_pcb *udp_pcb_conn;
 struct tcp_pcb *tcp_pcb;
 struct netif server_netif;
 udp_sender_t *sender;
+extern volatile QueueHandle_t xTcpMsgQueue;
+extern volatile TaskHandle_t xIrqTaskHandle;
 
 uint16_t last_cmd;
+
+extern uint8_t extend_pack;
 extern uint8_t default_state[8192];
 /*-----------------------------------------------------------*/
 void lwip_network_setup(void);
@@ -43,7 +41,7 @@ void tcp_connection_cl(void);
 void udp_package_send(void);
 void tcp_client_close(struct tcp_pcb *pcb);
 err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err);
-int parse_msg(void* p);
+int parse_msg(void* p, size_t size);
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
 
 #endif
