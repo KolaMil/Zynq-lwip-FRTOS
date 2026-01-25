@@ -18,7 +18,12 @@
 #include "cmd.h"
 
 /*-----------------------------------------------------------*/
-#define TCP_SERVER_IP_ADDRESS "192.168.1.100"
+#define LOCAL_IP_ADDRESS    "192.168.1.10"
+#define REMOTE_IP_ADDRESS   "192.168.1.100"
+#define LOCAL_NET_MASK      "255.255.255.0"
+#define LOCAL_GATEWAY       "192.168.1.1"
+#define TCP_REMOTE_PORT     ((uint16_t)7)
+#define UDP_REMOTE_PORT     ((uint16_t)5005)
 
 #define TCP_PORT 7
 
