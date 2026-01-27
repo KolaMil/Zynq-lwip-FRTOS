@@ -13,6 +13,8 @@ src/lwip.o src/lwip.o: ../src/lwip.c ../src/lwip.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/list.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/opt.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwipopts.h \
@@ -81,6 +83,10 @@ src/lwip.o src/lwip.o: ../src/lwip.c ../src/lwip.h \
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/list.h:
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:
 

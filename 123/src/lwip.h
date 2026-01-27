@@ -5,6 +5,7 @@
 #include "FreeRTOS.h"
 #include "queue.h"
 #include "task.h"
+#include "message_buffer.h"
 
 #include "lwip/tcp.h"
 #include "lwip/inet.h"
@@ -34,6 +35,7 @@ struct netif server_netif;
 udp_sender_t *sender;
 extern volatile QueueHandle_t xTcpMsgQueue;
 extern volatile TaskHandle_t xIrqTaskHandle;
+extern volatile MessageBufferHandle_t xMsgBuffer;
 
 uint16_t last_cmd;
 

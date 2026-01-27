@@ -89,7 +89,7 @@ void tcp_connection_cl(void)
 /*-----------------------------------------------------------*/
 uint8_t state_tcp_connection(void)
 {
-	// tcp_pcb->state
+	tcp_pcb->state;
 }
 
 /*-----------------------------------------------------------*/
@@ -126,7 +126,10 @@ uint8_t get_tetrada(uint8_t *data, size_t len) {
     if (data == NULL || len == 0) {
         return 0;
     }
-    uint8_t lowest_byte = data[len - 1];
+    xil_printf("Getting value in bufer %02x", data[0]);
+	xil_printf("Lenght of buffer pbuf %d", len);
+	uint8_t lowest_byte = data[len - 1];
+	xil_printf("Lowest byte %02x", lowest_byte);
     
     return (lowest_byte >> 4) & 0x0F;
 }
@@ -137,25 +140,91 @@ volatile u8 status_udp_sender = 0;
 int parse_msg(void* p, size_t size)
 {
 	uint8_t *byte_ptr = (uint8_t*) p;
+	uint8_t last_byte = byte_ptr[size - 1];
+	xil_printf("getting size %02x", size);
 	if (!extend_pack)
 	{
-		uint8_t tetrada = get_tetrada(byte_ptr, size);
+		uint8_t tetrada = 0x0C;
+		tetrada = get_tetrada(byte_ptr, size);
+		uint8_t test_tetrada = 0x0F;
+		xil_printf("tetrada of command %02x", tetrada);
+		xil_printf("test tetrada %02x", test_tetrada);
 		switch (tetrada)
 		{
 		case 0x0E:
 			xil_printf("TOB VALUE");
+			last_cmd = CMD_TOB_VALUE_REQS;
 			break;
 		
 		case 0x0F:
 			xil_printf("WORKTYPES");
+			last_cmd = CMD_WORKTYPE_REQS;
 			break;
 
 		case 0x0D:
 			xil_printf("TOB POINT");
+			last_cmd = CMD_TOB_POINT;
+			break;
+
+		case 0x0C:
+			xil_printf("Command with C tetrada");
+			if (last_byte == CMD_STOP)
+			{
+				xil_printf("Stop UDP send!");
+				status_udp_sender = 0;
+				last_cmd = CMD_STOP;
+			}
+			else if (last_byte == CMD_START)
+			{
+				xil_printf("Start UDP send!");
+				status_udp_sender = 1;
+				vTaskResume(xIrqTaskHandle);
+				last_cmd = CMD_START;
+			}
+			else if (last_byte == CMD_WORKTYPE_SET)
+			{
+				xil_printf("Set worktype!");
+				last_cmd = CMD_WORKTYPE_SET;
+			}
+			else if (last_byte == CMD_CTRL_AMPL)
+			{
+				xil_printf("Set amplifyer control mode!");
+				last_cmd = CMD_CTRL_AMPL;
+			}
+			else if (last_byte == CMD_SEA_FILTER)
+			{
+				xil_printf("Set sea filter!");
+				last_cmd = CMD_SEA_FILTER;
+			}
+			else if (last_byte == CMD_PREC_FILTER)
+			{
+				xil_printf("Set rain filter!");
+				last_cmd = CMD_PREC_FILTER;
+			}
+			else if (last_byte == CMD_VELOCITY)
+			{
+				xil_printf("Set velocity!");
+				last_cmd = CMD_VELOCITY;
+			}
+			else if (last_byte == CMD_FREQ_CHGE)
+			{
+				xil_printf("Set frequecny!");
+				last_cmd = CMD_FREQ_CHGE;
+			}
+			else if (last_byte == CMD_TELEMETRY_REQS)
+			{
+				xil_printf("Get a telemetry!");
+				last_cmd = CMD_TELEMETRY_REQS;
+			}
+			else
+			{
+				xil_printf("Reset faults!");
+				last_cmd = CMD_RESET_FAULTS;
+			}
 			break;
 
 		default:
-			
+			xil_printf("Command not found!");
 			break;
 		}
 	}
@@ -170,6 +239,12 @@ int parse_msg(void* p, size_t size)
 
 /*-----------------------------------------------------------*/
 void* last_payload_from_tcp;
+struct popa
+{
+	uint8_t data[7];
+};
+
+struct popa popa2;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
 	if (!p)
@@ -181,15 +256,27 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	extend_pack = 0;
 	/* pass information about the message to stack */
 	tcp_recved(tpcb, p->len);
-	uint8_t buf[6] = {0};
+	uint8_t buf[7] = {0};
 	if (p->len == 6)
 	{
 		xil_printf("This is extended pack!");  // for debug
 		extend_pack = 1;
 	}
-	
+	uint8_t test_len = p->len;
 	memcpy(buf, p->payload, 6);
-	xQueueSendFromISR(xTcpMsgQueue, buf, NULL);
+	buf[6] = test_len;
+	for (size_t i = 0; i <= 7; i++)
+	{
+		popa2.data[i] = buf[i];
+	}
+	
+	for (size_t i = 0; i < sizeof(popa2); i++)
+	{
+		xil_printf("\nNumber of %d in buf it a %02x\n", i, popa2.data[i]);
+	}
+	
+	// xQueueSendFromISR(xTcpMsgQueue, &popa2, NULL);
+	xMessageBufferSendFromISR(xMsgBuffer, buf, 7, NULL);
 	if (tcp_sndbuf(tpcb) > p->len)
 	{
 		err = tcp_write(tpcb, p->payload, p->len, 1);

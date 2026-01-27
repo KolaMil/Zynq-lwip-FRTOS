@@ -36,6 +36,9 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/timers.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/semphr.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/queue.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h \
+ ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xil_printf.h \
  ../src/cpu1_init.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xil_io.h \
@@ -151,6 +154,12 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/semphr.h:
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/queue.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:
+
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xil_printf.h:
 

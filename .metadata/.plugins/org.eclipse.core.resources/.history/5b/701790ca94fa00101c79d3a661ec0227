@@ -28,10 +28,6 @@ extern volatile int TcpSlowTmrFlag;
 #include "queue.h"
 #include "timers.h"
 #include "semphr.h"
-#include "message_buffer.h"
-#include "stream_buffer.h"
-
-#define configMESSAGE_BUFFER 1
 
 /* Xilinx includes. */
 #include "xil_printf.h"
@@ -58,7 +54,7 @@ volatile MessageBufferHandle_t xMsgBuffer = NULL;
 #define UDP_TASK_PRIO (tskIDLE_PRIORITY + 2)
 #define TCP_PARSE_PRIO (tskIDLE_PRIORITY + 2)
 #define TCP_MSG_QUEUE_LEN 20
-#define TCP_MSG_SIZE      10
+#define TCP_MSG_SIZE      sizeof(uint8_t)
 
 //extern XGpioPs  psGpioInstancePtr;
 volatile QueueHandle_t xTcpMsgQueue;

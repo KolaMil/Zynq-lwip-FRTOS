@@ -5,7 +5,7 @@
 
 #define CMD_STOP				0xC0
 #define CMD_START           	0xC1
-#define CMD_WORK_TYPE			0xC2        // setter
+#define CMD_WORKTYPE_SET		0xC2        // 05С2
 #define CMD_CTRL_AMPL			0xC3        // 00C3-FFC3
 #define CMD_SEA_FILTER			0xC4        // 00C4-FFC4
 #define CMD_PREC_FILTER			0xC5        // 00C5-FFC5

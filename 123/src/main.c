@@ -35,6 +35,7 @@ static void network_init_task(void *pvParameters)
 		xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
 		vTaskSuspend(xIrqTaskHandle);
 		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
+		xMsgBuffer = xMessageBufferCreate(1024);
 		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
 		vInitialiseTimer();
 		vTaskDelete(NULL);
@@ -73,13 +74,21 @@ void udp_send_task(void *arg)
 /*-----------------------------------------------------------*/
 void tcp_parse_task(void *arg)
 {
-	uint8_t payload[6];
+	uint8_t payload[7];
 	while(1)
 	{
-		if (xQueueReceive(xTcpMsgQueue, &payload, portMAX_DELAY) == pdPASS)
+		// if (xQueueReceive(xTcpMsgQueue, &payload, portMAX_DELAY) == pdPASS)
+		// {
+		// 	xil_printf("\nSize of bytes %02x\n", payload[6]);
+			 
+		// 	parse_msg(payload, 7);
+		// }
+		if (xMessageBufferReceive(xMsgBuffer, payload, 7, portMAX_DELAY))
 		{
-			parse_msg(payload, 6);
+			xil_printf("\nSize of bytes %02x\n", payload[6]);
+			parse_msg(payload, payload[6]);
 		}
+		
 	}
 }
 
@@ -106,14 +115,13 @@ void vStatsTask(void *arg)
     }
 }
 
-
 /*-----------------------------------------------------------*/
 void x1emacif_input_thread(void *arg)
 {
     struct netif *netif = (struct netif *)arg;
     while(1)
     {
-        xemacif_input(netif); /* �� xadapter.h */
+        xemacif_input(netif);
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 }

@@ -1,18 +1,16 @@
 connect -url tcp:127.0.0.1:3121
-source C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/ps7_init.tcl
+source C:/Users/mgre/Desktop/Zynq-lwip-FRTOS/design_1_wrapper_hw_platform_2/ps7_init.tcl
 targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent JTAG-SMT2 210251A08870"} -index 0
 rst -system
 after 3000
-targets -set -filter {jtag_cable_name =~ "Digilent JTAG-SMT2 210251A08870" && level==0} -index 1
-fpga -file C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/design_1_wrapper.bit
 targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent JTAG-SMT2 210251A08870"} -index 0
-loadhw -hw C:/Users/nmil/1301_w_l/design_1_wrapper_hw_platform_2/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
+loadhw -hw C:/Users/mgre/Desktop/Zynq-lwip-FRTOS/design_1_wrapper_hw_platform_2/system.hdf -mem-ranges [list {0x40000000 0xbfffffff}]
 configparams force-mem-access 1
 targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Digilent JTAG-SMT2 210251A08870"} -index 0
 ps7_init
 ps7_post_config
 targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent JTAG-SMT2 210251A08870"} -index 0
-dow C:/Users/nmil/1301_w_l/123/Debug/123.elf
+dow C:/Users/mgre/Desktop/Zynq-lwip-FRTOS/123/Debug/123.elf
 configparams force-mem-access 0
 targets -set -nocase -filter {name =~ "ARM*#0" && jtag_cable_name =~ "Digilent JTAG-SMT2 210251A08870"} -index 0
 con
