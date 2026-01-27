@@ -74,5 +74,6 @@ void vStatsTask(void *arg);
 void x1emacif_input_thread(void *arg);
 void udp_send_task(void *arg);
 void tcp_parse_task(void *arg);
+void vTcpStatTask(void *arg);
 
 #endif

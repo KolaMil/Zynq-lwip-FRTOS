@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;123/src/tcp_stack&apos; to &apos;tcp_stack.c&apos;" description="Rename resource &apos;tcp_stack&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/tcp_stack" name="tcp_stack.c" stamp="1769498576045" updateReferences="true"/>
+</session>

@@ -77,7 +77,7 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/prot/udp.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/init.h \
  ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xil_types.h \
- ../src/udp_stack.h ../src/cmd.h
+ ../src/tcp_stack.h ../src/udp_stack.h ../src/cmd.h
 
 ../src/main.h:
 
@@ -236,6 +236,8 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/init.h:
 
 ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/xil_types.h:
+
+../src/tcp_stack.h:
 
 ../src/udp_stack.h:
 

@@ -15,6 +15,7 @@
 #include "xil_types.h"
 #include "xil_printf.h"
 #include "lwip/pbuf.h"
+#include "tcp_stack.h"
 #include "udp_stack.h"
 #include "cmd.h"
 
@@ -33,6 +34,7 @@ struct udp_pcb *udp_pcb_conn;
 struct tcp_pcb *tcp_pcb;
 struct netif server_netif;
 udp_sender_t *sender;
+tcp_monitor_t *monitor;
 extern volatile QueueHandle_t xTcpMsgQueue;
 extern volatile TaskHandle_t xIrqTaskHandle;
 extern volatile MessageBufferHandle_t xMsgBuffer;

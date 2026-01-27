@@ -20,10 +20,6 @@ void lwip_network_setup(void)
 	inet_aton(LOCAL_NET_MASK, &netmask);
 	inet_aton(LOCAL_GATEWAY, &gw);
 
-    // IP4_ADDR(&ipaddr, 192,168,1,10);
-    // IP4_ADDR(&netmask, 255,255,255,0);
-    // IP4_ADDR(&gw, 192,168,1,1);
-
     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
     {
         xil_printf("Error adding N/W interface\r\n");
@@ -45,7 +41,6 @@ void udp_connection(uint8_t *data, size_t size)
 		return;
 	}
 	ip_addr_t remote_ip;
-	// IP4_ADDR(&remote_ip, 192, 168, 1, 100);
 	inet_aton(REMOTE_IP_ADDRESS, &remote_ip);
 	sender = add_sender(udp_pcb_conn, data, size);
 	if (sender == NULL)
@@ -77,6 +72,11 @@ void tcp_connection_cl(void)
 		xil_printf("Error creating PCB. Out of Memory\n\r");
 		return;
 	}
+	xil_printf("create tcp pcb");
+	monitor = create_tcp_monitor(tcp_pcb);
+	// update_monitor(monitor);
+	// print_status(monitor);
+	xil_printf("Try to connect");
 	err = tcp_connect(tcp_pcb, &remote_addr, TCP_REMOTE_PORT, client_connected);
 	if (err)
 	{
@@ -89,7 +89,7 @@ void tcp_connection_cl(void)
 /*-----------------------------------------------------------*/
 uint8_t state_tcp_connection(void)
 {
-	tcp_pcb->state;
+	
 }
 
 /*-----------------------------------------------------------*/
@@ -126,8 +126,8 @@ uint8_t get_tetrada(uint8_t *data, size_t len) {
     if (data == NULL || len == 0) {
         return 0;
     }
-    xil_printf("Getting value in bufer %02x", data[0]);
-	xil_printf("Lenght of buffer pbuf %d", len);
+    // xil_printf("Getting value in bufer %02x", data[0]);
+	// xil_printf("Lenght of buffer pbuf %d", len);
 	uint8_t lowest_byte = data[len - 1];
 	xil_printf("Lowest byte %02x", lowest_byte);
     
@@ -148,7 +148,6 @@ int parse_msg(void* p, size_t size)
 		tetrada = get_tetrada(byte_ptr, size);
 		uint8_t test_tetrada = 0x0F;
 		xil_printf("tetrada of command %02x", tetrada);
-		xil_printf("test tetrada %02x", test_tetrada);
 		switch (tetrada)
 		{
 		case 0x0E:
@@ -239,12 +238,7 @@ int parse_msg(void* p, size_t size)
 
 /*-----------------------------------------------------------*/
 void* last_payload_from_tcp;
-struct popa
-{
-	uint8_t data[7];
-};
-
-struct popa popa2;
+uint16_t ssize;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
 	if (!p)
@@ -254,37 +248,24 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 		return ERR_OK;
 	}
 	extend_pack = 0;
-	/* pass information about the message to stack */
 	tcp_recved(tpcb, p->len);
-	uint8_t buf[7] = {0};
+
+	uint8_t buf[6] = {0};
+
 	if (p->len == 6)
 	{
-		xil_printf("This is extended pack!");  // for debug
+		xil_printf("This is extended pack!");
 		extend_pack = 1;
 	}
-	uint8_t test_len = p->len;
+
 	memcpy(buf, p->payload, 6);
-	buf[6] = test_len;
-	for (size_t i = 0; i <= 7; i++)
-	{
-		popa2.data[i] = buf[i];
-	}
-	
-	for (size_t i = 0; i < sizeof(popa2); i++)
-	{
-		xil_printf("\nNumber of %d in buf it a %02x\n", i, popa2.data[i]);
-	}
-	
-	// xQueueSendFromISR(xTcpMsgQueue, &popa2, NULL);
-	xMessageBufferSendFromISR(xMsgBuffer, buf, 7, NULL);
+	ssize = p->len;
+	xMessageBufferSendFromISR(xMsgBuffer, (void*)buf, ssize, NULL);
 	if (tcp_sndbuf(tpcb) > p->len)
 	{
 		err = tcp_write(tpcb, p->payload, p->len, 1);
 	}
-	else
-	{
-		xil_printf("no space in tcp_sndbuf\n\r");
-	}
+	else{ xil_printf("no space in tcp_sndbuf\n\r"); }
 
 	flag_tcp ^= 1;
 
