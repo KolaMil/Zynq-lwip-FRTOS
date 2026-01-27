@@ -78,7 +78,7 @@ void tcp_connection_cl(void)
 	// print_status(monitor);
 	xil_printf("Try to connect");
 	err = tcp_connect(tcp_pcb, &remote_addr, TCP_REMOTE_PORT, client_connected);
-	vTaskDelay(pdMS_TO_TICKS(1000));
+	vTaskDelay(pdMS_TO_TICKS(2000));
 	if (err)
 	{
 		xil_printf("Error on tcp_connect: %d\r\n", err);

@@ -15,7 +15,7 @@ int main(void)
 	init_platform();
 	xil_printf("\n Start PS-part of Zynq!\r\n");
 	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
-	xTaskCreate(vStatsTask, "StatsTask", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO, NULL);
+	xTaskCreate(vStatsTask, "StatsTask", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO - 1, NULL);
 	vTaskStartScheduler();
 
 	while(1);
@@ -29,15 +29,15 @@ static void network_init_task(void *pvParameters)
 	{
 		vTaskDelay(x1second);
 		lwip_network_setup();
-		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, UDP_TASK_PRIO, NULL);
+		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, tskIDLE_PRIORITY, NULL);
 		udp_connection(default_state, sizeof(default_state));
+		xMsgBuffer = xMessageBufferCreate(1024);
 		tcp_connection_cl();
 		xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
 		vTaskSuspend(xIrqTaskHandle);
 		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
-		xMsgBuffer = xMessageBufferCreate(1024);
 		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
-		// xTaskCreate(vTcpStatTask, "TCP monitoring task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO, NULL);
+		xTaskCreate(vTcpStatTask, "TCP monitoring task", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY, NULL);
 		vInitialiseTimer();
 		vTaskDelete(NULL);
 	}
@@ -79,12 +79,13 @@ void tcp_parse_task(void *arg)
 	size_t size;
 	while(1)
 	{
-		size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), portMAX_DELAY);
+		size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), pdMS_TO_TICKS(20));
 		if (size > 0)
 		{
 			xil_printf("\nSize of bytes %02x\n", size);
 			parse_msg(payload, size);
 		}
+		vTaskDelay(pdMS_TO_TICKS(40));
 	}
 }
 
@@ -112,13 +113,18 @@ void vStatsTask(void *arg)
 }
 
 /*-----------------------------------------------------------*/
-// void vTcpStatTask(void *arg)
-// {
-//     xil_printf("Task monitoring tcp");
-// 	const TickType_t wike_up = xTaskGetTickCount;
-// 	const TickType_t monitor_interval = pdMS_TO_TICKS(3000);
-// 	print_status(monitor);
-// }
+void vTcpStatTask(void *arg)
+{
+    xil_printf("Task monitoring tcp");
+	const TickType_t wike_up = xTaskGetTickCount;
+	const TickType_t monitor_interval = pdMS_TO_TICKS(30000);
+	while (1)
+	{
+		update_monitor(monitor);
+		print_status(monitor);
+		vTaskDelay(monitor_interval);
+	}
+}
 
 /*-----------------------------------------------------------*/
 void x1emacif_input_thread(void *arg)

@@ -2,7 +2,7 @@
 
 tcp_monitor_t* create_tcp_monitor(struct tcp_pcb *pcb) {
     tcp_monitor_t *monitor;
-    
+
     monitor = (tcp_monitor_t*)mem_malloc(sizeof(tcp_monitor_t));
     if (monitor == NULL) {
         return NULL;
@@ -36,6 +36,8 @@ err_t update_monitor(tcp_monitor_t *monitor){
     monitor->flags = pcb->flags;
     monitor->last_update_time = xTaskGetTickCount();
     monitor->lifetime = monitor->last_update_time - monitor->creation_time;
+
+    return ERR_OK;
 }
 
 
@@ -47,4 +49,6 @@ err_t print_status(tcp_monitor_t *monitor){
     xil_printf(" Remote: %s:%d\n", monitor->remote_ip_str, monitor->remote_port);
     xil_printf(" State:  %s (%d)\n", monitor->state);
     xil_printf(" Lifetime: %d\n", monitor->lifetime);
+
+    return ERR_OK;
 }
