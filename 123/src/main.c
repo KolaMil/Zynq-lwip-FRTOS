@@ -97,7 +97,7 @@ void vStatsTask(void *arg)
 	u8 flag_for_led = 0;
     while(1)
     {
-        vParTestSetGPIO(LED_LEFT, flag_for_led);
+		vParTestSetGPIO(LED_LEFT, flag_for_led);
 		flag_for_led ^= 1;
 		vTaskDelay(xPeriod);
         if (average % 100 > 10)
@@ -109,6 +109,12 @@ void vStatsTask(void *arg)
 			xil_printf("Average packet sending time via UDP %u,0%u\r\n", average * 900 / 100000, average % 100);
 		}
 		average = 0;
+
+		if (try_reconnect)
+		{
+			reconnection_tcp(tcp_pcb);
+		}
+		
     }
 }
 

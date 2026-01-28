@@ -52,14 +52,14 @@ void udp_connection(uint8_t *data, size_t size)
 }
 
 /*-----------------------------------------------------------*/
-void udp_package_send(void) // Maybe err_t type
+err_t udp_package_send(void)
 {
 	err_t err = send_udp_data(sender);
 }
 
 /*-----------------------------------------------------------*/
 volatile u8 stat_tcp_con = 0;
-void tcp_connection_cl(void)
+err_t tcp_connection_cl(void)
 {
 	err_t err;
 	ip_addr_t remote_addr;
@@ -72,19 +72,46 @@ void tcp_connection_cl(void)
 		xil_printf("Error creating PCB. Out of Memory\n\r");
 		return;
 	}
-	xil_printf("create tcp pcb");
+	tcp_err(tcp_pcb, need_reconnect);
+
 	monitor = create_tcp_monitor(tcp_pcb);
 	update_monitor(monitor);
-	// print_status(monitor);
+
 	xil_printf("Try to connect");
 	err = tcp_connect(tcp_pcb, &remote_addr, TCP_REMOTE_PORT, client_connected);
-	vTaskDelay(pdMS_TO_TICKS(1000));
+	vTaskDelay(pdMS_TO_TICKS(2000)); // need for callback-function client_connected true work
 	if (err)
 	{
 		xil_printf("Error on tcp_connect: %d\r\n", err);
 		tcp_client_close(tcp_pcb);
-		return;
+		return ERR_CLSD;
 	}
+}
+
+err_t need_reconnect(struct tcp_pcb *pcb)
+{
+	xil_printf(" Closed TCP-connection. Retry... \n");
+	if (pcb->state != ESTABLISHED)
+	{
+		try_reconnect = 1;
+	}
+	else{ try_reconnect = 0; }
+	return ERR_OK;
+}
+
+err_t reconnection_tcp(struct tcp_pcb *pcb)
+{
+	if (monitor->state == ESTABLISHED || monitor->state == SYN_SENT || monitor->state == SYN_RCVD)
+	{
+		try_reconnect = 0;
+		return ERR_ALREADY;
+	}
+	else
+	{
+		xil_printf(" Closed TCP-connection. Retry... \n");
+		tcp_connect(pcb, &pcb->remote_ip, TCP_REMOTE_PORT, client_connected);
+	}
+	return ERR_OK;
 }
 
 /*-----------------------------------------------------------*/
@@ -121,8 +148,6 @@ uint8_t get_tetrada(uint8_t *data, size_t len) {
     if (data == NULL || len == 0) {
         return 0;
     }
-    // xil_printf("Getting value in bufer %02x", data[0]);
-	// xil_printf("Lenght of buffer pbuf %d", len);
 	uint8_t lowest_byte = data[len - 1];
 	xil_printf("Lowest byte %02x", lowest_byte);
     
@@ -240,7 +265,7 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	{
 		tcp_close(tpcb);
 		tcp_recv(tpcb, NULL);
-		return ERR_OK;
+		return ERR_VAL;
 	}
 	extend_pack = 0;
 	tcp_recved(tpcb, p->len);

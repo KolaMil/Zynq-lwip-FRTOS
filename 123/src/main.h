@@ -66,6 +66,7 @@ volatile QueueHandle_t xTcpMsgQueue;
 /* Data to send */
 uint8_t default_state[8192] = {0xAA, 0xBB, 0xCC};
 uint8_t extend_pack = 0;
+uint8_t try_reconnect = 0;
 // static const char data_imit_dma[8192] = "Static Data to Send";
 
 /*-----------------------------------------------------------*/
