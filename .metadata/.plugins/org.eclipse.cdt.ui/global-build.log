@@ -984,3 +984,1601 @@ arm-none-eabi-size 123.elf  |tee "123.elf.size"
  165200	  11700	2152752	2329652	 238c34	123.elf
 'Finished building: 123.elf.size'
 ' '
+13:43:47 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/IntQueueTimer.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/IntQueueTimer.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/IntQueueTimer.d" -MT"src/IntQueueTimer.o" -o "src/IntQueueTimer.o" "../src/IntQueueTimer.c"
+'Finished building: ../src/IntQueueTimer.c'
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+In file included from ../src/lwip.h:18,
+                 from ../src/lwip.c:10:
+../src/tcp_stack.h:23:1: warning: declaration does not declare anything
+ } tcp_monitor_t;
+ ^
+../src/tcp_stack.h:23:1: warning: no semicolon at end of struct or union
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:172:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:89:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/lwip.h:18,
+                 from ../src/main.h:44,
+                 from ../src/main.c:10:
+../src/tcp_stack.h:23:1: warning: declaration does not declare anything
+ } tcp_monitor_t;
+ ^
+../src/tcp_stack.h:23:1: warning: no semicolon at end of struct or union
+../src/main.c: In function 'network_init_task':
+../src/main.c:36:87: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                       ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c:39:90: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+                                                                                          ^~~~~~~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+In file included from ../src/main.h:31,
+                 from ../src/main.c:10:
+../src/main.c: In function 'tcp_parse_task':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/projdefs.h:41:37: warning: passing argument 4 of 'xStreamBufferReceiveFromISR' makes pointer from integer without a cast [-Wint-conversion]
+  #define pdMS_TO_TICKS( xTimeInMs ) ( ( TickType_t ) ( ( ( TickType_t ) ( xTimeInMs ) * ( TickType_t ) configTICK_RATE_HZ ) / ( TickType_t ) 1000 ) )
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:596:213: note: in definition of macro 'xMessageBufferReceiveFromISR'
+ #define xMessageBufferReceiveFromISR( xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken ) xStreamBufferReceiveFromISR( ( StreamBufferHandle_t ) xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken )
+                                                                                                                                                                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:82:77: note: in expansion of macro 'pdMS_TO_TICKS'
+   size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), pdMS_TO_TICKS(20));
+                                                                             ^~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:66,
+                 from ../src/main.h:31,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:587:29: note: expected 'BaseType_t * const' {aka 'long int * const'} but argument is of type 'long unsigned int'
+          BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+          ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'vStatsTask':
+../src/main.c:115:4: warning: implicit declaration of function 'reconnection_tcp'; did you mean 'tcp_connection_cl'? [-Wimplicit-function-declaration]
+    reconnection_tcp(tcp_pcb);
+    ^~~~~~~~~~~~~~~~
+    tcp_connection_cl
+../src/main.c: In function 'vTcpStatTask':
+../src/main.c:125:29: warning: initialization of 'TickType_t' {aka 'const long unsigned int'} from 'TickType_t (*)(void)' {aka 'long unsigned int (*)(void)'} makes integer from pointer without a cast [-Wint-conversion]
+  const TickType_t wike_up = xTaskGetTickCount;
+                             ^~~~~~~~~~~~~~~~~
+../src/main.c:125:19: warning: unused variable 'wike_up' [-Wunused-variable]
+  const TickType_t wike_up = xTaskGetTickCount;
+                   ^~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:148:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:153:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:156:3: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+   xemacif_input(netif);
+   ^~~~~~~~~~~~~
+   netif_input
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/tcp_stack.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/tcp_stack.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/tcp_stack.d" -MT"src/tcp_stack.o" -o "src/tcp_stack.o" "../src/tcp_stack.c"
+In file included from ../src/tcp_stack.c:1:
+../src/tcp_stack.h:23:1: warning: declaration does not declare anything
+ } tcp_monitor_t;
+ ^
+../src/tcp_stack.h:23:1: warning: no semicolon at end of struct or union
+../src/tcp_stack.c: In function 'create_tcp_monitor':
+../src/tcp_stack.c:28:5: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+     memset(monitor, 0, sizeof(tcp_monitor_t));
+     ^~~~~~
+../src/tcp_stack.c:28:5: warning: incompatible implicit declaration of built-in function 'memset'
+../src/tcp_stack.c:28:5: note: include '<string.h>' or provide a declaration of 'memset'
+../src/tcp_stack.c:2:1:
++#include <string.h>
+ 
+../src/tcp_stack.c:28:5:
+     memset(monitor, 0, sizeof(tcp_monitor_t));
+     ^~~~~~
+../src/tcp_stack.c:31:30: warning: implicit declaration of function 'xTaskGetTickCount' [-Wimplicit-function-declaration]
+     monitor->creation_time = xTaskGetTickCount();
+                              ^~~~~~~~~~~~~~~~~
+../src/tcp_stack.c:39:13: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+             strcpy(monitor->remote_ip_str, "0.0.0.0");
+             ^~~~~~
+../src/tcp_stack.c:39:13: warning: incompatible implicit declaration of built-in function 'strcpy'
+../src/tcp_stack.c:39:13: note: include '<string.h>' or provide a declaration of 'strcpy'
+../src/tcp_stack.c: In function 'print_status':
+../src/tcp_stack.c:65:5: warning: implicit declaration of function 'xil_printf'; did you mean 'viprintf'? [-Wimplicit-function-declaration]
+     xil_printf("\n======== TCP Connection Monitor ========\n");
+     ^~~~~~~~~~
+     viprintf
+../src/tcp_stack.c: In function 'destroy_monitor':
+../src/tcp_stack.c:78:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/tcp_stack.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165324	  11700	2152752	2329776	 238cb0	123.elf
+'Finished building: 123.elf.size'
+' '
+13:57:38 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+In file included from ../src/lwip.h:18,
+                 from ../src/lwip.c:10:
+../src/tcp_stack.h:23:1: warning: declaration does not declare anything
+ } tcp_monitor_t;
+ ^
+../src/tcp_stack.h:23:1: warning: no semicolon at end of struct or union
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:76:20: error: 'prikol' undeclared (first use in this function); did you mean 'print'?
+  tcp_poll(tcp_pcb, prikol, 20);
+                    ^~~~~~
+                    print
+../src/lwip.c:76:20: note: each undeclared identifier is reported only once for each function it appears in
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:177:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:89:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** [src/subdir.mk:41: src/lwip.o] Error 1
+13:58:16 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+In file included from ../src/lwip.h:18,
+                 from ../src/lwip.c:10:
+../src/tcp_stack.h:23:1: warning: declaration does not declare anything
+ } tcp_monitor_t;
+ ^
+../src/tcp_stack.h:23:1: warning: no semicolon at end of struct or union
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:76:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, prikol, 20);
+                    ^~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'void (*)(void)'
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:177:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:89:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/lwip.h:18,
+                 from ../src/main.h:44,
+                 from ../src/main.c:10:
+../src/tcp_stack.h:23:1: warning: declaration does not declare anything
+ } tcp_monitor_t;
+ ^
+../src/tcp_stack.h:23:1: warning: no semicolon at end of struct or union
+../src/main.c: In function 'network_init_task':
+../src/main.c:36:87: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                       ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c:39:90: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+                                                                                          ^~~~~~~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+In file included from ../src/main.h:31,
+                 from ../src/main.c:10:
+../src/main.c: In function 'tcp_parse_task':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/projdefs.h:41:37: warning: passing argument 4 of 'xStreamBufferReceiveFromISR' makes pointer from integer without a cast [-Wint-conversion]
+  #define pdMS_TO_TICKS( xTimeInMs ) ( ( TickType_t ) ( ( ( TickType_t ) ( xTimeInMs ) * ( TickType_t ) configTICK_RATE_HZ ) / ( TickType_t ) 1000 ) )
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:596:213: note: in definition of macro 'xMessageBufferReceiveFromISR'
+ #define xMessageBufferReceiveFromISR( xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken ) xStreamBufferReceiveFromISR( ( StreamBufferHandle_t ) xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken )
+                                                                                                                                                                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:82:77: note: in expansion of macro 'pdMS_TO_TICKS'
+   size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), pdMS_TO_TICKS(20));
+                                                                             ^~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:66,
+                 from ../src/main.h:31,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:587:29: note: expected 'BaseType_t * const' {aka 'long int * const'} but argument is of type 'long unsigned int'
+          BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+          ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'vStatsTask':
+../src/main.c:115:4: warning: implicit declaration of function 'reconnection_tcp'; did you mean 'tcp_connection_cl'? [-Wimplicit-function-declaration]
+    reconnection_tcp(tcp_pcb);
+    ^~~~~~~~~~~~~~~~
+    tcp_connection_cl
+../src/main.c: In function 'vTcpStatTask':
+../src/main.c:125:29: warning: initialization of 'TickType_t' {aka 'const long unsigned int'} from 'TickType_t (*)(void)' {aka 'long unsigned int (*)(void)'} makes integer from pointer without a cast [-Wint-conversion]
+  const TickType_t wike_up = xTaskGetTickCount;
+                             ^~~~~~~~~~~~~~~~~
+../src/main.c:125:19: warning: unused variable 'wike_up' [-Wunused-variable]
+  const TickType_t wike_up = xTaskGetTickCount;
+                   ^~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:148:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:153:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:156:3: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+   xemacif_input(netif);
+   ^~~~~~~~~~~~~
+   netif_input
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165412	  11700	2152752	2329864	 238d08	123.elf
+'Finished building: 123.elf.size'
+' '
+13:58:20 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:13:46 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:76:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'need_reconnect':
+../src/lwip.c:95:45: error: 'monitor' is a pointer; did you mean to use '->'?
+  if ((pcb->state != ESTABLISHED) && (monitor.reconn_timer > 5000))
+                                             ^
+                                             ->
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:177:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** [src/subdir.mk:41: src/lwip.o] Error 1
+15:14:03 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:76:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:177:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:36:87: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                       ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c:39:90: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+                                                                                          ^~~~~~~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+In file included from ../src/main.h:31,
+                 from ../src/main.c:10:
+../src/main.c: In function 'tcp_parse_task':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/projdefs.h:41:37: warning: passing argument 4 of 'xStreamBufferReceiveFromISR' makes pointer from integer without a cast [-Wint-conversion]
+  #define pdMS_TO_TICKS( xTimeInMs ) ( ( TickType_t ) ( ( ( TickType_t ) ( xTimeInMs ) * ( TickType_t ) configTICK_RATE_HZ ) / ( TickType_t ) 1000 ) )
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:596:213: note: in definition of macro 'xMessageBufferReceiveFromISR'
+ #define xMessageBufferReceiveFromISR( xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken ) xStreamBufferReceiveFromISR( ( StreamBufferHandle_t ) xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken )
+                                                                                                                                                                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:82:77: note: in expansion of macro 'pdMS_TO_TICKS'
+   size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), pdMS_TO_TICKS(20));
+                                                                             ^~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:66,
+                 from ../src/main.h:31,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:587:29: note: expected 'BaseType_t * const' {aka 'long int * const'} but argument is of type 'long unsigned int'
+          BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+          ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'vStatsTask':
+../src/main.c:115:4: warning: implicit declaration of function 'reconnection_tcp'; did you mean 'tcp_connection_cl'? [-Wimplicit-function-declaration]
+    reconnection_tcp(tcp_pcb);
+    ^~~~~~~~~~~~~~~~
+    tcp_connection_cl
+../src/main.c: In function 'vTcpStatTask':
+../src/main.c:125:29: warning: initialization of 'TickType_t' {aka 'const long unsigned int'} from 'TickType_t (*)(void)' {aka 'long unsigned int (*)(void)'} makes integer from pointer without a cast [-Wint-conversion]
+  const TickType_t wike_up = xTaskGetTickCount;
+                             ^~~~~~~~~~~~~~~~~
+../src/main.c:125:19: warning: unused variable 'wike_up' [-Wunused-variable]
+  const TickType_t wike_up = xTaskGetTickCount;
+                   ^~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:144:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:149:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:152:3: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+   xemacif_input(netif);
+   ^~~~~~~~~~~~~
+   netif_input
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/tcp_stack.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/tcp_stack.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/tcp_stack.d" -MT"src/tcp_stack.o" -o "src/tcp_stack.o" "../src/tcp_stack.c"
+../src/tcp_stack.c: In function 'create_tcp_monitor':
+../src/tcp_stack.c:28:5: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+     memset(monitor, 0, sizeof(tcp_monitor_t));
+     ^~~~~~
+../src/tcp_stack.c:28:5: warning: incompatible implicit declaration of built-in function 'memset'
+../src/tcp_stack.c:28:5: note: include '<string.h>' or provide a declaration of 'memset'
+../src/tcp_stack.c:2:1:
++#include <string.h>
+ 
+../src/tcp_stack.c:28:5:
+     memset(monitor, 0, sizeof(tcp_monitor_t));
+     ^~~~~~
+../src/tcp_stack.c:31:30: warning: implicit declaration of function 'xTaskGetTickCount' [-Wimplicit-function-declaration]
+     monitor->creation_time = xTaskGetTickCount();
+                              ^~~~~~~~~~~~~~~~~
+../src/tcp_stack.c:40:13: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+             strcpy(monitor->remote_ip_str, "0.0.0.0");
+             ^~~~~~
+../src/tcp_stack.c:40:13: warning: incompatible implicit declaration of built-in function 'strcpy'
+../src/tcp_stack.c:40:13: note: include '<string.h>' or provide a declaration of 'strcpy'
+../src/tcp_stack.c: In function 'print_status':
+../src/tcp_stack.c:66:5: warning: implicit declaration of function 'xil_printf'; did you mean 'viprintf'? [-Wimplicit-function-declaration]
+     xil_printf("\n======== TCP Connection Monitor ========\n");
+     ^~~~~~~~~~
+     viprintf
+../src/tcp_stack.c: In function 'destroy_monitor':
+../src/tcp_stack.c:79:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/tcp_stack.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165388	  11700	2152752	2329840	 238cf0	123.elf
+'Finished building: 123.elf.size'
+' '
+15:15:10 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:76:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:177:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:36:87: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                       ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c:39:90: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+                                                                                          ^~~~~~~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+In file included from ../src/main.h:31,
+                 from ../src/main.c:10:
+../src/main.c: In function 'tcp_parse_task':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/projdefs.h:41:37: warning: passing argument 4 of 'xStreamBufferReceiveFromISR' makes pointer from integer without a cast [-Wint-conversion]
+  #define pdMS_TO_TICKS( xTimeInMs ) ( ( TickType_t ) ( ( ( TickType_t ) ( xTimeInMs ) * ( TickType_t ) configTICK_RATE_HZ ) / ( TickType_t ) 1000 ) )
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:596:213: note: in definition of macro 'xMessageBufferReceiveFromISR'
+ #define xMessageBufferReceiveFromISR( xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken ) xStreamBufferReceiveFromISR( ( StreamBufferHandle_t ) xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken )
+                                                                                                                                                                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:82:77: note: in expansion of macro 'pdMS_TO_TICKS'
+   size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), pdMS_TO_TICKS(20));
+                                                                             ^~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:66,
+                 from ../src/main.h:31,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:587:29: note: expected 'BaseType_t * const' {aka 'long int * const'} but argument is of type 'long unsigned int'
+          BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+          ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'vStatsTask':
+../src/main.c:115:4: warning: implicit declaration of function 'reconnection_tcp'; did you mean 'tcp_connection_cl'? [-Wimplicit-function-declaration]
+    reconnection_tcp(tcp_pcb);
+    ^~~~~~~~~~~~~~~~
+    tcp_connection_cl
+../src/main.c: In function 'vTcpStatTask':
+../src/main.c:125:29: warning: initialization of 'TickType_t' {aka 'const long unsigned int'} from 'TickType_t (*)(void)' {aka 'long unsigned int (*)(void)'} makes integer from pointer without a cast [-Wint-conversion]
+  const TickType_t wike_up = xTaskGetTickCount;
+                             ^~~~~~~~~~~~~~~~~
+../src/main.c:125:19: warning: unused variable 'wike_up' [-Wunused-variable]
+  const TickType_t wike_up = xTaskGetTickCount;
+                   ^~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:144:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:149:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:152:3: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+   xemacif_input(netif);
+   ^~~~~~~~~~~~~
+   netif_input
+'Finished building: ../src/main.c'
+' '
+'Building file: ../src/tcp_stack.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/tcp_stack.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/tcp_stack.d" -MT"src/tcp_stack.o" -o "src/tcp_stack.o" "../src/tcp_stack.c"
+../src/tcp_stack.c: In function 'create_tcp_monitor':
+../src/tcp_stack.c:28:5: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+     memset(monitor, 0, sizeof(tcp_monitor_t));
+     ^~~~~~
+../src/tcp_stack.c:28:5: warning: incompatible implicit declaration of built-in function 'memset'
+../src/tcp_stack.c:28:5: note: include '<string.h>' or provide a declaration of 'memset'
+../src/tcp_stack.c:2:1:
++#include <string.h>
+ 
+../src/tcp_stack.c:28:5:
+     memset(monitor, 0, sizeof(tcp_monitor_t));
+     ^~~~~~
+../src/tcp_stack.c:31:30: warning: implicit declaration of function 'xTaskGetTickCount' [-Wimplicit-function-declaration]
+     monitor->creation_time = xTaskGetTickCount();
+                              ^~~~~~~~~~~~~~~~~
+../src/tcp_stack.c:33:14: error: 'tcp_monitor_t' {aka 'struct <anonymous>'} has no member named 'reconn_timer'; did you mean 'creation_time'?
+     monitor->reconn_timer = 0;
+              ^~~~~~~~~~~~
+              creation_time
+../src/tcp_stack.c:40:13: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+             strcpy(monitor->remote_ip_str, "0.0.0.0");
+             ^~~~~~
+../src/tcp_stack.c:40:13: warning: incompatible implicit declaration of built-in function 'strcpy'
+../src/tcp_stack.c:40:13: note: include '<string.h>' or provide a declaration of 'strcpy'
+../src/tcp_stack.c: In function 'print_status':
+../src/tcp_stack.c:66:5: warning: implicit declaration of function 'xil_printf'; did you mean 'viprintf'? [-Wimplicit-function-declaration]
+     xil_printf("\n======== TCP Connection Monitor ========\n");
+     ^~~~~~~~~~
+     viprintf
+make: *** [src/subdir.mk:41: src/tcp_stack.o] Error 1
+15:15:49 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/tcp_stack.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/tcp_stack.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/tcp_stack.d" -MT"src/tcp_stack.o" -o "src/tcp_stack.o" "../src/tcp_stack.c"
+../src/tcp_stack.c: In function 'create_tcp_monitor':
+../src/tcp_stack.c:28:5: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+     memset(monitor, 0, sizeof(tcp_monitor_t));
+     ^~~~~~
+../src/tcp_stack.c:28:5: warning: incompatible implicit declaration of built-in function 'memset'
+../src/tcp_stack.c:28:5: note: include '<string.h>' or provide a declaration of 'memset'
+../src/tcp_stack.c:2:1:
++#include <string.h>
+ 
+../src/tcp_stack.c:28:5:
+     memset(monitor, 0, sizeof(tcp_monitor_t));
+     ^~~~~~
+../src/tcp_stack.c:31:30: warning: implicit declaration of function 'xTaskGetTickCount' [-Wimplicit-function-declaration]
+     monitor->creation_time = xTaskGetTickCount();
+                              ^~~~~~~~~~~~~~~~~
+../src/tcp_stack.c:39:13: warning: implicit declaration of function 'strcpy' [-Wimplicit-function-declaration]
+             strcpy(monitor->remote_ip_str, "0.0.0.0");
+             ^~~~~~
+../src/tcp_stack.c:39:13: warning: incompatible implicit declaration of built-in function 'strcpy'
+../src/tcp_stack.c:39:13: note: include '<string.h>' or provide a declaration of 'strcpy'
+../src/tcp_stack.c: In function 'print_status':
+../src/tcp_stack.c:65:5: warning: implicit declaration of function 'xil_printf'; did you mean 'viprintf'? [-Wimplicit-function-declaration]
+     xil_printf("\n======== TCP Connection Monitor ========\n");
+     ^~~~~~~~~~
+     viprintf
+'Finished building: ../src/tcp_stack.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165324	  11700	2152752	2329776	 238cb0	123.elf
+'Finished building: 123.elf.size'
+' '
+15:15:52 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:18:32 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:76:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:178:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165404	  11700	2152752	2329856	 238d00	123.elf
+'Finished building: 123.elf.size'
+' '
+15:18:37 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:20:15 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:76:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:179:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165404	  11700	2152752	2329856	 238d00	123.elf
+'Finished building: 123.elf.size'
+' '
+15:20:20 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:22:17 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:76:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:180:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165468	  11700	2152752	2329920	 238d40	123.elf
+'Finished building: 123.elf.size'
+' '
+15:22:23 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:23:34 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:89:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:180:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165468	  11700	2152752	2329920	 238d40	123.elf
+'Finished building: 123.elf.size'
+' '
+15:23:40 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:24:59 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:89:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'need_reconnect':
+../src/lwip.c:97:19: warning: comparison between pointer and integer
+  if (monitor->pcb != ESTABLISHED)
+                   ^~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:179:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165404	  11700	2152752	2329856	 238d00	123.elf
+'Finished building: 123.elf.size'
+' '
+15:25:06 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:27:23 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:89:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'need_reconnect':
+../src/lwip.c:97:19: warning: comparison between pointer and integer
+  if (monitor->pcb != ESTABLISHED)
+                   ^~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:180:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165476	  11700	2152752	2329928	 238d48	123.elf
+'Finished building: 123.elf.size'
+' '
+15:27:25 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+15:29:26 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:89:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'need_reconnect':
+../src/lwip.c:97:19: warning: comparison between pointer and integer
+  if (monitor->pcb != ESTABLISHED)
+                   ^~
+../src/lwip.c: In function 'reconnection_tcp':
+../src/lwip.c:121:13: error: 'pcb' undeclared (first use in this function)
+   tcp_abort(pcb);
+             ^~~
+../src/lwip.c:121:13: note: each undeclared identifier is reported only once for each function it appears in
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:180:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+make: *** [src/subdir.mk:41: src/lwip.o] Error 1
+15:31:39 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c:89:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'need_reconnect':
+../src/lwip.c:97:19: warning: comparison between pointer and integer
+  if (monitor->pcb != ESTABLISHED)
+                   ^~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:180:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:36:87: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                       ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c:39:90: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+                                                                                          ^~~~~~~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+In file included from ../src/main.h:31,
+                 from ../src/main.c:10:
+../src/main.c: In function 'tcp_parse_task':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/projdefs.h:41:37: warning: passing argument 4 of 'xStreamBufferReceiveFromISR' makes pointer from integer without a cast [-Wint-conversion]
+  #define pdMS_TO_TICKS( xTimeInMs ) ( ( TickType_t ) ( ( ( TickType_t ) ( xTimeInMs ) * ( TickType_t ) configTICK_RATE_HZ ) / ( TickType_t ) 1000 ) )
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:596:213: note: in definition of macro 'xMessageBufferReceiveFromISR'
+ #define xMessageBufferReceiveFromISR( xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken ) xStreamBufferReceiveFromISR( ( StreamBufferHandle_t ) xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken )
+                                                                                                                                                                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:82:77: note: in expansion of macro 'pdMS_TO_TICKS'
+   size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), pdMS_TO_TICKS(20));
+                                                                             ^~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:66,
+                 from ../src/main.h:31,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:587:29: note: expected 'BaseType_t * const' {aka 'long int * const'} but argument is of type 'long unsigned int'
+          BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+          ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'vTcpStatTask':
+../src/main.c:125:29: warning: initialization of 'TickType_t' {aka 'const long unsigned int'} from 'TickType_t (*)(void)' {aka 'long unsigned int (*)(void)'} makes integer from pointer without a cast [-Wint-conversion]
+  const TickType_t wike_up = xTaskGetTickCount;
+                             ^~~~~~~~~~~~~~~~~
+../src/main.c:125:19: warning: unused variable 'wike_up' [-Wunused-variable]
+  const TickType_t wike_up = xTaskGetTickCount;
+                   ^~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:144:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:149:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:152:3: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+   xemacif_input(netif);
+   ^~~~~~~~~~~~~
+   netif_input
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165476	  11700	2152752	2329928	 238d48	123.elf
+'Finished building: 123.elf.size'
+' '
+15:33:35 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'need_reconnect':
+../src/lwip.c:99:19: warning: comparison between pointer and integer
+  if (monitor->pcb != ESTABLISHED)
+                   ^~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:182:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:36:87: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                       ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c:39:90: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+                                                                                          ^~~~~~~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+In file included from ../src/main.h:31,
+                 from ../src/main.c:10:
+../src/main.c: In function 'tcp_parse_task':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/projdefs.h:41:37: warning: passing argument 4 of 'xStreamBufferReceiveFromISR' makes pointer from integer without a cast [-Wint-conversion]
+  #define pdMS_TO_TICKS( xTimeInMs ) ( ( TickType_t ) ( ( ( TickType_t ) ( xTimeInMs ) * ( TickType_t ) configTICK_RATE_HZ ) / ( TickType_t ) 1000 ) )
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:596:213: note: in definition of macro 'xMessageBufferReceiveFromISR'
+ #define xMessageBufferReceiveFromISR( xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken ) xStreamBufferReceiveFromISR( ( StreamBufferHandle_t ) xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken )
+                                                                                                                                                                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:82:77: note: in expansion of macro 'pdMS_TO_TICKS'
+   size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), pdMS_TO_TICKS(20));
+                                                                             ^~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:66,
+                 from ../src/main.h:31,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:587:29: note: expected 'BaseType_t * const' {aka 'long int * const'} but argument is of type 'long unsigned int'
+          BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+          ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:143:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:148:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:151:3: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+   xemacif_input(netif);
+   ^~~~~~~~~~~~~
+   netif_input
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165476	  11700	2152752	2329928	 238d48	123.elf
+'Finished building: 123.elf.size'
+' '
+15:35:00 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'need_reconnect':
+../src/lwip.c:99:19: warning: comparison between pointer and integer
+  if (monitor->pcb != ESTABLISHED)
+                   ^~
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165388	  11700	2152752	2329840	 238cf0	123.elf
+'Finished building: 123.elf.size'
+' '
+15:36:57 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+../src/lwip.c: In function 'need_reconnect':
+../src/lwip.c:100:19: warning: comparison between pointer and integer
+  if (monitor->pcb != ESTABLISHED)
+                   ^~
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165388	  11700	2152752	2329840	 238cf0	123.elf
+'Finished building: 123.elf.size'
+' '
+15:37:58 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:90:20: warning: passing argument 2 of 'tcp_poll' from incompatible pointer type [-Wincompatible-pointer-types]
+  tcp_poll(tcp_pcb, need_reconnect, 20);
+                    ^~~~~~~~~~~~~~
+In file included from ../src/lwip.h:10,
+                 from ../src/lwip.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/lwip/tcp.h:421:64: note: expected 'tcp_poll_fn' {aka 'signed char (*)(void *, struct tcp_pcb *)'} but argument is of type 'err_t (*)(struct tcp_pcb *)' {aka 'signed char (*)(struct tcp_pcb *)'}
+ void             tcp_poll    (struct tcp_pcb *pcb, tcp_poll_fn poll, u8_t interval);
+                                                    ~~~~~~~~~~~~^~~~
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165452	  11700	2152752	2329904	 238d30	123.elf
+'Finished building: 123.elf.size'
+' '
+15:57:40 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+16:01:17 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+16:04:01 **** Auto Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+'Finished building: ../src/lwip.c'
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'network_init_task':
+../src/main.c:36:87: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+                                                                                       ^~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+../src/main.c:39:90: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
+   xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+                                                                                          ^~~~~~~~~~~~~~~~~~~~
+In file included from ../src/main.h:27,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
+        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
+        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+In file included from ../src/main.h:31,
+                 from ../src/main.c:10:
+../src/main.c: In function 'tcp_parse_task':
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/projdefs.h:41:37: warning: passing argument 4 of 'xStreamBufferReceiveFromISR' makes pointer from integer without a cast [-Wint-conversion]
+  #define pdMS_TO_TICKS( xTimeInMs ) ( ( TickType_t ) ( ( ( TickType_t ) ( xTimeInMs ) * ( TickType_t ) configTICK_RATE_HZ ) / ( TickType_t ) 1000 ) )
+                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:596:213: note: in definition of macro 'xMessageBufferReceiveFromISR'
+ #define xMessageBufferReceiveFromISR( xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken ) xStreamBufferReceiveFromISR( ( StreamBufferHandle_t ) xMessageBuffer, pvRxData, xBufferLengthBytes, pxHigherPriorityTaskWoken )
+                                                                                                                                                                                                                     ^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c:82:77: note: in expansion of macro 'pdMS_TO_TICKS'
+   size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), pdMS_TO_TICKS(20));
+                                                                             ^~~~~~~~~~~~~
+In file included from ../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/message_buffer.h:66,
+                 from ../src/main.h:31,
+                 from ../src/main.c:10:
+../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/stream_buffer.h:587:29: note: expected 'BaseType_t * const' {aka 'long int * const'} but argument is of type 'long unsigned int'
+          BaseType_t * const pxHigherPriorityTaskWoken ) PRIVILEGED_FUNCTION;
+          ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+../src/main.c: In function 'x1emacif_input_thread':
+../src/main.c:143:4: warning: implicit declaration of function 'tcp_fasttmr'; did you mean 'tcp_listen'? [-Wimplicit-function-declaration]
+    tcp_fasttmr();
+    ^~~~~~~~~~~
+    tcp_listen
+../src/main.c:148:4: warning: implicit declaration of function 'tcp_slowtmr'; did you mean 'tcp_close'? [-Wimplicit-function-declaration]
+    tcp_slowtmr();
+    ^~~~~~~~~~~
+    tcp_close
+../src/main.c:151:3: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
+   xemacif_input(netif);
+   ^~~~~~~~~~~~~
+   netif_input
+'Finished building: ../src/main.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165452	  11700	2152752	2329904	 238d30	123.elf
+'Finished building: 123.elf.size'
+' '
+16:04:11 **** Incremental Build of configuration Debug for project 123 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.

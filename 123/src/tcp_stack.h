@@ -15,10 +15,8 @@ typedef struct
     uint16_t flags;
     uint32_t creation_time;
     uint32_t lifetime;
-    uint32_t last_rec_cmd;
+    uint32_t last_recv_cmd;
     uint32_t last_update_time;
-    // float throughput_tx;
-    // float throughput_rx;
 } tcp_monitor_t;
 
 const char* tcp_state_to_string(enum tcp_state state);

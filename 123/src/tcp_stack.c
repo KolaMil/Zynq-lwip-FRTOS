@@ -74,5 +74,7 @@ err_t destroy_monitor(tcp_monitor_t *monitor)
 {
     if (monitor) {
         mem_free(monitor);
+        return ERR_OK;
     }
+    else{ return ERR_VAL;}
 }

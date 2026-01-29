@@ -122,16 +122,11 @@ void vStatsTask(void *arg)
 void vTcpStatTask(void *arg)
 {
     xil_printf("Task monitoring tcp");
-	const TickType_t wike_up = xTaskGetTickCount;
 	const TickType_t monitor_interval = pdMS_TO_TICKS(30000);
 	while (1)
 	{
 		update_monitor(monitor);
 		print_status(monitor);
-		if (monitor->state != ESTABLISHED)
-		{
-			need_reconnect(monitor->pcb);
-		}
 		
 		vTaskDelay(monitor_interval);
 	}
@@ -143,7 +138,17 @@ void x1emacif_input_thread(void *arg)
     struct netif *netif = (struct netif *)arg;
     while(1)
     {
-        xemacif_input(netif);
+        if(TcpFastTmrFlag)
+		{
+			tcp_fasttmr();
+			TcpFastTmrFlag = 0;
+		}
+		if (TcpSlowTmrFlag)
+		{
+			tcp_slowtmr();
+			TcpSlowTmrFlag = 0;
+		}
+		xemacif_input(netif);
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 }

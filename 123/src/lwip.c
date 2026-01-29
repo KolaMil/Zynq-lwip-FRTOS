@@ -56,6 +56,7 @@ err_t udp_connection(uint8_t *data, size_t size)
 err_t udp_package_send(void)
 {
 	err_t err = send_udp_data(sender);
+	return err;
 }
 
 /*-----------------------------------------------------------*/
@@ -71,7 +72,7 @@ err_t tcp_connection_cl(void)
 	if (!tcp_pcb)
 	{
 		xil_printf("Error creating PCB. Out of Memory\n\r");
-		return;
+		return ERR_MEM;
 	}
 
 	monitor = create_tcp_monitor(tcp_pcb);
@@ -86,11 +87,17 @@ err_t tcp_connection_cl(void)
 		tcp_client_close(tcp_pcb);
 		return ERR_CLSD;
 	}
+	tcp_poll(tcp_pcb, need_reconnect, 20);
+	return ERR_OK;
 }
 
-err_t need_reconnect(struct tcp_pcb *pcb)
+/*-----------------------------------------------------------*/
+err_t need_reconnect(void* arg, struct tcp_pcb *pcb)
 {
-	if (pcb->state != ESTABLISHED)
+	xil_printf("Need reconnect\n");
+	update_monitor(monitor);
+	xil_printf("%s", tcp_state_to_string(monitor->state));
+	if (monitor->pcb->state != ESTABLISHED)
 	{
 		try_reconnect = 1;
 	}
@@ -98,9 +105,11 @@ err_t need_reconnect(struct tcp_pcb *pcb)
 	return ERR_OK;
 }
 
+/*-----------------------------------------------------------*/
 err_t reconnection_tcp(struct tcp_pcb *pcb)
 {
 	xil_printf(" Closed TCP-connection. Retry... \n");
+	xil_printf("%d", try_reconnect);
 	if (pcb->state == ESTABLISHED)
 	{
 		try_reconnect = 0;
@@ -108,7 +117,7 @@ err_t reconnection_tcp(struct tcp_pcb *pcb)
 	}
 	else
 	{
-		xil_printf(" Rebuild tcp connection, tcp monitor \n");
+		xil_printf(" Rebuild tcp connection, tcp monitor \n"); // need a timer for rebuild
 		destroy_monitor(monitor);
 		tcp_abort(pcb);
 		tcp_connection_cl();
@@ -126,7 +135,6 @@ err_t tcp_client_close(struct tcp_pcb *pcb)
 		tcp_err(pcb, NULL);
 		err = tcp_close(pcb);
 		if (err != ERR_OK) {
-			/* Free memory with abort */
 			tcp_abort(pcb);
 		}
 	}
@@ -143,7 +151,7 @@ err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
     xil_printf("Successfully connected to server\n\r");
     stat_tcp_con = 1;
     tcp_recv(tpcb, recv_callback);
-    return ERR_OK;
+    return err;
 }
 
 /*-----------------------------------------------------------*/
@@ -152,7 +160,6 @@ uint8_t get_tetrada(uint8_t *data, size_t len) {
         return 0;
     }
 	uint8_t lowest_byte = data[len - 1];
-	xil_printf("Lowest byte %02x", lowest_byte);
     
     return (lowest_byte >> 4) & 0x0F;
 }
@@ -169,7 +176,6 @@ int parse_msg(void* p, size_t size)
 	{
 		uint8_t tetrada = 0x0C;
 		tetrada = get_tetrada(byte_ptr, size);
-		uint8_t test_tetrada = 0x0F;
 		xil_printf("tetrada of command %02x", tetrada);
 		switch (tetrada)
 		{

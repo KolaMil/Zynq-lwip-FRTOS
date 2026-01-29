@@ -52,7 +52,8 @@ err_t udp_package_send(void);
 err_t tcp_client_close(struct tcp_pcb *pcb);
 err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err);
 int parse_msg(void* p, size_t size);
-err_t need_reconnect(struct tcp_pcb *pcb);
+err_t need_reconnect(void* arg, struct tcp_pcb *pcb);
+err_t reconnection_tcp(struct tcp_pcb *pcb);
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
 
 #endif
