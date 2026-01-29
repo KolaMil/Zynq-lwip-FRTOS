@@ -40,7 +40,7 @@
 #define tmrTIMERS_USED	3
 #define tmrTIMER_0_FREQUENCY	( 5000UL )
 #define tmrTIMER_1_FREQUENCY	( 5000UL )
-#define tmrTIMER_2_FREQUENCY	( 10UL )
+#define tmrTIMER_2_FREQUENCY	( 4UL )
 
 /*-----------------------------------------------------------*/
 static void prvTimerHandler( void *CallBackRef );
@@ -170,6 +170,8 @@ uint16_t get_ttc_counter_value(uint8_t timer_ch_id)
 extern volatile TaskHandle_t xIrqTaskHandle;
 extern u8 status_udp_sender;
 u8 flag_for_led = 0;
+volatile int TcpFastTmrFlag = 0;
+volatile int TcpSlowTmrFlag = 0;
 static void prvTimerHandler( void *pvCallBackRef )
 {
 	uint32_t ulInterruptStatus;
@@ -197,6 +199,11 @@ static void prvTimerHandler( void *pvCallBackRef )
 	{
 		flag_for_led ^= 1;
 		vParTestSetGPIO(LED_MIDDLE, flag_for_led);
+		if (flag_for_led) // 500 ms (2x 250 ms)
+		{
+			TcpSlowTmrFlag = 1;
+		}
+		TcpFastTmrFlag = 1;
 	}
 }
 

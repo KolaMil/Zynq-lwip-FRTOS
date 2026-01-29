@@ -1,8 +1,0 @@
-#include "uart.h"
-
-void Init_uart(void)
-{
-	UartCfg = XUartPs_LookupConfig(UART_ID);
-	XUartPs_CfgInitialize(&Uart, UartCfg, UartCfg->BaseAddress);
-	XUartPs_SetBaudRate(&Uart, 115200);
-}

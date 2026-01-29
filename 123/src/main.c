@@ -13,9 +13,9 @@ int main(void)
 {
 	start_cpu1();
 	init_platform();
-	xil_printf("\nHello World! I'm CPU0\r\n");
+	xil_printf("\n Start PS-part of Zynq!\r\n");
 	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
-	xTaskCreate(vStatsTask, "StatsTask", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO, NULL);
+	xTaskCreate(vStatsTask, "StatsTask", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO - 1, NULL);
 	vTaskStartScheduler();
 
 	while(1);
@@ -29,13 +29,15 @@ static void network_init_task(void *pvParameters)
 	{
 		vTaskDelay(x1second);
 		lwip_network_setup();
-		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, UDP_TASK_PRIO, NULL);
+		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, tskIDLE_PRIORITY, NULL);
 		udp_connection(default_state, sizeof(default_state));
+		xMsgBuffer = xMessageBufferCreate(1024);
 		tcp_connection_cl();
 		xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
 		vTaskSuspend(xIrqTaskHandle);
 		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
 		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+		xTaskCreate(vTcpStatTask, "TCP monitoring task", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY, NULL);
 		vInitialiseTimer();
 		vTaskDelete(NULL);
 	}
@@ -73,39 +75,67 @@ void udp_send_task(void *arg)
 /*-----------------------------------------------------------*/
 void tcp_parse_task(void *arg)
 {
-	uint8_t payload[6];
+	uint8_t payload[10];
+	size_t size;
 	while(1)
 	{
-		if (xQueueReceive(xTcpMsgQueue, &payload, portMAX_DELAY) == pdPASS)
+		size = xMessageBufferReceiveFromISR(xMsgBuffer, payload, sizeof(payload), pdMS_TO_TICKS(20));
+		if (size > 0)
 		{
-			parse_msg(payload);
+			xil_printf("\nSize of bytes %02x\n", size);
+			parse_msg(payload, size);
 		}
+		vTaskDelay(pdMS_TO_TICKS(40));
 	}
 }
 
 /*-----------------------------------------------------------*/
 void vStatsTask(void *arg)
 {
-	start_stop_ttc_timer(TTC_TIMER_CHANNEL_2, 1);
-    const TickType_t xPeriod = pdMS_TO_TICKS(5000);
-    u8 flag_for_led = 0;
+    start_stop_ttc_timer(TTC_TIMER_CHANNEL_2, 1);
+	const TickType_t xPeriod = pdMS_TO_TICKS(5000);
+	u8 flag_for_led = 0;
     while(1)
     {
-    	vParTestSetGPIO(LED_LEFT, flag_for_led);
-    	flag_for_led ^= 1;
-        vTaskDelay(xPeriod);
+		vParTestSetGPIO(LED_LEFT, flag_for_led);
+		flag_for_led ^= 1;
+		vTaskDelay(xPeriod);
         if (average % 100 > 10)
-        {
-        	xil_printf("Average packet sending time via UDP %u,%uìêñ\r\n", average * 900 / 100000, average % 100);
-        }
-        else
-        {
-        	xil_printf("Average packet sending time via UDP %u,0%uìêñ\r\n", average * 900 / 100000, average % 100);
-        }
-        average = 0;
+		{
+        	xil_printf("Average packet sending time via UDP %u,%u\r\n", average * 900 / 100000, average % 100);
+		}
+		else
+		{
+			xil_printf("Average packet sending time via UDP %u,0%u\r\n", average * 900 / 100000, average % 100);
+		}
+		average = 0;
+
+		if (try_reconnect)
+		{
+			reconnection_tcp(tcp_pcb);
+		}
+		
     }
 }
 
+/*-----------------------------------------------------------*/
+void vTcpStatTask(void *arg)
+{
+    xil_printf("Task monitoring tcp");
+	const TickType_t wike_up = xTaskGetTickCount;
+	const TickType_t monitor_interval = pdMS_TO_TICKS(30000);
+	while (1)
+	{
+		update_monitor(monitor);
+		print_status(monitor);
+		if (monitor->state != ESTABLISHED)
+		{
+			need_reconnect(monitor->pcb);
+		}
+		
+		vTaskDelay(monitor_interval);
+	}
+}
 
 /*-----------------------------------------------------------*/
 void x1emacif_input_thread(void *arg)
@@ -113,7 +143,17 @@ void x1emacif_input_thread(void *arg)
     struct netif *netif = (struct netif *)arg;
     while(1)
     {
-        xemacif_input(netif); /* èç xadapter.h */
+    	if(TcpFastTmrFlag)
+    	{
+    		tcp_fasttmr();
+			TcpFastTmrFlag = 0;
+    	}
+    	if (TcpSlowTmrFlag)
+		{
+			tcp_slowtmr();
+			TcpSlowTmrFlag = 0;
+		}
+        xemacif_input(netif);
         vTaskDelay(pdMS_TO_TICKS(1));
     }
 }

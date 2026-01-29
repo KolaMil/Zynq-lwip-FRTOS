@@ -56,9 +56,9 @@
 
 #define configUSE_NEWLIB_REENTRANT 0
 
-#define configSTREAM_BUFFER 0
+#define configSTREAM_BUFFER 1
 
-#define configMESSAGE_BUFFER 0
+#define configMESSAGE_BUFFER 1
 
 #define configSUPPORT_STATIC_ALLOCATION 0
 

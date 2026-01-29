@@ -16,10 +16,9 @@ void lwip_network_setup(void)
     unsigned char mac[] = {0x00,0x0A,0x35,0x00,0x01,0x02};
 
     lwip_init();
-
-    IP4_ADDR(&ipaddr, 192,168,1,10);
-    IP4_ADDR(&netmask, 255,255,255,0);
-    IP4_ADDR(&gw, 192,168,1,1);
+	inet_aton(LOCAL_IP_ADDRESS, &ipaddr);
+	inet_aton(LOCAL_NET_MASK, &netmask);
+	inet_aton(LOCAL_GATEWAY, &gw);
 
     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
     {
@@ -32,68 +31,93 @@ void lwip_network_setup(void)
 }
 
 /*-----------------------------------------------------------*/
-void udp_connection(uint8_t *data, size_t size)
+err_t udp_connection(uint8_t *data, size_t size)
 {
 	udp_pcb_conn = udp_new();
 	if(!udp_pcb_conn)
 	{
 		xil_printf("Cannot create UDP PCB\r\n");
 		vTaskDelete(NULL);
-		return;
+		return ERR_MEM;
 	}
 	ip_addr_t remote_ip;
-	IP4_ADDR(&remote_ip, 192, 168, 1, 100);
+	inet_aton(REMOTE_IP_ADDRESS, &remote_ip);
 	sender = add_sender(udp_pcb_conn, data, size);
 	if (sender == NULL)
 	{
 		vTaskDelete(NULL);
-		return;
+		return ERR_RTE;
 	}
-	udp_connect(udp_pcb_conn, &remote_ip, 5005);
+	udp_connect(udp_pcb_conn, &remote_ip, UDP_REMOTE_PORT);
+	return ERR_OK;
 }
 
 /*-----------------------------------------------------------*/
-void udp_package_send(void) // Maybe err_t type
+err_t udp_package_send(void)
 {
 	err_t err = send_udp_data(sender);
 }
 
 /*-----------------------------------------------------------*/
 volatile u8 stat_tcp_con = 0;
-void tcp_connection_cl(void)
+err_t tcp_connection_cl(void)
 {
 	err_t err;
 	ip_addr_t remote_addr;
-#if LWIP_IPV6==1
-	remote_addr.type= IPADDR_TYPE_V6;
-	err = inet6_aton(TCP_SERVER_IPV6_ADDRESS, &remote_addr);
-#else
-	err = inet_aton(TCP_SERVER_IP_ADDRESS, &remote_addr);
-#endif /* LWIP_IPV6 */
-	/* create new TCP PCB structure */
+
+	err = inet_aton(REMOTE_IP_ADDRESS, &remote_addr);
+
 	tcp_pcb = tcp_new_ip_type(IPADDR_TYPE_ANY);
 	if (!tcp_pcb)
 	{
 		xil_printf("Error creating PCB. Out of Memory\n\r");
 		return;
 	}
-	err = tcp_connect(tcp_pcb, &remote_addr, TCP_PORT, client_connected);
+
+	monitor = create_tcp_monitor(tcp_pcb);
+	update_monitor(monitor);
+
+	xil_printf("Try to connect");
+	err = tcp_connect(tcp_pcb, &remote_addr, TCP_REMOTE_PORT, client_connected);
+	vTaskDelay(pdMS_TO_TICKS(2000)); // need for callback-function client_connected true work
 	if (err)
 	{
 		xil_printf("Error on tcp_connect: %d\r\n", err);
 		tcp_client_close(tcp_pcb);
-		return;
+		return ERR_CLSD;
 	}
 }
 
-/*-----------------------------------------------------------*/
-uint8_t state_tcp_connection(void)
+err_t need_reconnect(struct tcp_pcb *pcb)
 {
-//	tcp_pcb->state
+	if (pcb->state != ESTABLISHED)
+	{
+		try_reconnect = 1;
+	}
+	else{ try_reconnect = 0; }
+	return ERR_OK;
+}
+
+err_t reconnection_tcp(struct tcp_pcb *pcb)
+{
+	xil_printf(" Closed TCP-connection. Retry... \n");
+	if (pcb->state == ESTABLISHED)
+	{
+		try_reconnect = 0;
+		return ERR_ALREADY;
+	}
+	else
+	{
+		xil_printf(" Rebuild tcp connection, tcp monitor \n");
+		destroy_monitor(monitor);
+		tcp_abort(pcb);
+		tcp_connection_cl();
+	}
+	return ERR_OK;
 }
 
 /*-----------------------------------------------------------*/
-void tcp_client_close(struct tcp_pcb *pcb)
+err_t tcp_client_close(struct tcp_pcb *pcb)
 {
 	err_t err;
 
@@ -106,6 +130,7 @@ void tcp_client_close(struct tcp_pcb *pcb)
 			tcp_abort(pcb);
 		}
 	}
+	return err;
 }
 
 /*-----------------------------------------------------------*/
@@ -122,78 +147,148 @@ err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
 }
 
 /*-----------------------------------------------------------*/
-#include "FreeRTOS.h"
-#include "queue.h"
-#include "task.h"
-volatile u8 flag_tcp = 0;
-extern volatile QueueHandle_t xTcpMsgQueue;
-extern volatile TaskHandle_t xIrqTaskHandle;
+uint8_t get_tetrada(uint8_t *data, size_t len) {
+    if (data == NULL || len == 0) {
+        return 0;
+    }
+	uint8_t lowest_byte = data[len - 1];
+	xil_printf("Lowest byte %02x", lowest_byte);
+    
+    return (lowest_byte >> 4) & 0x0F;
+}
+
+/*-----------------------------------------------------------*/
+volatile u8 flag_tcp = 0;  // static for plaicing in header?
 volatile u8 status_udp_sender = 0;
-int parse_msg(void* p)
+int parse_msg(void* p, size_t size)
 {
-	uint8_t val = *((uint8_t*) p);
-	switch (val)
+	uint8_t *byte_ptr = (uint8_t*) p;
+	uint8_t last_byte = byte_ptr[size - 1];
+	xil_printf("getting size %02x", size);
+	if (!extend_pack)
 	{
-	case CMD_STOP:
-		xil_printf("Stop working");
-		default_state[3] += 1;
-		// destroy_sender(sender);
-		status_udp_sender = 0;
-		break;
+		uint8_t tetrada = 0x0C;
+		tetrada = get_tetrada(byte_ptr, size);
+		uint8_t test_tetrada = 0x0F;
+		xil_printf("tetrada of command %02x", tetrada);
+		switch (tetrada)
+		{
+		case 0x0E:
+			xil_printf("TOB VALUE");
+			last_cmd = CMD_TOB_VALUE_REQS;
+			break;
+		
+		case 0x0F:
+			xil_printf("WORKTYPES");
+			last_cmd = CMD_WORKTYPE_REQS;
+			break;
 
-	case CMD_START:
-		xil_printf("Start working\n");
-		default_state[3] += 2;
-		vTaskResume(xIrqTaskHandle);
-		status_udp_sender = 1;
-		break;
+		case 0x0D:
+			xil_printf("TOB POINT");
+			last_cmd = CMD_TOB_POINT;
+			break;
 
-	case CMD_WORK_TYPE:
-		xil_printf("Request work type\n");
-		break;
+		case 0x0C:
+			xil_printf("Command with C tetrada");
+			if (last_byte == CMD_STOP)
+			{
+				xil_printf("Stop UDP send!");
+				status_udp_sender = 0;
+				last_cmd = CMD_STOP;
+			}
+			else if (last_byte == CMD_START)
+			{
+				xil_printf("Start UDP send!");
+				status_udp_sender = 1;
+				vTaskResume(xIrqTaskHandle);
+				last_cmd = CMD_START;
+			}
+			else if (last_byte == CMD_WORKTYPE_SET)
+			{
+				xil_printf("Set worktype!");
+				last_cmd = CMD_WORKTYPE_SET;
+			}
+			else if (last_byte == CMD_CTRL_AMPL)
+			{
+				xil_printf("Set amplifyer control mode!");
+				last_cmd = CMD_CTRL_AMPL;
+			}
+			else if (last_byte == CMD_SEA_FILTER)
+			{
+				xil_printf("Set sea filter!");
+				last_cmd = CMD_SEA_FILTER;
+			}
+			else if (last_byte == CMD_PREC_FILTER)
+			{
+				xil_printf("Set rain filter!");
+				last_cmd = CMD_PREC_FILTER;
+			}
+			else if (last_byte == CMD_VELOCITY)
+			{
+				xil_printf("Set velocity!");
+				last_cmd = CMD_VELOCITY;
+			}
+			else if (last_byte == CMD_FREQ_CHGE)
+			{
+				xil_printf("Set frequecny!");
+				last_cmd = CMD_FREQ_CHGE;
+			}
+			else if (last_byte == CMD_TELEMETRY_REQS)
+			{
+				xil_printf("Get a telemetry!");
+				last_cmd = CMD_TELEMETRY_REQS;
+			}
+			else
+			{
+				xil_printf("Reset faults!");
+				last_cmd = CMD_RESET_FAULTS;
+			}
+			break;
 
-	case CMD_CTRL_AMPL:
-		xil_printf("Request ampliefyer\n");
-		break;
-
-	case CMD_SEA_FILTER:
-		xil_printf("Request sea filter\n");
-		break;
-
-	case CMD_PREC_FILTER:
-		xil_printf("Request rain filter\n");
-		break;
-
-	default:
-		xil_printf("Unknown cmd");
-		break;
+		default:
+			xil_printf("Command not found!");
+			break;
+		}
+	}
+	else{
+		xil_printf("Make a blind sector! \n");
+		// massive with data send to PL-part in BRAM
+		// coming soon
+		last_cmd = CMD_BLANK_SEC;
 	}
 	return 0;
 }
 
 /*-----------------------------------------------------------*/
 void* last_payload_from_tcp;
+uint16_t ssize;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
 	if (!p)
 	{
 		tcp_close(tpcb);
 		tcp_recv(tpcb, NULL);
-		return ERR_OK;
+		return ERR_VAL;
 	}
-	/* pass information about the message to stack */
+	extend_pack = 0;
 	tcp_recved(tpcb, p->len);
+
 	uint8_t buf[6] = {0};
+
+	if (p->len == 6)
+	{
+		xil_printf("This is extended pack!");
+		extend_pack = 1;
+	}
+
 	memcpy(buf, p->payload, 6);
-	xQueueSendFromISR(xTcpMsgQueue, buf, NULL);
+	ssize = p->len;
+	xMessageBufferSendFromISR(xMsgBuffer, (void*)buf, ssize, NULL);
 	if (tcp_sndbuf(tpcb) > p->len)
 	{
 		err = tcp_write(tpcb, p->payload, p->len, 1);
 	}
-	else
-	{
-		xil_printf("no space in tcp_sndbuf\n\r");
-	}
+	else{ xil_printf("no space in tcp_sndbuf\n\r"); }
 
 	flag_tcp ^= 1;
 

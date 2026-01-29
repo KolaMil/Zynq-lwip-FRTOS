@@ -1,45 +1,23 @@
-11:53:41 **** Auto Build of configuration Debug for project 123 ****
+12:19:10 **** Auto Build of configuration Debug for project 123 ****
 make pre-build main-build 
 a9-linaro-pre-build-step
 ' '
-'Building file: ../src/main.c'
+'Building file: ../src/IntQueueTimer.c'
 'Invoking: ARM v7 gcc compiler'
-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
-../src/main.c: In function 'network_init_task':
-../src/main.c:35:87: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
-                                                                                       ^~~~~~~~~~~~~~~
-In file included from ../src/main.h:27,
-                 from ../src/main.c:10:
-../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
-        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
-        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
-../src/main.c:38:90: warning: passing argument 6 of 'xTaskCreate' discards 'volatile' qualifier from pointer target type [-Wdiscarded-qualifiers]
-   xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
-                                                                                          ^~~~~~~~~~~~~~~~~~~~
-In file included from ../src/main.h:27,
-                 from ../src/main.c:10:
-../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include/task.h:327:29: note: expected 'struct tskTaskControlBlock ** const' but argument is of type 'struct tskTaskControlBlock * volatile*'
-        TaskHandle_t * const pxCreatedTask ) PRIVILEGED_FUNCTION;
-        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
-../src/main.c: In function 'x1emacif_input_thread':
-../src/main.c:116:9: warning: implicit declaration of function 'xemacif_input'; did you mean 'netif_input'? [-Wimplicit-function-declaration]
-         xemacif_input(netif); /* из xadapter.h */
-         ^~~~~~~~~~~~~
-         netif_input
-'Finished building: ../src/main.c'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/IntQueueTimer.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/IntQueueTimer.d" -MT"src/IntQueueTimer.o" -o "src/IntQueueTimer.o" "../src/IntQueueTimer.c"
+'Finished building: ../src/IntQueueTimer.c'
 ' '
 'Building target: 123.elf'
 'Invoking: ARM v7 gcc linker'
-arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
 'Finished building target: 123.elf'
 ' '
 'Invoking: ARM v7 Print Size'
 arm-none-eabi-size 123.elf  |tee "123.elf.size"
    text	   data	    bss	    dec	    hex	filename
- 167124	  11700	2152752	2331576	 2393b8	123.elf
+ 166780	  11700	2152752	2331232	 239260	123.elf
 'Finished building: 123.elf.size'
 ' '
 
-11:53:42 Build Finished (took 1s.261ms)
+12:19:10 Build Finished (took 531ms)
 

@@ -1,4 +1,4 @@
-15:43:31 **** Auto Build of project freertos10_xilinx_bsp_0 ****
+12:00:37 **** Auto Build of project freertos10_xilinx_bsp_0 ****
 make -k all 
 "Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_5/src"
 make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_5/src -s include  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
@@ -59,12 +59,6 @@ make -C ps7_cortexa9_0/libsrc/gpiops_v3_5/src -s libs  "SHELL=CMD" "COMPILER=arm
 "Running Make libs in ps7_cortexa9_0/libsrc/lwip211_v1_0/src"
 make -C ps7_cortexa9_0/libsrc/lwip211_v1_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
 "Compiling lwip src and adapter files"
-contrib/ports/xilinx/netif/xemacpsif_physpeed.c:613:14: warning: 'get_Realtek_phy_speed' defined but not used [-Wunused-function]
- static u32_t get_Realtek_phy_speed(XEmacPs *xemacpsp, u32_t phy_addr)
-              ^~~~~~~~~~~~~~~~~~~~~
-contrib/ports/xilinx/netif/xemacpsif_physpeed.c:376:14: warning: 'get_TI_phy_speed' defined but not used [-Wunused-function]
- static u32_t get_TI_phy_speed(XEmacPs *xemacpsp, u32_t phy_addr)
-              ^~~~~~~~~~~~~~~~
 "Running Make libs in ps7_cortexa9_0/libsrc/scugic_v4_0/src"
 make -C ps7_cortexa9_0/libsrc/scugic_v4_0/src -s libs  "SHELL=CMD" "COMPILER=arm-none-eabi-gcc" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -g -Wall -Wextra"
 "Compiling scugic"
@@ -85,5 +79,5 @@ make -C ps7_cortexa9_0/libsrc/xadcps_v2_3/src -s libs  "SHELL=CMD" "COMPILER=arm
 "Compiling xadcps"
 'Finished building libraries'
 
-15:43:47 Build Finished (took 16s.96ms)
+12:00:54 Build Finished (took 17s.83ms)
 

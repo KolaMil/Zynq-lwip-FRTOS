@@ -48,7 +48,7 @@ err_t send_udp_data(udp_sender_t *sender)
 void destroy_sender(udp_sender_t *sender)
 {
     if (sender) {
-        if (sender->udp_pbuf) {
+        if (sender->udp_pbuf && sender->udp_pbuf->ref == 0) {
             pbuf_free(sender->udp_pbuf);
         }
         mem_free(sender);

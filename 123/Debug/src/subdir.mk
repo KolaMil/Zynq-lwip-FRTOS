@@ -12,6 +12,7 @@ C_SRCS += \
 ../src/lwip.c \
 ../src/main.c \
 ../src/platform.c \
+../src/tcp_stack.c \
 ../src/udp_stack.c 
 
 OBJS += \
@@ -20,6 +21,7 @@ OBJS += \
 ./src/lwip.o \
 ./src/main.o \
 ./src/platform.o \
+./src/tcp_stack.o \
 ./src/udp_stack.o 
 
 C_DEPS += \
@@ -28,6 +30,7 @@ C_DEPS += \
 ./src/lwip.d \
 ./src/main.d \
 ./src/platform.d \
+./src/tcp_stack.d \
 ./src/udp_stack.d 
 
 

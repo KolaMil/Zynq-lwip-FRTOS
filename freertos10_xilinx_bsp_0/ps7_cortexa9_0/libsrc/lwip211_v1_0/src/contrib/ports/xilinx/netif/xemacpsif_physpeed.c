@@ -121,7 +121,7 @@
 #define PHY_IDENTIFIER_2_REG					3
 #define PHY_DETECT_MASK 					0x1808
 #define PHY_MARVELL_IDENTIFIER				0x0141
-#define PHY_TI_IDENTIFIER					0x0022
+#define PHY_TI_IDENTIFIER					0x2000
 #define PHY_REALTEK_IDENTIFIER				0x001c
 #define PHY_XILINX_PCS_PMA_ID1			0x0174
 #define PHY_XILINX_PCS_PMA_ID2			0x0C00
@@ -589,25 +589,20 @@ static u32_t get_Marvell_phy_speed(XEmacPs *xemacpsp, u32_t phy_addr)
 	}
 	xil_printf("autonegotiation complete \r\n");
 
-#define MICREL_PHY_CONTROL_REG 0x1f
-	   XEmacPs_PhyRead(xemacpsp, phy_addr,MICREL_PHY_CONTROL_REG, &status_speed);
-	   XEmacPs_PhyRead(xemacpsp, phy_addr,MICREL_PHY_CONTROL_REG, &status_speed);
-	   XEmacPs_PhyRead(xemacpsp, phy_addr,MICREL_PHY_CONTROL_REG, &status_speed);
-	   XEmacPs_PhyRead(xemacpsp, phy_addr,MICREL_PHY_CONTROL_REG, &status_speed);
-   XEmacPs_PhyRead(xemacpsp, phy_addr,MICREL_PHY_CONTROL_REG, &status_speed); // 读取寄存器17,改为31  0x1f  VS_PHY_CONTROL_REG  IEEE_SPECIFIC_STATUS_REG
-   if (!(status_speed & 0x01)) {  //link on 原来0x400,第10 位
-       xil_printf("PHY Link stutus:not failing \r\n");
-       temp_speed = status_speed & 0x70; // 读取最高两位速度  [6:4]status_speed & IEEE_SPEED_MASK
+	XEmacPs_PhyRead(xemacpsp, phy_addr,IEEE_SPECIFIC_STATUS_REG,
+					&status_speed);
+	if (status_speed & 0x400) {
+		temp_speed = status_speed & IEEE_SPEED_MASK;
 
-       if (temp_speed == 0x40)//IEEE_SPEED_1000
-           return 1000;
-       else if(temp_speed == 0x20)//IEEE_SPEED_100
-           return 100;
-       else
-           return 10;
-   }
+		if (temp_speed == IEEE_SPEED_1000)
+			return 1000;
+		else if(temp_speed == IEEE_SPEED_100)
+			return 100;
+		else
+			return 10;
+	}
 
-   return XST_SUCCESS;
+	return XST_SUCCESS;
 }
 
 static u32_t get_Realtek_phy_speed(XEmacPs *xemacpsp, u32_t phy_addr)
@@ -690,7 +685,9 @@ static u32_t get_IEEE_phy_speed(XEmacPs *xemacpsp, u32_t phy_addr)
 	XEmacPs_PhyRead(xemacpsp, phy_addr, PHY_IDENTIFIER_1_REG,
 					&phy_identity);
 	if (phy_identity == PHY_TI_IDENTIFIER) {
-		RetStatus = get_Marvell_phy_speed(xemacpsp, phy_addr);
+		RetStatus = get_TI_phy_speed(xemacpsp, phy_addr);
+	} else if (phy_identity == PHY_REALTEK_IDENTIFIER) {
+		RetStatus = get_Realtek_phy_speed(xemacpsp, phy_addr);
 	} else {
 		RetStatus = get_Marvell_phy_speed(xemacpsp, phy_addr);
 	}
