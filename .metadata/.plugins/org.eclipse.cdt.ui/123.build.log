@@ -1,8 +1,51 @@
-16:22:42 **** Incremental Build of configuration Debug for project 123 ****
+12:11:24 **** Auto Build of configuration Debug for project 123 ****
 make pre-build main-build 
 a9-linaro-pre-build-step
 ' '
-make: Nothing to be done for 'main-build'.
+'Building file: ../src/lwip.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/lwip.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/include -MMD -MP -MF"src/lwip.d" -MT"src/lwip.o" -o "src/lwip.o" "../src/lwip.c"
+../src/lwip.c: In function 'lwip_network_setup':
+../src/lwip.c:23:10: warning: implicit declaration of function 'xemac_add'; did you mean 'netif_add'? [-Wimplicit-function-declaration]
+     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
+          ^~~~~~~~~
+          netif_add
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:58:8: warning: unused variable 'err' [-Wunused-variable]
+  err_t err = send_udp_data(sender);
+        ^~~
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:74:3: warning: 'return' with no value, in function returning non-void
+   return;
+   ^~~~~~
+../src/lwip.c:63:7: note: declared here
+ err_t tcp_connection_cl(void)
+       ^~~~~~~~~~~~~~~~~
+../src/lwip.c: In function 'parse_msg':
+../src/lwip.c:172:11: warning: unused variable 'test_tetrada' [-Wunused-variable]
+   uint8_t test_tetrada = 0x0F;
+           ^~~~~~~~~~~~
+../src/lwip.c: In function 'udp_package_send':
+../src/lwip.c:59:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+../src/lwip.c: In function 'tcp_connection_cl':
+../src/lwip.c:89:1: warning: control reaches end of non-void function [-Wreturn-type]
+ }
+ ^
+'Finished building: ../src/lwip.c'
+' '
+'Building target: 123.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../freertos10_xilinx_bsp_0/ps7_cortexa9_0/lib -o "123.elf"  ./src/IntQueueTimer.o ./src/cpu1_init.o ./src/lwip.o ./src/main.o ./src/platform.o ./src/tcp_stack.o ./src/udp_stack.o   -Wl,--start-group,-lxil,-lfreertos,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group
+'Finished building target: 123.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size 123.elf  |tee "123.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 165200	  11700	2152752	2329652	 238c34	123.elf
+'Finished building: 123.elf.size'
+' '
 
-16:22:42 Build Finished (took 233ms)
+12:11:25 Build Finished (took 915ms)
 

@@ -128,6 +128,11 @@ void vTcpStatTask(void *arg)
 	{
 		update_monitor(monitor);
 		print_status(monitor);
+		if (monitor->state != ESTABLISHED)
+		{
+			need_reconnect(monitor->pcb);
+		}
+		
 		vTaskDelay(monitor_interval);
 	}
 }

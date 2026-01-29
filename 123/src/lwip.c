@@ -31,14 +31,14 @@ void lwip_network_setup(void)
 }
 
 /*-----------------------------------------------------------*/
-void udp_connection(uint8_t *data, size_t size)
+err_t udp_connection(uint8_t *data, size_t size)
 {
 	udp_pcb_conn = udp_new();
 	if(!udp_pcb_conn)
 	{
 		xil_printf("Cannot create UDP PCB\r\n");
 		vTaskDelete(NULL);
-		return;
+		return ERR_MEM;
 	}
 	ip_addr_t remote_ip;
 	inet_aton(REMOTE_IP_ADDRESS, &remote_ip);
@@ -46,9 +46,10 @@ void udp_connection(uint8_t *data, size_t size)
 	if (sender == NULL)
 	{
 		vTaskDelete(NULL);
-		return;
+		return ERR_RTE;
 	}
 	udp_connect(udp_pcb_conn, &remote_ip, UDP_REMOTE_PORT);
+	return ERR_OK;
 }
 
 /*-----------------------------------------------------------*/
@@ -72,7 +73,6 @@ err_t tcp_connection_cl(void)
 		xil_printf("Error creating PCB. Out of Memory\n\r");
 		return;
 	}
-	tcp_err(tcp_pcb, need_reconnect);
 
 	monitor = create_tcp_monitor(tcp_pcb);
 	update_monitor(monitor);
@@ -90,7 +90,6 @@ err_t tcp_connection_cl(void)
 
 err_t need_reconnect(struct tcp_pcb *pcb)
 {
-	xil_printf(" Closed TCP-connection. Retry... \n");
 	if (pcb->state != ESTABLISHED)
 	{
 		try_reconnect = 1;
@@ -101,21 +100,24 @@ err_t need_reconnect(struct tcp_pcb *pcb)
 
 err_t reconnection_tcp(struct tcp_pcb *pcb)
 {
-	if (monitor->state == ESTABLISHED || monitor->state == SYN_SENT || monitor->state == SYN_RCVD)
+	xil_printf(" Closed TCP-connection. Retry... \n");
+	if (pcb->state == ESTABLISHED)
 	{
 		try_reconnect = 0;
 		return ERR_ALREADY;
 	}
 	else
 	{
-		xil_printf(" Closed TCP-connection. Retry... \n");
-		tcp_connect(pcb, &pcb->remote_ip, TCP_REMOTE_PORT, client_connected);
+		xil_printf(" Rebuild tcp connection, tcp monitor \n");
+		destroy_monitor(monitor);
+		tcp_abort(pcb);
+		tcp_connection_cl();
 	}
 	return ERR_OK;
 }
 
 /*-----------------------------------------------------------*/
-void tcp_client_close(struct tcp_pcb *pcb)
+err_t tcp_client_close(struct tcp_pcb *pcb)
 {
 	err_t err;
 
@@ -128,6 +130,7 @@ void tcp_client_close(struct tcp_pcb *pcb)
 			tcp_abort(pcb);
 		}
 	}
+	return err;
 }
 
 /*-----------------------------------------------------------*/

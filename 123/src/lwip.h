@@ -46,10 +46,10 @@ extern uint8_t extend_pack;
 extern uint8_t try_reconnect;
 /*-----------------------------------------------------------*/
 void lwip_network_setup(void);
-void udp_connection(uint8_t *data, size_t size);
+err_t udp_connection(uint8_t *data, size_t size);
 err_t tcp_connection_cl(void);
 err_t udp_package_send(void);
-void tcp_client_close(struct tcp_pcb *pcb);
+err_t tcp_client_close(struct tcp_pcb *pcb);
 err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err);
 int parse_msg(void* p, size_t size);
 err_t need_reconnect(struct tcp_pcb *pcb);

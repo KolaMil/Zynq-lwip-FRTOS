@@ -69,3 +69,10 @@ err_t print_status(tcp_monitor_t *monitor){
 
     return ERR_OK;
 }
+
+err_t destroy_monitor(tcp_monitor_t *monitor)
+{
+    if (monitor) {
+        mem_free(monitor);
+    }
+}
