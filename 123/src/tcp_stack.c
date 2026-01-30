@@ -66,6 +66,7 @@ err_t print_status(tcp_monitor_t *monitor){
     xil_printf(" Remote: %s:%d\n", monitor->remote_ip_str, monitor->remote_port);
     xil_printf(" State:  %s (%d)\n", tcp_state_to_string(monitor->state), monitor->state);
     xil_printf(" Lifetime: %d\n", monitor->lifetime);
+    xil_printf(" Last update time: %d\n", monitor->last_update_time);
 
     return ERR_OK;
 }

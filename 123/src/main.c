@@ -14,6 +14,7 @@ int main(void)
 	start_cpu1();
 	init_platform();
 	xil_printf("\n Start PS-part of Zynq!\r\n");
+	xil_printf("\n Version: %d.%d\n", MAJOR_SOFTWARE_VERSION, MINOR_SOFTWARE_VERSION);
 	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
 	xTaskCreate(vStatsTask, "StatsTask", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO - 1, NULL);
 	vTaskStartScheduler();
@@ -43,8 +44,6 @@ static void network_init_task(void *pvParameters)
 	}
 }
 
-uint16_t counter = 0;
-int average = 0;
 /*-----------------------------------------------------------*/
 void udp_send_task(void *arg)
 {
@@ -110,11 +109,11 @@ void vStatsTask(void *arg)
 		}
 		average = 0;
 
+		need_reconnect(tcp_pcb);
 		if (try_reconnect)
 		{
 			reconnection_tcp(tcp_pcb);
 		}
-		
     }
 }
 

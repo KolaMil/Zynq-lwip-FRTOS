@@ -22,7 +22,7 @@ void lwip_network_setup(void)
 
     if (!xemac_add(&server_netif, &ipaddr, &netmask, &gw, mac, XPAR_XEMACPS_0_BASEADDR))
     {
-        xil_printf("Error adding N/W interface\r\n");
+        xil_printf(" Error adding N/W interface\r\n");
         vTaskDelete(NULL);
         return;
     }
@@ -36,7 +36,7 @@ err_t udp_connection(uint8_t *data, size_t size)
 	udp_pcb_conn = udp_new();
 	if(!udp_pcb_conn)
 	{
-		xil_printf("Cannot create UDP PCB\r\n");
+		xil_printf(" Cannot create UDP PCB\r\n");
 		vTaskDelete(NULL);
 		return ERR_MEM;
 	}
@@ -71,32 +71,31 @@ err_t tcp_connection_cl(void)
 	tcp_pcb = tcp_new_ip_type(IPADDR_TYPE_ANY);
 	if (!tcp_pcb)
 	{
-		xil_printf("Error creating PCB. Out of Memory\n\r");
+		xil_printf(" Error creating PCB. Out of Memory\n\r");
 		return ERR_MEM;
 	}
 
 	monitor = create_tcp_monitor(tcp_pcb);
 	update_monitor(monitor);
 
-	xil_printf("Try to connect");
+	xil_printf(" Try to connect");
 	err = tcp_connect(tcp_pcb, &remote_addr, TCP_REMOTE_PORT, client_connected);
 	vTaskDelay(pdMS_TO_TICKS(2000)); // need for callback-function client_connected true work
 	if (err)
 	{
-		xil_printf("Error on tcp_connect: %d\r\n", err);
+		xil_printf(" Error on tcp_connect: %d\r\n", err);
 		tcp_client_close(tcp_pcb);
 		return ERR_CLSD;
 	}
-	tcp_poll(tcp_pcb, need_reconnect, 20);
 	return ERR_OK;
 }
 
 /*-----------------------------------------------------------*/
-err_t need_reconnect(void* arg, struct tcp_pcb *pcb)
+err_t need_reconnect(struct tcp_pcb *pcb)
 {
-	xil_printf("Need reconnect\n");
+	xil_printf(" Checking status TCP...\n");
 	update_monitor(monitor);
-	xil_printf("%s", tcp_state_to_string(monitor->state));
+	xil_printf("%s\n", tcp_state_to_string(monitor->state));
 	if (monitor->pcb->state != ESTABLISHED)
 	{
 		try_reconnect = 1;
@@ -117,8 +116,11 @@ err_t reconnection_tcp(struct tcp_pcb *pcb)
 	}
 	else
 	{
-		xil_printf(" Rebuild tcp connection, tcp monitor \n"); // need a timer for rebuild
+		xil_printf(" Rebuild TCP stack for new try to connect... \n"); // need a timer for rebuild
 		destroy_monitor(monitor);
+		tcp_sent(pcb, NULL);
+		tcp_err(pcb, NULL);
+		tcp_poll(pcb, NULL, 0);
 		tcp_abort(pcb);
 		tcp_connection_cl();
 	}
@@ -133,6 +135,7 @@ err_t tcp_client_close(struct tcp_pcb *pcb)
 	if (pcb != NULL) {
 		tcp_sent(pcb, NULL);
 		tcp_err(pcb, NULL);
+		tcp_poll(pcb, NULL, 0);
 		err = tcp_close(pcb);
 		if (err != ERR_OK) {
 			tcp_abort(pcb);
@@ -145,12 +148,13 @@ err_t tcp_client_close(struct tcp_pcb *pcb)
 err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
 {
     if (err != ERR_OK) {
-        xil_printf("Connection failed with error code: %d\n\r", err);
+        xil_printf(" Connection failed with error code: %d\n\r", err);
         return err;
     }
-    xil_printf("Successfully connected to server\n\r");
+    xil_printf("\n Successfully connected to server\n\r");
     stat_tcp_con = 1;
-    tcp_recv(tpcb, recv_callback);
+	tcp_recv(tpcb, recv_callback);
+	tcp_poll(tpcb, need_reconnect, 20);
     return err;
 }
 
@@ -165,7 +169,7 @@ uint8_t get_tetrada(uint8_t *data, size_t len) {
 }
 
 /*-----------------------------------------------------------*/
-volatile u8 flag_tcp = 0;  // static for plaicing in header?
+volatile u8 flag_tcp = 0;
 volatile u8 status_udp_sender = 0;
 int parse_msg(void* p, size_t size)
 {
@@ -176,22 +180,22 @@ int parse_msg(void* p, size_t size)
 	{
 		uint8_t tetrada = 0x0C;
 		tetrada = get_tetrada(byte_ptr, size);
-		xil_printf("tetrada of command %02x", tetrada);
+		// xil_printf("Tetrada of command %02x", tetrada);  FOR DEBUG!!!
 		switch (tetrada)
 		{
 		case 0x0E:
 			xil_printf("TOB VALUE");
-			last_cmd = CMD_TOB_VALUE_REQS;
+			monitor->last_recv_cmd = CMD_TOB_VALUE_REQS;
 			break;
 		
 		case 0x0F:
 			xil_printf("WORKTYPES");
-			last_cmd = CMD_WORKTYPE_REQS;
+			monitor->last_recv_cmd = CMD_WORKTYPE_REQS;
 			break;
 
 		case 0x0D:
 			xil_printf("TOB POINT");
-			last_cmd = CMD_TOB_POINT;
+			monitor->last_recv_cmd = CMD_TOB_POINT;
 			break;
 
 		case 0x0C:
@@ -200,54 +204,54 @@ int parse_msg(void* p, size_t size)
 			{
 				xil_printf("Stop UDP send!");
 				status_udp_sender = 0;
-				last_cmd = CMD_STOP;
+				monitor->last_recv_cmd = CMD_STOP;
 			}
 			else if (last_byte == CMD_START)
 			{
 				xil_printf("Start UDP send!");
 				status_udp_sender = 1;
 				vTaskResume(xIrqTaskHandle);
-				last_cmd = CMD_START;
+				monitor->last_recv_cmd = CMD_START;
 			}
 			else if (last_byte == CMD_WORKTYPE_SET)
 			{
 				xil_printf("Set worktype!");
-				last_cmd = CMD_WORKTYPE_SET;
+				monitor->last_recv_cmd = CMD_WORKTYPE_SET;
 			}
 			else if (last_byte == CMD_CTRL_AMPL)
 			{
 				xil_printf("Set amplifyer control mode!");
-				last_cmd = CMD_CTRL_AMPL;
+				monitor->last_recv_cmd = CMD_CTRL_AMPL;
 			}
 			else if (last_byte == CMD_SEA_FILTER)
 			{
 				xil_printf("Set sea filter!");
-				last_cmd = CMD_SEA_FILTER;
+				monitor->last_recv_cmd = CMD_SEA_FILTER;
 			}
 			else if (last_byte == CMD_PREC_FILTER)
 			{
 				xil_printf("Set rain filter!");
-				last_cmd = CMD_PREC_FILTER;
+				monitor->last_recv_cmd = CMD_PREC_FILTER;
 			}
 			else if (last_byte == CMD_VELOCITY)
 			{
 				xil_printf("Set velocity!");
-				last_cmd = CMD_VELOCITY;
+				monitor->last_recv_cmd = CMD_VELOCITY;
 			}
 			else if (last_byte == CMD_FREQ_CHGE)
 			{
 				xil_printf("Set frequecny!");
-				last_cmd = CMD_FREQ_CHGE;
+				monitor->last_recv_cmd = CMD_FREQ_CHGE;
 			}
 			else if (last_byte == CMD_TELEMETRY_REQS)
 			{
 				xil_printf("Get a telemetry!");
-				last_cmd = CMD_TELEMETRY_REQS;
+				monitor->last_recv_cmd = CMD_TELEMETRY_REQS;
 			}
 			else
 			{
 				xil_printf("Reset faults!");
-				last_cmd = CMD_RESET_FAULTS;
+				monitor->last_recv_cmd = CMD_RESET_FAULTS;
 			}
 			break;
 
@@ -260,13 +264,12 @@ int parse_msg(void* p, size_t size)
 		xil_printf("Make a blind sector! \n");
 		// massive with data send to PL-part in BRAM
 		// coming soon
-		last_cmd = CMD_BLANK_SEC;
+		monitor->last_recv_cmd = CMD_BLANK_SEC;
 	}
 	return 0;
 }
 
 /*-----------------------------------------------------------*/
-void* last_payload_from_tcp;
 uint16_t ssize;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
@@ -280,12 +283,7 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	tcp_recved(tpcb, p->len);
 
 	uint8_t buf[6] = {0};
-
-	if (p->len == 6)
-	{
-		xil_printf("This is extended pack!");
-		extend_pack = 1;
-	}
+	if (p->len == 6){ extend_pack = 1; }
 
 	memcpy(buf, p->payload, 6);
 	ssize = p->len;
@@ -297,8 +295,6 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	else{ xil_printf("no space in tcp_sndbuf\n\r"); }
 
 	flag_tcp ^= 1;
-
-	/* free the received pbuf */
 	pbuf_free(p);
 
 	return ERR_OK;

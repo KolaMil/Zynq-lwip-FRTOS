@@ -39,8 +39,6 @@ extern volatile QueueHandle_t xTcpMsgQueue;
 extern volatile TaskHandle_t xIrqTaskHandle;
 extern volatile MessageBufferHandle_t xMsgBuffer;
 
-uint16_t last_cmd;
-
 extern uint8_t default_state[8192];
 extern uint8_t extend_pack;
 extern uint8_t try_reconnect;
@@ -52,7 +50,7 @@ err_t udp_package_send(void);
 err_t tcp_client_close(struct tcp_pcb *pcb);
 err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err);
 int parse_msg(void* p, size_t size);
-err_t need_reconnect(void* arg, struct tcp_pcb *pcb);
+err_t need_reconnect(struct tcp_pcb *pcb);
 err_t reconnection_tcp(struct tcp_pcb *pcb);
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);
 

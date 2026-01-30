@@ -24,16 +24,12 @@
  *
  */
 
-/* Scheduler includes. */
 #include "FreeRTOS.h"
 #include "task.h"
 #include "platform.h"
 
-/* Demo includes. */
 #include "IntQueueTimer.h"
-//#include "IntQueue.h"
 
-/* Xilinx includes. */
 #include "xttcps.h"
 #include "xscugic.h"
 
@@ -49,13 +45,12 @@ static void prvTimerHandler( void *CallBackRef );
 static const BaseType_t xDeviceIDs[ tmrTIMERS_USED ] = { XPAR_XTTCPS_0_DEVICE_ID, XPAR_XTTCPS_1_DEVICE_ID, XPAR_XTTCPS_2_DEVICE_ID };
 static const BaseType_t xInterruptIDs[ tmrTIMERS_USED ] = { XPAR_XTTCPS_0_INTR, XPAR_XTTCPS_1_INTR, XPAR_XTTCPS_2_INTR };
 
-/* Timer configuration settings. */
 typedef struct
 {
-	uint32_t OutputHz;	/* Output frequency. */
-	uint16_t Interval;	/* Interval value. */
-	uint8_t Prescaler;	/* Prescaler value. */
-	uint16_t Options;	/* Option settings. */
+	uint32_t OutputHz;	
+	uint16_t Interval;	
+	uint8_t Prescaler;	
+	uint16_t Options;	
 } TmrCntrSetup;
 
 static TmrCntrSetup xTimerSettings[ tmrTIMERS_USED ] =
@@ -65,9 +60,6 @@ static TmrCntrSetup xTimerSettings[ tmrTIMERS_USED ] =
 	{ tmrTIMER_2_FREQUENCY, 0, 0, XTTCPS_OPTION_INTERVAL_MODE | XTTCPS_OPTION_WAVE_DISABLE }
 };
 
-/* Lower priority number means higher logical priority, so
-configMAX_API_CALL_INTERRUPT_PRIORITY - 1 is above the maximum system call
-interrupt priority. */
 static const UBaseType_t uxInterruptPriorities[ tmrTIMERS_USED ] =
 {
 	configMAX_API_CALL_INTERRUPT_PRIORITY + 1,
@@ -90,32 +82,24 @@ void vInitialiseTimer( void )
 
 	for( xTimer = 0; xTimer < 3; xTimer++ )
 	{
-		/* Look up the timer's configuration. */
 		pxTimerInstance = &( xTimerInstances[ xTimer ] );
 		pxTimerConfiguration = XTtcPs_LookupConfig( xDeviceIDs[ xTimer ] );
 		configASSERT( pxTimerConfiguration );
 
 		pxTimerSettings = &( xTimerSettings[ xTimer ] );
 
-		/* Initialise the device. */
 		xStatus = XTtcPs_CfgInitialize( pxTimerInstance, pxTimerConfiguration, pxTimerConfiguration->BaseAddress );
 		if( xStatus != XST_SUCCESS )
 		{
-			/* Not sure how to do this before XTtcPs_CfgInitialize is called
-			as pxTimerInstance is set within XTtcPs_CfgInitialize(). */
 			XTtcPs_Stop( pxTimerInstance );
 			xStatus = XTtcPs_CfgInitialize( pxTimerInstance, pxTimerConfiguration, pxTimerConfiguration->BaseAddress );
 			configASSERT( xStatus == XST_SUCCESS );
 		}
 
-		/* Set the options. */
 		XTtcPs_SetOptions( pxTimerInstance, pxTimerSettings->Options );
 
-		/* The timer frequency is preset in the pxTimerSettings structure.
-		Derive the values for the other structure members. */
 		XTtcPs_CalcIntervalFromFreq( pxTimerInstance, pxTimerSettings->OutputHz, &( pxTimerSettings->Interval ), &( pxTimerSettings->Prescaler ) );
 
-		/* Set the interval and prescale. */
 		XTtcPs_SetInterval( pxTimerInstance, pxTimerSettings->Interval );
 		XTtcPs_SetPrescaler( pxTimerInstance, pxTimerSettings->Prescaler );
 		xil_printf("Interval   %u\r\n", pxTimerSettings->Interval );
@@ -123,20 +107,15 @@ void vInitialiseTimer( void )
 
 		if (xTimer != 1)
 		{
-			/* The priority must be the lowest possible. */
 			XScuGic_SetPriorityTriggerType( &xInterruptController, xInterruptIDs[ xTimer ], uxInterruptPriorities[ xTimer ] << portPRIORITY_SHIFT, ucRisingEdge );
 
-			/* Connect to the interrupt controller. */
 			xStatus = XScuGic_Connect( &xInterruptController, xInterruptIDs[ xTimer ], ( Xil_InterruptHandler ) prvTimerHandler, ( void * ) pxTimerInstance );
 			configASSERT( xStatus == XST_SUCCESS);
 
-			/* Enable the interrupt in the GIC. */
 			XScuGic_Enable( &xInterruptController, xInterruptIDs[ xTimer ] );
 
-			/* Enable the interrupts in the timer. */
 			XTtcPs_EnableInterrupts( pxTimerInstance, XTTCPS_IXR_INTERVAL_MASK );
 
-			/* Start the timer. */
 			XTtcPs_Start( pxTimerInstance );
 		}
 	}
@@ -178,15 +157,11 @@ static void prvTimerHandler( void *pvCallBackRef )
 	XTtcPs *pxTimer = ( XTtcPs * ) pvCallBackRef;
 	BaseType_t xHPW = pdFALSE;
 
-
-	/* Read the interrupt status, then write it back to clear the interrupt. */
 	ulInterruptStatus = XTtcPs_GetInterruptStatus( pxTimer );
 	XTtcPs_ClearInterruptStatus( pxTimer, ulInterruptStatus );
 
-	/* Only one interrupt event type is expected. */
 	configASSERT( ( XTTCPS_IXR_INTERVAL_MASK & ulInterruptStatus ) != 0 );
 
-	/* Check the channel timer */
 	if( pxTimer->Config.DeviceId == xDeviceIDs[ 0 ] )
 	{
 		if(status_udp_sender)

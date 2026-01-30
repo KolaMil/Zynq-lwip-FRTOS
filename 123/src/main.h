@@ -14,10 +14,6 @@
 #include "xparameters.h"
 //#include "xaxidma.h"
 
-/* Platform variables */
-extern volatile int TcpFastTmrFlag;
-extern volatile int TcpSlowTmrFlag;
-
 /* Platform includes */
 #include "platform.h"
 #include "IntQueueTimer.h"
@@ -31,7 +27,6 @@ extern volatile int TcpSlowTmrFlag;
 #include "message_buffer.h"
 #include "stream_buffer.h"
 
-#define configMESSAGE_BUFFER 1
 
 /* Xilinx includes. */
 #include "xil_printf.h"
@@ -44,30 +39,34 @@ extern volatile int TcpSlowTmrFlag;
 #include "lwip.h"
 #include "lwip/pbuf.h"
 
-//extern XGpioPs  psGpioInstancePtr;
+/* Freertos defines */
+#define THREAD_STACKSIZE        1024
+#define TIMER_ID	            1
+#define DELAY_10_SECONDS	    10000UL
+#define DELAY_1_SECOND		    1000UL
+#define TIMER_CHECK_THRESHOLD	9
+#define UDP_TASK_PRIO           (tskIDLE_PRIORITY + 2)
+#define TCP_PARSE_PRIO          (tskIDLE_PRIORITY + 3)
+#define TCP_MSG_QUEUE_LEN       20
+#define TCP_MSG_SIZE            10
+
+/* Software version define */
+#define MAJOR_SOFTWARE_VERSION  0
+#define MINOR_SOFTWARE_VERSION  1
+
+volatile QueueHandle_t xTcpMsgQueue;
 volatile TaskHandle_t xIrqTaskHandle = NULL;
 volatile TaskHandle_t xTcpParseTaskHandle = NULL;
 volatile MessageBufferHandle_t xMsgBuffer = NULL;
 
-/* Freertos defines */
-#define THREAD_STACKSIZE 1024
-#define TIMER_ID	1
-#define DELAY_10_SECONDS	10000UL
-#define DELAY_1_SECOND		1000UL
-#define TIMER_CHECK_THRESHOLD	9
-#define UDP_TASK_PRIO (tskIDLE_PRIORITY + 2)
-#define TCP_PARSE_PRIO (tskIDLE_PRIORITY + 3)
-#define TCP_MSG_QUEUE_LEN 20
-#define TCP_MSG_SIZE      10
+extern volatile int TcpFastTmrFlag;
+extern volatile int TcpSlowTmrFlag;
 
-//extern XGpioPs  psGpioInstancePtr;
-volatile QueueHandle_t xTcpMsgQueue;
-
-/* Data to send */
 uint8_t default_state[8192] = {0xAA, 0xBB, 0xCC};
 uint8_t extend_pack = 0;
 uint8_t try_reconnect = 0;
-// static const char data_imit_dma[8192] = "Static Data to Send";
+uint16_t counter = 0;
+int average = 0;
 
 /*-----------------------------------------------------------*/
 static void network_init_task(void *pvParameters);
