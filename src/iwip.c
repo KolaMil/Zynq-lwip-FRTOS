@@ -112,14 +112,13 @@ void refactor_more(cat240_storage_t* lst, cat240_storage_t** dir, size_t size)  
 }
 
 /*-----------------------------------------------------------*/
-uint64_t buf = 0;
 void udp_receive_callback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *addr,u16_t port)
 {
 	if (p == NULL)
 		return;
 
-	uint16_t len = p->tot_len;
-	uint8_t buf[512];
+	uint32_t len = p->tot_len;
+	static uint8_t buf[513];
 
 	if (len > sizeof(buf))
 		len = sizeof(buf);
@@ -128,7 +127,7 @@ void udp_receive_callback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const 
 
 	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 
-	xMessageBufferSendFromISR(xMsgBufferForUdp, buf, len, &xHigherPriorityTaskWoken);
+	xMessageBufferSendFromISR(xMsgBufferForUdp, buf, p->tot_len, &xHigherPriorityTaskWoken);
 
 	pbuf_free(p);
 

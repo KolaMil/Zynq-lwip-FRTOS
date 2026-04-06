@@ -37,7 +37,7 @@ static void network_init_task(void *pvParameters)
 		tcp_connection_cl();
 		xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
 		vTaskSuspend(xIrqTaskHandle);
-		xTaskCreate(udp_parse_task, "UDP parsing task", 3000, NULL, UDP_TASK_PRIO, NULL);
+		xTaskCreate(udp_parse_task, "UDP parsing task", 4096, NULL, UDP_TASK_PRIO, NULL);
 		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
 		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
 		xTaskCreate(vTcpStatTask, "TCP monitoring task", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY, NULL);
@@ -79,76 +79,58 @@ void udp_send_task(void *arg)
 /*-----------------------------------------------------------*/
 void udp_parse_task(void *arg)
 {
-    uint8_t rx_buf[3000];
+	uint8_t rx_buf[3000];
+	cat240_message_t msg;
+	uint32_t packet_count = 0;
 	uint32_t counter_packets = 1;
-	uint32_t global_counter_packets = 1;
 	uint8_t *oldptr;
+	uint8_t *newptr;
+	metainfo_parser = mem_malloc(sizeof(cat240_message_t));
 	uint8_t mode = 10; // todo structure of modes
-	uint8_t mode_amount_deskrets;
-	uint32_t len_rx_buf;
-	uint32_t len_pbuf = 1;
-	// oldptr = (uint8_t*) malloc(len_pbuf);
-	cat240_pbuf = pbuf_alloc(PBUF_TRANSPORT, len_pbuf, PBUF_POOL);
+	uint32_t mode_amount_deskrets = 62;
+	uint32_t len;
 #define TIME_OF_DAY_A_LEN 3
+	bool res;
 
-    while (1)
-    {
-        len_rx_buf = xMessageBufferReceive(xMsgBufferForUdp, rx_buf, sizeof(rx_buf), portMAX_DELAY);
-        if (len_rx_buf > 0)
+	while (1)
+	{
+		len = xMessageBufferReceive(xMsgBufferForUdp, rx_buf, sizeof(rx_buf), portMAX_DELAY);
+		if (len > 0)
 		{
-			if (counter_packets == 1)
-			{
-				if (len_pbuf != len_rx_buf)
-				{
-					realloc(oldptr, len_rx_buf);
-				}
-				oldptr = (uint8_t*) malloc(len_rx_buf);
-				memcpy(oldptr, rx_buf, len_rx_buf);
-				mode_amount_deskrets = oldptr[30]; // 30
-			}
-        	else
-        	{
-        		//unsigned char bytes[] = {0x0, 0xa, 0x35, 0x0, 0x1, 0x2, 0xf0, 0x2f, 0x74, 0x34, 0xf, 0xff, 0x8, 0x0, 0x45, 0x0, 0x0, 0xbb, 0x34, 0xc, 0x0, 0x0, 0x80, 0x11, 0x0, 0x0, 0xc0, 0xa8, 0x1, 0x64, 0xc0, 0xa8, 0x1, 0xa, 0xd1, 0xaf, 0x13, 0x8d, 0x0, 0xa7, 0x84, 0x77, 0xf0, 0x0, 0x9f, 0xeb, 0xc8, 0x49, 0xff, 0x2, 0x0, 0x0, 0x0, 0xdd, 0x2e, 0x68, 0x2f, 0x42, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x32, 0x0, 0x5, 0x0, 0x7c, 0x0, 0x0, 0x3e, 0x1f, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x4e, 0x20, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x3a, 0xd2, 0x0};
-        		for (uint32_t i = len_rx_buf - 2 * mode_amount_deskrets - TIME_OF_DAY_A_LEN; i < len_rx_buf - TIME_OF_DAY_A_LEN; i += 2)
-        		{
-        			if ((rx_buf[i] * 0x100 + rx_buf[i + 1]) > (oldptr[i] * 0x100 + oldptr[i + 1]))
-        			{
-        				oldptr[i] = rx_buf[i];
-        				oldptr[i + 1] = rx_buf[i + 1];
-        			}
-        		}
-        	}
-        	if (counter_packets == mode)
-        	{
-        		oldptr[11] = global_counter_packets; //global counter ++ u8 4 * 8u 11
-        		global_counter_packets++;
-        		if (len_rx_buf < len_pbuf)
-        		{
-        			pbuf_realloc(cat240_pbuf, len_rx_buf);
-					len_pbuf = len_rx_buf;
-        		}
-        		else if (len_rx_buf > len_pbuf)
-        		{
-        			cat240_pbuf = pbuf_alloc(PBUF_TRANSPORT, len_rx_buf, PBUF_POOL);
-        			len_pbuf = len_rx_buf;
-        		}
-        		pbuf_take(cat240_pbuf, oldptr, len_rx_buf);
-        		if (udp_send(udp_pcb_answer, cat240_pbuf))
-        		{
-					xil_printf("\n ERR of udp send \r\n");
-        		}
-        		free(oldptr);
-        		pbuf_free(cat240_pbuf);
-        		counter_packets = 0;
-        	}
-        	counter_packets++;
-        	if (0) // Flag off udp send
-        	{
-        		free(oldptr);
-        		pbuf_free(cat240_pbuf);
-        	}
-        }
-    }
+			// if (counter_packets == 1)
+			// {
+			// 	oldptr = (uint8_t*) malloc(len);
+			// 	memcpy(oldptr, rx_buf, len);
+			// }
+			// else
+			// {
+			// 	newptr = (uint8_t*) malloc(len);
+			// 	memcpy(newptr, rx_buf, len);
+			// 	mode_amount_deskrets = oldptr[30];
+			// 	for (uint32_t i = len - 2 * mode_amount_deskrets - TIME_OF_DAY_A_LEN; i < len - TIME_OF_DAY_A_LEN; i += 2)
+			// 	{
+			// 		if ((newptr[i] * 0x100 + newptr[i + 1]) > (oldptr[i] * 0x100 + oldptr[i + 1]))
+			// 		{
+			// 			oldptr[i] = newptr[i];
+			// 			oldptr[i + 1] = newptr[i + 1];
+			// 			xil_printf("\nmatch\n", oldptr[i]);
+			// 		}
+			// 	}
+			// 	free(newptr);
+			// }
+			// if (counter_packets == mode)
+			// {
+				xil_printf("\nLen %u\n", len);
+				cat240_pbuf = pbuf_alloc(PBUF_TRANSPORT, len, PBUF_POOL);
+				pbuf_take(cat240_pbuf, rx_buf, len);
+				err_t err = udp_send(udp_pcb_answer, cat240_pbuf);
+				pbuf_free(cat240_pbuf);
+				// free(oldptr);
+				counter_packets = 0;
+			// }
+			// counter_packets++;
+		}
+	}
 }
 
 /*-----------------------------------------------------------*/
