@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BackendCodeEditorMiscSettings">
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="xilinx_mcu" targetName="xilinx_mcu.elf" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" GENERATION_OPTIONS="-DCMAKE_TOOLCHAIN_FILE:FILEPATH=..\arm-none-eabi-gcc-toolchain.cmake" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f943b69-1298-4757-a63d-2a5b8d859c93" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <branch-grouping />
+    <option name="PREVIEW_PUSH_ON_COMMIT_AND_PUSH" value="false" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="cmake_v" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/Zynq-lwip-FRTOS/cortexa9_0_bsp/ps7_cortexa9_0/libsrc/lwip211_v1_0/src/contrib/ports/xilinx/netif/xadapter.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Zynq-lwip-FRTOS/cortexa9_0_bsp/ps7_cortexa9_0/libsrc/lwip211_v1_0/src/contrib/ports/xilinx/netif/xemacpsif_dma.c" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Zynq-lwip-FRTOS/cortexa9_0_bsp/ps7_cortexa9_0/libsrc/lwip211_v1_0/src/contrib/ports/xilinx/netif/xemacpsif_hw.c" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/Zynq-lwip-FRTOS/cortexa9_0_bsp/ps7_cortexa9_0/libsrc/lwip211_v1_0/src/contrib/ports/xilinx/netif/xemacpsif_physpeed.c" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="ZEPabRl1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2025" />
+    <option name="minorVersion" value="3.3" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="3ARS48IBL7TB1V2M22CrYhoq68h" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake Application.xilinx_mcu.elf.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "RunOnceActivity.west.config.association.type.startup.service": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "git-widget-placeholder": "cmake__v",
+    "last_opened_file_path": "C:/Users/nmil/Desktop/xilinx_cmake-main",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.first.attach.projects": "true",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\nmil\Desktop\xilinx_cmake-main\src" />
+      <recent name="C:\Users\nmil\Desktop\xilinx_cmake-main\external\ps7_cortexa9_0\lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\nmil\Desktop\xilinx_cmake-main\external\ps7_cortexa9_0" />
+      <recent name="C:\Users\nmil\Desktop\xilinx_cmake-main\linker" />
+      <recent name="C:\Users\nmil\Desktop\xilinx_cmake-main\src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="xilinx_mcu.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="xilinx_mcu" TARGET_NAME="xilinx_mcu.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="xilinx_mcu" RUN_TARGET_NAME="xilinx_mcu.elf">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f943b69-1298-4757-a63d-2a5b8d859c93" name="Changes" comment="" />
+      <created>1772553698326</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772553698326</updated>
+      <workItem from="1772553700569" duration="3884000" />
+      <workItem from="1773205658073" duration="14789000" />
+      <workItem from="1773222915042" duration="3543000" />
+      <workItem from="1773412189073" duration="4764000" />
+      <workItem from="1773809714739" duration="11919000" />
+      <workItem from="1773897022865" duration="12756000" />
+      <workItem from="1774012573760" duration="1277000" />
+      <workItem from="1774244308915" duration="14842000" />
+      <workItem from="1774501608332" duration="8000" />
+      <workItem from="1774502662810" duration="1775000" />
+      <workItem from="1774509787824" duration="2311000" />
+      <workItem from="1774617300052" duration="1107000" />
+      <workItem from="1774629298345" duration="11000" />
+      <workItem from="1774848392657" duration="1003000" />
+      <workItem from="1774852672875" duration="2075000" />
+      <workItem from="1774860287871" duration="24000" />
+      <workItem from="1774861405121" duration="1050000" />
+      <workItem from="1775020941311" duration="4985000" />
+      <workItem from="1775106865182" duration="2480000" />
+      <workItem from="1775457130658" duration="16782000" />
+      <workItem from="1775624724797" duration="780000" />
+      <workItem from="1775826368392" duration="2936000" />
+      <workItem from="1775829486034" duration="1296000" />
+      <workItem from="1775830826188" duration="978000" />
+      <workItem from="1775832131640" duration="1779000" />
+      <workItem from="1775834028159" duration="76000" />
+      <workItem from="1775834117140" duration="363000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="cmake_v" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="cmake_v" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
