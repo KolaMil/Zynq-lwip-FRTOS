@@ -33,10 +33,11 @@ static void network_init_task(void *pvParameters)
 		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, tskIDLE_PRIORITY, NULL);
 		udp_connection(default_state, sizeof(default_state));
 		xMsgBuffer = xMessageBufferCreate(1024);
-		xMsgBufferForUdp = xMessageBufferCreate(8012);
+		// xMsgBufferForUdp = xMessageBufferCreate(8012);
 		tcp_connection_cl();
 		xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
 		vTaskSuspend(xIrqTaskHandle);
+		xPbufQueue = xQueueCreate(200, sizeof(struct pbuf*));
 		xTaskCreate(udp_parse_task, "UDP parsing task", 4096, NULL, UDP_TASK_PRIO, NULL);
 		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
 		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
@@ -77,58 +78,24 @@ void udp_send_task(void *arg)
 }
 
 /*-----------------------------------------------------------*/
-void udp_parse_task(void *arg)
-{
-	uint8_t rx_buf[3000];
-	cat240_message_t msg;
-	uint32_t packet_count = 0;
-	uint32_t counter_packets = 1;
-	uint8_t *oldptr;
-	uint8_t *newptr;
-	metainfo_parser = mem_malloc(sizeof(cat240_message_t));
-	uint8_t mode = 10; // todo structure of modes
-	uint32_t mode_amount_deskrets = 62;
-	uint32_t len;
-#define TIME_OF_DAY_A_LEN 3
-	bool res;
+void udp_parse_task(void *pvParameters) {
+	struct pbuf *p;
+	struct pbuf *q;
+	uint32_t total_bytes = 0;
 
 	while (1)
 	{
-		len = xMessageBufferReceive(xMsgBufferForUdp, rx_buf, sizeof(rx_buf), portMAX_DELAY);
-		if (len > 0)
+		if (xQueueReceive(xPbufQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
 		{
-			// if (counter_packets == 1)
-			// {
-			// 	oldptr = (uint8_t*) malloc(len);
-			// 	memcpy(oldptr, rx_buf, len);
-			// }
-			// else
-			// {
-			// 	newptr = (uint8_t*) malloc(len);
-			// 	memcpy(newptr, rx_buf, len);
-			// 	mode_amount_deskrets = oldptr[30];
-			// 	for (uint32_t i = len - 2 * mode_amount_deskrets - TIME_OF_DAY_A_LEN; i < len - TIME_OF_DAY_A_LEN; i += 2)
-			// 	{
-			// 		if ((newptr[i] * 0x100 + newptr[i + 1]) > (oldptr[i] * 0x100 + oldptr[i + 1]))
-			// 		{
-			// 			oldptr[i] = newptr[i];
-			// 			oldptr[i + 1] = newptr[i + 1];
-			// 			xil_printf("\nmatch\n", oldptr[i]);
-			// 		}
-			// 	}
-			// 	free(newptr);
-			// }
-			// if (counter_packets == mode)
-			// {
-				xil_printf("\nLen %u\n", len);
-				cat240_pbuf = pbuf_alloc(PBUF_TRANSPORT, len, PBUF_POOL);
-				pbuf_take(cat240_pbuf, rx_buf, len);
-				err_t err = udp_send(udp_pcb_answer, cat240_pbuf);
-				pbuf_free(cat240_pbuf);
-				// free(oldptr);
-				counter_packets = 0;
-			// }
-			// counter_packets++;
+			for(q = p; q != NULL; q = q->next)
+			{
+
+			}
+			total_bytes += p->len;
+			// xil_printf("\nLen %u\n", total_bytes);
+			err_t err = udp_send(udp_pcb_answer, p);
+			pbuf_free(p);
+			total_bytes = 0;
 		}
 	}
 }

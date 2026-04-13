@@ -112,25 +112,14 @@ void refactor_more(cat240_storage_t* lst, cat240_storage_t** dir, size_t size)  
 }
 
 /*-----------------------------------------------------------*/
-void udp_receive_callback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *addr,u16_t port)
+void udp_receive_callback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
-	if (p == NULL)
-		return;
-
-	uint32_t len = p->tot_len;
-	static uint8_t buf[513];
-
-	if (len > sizeof(buf))
-		len = sizeof(buf);
-
-	pbuf_copy_partial(p, buf, len, 0);
-
+	if (p == NULL) return;
 	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-
-	xMessageBufferSendFromISR(xMsgBufferForUdp, buf, p->tot_len, &xHigherPriorityTaskWoken);
-
-	pbuf_free(p);
-
+	if (xQueueSendFromISR(xPbufQueue, &p, &xHigherPriorityTaskWoken) != pdPASS)
+	{
+		pbuf_free(p);
+	}
 	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 }
 
