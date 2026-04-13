@@ -58,7 +58,6 @@ volatile QueueHandle_t xPbufQueue;
 volatile TaskHandle_t xIrqTaskHandle = NULL;
 volatile TaskHandle_t xTcpParseTaskHandle = NULL;
 volatile MessageBufferHandle_t xMsgBuffer = NULL;
-volatile MessageBufferHandle_t xMsgBufferForUdp = NULL;
 // volatile MessageBufferHandle_t xPacketBuffer = NULL;
 
 extern volatile int TcpFastTmrFlag;

@@ -115,7 +115,7 @@ void refactor_more(cat240_storage_t* lst, cat240_storage_t** dir, size_t size)  
 void udp_receive_callback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_t *addr, u16_t port)
 {
 	if (p == NULL) return;
-	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+	static BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 	if (xQueueSendFromISR(xPbufQueue, &p, &xHigherPriorityTaskWoken) != pdPASS)
 	{
 		pbuf_free(p);

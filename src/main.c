@@ -33,12 +33,11 @@ static void network_init_task(void *pvParameters)
 		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, tskIDLE_PRIORITY, NULL);
 		udp_connection(default_state, sizeof(default_state));
 		xMsgBuffer = xMessageBufferCreate(1024);
-		// xMsgBufferForUdp = xMessageBufferCreate(8012);
 		tcp_connection_cl();
-		xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
+		// xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
 		vTaskSuspend(xIrqTaskHandle);
 		xPbufQueue = xQueueCreate(200, sizeof(struct pbuf*));
-		xTaskCreate(udp_parse_task, "UDP parsing task", 4096, NULL, UDP_TASK_PRIO, NULL);
+		xTaskCreate(udp_parse_task, "UDP parsing task", 10000, NULL, UDP_TASK_PRIO, NULL);
 		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
 		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
 		xTaskCreate(vTcpStatTask, "TCP monitoring task", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY, NULL);
@@ -80,25 +79,46 @@ void udp_send_task(void *arg)
 /*-----------------------------------------------------------*/
 void udp_parse_task(void *pvParameters) {
 	struct pbuf *p;
-	struct pbuf *q;
-	uint32_t total_bytes = 0;
+	struct pbuf *old_pbuf = NULL;
+	uint8_t counter_of_packets = 0;
+	uint8_t nominal_counter_value = 10;
 
-	while (1)
-	{
+	while (1) {
 		if (xQueueReceive(xPbufQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
 		{
-			for(q = p; q != NULL; q = q->next)
+			counter_of_packets++;
+			if (counter_of_packets == 1)
 			{
-
+				if (old_pbuf)
+				{
+					pbuf_free(old_pbuf);
+				}
+				old_pbuf = p;
+				continue;
 			}
-			total_bytes += p->len;
-			// xil_printf("\nLen %u\n", total_bytes);
-			err_t err = udp_send(udp_pcb_answer, p);
+			uint16_t samples = p->tot_len / 2 - 3;
+			// xil_printf("total_len: %u\r\n", samples);
+			uint16_t *curr_data = (uint16_t*)p->payload;
+			uint16_t *old_data = (uint16_t*)old_pbuf->payload;
+			for (uint16_t i = 0; i < samples; i++)
+			{
+				if (curr_data[i] > old_data[i])
+				{
+					old_data[i] = curr_data[i];
+				}
+			}
+			if (counter_of_packets >= nominal_counter_value)
+			{
+				udp_send(udp_pcb_answer, old_pbuf);
+				pbuf_free(old_pbuf);
+				old_pbuf = NULL;
+				counter_of_packets = 0;
+			}
 			pbuf_free(p);
-			total_bytes = 0;
 		}
 	}
 }
+
 
 /*-----------------------------------------------------------*/
 #include "projdefs.h"

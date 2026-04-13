@@ -54,7 +54,6 @@ extern volatile QueueHandle_t xTcpMsgQueue;
 extern volatile TaskHandle_t xIrqTaskHandle;
 extern volatile QueueHandle_t xPbufQueue;
 extern volatile MessageBufferHandle_t xMsgBuffer;
-extern volatile MessageBufferHandle_t xMsgBufferForUdp;
 extern volatile MessageBufferHandle_t xPacketBuffer;
 extern uint8_t default_state[8192];
 extern uint8_t extend_pack;
