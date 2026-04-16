@@ -86,27 +86,12 @@ void udp_parse_task(void *pvParameters) {
 	while (1) {
 		if (xQueueReceive(xPbufQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
 		{
-			counter_of_packets++;
-			if (counter_of_packets == 1)
-			{
-				if (old_pbuf)
-				{
-					pbuf_free(old_pbuf);
-				}
-				old_pbuf = p;
-				continue;
-			}
 			uint16_t samples = p->tot_len / 2 - 3;
-			// xil_printf("total_len: %u\r\n", samples);
-			uint16_t *curr_data = (uint16_t*)p->payload;
-			uint16_t *old_data = (uint16_t*)old_pbuf->payload;
-			for (uint16_t i = 0; i < samples; i++)
-			{
-				if (curr_data[i] > old_data[i])
-				{
-					old_data[i] = curr_data[i];
-				}
-			}
+			uint8_t *curr_data = (uint8_t*)p->payload;
+			uint16_t start_azimuth = *(uint16_t *)(curr_data + 12);
+			uint16_t end_azimuth   = *(uint16_t *)(curr_data + 14);
+			uint8_t couner_ = *(curr_data + 31);
+			// uint16_t *samples = (uint16_t *)(base + 32);
 			if (counter_of_packets >= nominal_counter_value)
 			{
 				udp_send(udp_pcb_answer, old_pbuf);

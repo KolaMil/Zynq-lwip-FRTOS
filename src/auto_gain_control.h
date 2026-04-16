@@ -6,6 +6,10 @@
 #define XILINX_MCU_AUTO_GAIN_CONTROL_H
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
+#include <stdlib.h>
+
+#define ANGULAR_STEP 0x36 // 0.3°
 
 typedef struct
 {
@@ -45,5 +49,10 @@ AUTOGAINCONTROLCONSTANTS autogain_control_constants[20] = {
     {0xEC54, 1, 1}, // 48   150
     {0xEC54, 1, 1}  // 48   200
 };
+
+AUTOGAINCONTROL* create_auto_gain_control_array(uint16_t nominal_number_of_lines_per_revolution);
+void filling_auto_gain_control_array(uint16_t* samples, uint16_t size_of_samples, AUTOGAINCONTROL* auto_gain_control, uint16_t line_index);
+void cleaning_auto_gain_control_array(AUTOGAINCONTROL* auto_gain_control, uint16_t boundary_line_index);
+void auto_gain_control(uint16_t start_azimuth, uint16_t end_azimuth, uint16_t* samples, uint16_t size_of_samples, AUTOGAINCONTROL* auto_gain_control);
 
 #endif //XILINX_MCU_AUTO_GAIN_CONTROL_H
