@@ -38,6 +38,9 @@
 #include "iwip.h"
 #include "ttc_timer.h"
 
+/* Auto gain control */
+#include "auto_gain_control.h"
+
 /* Freertos defines */
 #define THREAD_STACKSIZE        1024
 #define TIMER_ID	            1
@@ -55,21 +58,15 @@
 
 volatile QueueHandle_t xTcpMsgQueue;
 volatile QueueHandle_t xPbufQueue;
-volatile TaskHandle_t xIrqTaskHandle = NULL;
-volatile TaskHandle_t xTcpParseTaskHandle = NULL;
 volatile MessageBufferHandle_t xMsgBuffer = NULL;
-// volatile MessageBufferHandle_t xPacketBuffer = NULL;
 
 extern volatile int TcpFastTmrFlag;
 extern volatile int TcpSlowTmrFlag;
 
-uint16_t counter = 0;
 uint8_t default_state[8192] = {0xAA, 0xBB, 0xCC};
 uint8_t extend_pack = 0;
 uint8_t try_reconnect = 0;
 bool mode = true;
-uint8_t counter_packets = 30;
-int average = 0;
 
 /*-----------------------------------------------------------*/
 static void network_init_task(void *pvParameters);

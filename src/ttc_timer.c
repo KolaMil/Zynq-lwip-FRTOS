@@ -148,8 +148,8 @@ static void prvTimerHandler( void *pvCallBackRef )
 	{
 		if(status_udp_sender)
 		{
-			vTaskNotifyGiveFromISR(xIrqTaskHandle, &xHPW);
-			portYIELD_FROM_ISR( xHPW );
+			// vTaskNotifyGiveFromISR(xIrqTaskHandle, &xHPW);
+			// portYIELD_FROM_ISR( xHPW );
 		}
 	}
 	else if (pxTimer->Config.DeviceId == xDeviceIDs[ 2 ])

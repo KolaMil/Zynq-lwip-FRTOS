@@ -282,7 +282,7 @@ int parse_msg(void* p, size_t size)
 			{
 				xil_printf("Start UDP send!");
 				status_udp_sender = 1;
-				vTaskResume(xIrqTaskHandle);
+				// vTaskResume(xIrqTaskHandle);
 				monitor->last_recv_cmd = CMD_START;
 			}
 			else if (last_byte == CMD_WORKTYPE_SET)

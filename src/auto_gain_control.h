@@ -10,6 +10,8 @@
 #include <stdlib.h>
 
 #define ANGULAR_STEP 0x36 // 0.3°
+#define NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION 1200 // nominal_number_of_lines_per_revolution
+#define MINIMAL_SAMPLES_VALUE 100
 
 typedef struct
 {
@@ -27,32 +29,10 @@ typedef struct
 
 uint8_t angle_change_step;
 
-AUTOGAINCONTROLCONSTANTS autogain_control_constants[20] = {
-    {0xEC54, 5, 3}, // 0,25 50
-    {0xEC54, 5, 3}, // 0,25 100
-    {0xEC54, 4, 3}, // 0,5  50
-    {0xEC54, 4, 3}, // 0,5  100
-    {0xEC54, 4, 3}, // 0,75 50
-    {0xEC54, 4, 3}, // 0,75 100
-    {0xEC54, 3, 3}, // 1,5  50
-    {0xEC54, 3, 3}, // 1,5  100
-    {0xEC54, 3, 3}, // 3    50
-    {0xEC54, 3, 3}, // 3    100
-    {0xEC54, 3, 3}, // 6    50
-    {0xEC54, 3, 3}, // 6    100
-    {0xEC54, 2, 2}, // 12   50
-    {0xEC54, 2, 2}, // 12   100
-    {0xEC54, 2, 2}, // 12   150
-    {0xEC54, 2, 2}, // 24   100
-    {0xEC54, 2, 2}, // 24   150
-    {0xEC54, 2, 2}, // 24   200
-    {0xEC54, 1, 1}, // 48   150
-    {0xEC54, 1, 1}  // 48   200
-};
-
 AUTOGAINCONTROL* create_auto_gain_control_array(uint16_t nominal_number_of_lines_per_revolution);
 void filling_auto_gain_control_array(uint16_t* samples, uint16_t size_of_samples, AUTOGAINCONTROL* auto_gain_control, uint16_t line_index);
 void cleaning_auto_gain_control_array(AUTOGAINCONTROL* auto_gain_control, uint16_t boundary_line_index);
-void auto_gain_control(uint16_t start_azimuth, uint16_t end_azimuth, uint16_t* samples, uint16_t size_of_samples, AUTOGAINCONTROL* auto_gain_control);
+void update_gain_value (uint16_t next_line_index, AUTOGAINCONTROL* auto_gain_control);
+void auto_gain_control(uint16_t start_azimuth, uint16_t *end_azimuth, uint16_t* samples, uint16_t size_of_samples, AUTOGAINCONTROL* auto_gain_control);
 
 #endif //XILINX_MCU_AUTO_GAIN_CONTROL_H

@@ -34,12 +34,10 @@ static void network_init_task(void *pvParameters)
 		udp_connection(default_state, sizeof(default_state));
 		xMsgBuffer = xMessageBufferCreate(1024);
 		tcp_connection_cl();
-		// xTaskCreate(udp_send_task, "UDP SEND Task", THREAD_STACKSIZE, NULL, UDP_TASK_PRIO,  &xIrqTaskHandle);
-		vTaskSuspend(xIrqTaskHandle);
 		xPbufQueue = xQueueCreate(200, sizeof(struct pbuf*));
 		xTaskCreate(udp_parse_task, "UDP parsing task", 10000, NULL, UDP_TASK_PRIO, NULL);
 		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
-		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
+		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  NULL);
 		xTaskCreate(vTcpStatTask, "TCP monitoring task", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY, NULL);
 		vInitialiseTimer();
 		vTaskDelete(NULL);
@@ -50,8 +48,8 @@ static void network_init_task(void *pvParameters)
 void udp_send_task(void *arg)
 {
     xil_printf("UDP task started (simple delay 2ms)\r\n");
-    u8 flag = 0;
-
+    uint8_t flag = 0;
+	uint16_t counter = 0;
     while(1)
     {
 		ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
@@ -61,14 +59,6 @@ void udp_send_task(void *arg)
 		counter = get_ttc_counter_value(TTC_TIMER_CHANNEL_2);
 		udp_package_send();
 		counter = get_ttc_counter_value(TTC_TIMER_CHANNEL_2) - counter;
-		if (average != 0)
-		{
-			average = (average + counter) / 2;
-		}
-		else
-		{
-			average = counter;
-		}
     	vParTestSetGPIO(IO_L24N_T3_12, flag);
 		vParTestSetGPIO(IO_L23P_T3_12, flag);
     	vParTestSetGPIO(IO_L23N_T3_12, flag);
@@ -82,16 +72,21 @@ void udp_parse_task(void *pvParameters) {
 	struct pbuf *old_pbuf = NULL;
 	uint8_t counter_of_packets = 0;
 	uint8_t nominal_counter_value = 10;
+	AUTOGAINCONTROL* autogaincontrol = create_auto_gain_control_array(NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION);
+	uint16_t start_azimuth_ = 0;
 
-	while (1) {
+	while (1)
+	{
 		if (xQueueReceive(xPbufQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
 		{
-			uint16_t samples = p->tot_len / 2 - 3;
 			uint8_t *curr_data = (uint8_t*)p->payload;
-			uint16_t start_azimuth = *(uint16_t *)(curr_data + 12);
-			uint16_t end_azimuth   = *(uint16_t *)(curr_data + 14);
-			uint8_t couner_ = *(curr_data + 31);
-			// uint16_t *samples = (uint16_t *)(base + 32);
+			start_azimuth_ = curr_data[12] * 0x100 + curr_data[13];
+			// xil_printf("start_azimuth: %u\r\n", start_azimuth_ / 0x36);
+			uint16_t *end_azimuth   = (uint16_t *)(curr_data + 14);
+			uint8_t *couner_ = (uint8_t *)(curr_data + 31);
+			uint16_t *samples_ = (uint16_t *)(curr_data + 32);
+			uint16_t size_of_samples = *couner_ * 2;
+			auto_gain_control(start_azimuth_, end_azimuth, samples_, size_of_samples, autogaincontrol);
 			if (counter_of_packets >= nominal_counter_value)
 			{
 				udp_send(udp_pcb_answer, old_pbuf);
@@ -100,6 +95,7 @@ void udp_parse_task(void *pvParameters) {
 				counter_of_packets = 0;
 			}
 			pbuf_free(p);
+
 		}
 	}
 }
@@ -133,16 +129,6 @@ void vStatsTask(void *arg)
 		vParTestSetGPIO(LED_LEFT, flag_for_led);
 		flag_for_led ^= 1;
 		vTaskDelay(xPeriod);
-        if (average % 100 > 10)
-		{
-        	xil_printf("Average packet sending time via UDP %u,%u\r\n", average * 900 / 100000, average % 100);
-		}
-		else
-		{
-			xil_printf("Average packet sending time via UDP %u,0%u\r\n", average * 900 / 100000, average % 100);
-		}
-		average = 0;
-		
 		need_reconnect(tcp_pcb);
 		if (try_reconnect)
 		{
