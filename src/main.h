@@ -34,6 +34,8 @@
 
 /* Lwip includes. */
 #include "lwip/pbuf.h"
+#include "lwip\priv\tcp_priv.h"
+#include "netif\xadapter.h"
 
 #include "iwip.h"
 #include "ttc_timer.h"
@@ -47,7 +49,8 @@
 #define DELAY_10_SECONDS	    10000UL
 #define DELAY_1_SECOND		    1000UL
 #define TIMER_CHECK_THRESHOLD	9
-#define UDP_TASK_PRIO           (tskIDLE_PRIORITY + 2)
+#define AUTO_GAIN_CONTROL_TASK_PRIO           (tskIDLE_PRIORITY + 1)
+#define UDP_TASK_PRIO          (tskIDLE_PRIORITY + 2)
 #define TCP_PARSE_PRIO          (tskIDLE_PRIORITY + 3)
 #define TCP_MSG_QUEUE_LEN       20
 #define TCP_MSG_SIZE            10
@@ -56,8 +59,8 @@
 #define MAJOR_SOFTWARE_VERSION  0
 #define MINOR_SOFTWARE_VERSION  2
 
-volatile QueueHandle_t xTcpMsgQueue;
 volatile QueueHandle_t xPbufQueue;
+volatile QueueHandle_t xPbufforautogaincontrolQueue;
 volatile MessageBufferHandle_t xMsgBuffer = NULL;
 
 extern volatile int TcpFastTmrFlag;
@@ -72,6 +75,7 @@ bool mode = true;
 static void network_init_task(void *pvParameters);
 void vStatsTask(void *arg);
 void x1emacif_input_thread(void *arg);
+void udp_auto_gain_control_task(void *pvParameters);
 void udp_parse_task(void *arg);
 void udp_send_task(void *arg);
 void tcp_parse_task(void *arg);

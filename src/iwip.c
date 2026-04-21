@@ -226,12 +226,13 @@ err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err)
     xil_printf("\n Successfully connected to server\n\r");
     stat_tcp_con = 1;
 	tcp_recv(tpcb, recv_callback);
-	tcp_poll(tpcb, need_reconnect, 20);
+	// tcp_poll(tpcb, need_reconnect, 20);
     return err;
 }
 
 /*-----------------------------------------------------------*/
-uint8_t get_tetrada(uint8_t *data, size_t len) {
+uint8_t get_tetrada(uint8_t *data, size_t len)
+{
     if (data == NULL || len == 0) {
         return 0;
     }
@@ -241,18 +242,14 @@ uint8_t get_tetrada(uint8_t *data, size_t len) {
 }
 
 /*-----------------------------------------------------------*/
-volatile u8 flag_tcp = 0;
-volatile u8 status_udp_sender = 0;
 int parse_msg(void* p, size_t size)
 {
 	uint8_t *byte_ptr = (uint8_t*) p;
 	uint8_t last_byte = byte_ptr[size - 1];
-	xil_printf("getting size %02x", size);
 	if (!extend_pack)
 	{
 		uint8_t tetrada = 0x0C;
 		tetrada = get_tetrada(byte_ptr, size);
-		// xil_printf("Tetrada of command %02x", tetrada);  FOR DEBUG!!!
 		switch (tetrada)
 		{
 		case 0x0E:
@@ -275,14 +272,11 @@ int parse_msg(void* p, size_t size)
 			if (last_byte == CMD_STOP)
 			{
 				xil_printf("Stop UDP send!");
-				status_udp_sender = 0;
 				monitor->last_recv_cmd = CMD_STOP;
 			}
 			else if (last_byte == CMD_START)
 			{
 				xil_printf("Start UDP send!");
-				status_udp_sender = 1;
-				// vTaskResume(xIrqTaskHandle);
 				monitor->last_recv_cmd = CMD_START;
 			}
 			else if (last_byte == CMD_WORKTYPE_SET)
@@ -291,7 +285,7 @@ int parse_msg(void* p, size_t size)
 				mode = *byte_ptr;  // make a change mode here!
 				monitor->last_recv_cmd = CMD_WORKTYPE_SET;
 			}
-			else if (last_byte == CMD_CTRL_AMPL)
+			else if (last_byte == CMD_CTRL_AMPL) //
 			{
 				xil_printf("Set amplifyer control mode!");
 				monitor->last_recv_cmd = CMD_CTRL_AMPL;
@@ -335,8 +329,6 @@ int parse_msg(void* p, size_t size)
 	}
 	else{
 		xil_printf("Make a blind sector! \n");
-		// massive with data send to PL-part in BRAM
-		// coming soon
 		monitor->last_recv_cmd = CMD_BLANK_SEC;
 	}
 	return 0;
@@ -356,7 +348,10 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	tcp_recved(tpcb, p->len);
 
 	uint8_t buf[6] = {0};
-	if (p->len == 6){ extend_pack = 1; }
+	if (p->len == 6)
+	{
+		extend_pack = 1;
+	}
 
 	memcpy(buf, p->payload, 6);
 	ssize = p->len;
@@ -367,7 +362,6 @@ err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 	}
 	else{ xil_printf("no space in tcp_sndbuf\n\r"); }
 
-	flag_tcp ^= 1;
 	pbuf_free(p);
 
 	return ERR_OK;

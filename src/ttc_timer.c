@@ -84,9 +84,6 @@ void vInitialiseTimer(void)
 
 		XTtcPs_SetInterval( pxTimerInstance, pxTimerSettings->Interval );
 		XTtcPs_SetPrescaler( pxTimerInstance, pxTimerSettings->Prescaler );
-		xil_printf("Interval   %u\r\n", pxTimerSettings->Interval );
-		xil_printf("Prescaler  %u\r\n", pxTimerSettings->Prescaler );
-
 		if (xTimer != 1)
 		{
 			XScuGic_SetPriorityTriggerType( &xInterruptController, xInterruptIDs[ xTimer ], uxInterruptPriorities[ xTimer ] << portPRIORITY_SHIFT, ucRisingEdge );

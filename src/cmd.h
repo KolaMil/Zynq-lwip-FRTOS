@@ -28,4 +28,9 @@
 #define CMD_TOB_POINT			0xD	        // 08 98 D0 it is value = 2200dec
 #define CMD_TOB_VALUE_REQS		0xE
 
+static uint16_t cmd_pull[14] = {CMD_STOP, CMD_START, CMD_WORKTYPE_SET, CMD_CTRL_AMPL, CMD_SEA_FILTER, CMD_PREC_FILTER, CMD_VELOCITY, CMD_BLANK_SEC,
+ CMD_FREQ_CHGE, CMD_TELEMETRY_REQS, CMD_RESET_FAULTS, CMD_WORKTYPE_REQS, CMD_TOB_POINT, CMD_TOB_VALUE_REQS};
+
+/* либо структура состоящая из названия команды | ссылки на ответствунную задачу | флаг актульности данных */
+
 #endif /* SRC_CMD_H_ */
