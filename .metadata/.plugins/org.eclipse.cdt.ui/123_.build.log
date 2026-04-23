@@ -1,6 +1,0 @@
-10:06:50 **** Auto Build of project 123_ ****
-make -k all 
-make: *** No rule to make target 'all'.
-
-10:06:50 Build Finished (took 104ms)
-

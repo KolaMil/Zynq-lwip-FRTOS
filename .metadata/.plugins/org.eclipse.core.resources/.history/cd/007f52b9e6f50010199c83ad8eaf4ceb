@@ -1,8 +1,0 @@
-#ifndef __GPIO_H_
-#define __GPIO_H_
-
-static XGpioPs  psGpioInstancePtr;
-	XGpioPs_Config* GpioConfigPtr;
-	int             xStatus;
-
-#endif

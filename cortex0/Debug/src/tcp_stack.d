@@ -1,0 +1,90 @@
+src/tcp_stack.o src/tcp_stack.o: ../src/tcp_stack.c ../src/tcp_stack.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/tcp.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/opt.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwipopts.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/debug.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/arch.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/arch/cc.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/arch/cpu.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/tcpbase.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/mem.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/pbuf.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/err.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/def.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip_addr.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip4_addr.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip6_addr.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/def.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/netif.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/stats.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/memp.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/priv/memp_std.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/priv/memp_priv.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/priv/mem_priv.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip4.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/prot/ip4.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip6.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/prot/ip.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/icmp.h \
+ ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/prot/icmp.h
+
+../src/tcp_stack.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/tcp.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/opt.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwipopts.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/debug.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/arch.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/arch/cc.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/arch/cpu.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/tcpbase.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/mem.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/pbuf.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/err.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/def.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip_addr.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip4_addr.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip6_addr.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/def.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/netif.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/stats.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/memp.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/priv/memp_std.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/priv/memp_priv.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/priv/mem_priv.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip4.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/prot/ip4.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/ip6.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/prot/ip.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/icmp.h:
+
+../../cortex0_bsp/ps7_cortexa9_0/include/lwip/prot/icmp.h:

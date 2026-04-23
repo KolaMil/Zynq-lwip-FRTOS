@@ -1,0 +1,91 @@
+/*
+ ============================================================================
+ Name        : main.h
+ Author      :
+ Version     :
+ Description : Inc for main
+ ============================================================================
+ */
+
+#ifndef __MAIN_H_
+#define __MAIN_H_
+
+/* Axi dma */
+#include "xparameters.h"
+//#include "xaxidma.h"
+
+/* Platform includes */
+#include "platform.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "timers.h"
+#include "semphr.h"
+#include "message_buffer.h"
+#include "stream_buffer.h"
+
+
+/* Xilinx includes. */
+#include "xil_printf.h"
+#include "xparameters.h"
+
+/* Dual core includes. */
+#include "cpu1_init.h"
+
+/* Lwip includes. */
+#include "lwip/pbuf.h"
+
+#include "iwip.h"
+#include "ttc_timer.h"
+
+/* Freertos defines */
+#define THREAD_STACKSIZE        1024
+#define THREAD_LARGE_STACKSIZE  16384
+#define TIMER_ID	            1
+#define DELAY_10_SECONDS	    10000UL
+#define DELAY_1_SECOND		    1000UL
+#define TIMER_CHECK_THRESHOLD	9
+#define UDP_TASK_PRIO           (tskIDLE_PRIORITY + 2)
+#define TCP_PARSE_PRIO          (tskIDLE_PRIORITY + 3)
+#define TCP_MSG_QUEUE_LEN       20
+#define TCP_MSG_SIZE            10
+
+/* Software version define */
+#define MAJOR_SOFTWARE_VERSION  0
+#define MINOR_SOFTWARE_VERSION  2
+
+volatile QueueHandle_t xTcpMsgQueue;
+volatile QueueHandle_t xPbufQueue;
+volatile TaskHandle_t xIrqTaskHandle = NULL;
+volatile TaskHandle_t xIrqUDPTaskHandle = NULL;
+volatile TaskHandle_t xTcpParseTaskHandle = NULL;
+volatile MessageBufferHandle_t xMsgBuffer = NULL;
+volatile MessageBufferHandle_t xPacketBuffer = NULL;
+auto_gain_control_t *controlPtr;
+
+extern volatile int TcpFastTmrFlag;
+extern volatile int TcpSlowTmrFlag;
+
+extern auto_gain_control_constants_t autogain_control_constants[20];
+
+uint16_t counter = 0;
+uint8_t counter_packets = 1;
+uint8_t default_state[8192] = {0xAA, 0xBB, 0xCC};
+uint8_t try_reconnect = 0;
+uint8_t work_size = 10;
+uint8_t old_work_size = 10;
+bool extend_pack = 0;
+bool starting = false;
+bool update_mode = false;
+int average = 0;
+
+/*-----------------------------------------------------------*/
+static void network_init_task(void *pvParameters);
+void vStatsTask(void *arg);
+void x1emacif_input_thread(void *arg);
+void udp_parse_task(void *arg);
+void udp_send_task(void *arg);
+void tcp_parse_task(void *arg);
+void vTcpStatTask(void *arg);
+
+#endif
