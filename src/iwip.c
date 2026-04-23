@@ -9,6 +9,8 @@
 
 #include "iwip.h"
 
+#include "auto_gain_control.h"
+
 /*-----------------------------------------------------------*/
 void lwip_network_setup(void)
 {
@@ -116,7 +118,7 @@ void udp_receive_callback(void *arg, struct udp_pcb *pcb, struct pbuf *p, const 
 {
 	if (p == NULL) return;
 	static BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-	if (xQueueSendFromISR(xPbufQueue, &p, &xHigherPriorityTaskWoken) != pdPASS)
+	if (xQueueSendFromISR(xPbufQueueudp, &p, &xHigherPriorityTaskWoken) != pdPASS)
 	{
 		pbuf_free(p);
 	}
@@ -242,15 +244,14 @@ uint8_t get_tetrada(uint8_t *data, size_t len)
 }
 
 /*-----------------------------------------------------------*/
-int parse_msg(void* p, size_t size)
+void parse_msg(struct pbuf *p)
 {
-	uint8_t *byte_ptr = (uint8_t*) p;
+	uint8_t *byte_ptr = (uint8_t *)p->payload;
+	uint8_t size = (uint8_t)p->len;
 	uint8_t last_byte = byte_ptr[size - 1];
-	if (!extend_pack)
+	if ((uint8_t)p->len < 6)
 	{
-		uint8_t tetrada = 0x0C;
-		tetrada = get_tetrada(byte_ptr, size);
-		switch (tetrada)
+		switch (get_tetrada(byte_ptr, size))
 		{
 		case 0x0E:
 			xil_printf("TOB VALUE");
@@ -268,7 +269,6 @@ int parse_msg(void* p, size_t size)
 			break;
 
 		case 0x0C:
-			xil_printf("Command with C tetrada");
 			if (last_byte == CMD_STOP)
 			{
 				xil_printf("Stop UDP send!");
@@ -285,9 +285,36 @@ int parse_msg(void* p, size_t size)
 				mode = *byte_ptr;  // make a change mode here!
 				monitor->last_recv_cmd = CMD_WORKTYPE_SET;
 			}
-			else if (last_byte == CMD_CTRL_AMPL) //
+			else if (last_byte == CMD_CTRL_AMPL) // AUTO OR MANUAL
 			{
-				xil_printf("Set amplifyer control mode!");
+				tcp_write(tcp_pcb, p->payload, p->len, 1); // the response matches the command
+				if (byte_ptr[0] == CMD_CTRL_AMPL_AUTO_VALUE)
+				{
+					// activate task auto gain controll
+					if (eTaskGetState(xAutoGainControlTask) == eSuspended)
+					{
+						vTaskResume(xAutoGainControlTask);
+					}
+					((uint8_t *)p->payload)[0] = 0x7F;
+					send_to_PL(p->payload, (uint8_t)p->len);
+				}
+				else if (byte_ptr[0] > CMD_CTRL_AMPL_MIN_VALUE && byte_ptr[0] < CMD_CTRL_AMPL_MAX_VALUE)
+				{
+					if (eTaskGetState(xAutoGainControlTask) != eSuspended)
+					{
+						if (eTaskGetState(xAutoGainControlTask) == eRunning) // under normal conditions this is unattainable
+						{
+							xil_printf("\r\n\r\n loss or destruction of memory \r\n\r\n");
+							// save to log xxx
+						}
+						vTaskSuspend(xAutoGainControlTask);
+					}
+					send_to_PL(p->payload, (uint8_t)p->len);
+				}
+				else
+				{
+					xil_printf("\r\n  CMD_CTRL_AMPL_MISS_VALL  \r\n");
+				}
 				monitor->last_recv_cmd = CMD_CTRL_AMPL;
 			}
 			else if (last_byte == CMD_SEA_FILTER)
@@ -327,42 +354,25 @@ int parse_msg(void* p, size_t size)
 			break;
 		}
 	}
-	else{
+	else
+	{
 		xil_printf("Make a blind sector! \n");
 		monitor->last_recv_cmd = CMD_BLANK_SEC;
 	}
-	return 0;
+	// return 0;
 }
 
 /*-----------------------------------------------------------*/
 uint16_t ssize;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
-	if (!p)
+	if (p == NULL) return ERR_BUF;
+	static BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+	if (xQueueSendFromISR(xPbufQueuetcp, &p, &xHigherPriorityTaskWoken) != pdPASS)
 	{
-		tcp_close(tpcb);
-		tcp_recv(tpcb, NULL);
-		return ERR_VAL;
+		pbuf_free(p);
 	}
-	extend_pack = 0;
-	tcp_recved(tpcb, p->len);
-
-	uint8_t buf[6] = {0};
-	if (p->len == 6)
-	{
-		extend_pack = 1;
-	}
-
-	memcpy(buf, p->payload, 6);
-	ssize = p->len;
-	xMessageBufferSendFromISR(xMsgBuffer, (void*)buf, ssize, NULL);
-	if (tcp_sndbuf(tpcb) > p->len)
-	{
-		err = tcp_write(tpcb, p->payload, p->len, 1);
-	}
-	else{ xil_printf("no space in tcp_sndbuf\n\r"); }
-
-	pbuf_free(p);
+	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 
 	return ERR_OK;
 }

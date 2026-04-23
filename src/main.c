@@ -31,11 +31,13 @@ static void network_init_task(void *pvParameters)
 		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, tskIDLE_PRIORITY, NULL);
 		udp_connection(default_state, sizeof(default_state));
 		tcp_connection_cl();
-		xMsgBuffer = xMessageBufferCreate(1024);
-		xPbufQueue = xQueueCreate(200, sizeof(struct pbuf*));
+
+		xPbufQueueudp = xQueueCreate(200, sizeof(struct pbuf*));
 		xTaskCreate(udp_parse_task, "UDP parsing task", 10000, NULL, UDP_TASK_PRIO, NULL);
-		xPbufforautogaincontrolQueue = xQueueCreate(200, sizeof(struct pbuf*));
-		xTaskCreate(udp_auto_gain_control_task, "UDP auto gain control task", 10000, NULL, AUTO_GAIN_CONTROL_TASK_PRIO, NULL);
+		xPbufQueueforautogaincontrolQueue = xQueueCreate(200, sizeof(struct pbuf*));
+		xTaskCreate(udp_auto_gain_control_task, "UDP auto gain control task", 10000, NULL, AUTO_GAIN_CONTROL_TASK_PRIO, &xAutoGainControlTask);
+		xMsgBuffer = xMessageBufferCreate(1024);
+		xPbufQueuetcp = xQueueCreate(200, sizeof(struct pbuf*));
 		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  NULL);
 		vInitialiseTimer();
 		vTaskDelete(NULL);
@@ -46,9 +48,6 @@ static void network_init_task(void *pvParameters)
 void udp_auto_gain_control_task(void *pvParameters)
 {
 	struct pbuf *p;
-	struct pbuf *old_pbuf = NULL;
-	uint8_t counter_of_packets = 0;
-	uint8_t nominal_counter_value = 10;
 	AUTOGAINCONTROL* autogaincontrol = create_auto_gain_control_array(NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION);
 	uint16_t start_azimuth_ = 0;
 	uint16_t end_azimuth;
@@ -59,7 +58,7 @@ void udp_auto_gain_control_task(void *pvParameters)
 
 	while (1)
 	{
-		if (xQueueReceive(xPbufforautogaincontrolQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
+		if (xQueueReceive(xPbufQueueforautogaincontrolQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
 		{
 			curr_data = (uint8_t*)p->payload;
 			start_azimuth_ = curr_data[12] * 0x100 + curr_data[13];
@@ -68,13 +67,6 @@ void udp_auto_gain_control_task(void *pvParameters)
 			size_of_samples = couner_ * 2;
 			samples_ = (uint8_t *)(curr_data + 32);
 			auto_gain_control(start_azimuth_, end_azimuth, samples_, size_of_samples, autogaincontrol);
-			if (counter_of_packets >= nominal_counter_value)
-			{
-				udp_send(udp_pcb_answer, old_pbuf);
-				pbuf_free(old_pbuf);
-				old_pbuf = NULL;
-				counter_of_packets = 0;
-			}
 			pbuf_free(p);
 		}
 	}
@@ -99,7 +91,7 @@ void udp_parse_task(void *pvParameters)
 
 	while (1)
 	{
-		if (xQueueReceive(xPbufQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
+		if (xQueueReceive(xPbufQueueudp, &p, portMAX_DELAY) == pdPASS && p != NULL)
 		{
 			if (counter_of_packets == 1)
 			{
@@ -136,12 +128,19 @@ void udp_parse_task(void *pvParameters)
 				if (counter_of_packets >= nominal_counter_value)
 				{
 					udp_send(udp_pcb_answer, old_pbuf);
-					if (xQueueSend(xPbufforautogaincontrolQueue, &old_pbuf, xHigherPriorityTaskWoken) != pdPASS)
+					if (eTaskGetState(xAutoGainControlTask) != eSuspended)
 					{
-						pbuf_free(p);
+						if (xQueueSend(xPbufQueueforautogaincontrolQueue, &old_pbuf, xHigherPriorityTaskWoken) != pdPASS)
+						{
+							pbuf_free(old_pbuf);
+						}
+					}
+					else
+					{
+						pbuf_free(old_pbuf);
 					}
 					counter_of_packets = 0;
-					pbuf_free(old_pbuf);
+					// pbuf_free(old_pbuf);
 				}
 			}
 			counter_of_packets++;
@@ -152,16 +151,15 @@ void udp_parse_task(void *pvParameters)
 /*-----------------------------------------------------------*/
 void tcp_parse_task(void *arg)
 {
-	uint8_t payload[10];
-	size_t size;
+	struct pbuf *p;
 	tcp_command cmd;
 
 	while(1)
 	{
-		size = xMessageBufferReceive(xMsgBuffer, payload, sizeof(payload), portMAX_DELAY);
-		if (size > 0)
+		if (xQueueReceive(xPbufQueuetcp, &p, portMAX_DELAY) == pdPASS && p != NULL)
 		{
-			parse_msg(payload, size);
+			parse_msg(p);
+			pbuf_free(p);
 		}
 	}
 }

@@ -29,6 +29,8 @@
 #include "cmd.h"
 #include "asterix.h"
 
+#include "pl_interface.h"
+
 /*-----------------------------------------------------------*/
 #define LOCAL_IP_ADDRESS    "192.168.1.10"
 #define REMOTE_IP_ADDRESS   "192.168.1.100"
@@ -50,13 +52,11 @@ udp_sender_t *sender;
 tcp_monitor_t *monitor;
 cat240_message_t *metainfo_parser;
 cat240_storage_t *storage;
-extern volatile QueueHandle_t xTcpMsgQueue;
-extern volatile TaskHandle_t xIrqTaskHandle;
-extern volatile QueueHandle_t xPbufQueue;
-extern volatile MessageBufferHandle_t xMsgBuffer;
-extern volatile MessageBufferHandle_t xPacketBuffer;
+extern volatile QueueHandle_t xPbufQueueudp;
+extern volatile QueueHandle_t xPbufQueuetcp;
+extern volatile QueueHandle_t xPbufQueueforautogaincontrolQueue;
+extern volatile TaskHandle_t xAutoGainControlTask;
 extern uint8_t default_state[8192];
-extern uint8_t extend_pack;
 extern uint8_t try_reconnect;
 extern bool mode;
 /*-----------------------------------------------------------*/
@@ -70,7 +70,7 @@ err_t tcp_connection_cl(void);
 err_t udp_package_send(void);
 err_t tcp_client_close(struct tcp_pcb *pcb);
 err_t client_connected(void *arg, struct tcp_pcb *tpcb, err_t err);
-int parse_msg(void* p, size_t size);
+void parse_msg(struct pbuf *p);
 err_t need_reconnect(struct tcp_pcb *pcb);
 err_t reconnection_tcp(struct tcp_pcb *pcb);
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err);

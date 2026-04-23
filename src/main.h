@@ -59,15 +59,16 @@
 #define MAJOR_SOFTWARE_VERSION  0
 #define MINOR_SOFTWARE_VERSION  2
 
-volatile QueueHandle_t xPbufQueue;
-volatile QueueHandle_t xPbufforautogaincontrolQueue;
+volatile QueueHandle_t xPbufQueueudp;
+volatile QueueHandle_t xPbufQueueforautogaincontrolQueue;
+volatile QueueHandle_t xPbufQueuetcp;
 volatile MessageBufferHandle_t xMsgBuffer = NULL;
+volatile TaskHandle_t xAutoGainControlTask = NULL;
 
 extern volatile int TcpFastTmrFlag;
 extern volatile int TcpSlowTmrFlag;
 
 uint8_t default_state[8192] = {0xAA, 0xBB, 0xCC};
-uint8_t extend_pack = 0;
 uint8_t try_reconnect = 0;
 bool mode = true;
 

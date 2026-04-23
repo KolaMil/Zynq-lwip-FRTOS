@@ -28,15 +28,19 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="51acd2c2-9bb4-416c-9066-2ba69e33b7dc" name="Changes" comment="">
+    <list default="true" id="9879d595-b46d-469b-9250-76bf9a46412d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pl_interface.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pl_interface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/auto_gain_control.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/auto_gain_control.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/auto_gain_control.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/auto_gain_control.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cmd.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmd.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/iwip.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/iwip.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/iwip.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/iwip.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tcp_stack.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/tcp_stack.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ttc_timer.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/ttc_timer.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +56,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MacroExpansionManager">
-    <option name="directoryName" value="QFtvWRT5" />
+    <option name="directoryName" value="lXnt7MlD" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -63,14 +67,14 @@
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="3CUCyyQpQTmkzxyK3YO9CzCF371" />
+  <component name="ProjectId" id="3CfSV2K7roifKJh2icd8DiEv9PJ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.xilinx_mcu.elf.executor": "Debug",
+    "CMake Application.xilinx_mcu.elf.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -97,14 +101,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="51acd2c2-9bb4-416c-9066-2ba69e33b7dc" name="Changes" comment="" />
-      <created>1776431020052</created>
+      <changelist id="9879d595-b46d-469b-9250-76bf9a46412d" name="Changes" comment="" />
+      <created>1776775151045</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1776431020052</updated>
-      <workItem from="1776431021287" duration="6740000" />
-      <workItem from="1776661213637" duration="22721000" />
-      <workItem from="1776748165961" duration="20548000" />
+      <updated>1776775151045</updated>
+      <workItem from="1776775152235" duration="2821000" />
+      <workItem from="1776920989976" duration="6107000" />
     </task>
     <servers />
   </component>

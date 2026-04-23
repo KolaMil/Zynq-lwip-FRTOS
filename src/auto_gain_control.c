@@ -91,10 +91,12 @@ void cleaning_auto_gain_control_array(AUTOGAINCONTROL* auto_gain_control, uint16
 /*-----------------------------------------------------------*/
 void update_gain_value (uint16_t next_line_index, AUTOGAINCONTROL* auto_gain_control)
 {
+    static uint8_t data_to_send_PL[2] = { (uint8_t)127, 0xC3 };
     if (auto_gain_control[next_line_index].curent_gain != old_gain_value)
     {
         old_gain_value = auto_gain_control[next_line_index].curent_gain;
-        // xil_printf("Real update gain value: %u\n Next line index: %u\n", old_gain_value, next_line_index);
+        data_to_send_PL[0] = old_gain_value;
+        send_to_PL(data_to_send_PL, 2);
     }
 }
 

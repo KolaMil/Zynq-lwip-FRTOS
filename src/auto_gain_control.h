@@ -9,6 +9,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+#include "pl_interface.h"
+
 #define ANGULAR_STEP 0x36 // 0.3°
 #define NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION 1200 // nominal_number_of_lines_per_revolution
 #define MINIMAL_GAIN_VALUE 100
