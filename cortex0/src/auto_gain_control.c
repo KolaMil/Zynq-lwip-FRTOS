@@ -32,7 +32,7 @@ auto_gain_control_t template =
 
 static 	uint8_t old_gain_value = 127;
 
-auto_gain_control_t* createControlArray()  // 1200 * work_size
+auto_gain_control_t* createControlArray()
 {
     auto_gain_control_t *auto_gain_control = malloc(sizeof(auto_gain_control_t) * NOMINAL_LINES_NUMBER);
     if (auto_gain_control == NULL) return NULL;
@@ -55,10 +55,12 @@ void cleaningControlArray(auto_gain_control_t* auto_gain_control, uint16_t bound
 
 void updateGainValue (uint16_t next_line_index, auto_gain_control_t* auto_gain_control)
 {
+    static uint8_t data_to_send_PL[2] = { (uint8_t)127, 0xC3 };
     if (auto_gain_control[next_line_index].current_gain != old_gain_value)
     {
         old_gain_value = auto_gain_control[next_line_index].current_gain;
-        xil_printf("Real update gain value: %u\n Next line index: %u\n", old_gain_value, next_line_index);
+        data_to_send_PL[0] = old_gain_value;
+        send_to_PL(data_to_send_PL, 2);
     }
 }
 
@@ -70,7 +72,7 @@ void fillingControlArray(uint16_t* samples, uint16_t size_of_samples, auto_gain_
         {
             for (int16_t weakening_line_index = autogain_control_constants[0].weakening_zone * (-1); weakening_line_index <= autogain_control_constants[0].weakening_zone; weakening_line_index++)
             {
-                int16_t real_weakening_line_index = ((line_index + NOMINAL_LINES_NUMBER) + weakening_line_index) % NOMINAL_LINES_NUMBER;
+                uint16_t real_weakening_line_index = ((line_index + NOMINAL_LINES_NUMBER) + weakening_line_index) % NOMINAL_LINES_NUMBER;
                 if (!auto_gain_control[real_weakening_line_index].flag_change)
                 {
                     auto_gain_control[real_weakening_line_index].counter_repetition++;
@@ -99,4 +101,19 @@ void autoGainControl(uint16_t start_azimuth, uint16_t* samples, uint16_t size_of
 {
     uint16_t line_index = start_azimuth / ANGULAR_STEP;
     fillingControlArray(samples, size_of_samples, auto_gain_control, line_index);
+}
+
+bool convertTo16(uint8_t* massive, size_t size, uint16_t* converted_massive)
+{
+    if (size % 2 != 0 || size == 0 || converted_massive == NULL)
+    {
+        return false;
+    }
+
+    for (size_t i = 0, k = 0; i < size; i += 2, k++)
+    {
+        converted_massive[k] = massive[i] * 0x100 + massive[i + 1];
+    }
+
+    return true;
 }

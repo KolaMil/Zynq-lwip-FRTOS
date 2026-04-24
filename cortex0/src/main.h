@@ -37,6 +37,7 @@
 
 #include "iwip.h"
 #include "ttc_timer.h"
+#include "noise.h"
 
 /* Freertos defines */
 #define THREAD_STACKSIZE        1024

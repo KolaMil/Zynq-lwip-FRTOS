@@ -1,17 +1,4 @@
-#include <stdint.h>
-#include <stdbool.h>
-#include <stddef.h>
-
-#define EMA_SHIFT 8U  // Q8: precision 1/256
-
-typedef struct
-{
-    uint32_t ema_q;        // EMA in fixed-point (Q8)
-    uint16_t alpha_num;    // 1
-    uint16_t alpha_den;    // 512 => alpha = 1/512 = 0.001953125
-    uint32_t packet_count;
-    bool initialized;
-} noise_tracker_t;
+#include "noise.h"
 
 static uint16_t u16_be(const uint8_t *p)
 {

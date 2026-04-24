@@ -51,5 +51,6 @@ void cleaningControlArray(auto_gain_control_t* auto_gain_control, uint16_t bound
 void updateGainValue (uint16_t next_line_index, auto_gain_control_t* auto_gain_control);
 void fillingControlArray(uint16_t* samples, uint16_t size_of_samples, auto_gain_control_t* auto_gain_control, uint16_t line_index);
 void autoGainControl(uint16_t start_azimuth, uint16_t* samples, uint16_t size_of_samples, auto_gain_control_t* auto_gain_control);
+bool convertTo16(uint8_t* massive, size_t size, uint16_t* converted_massive);
 
 #endif

@@ -129,6 +129,7 @@ uint16_t get_ttc_counter_value(uint8_t timer_ch_id)
 /*-----------------------------------------------------------*/
 #include "task.h"
 extern volatile TaskHandle_t xIrqTaskHandle;
+extern volatile TaskHandle_t xAutoGainControlTask;
 extern u8 status_udp_sender;
 u8 flag_for_led = 0;
 volatile int TcpFastTmrFlag = 0;

@@ -127,6 +127,13 @@ void udp_parse_task(void *arg)
 	u8 flag_test = 1;
 	uint16_t value_loc = 159;
 	controlPtr = createControlArray();
+	noise_tracker_t noise = {
+		.ema_q = 0U,
+		.alpha_num = 1U,
+		.alpha_den = 1024U,   // для 1.2ms/пакет хороший базовый вариант
+		.packet_count = 0U,
+		.initialized = false
+	};
 	
 	storages_initializ(value_loc - HEADER_SIZE - TIME_SIZE);
 	
@@ -135,7 +142,8 @@ void udp_parse_task(void *arg)
 	{
 		value_loc = xMessageBufferReceive(xPacketBuffer, massive, sizeof(massive), portMAX_DELAY);
 		xil_printf("Value %d", value_loc);
-		uint8_t *result = (uint8_t*) mem_calloc(value_loc, sizeof(uint8_t));
+		uint8_t *result = (uint8_t*) mem_calloc(value_loc, sizeof(uint8_t));  // Trouble: too much in while(true)
+		uint16_t *converted_massive = (uint16_t*) mem_calloc(value_loc - HEADER_SIZE - TIME_SIZE, sizeof(uint16_t));
 		if (result == NULL)
 		{
 			xil_printf("Result not allocated memory!");
@@ -144,9 +152,11 @@ void udp_parse_task(void *arg)
 		{
 			clean_all();
 			mem_free(result);
+			mem_free(converted_massive);
 			mem_free(controlPtr);
 			storages_initializ(value_loc - HEADER_SIZE - TIME_SIZE);
 			result = (uint8_t*) mem_calloc(value_loc, sizeof(uint8_t));
+			converted_massive = (uint16_t*) mem_calloc(value_loc - HEADER_SIZE - TIME_SIZE, sizeof(uint16_t));
 			controlPtr = createControlArray();
 			update_mode = false;
 		}
@@ -160,6 +170,9 @@ void udp_parse_task(void *arg)
 		if (res)
 		{
 			xil_printf("\r\n Counter message %d\r\n", metainfo_parser->msg_index);
+			uint32_t noise_inst = estimate_packet_noise_u16(metainfo_parser->video_block.data, metainfo_parser->video_block.data_bytes);
+			noise_tracker_update_u16(&noise, noise_inst);
+			
 			for (size_t k = 0; k < value_loc - HEADER_SIZE - TIME_SIZE; k += 2)
 			{
 				if ((metainfo_parser->video_block.data[k] * 0x100 + metainfo_parser->video_block.data[k + 1]) > storage->video_data[k] * 0x100 + storage->video_data[k + 1])
@@ -176,6 +189,9 @@ void udp_parse_task(void *arg)
 				storage->end_az = storage->start_az + AVERAGE_DIFFERENCE_AZ;
 				counter_packets = 0;
 				
+				autoGainControl(storage->start_az, converted_massive, value_loc - HEADER_SIZE - TIME_SIZE, controlPtr);
+				convertTo16(storage->video_data, storage->data_size, converted_massive);
+				
 				compose(result, storage);
 				result[9]  = (global_counter>> 24) & 0xFF;
 				result[10] = (global_counter >> 16) & 0xFF;
@@ -186,6 +202,7 @@ void udp_parse_task(void *arg)
 				pbuf_take(cat240_pbuf, result, value_loc);
 				err_t err = udp_send(udp_pcb_answer, cat240_pbuf);
 				pbuf_free(cat240_pbuf);
+
 
 				global_counter++;
 			}

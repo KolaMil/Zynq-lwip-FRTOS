@@ -7,6 +7,9 @@
 #define CMD_START           	0xC1
 #define CMD_WORKTYPE_SET		0xC2        // 05С2
 #define CMD_CTRL_AMPL			0xC3        // 00C3-FFC3
+#define CMD_CTRL_AMPL_AUTO_VALUE 0xFF
+#define CMD_CTRL_AMPL_MAX_VALUE	0x7F
+#define CMD_CTRL_AMPL_MIN_VALUE	0x00
 #define CMD_SEA_FILTER			0xC4        // 00C4-FFC4
 #define CMD_PREC_FILTER			0xC5        // 00C5-FFC5
 #define CMD_VELOCITY			0xC6        // 01C6-02C6-?

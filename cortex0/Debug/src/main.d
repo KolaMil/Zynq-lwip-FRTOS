@@ -74,7 +74,7 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
  ../../cortex0_bsp/ps7_cortexa9_0/include/lwip/init.h \
  ../../cortex0_bsp/ps7_cortexa9_0/include/xil_types.h ../src/tcp_stack.h \
  ../src/udp_stack.h ../src/cmd.h ../src/asterix.h \
- ../src/auto_gain_control.h ../src/ttc_timer.h
+ ../src/auto_gain_control.h ../src/ttc_timer.h ../src/noise.h
 
 ../src/main.h:
 
@@ -243,3 +243,5 @@ src/main.o src/main.o: ../src/main.c ../src/main.h \
 ../src/auto_gain_control.h:
 
 ../src/ttc_timer.h:
+
+../src/noise.h:

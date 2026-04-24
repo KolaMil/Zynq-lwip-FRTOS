@@ -13,6 +13,7 @@ C_SRCS += \
 ../src/iwip.c \
 ../src/main.c \
 ../src/noise_prototype.c \
+../src/pl_interface.c \
 ../src/platform.c \
 ../src/realloc_prototype.c \
 ../src/tcp_stack.c \
@@ -26,6 +27,7 @@ OBJS += \
 ./src/iwip.o \
 ./src/main.o \
 ./src/noise_prototype.o \
+./src/pl_interface.o \
 ./src/platform.o \
 ./src/realloc_prototype.o \
 ./src/tcp_stack.o \
@@ -39,6 +41,7 @@ C_DEPS += \
 ./src/iwip.d \
 ./src/main.d \
 ./src/noise_prototype.d \
+./src/pl_interface.d \
 ./src/platform.d \
 ./src/realloc_prototype.d \
 ./src/tcp_stack.d \
