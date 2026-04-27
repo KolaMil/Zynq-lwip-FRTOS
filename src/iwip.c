@@ -9,8 +9,6 @@
 
 #include "iwip.h"
 
-#include "auto_gain_control.h"
-
 /*-----------------------------------------------------------*/
 void lwip_network_setup(void)
 {
@@ -93,7 +91,6 @@ void refactor_more(cat240_storage_t* lst, cat240_storage_t** dir, size_t size)  
 	{
 		return;
 	}
-	// size_t _size = dir[0]->data_size;
 	size_t _size = 124;
 	uint64_t max[124] = {0};
 	
@@ -246,12 +243,10 @@ uint8_t get_tetrada(uint8_t *data, size_t len)
 /*-----------------------------------------------------------*/
 void parse_msg(struct pbuf *p)
 {
-	uint8_t *byte_ptr = (uint8_t *)p->payload;
-	uint8_t size = (uint8_t)p->len;
-	uint8_t last_byte = byte_ptr[size - 1];
+	uint8_t last_byte = ((uint8_t *)p->payload)[(uint8_t)p->len - 1];
 	if ((uint8_t)p->len < 6)
 	{
-		switch (get_tetrada(byte_ptr, size))
+		switch (get_tetrada((uint8_t *)p->payload, (uint8_t)p->len))
 		{
 		case 0x0E:
 			xil_printf("TOB VALUE");
@@ -282,13 +277,13 @@ void parse_msg(struct pbuf *p)
 			else if (last_byte == CMD_WORKTYPE_SET)
 			{
 				xil_printf("Set worktype!");
-				mode = *byte_ptr;  // make a change mode here!
+				// mode = *byte_ptr;  // make a change mode here!
 				monitor->last_recv_cmd = CMD_WORKTYPE_SET;
 			}
 			else if (last_byte == CMD_CTRL_AMPL) // AUTO OR MANUAL
 			{
 				tcp_write(tcp_pcb, p->payload, p->len, 1); // the response matches the command
-				if (byte_ptr[0] == CMD_CTRL_AMPL_AUTO_VALUE)
+				if (((uint8_t *)p->payload)[0] == CMD_CTRL_AMPL_AUTO_VALUE)
 				{
 					// activate task auto gain controll
 					if (eTaskGetState(xAutoGainControlTask) == eSuspended)
@@ -298,7 +293,7 @@ void parse_msg(struct pbuf *p)
 					((uint8_t *)p->payload)[0] = 0x7F;
 					send_to_PL(p->payload, (uint8_t)p->len);
 				}
-				else if (byte_ptr[0] > CMD_CTRL_AMPL_MIN_VALUE && byte_ptr[0] < CMD_CTRL_AMPL_MAX_VALUE)
+				else if (((uint8_t *)p->payload)[0] > CMD_CTRL_AMPL_MIN_VALUE && ((uint8_t *)p->payload)[0] < CMD_CTRL_AMPL_MAX_VALUE)
 				{
 					if (eTaskGetState(xAutoGainControlTask) != eSuspended)
 					{
@@ -359,11 +354,9 @@ void parse_msg(struct pbuf *p)
 		xil_printf("Make a blind sector! \n");
 		monitor->last_recv_cmd = CMD_BLANK_SEC;
 	}
-	// return 0;
 }
 
 /*-----------------------------------------------------------*/
-uint16_t ssize;
 err_t recv_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err)
 {
 	if (p == NULL) return ERR_BUF;

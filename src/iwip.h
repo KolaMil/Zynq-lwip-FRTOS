@@ -14,7 +14,6 @@
 #include "FreeRTOS.h"
 #include "queue.h"
 #include "task.h"
-#include "message_buffer.h"
 
 #include "lwip/tcp.h"
 #include "lwip/inet.h"
@@ -28,6 +27,8 @@
 #include "udp_stack.h"
 #include "cmd.h"
 #include "asterix.h"
+#include "auto_gain_control.h"
+#include "netif/xadapter.h"
 
 #include "pl_interface.h"
 
@@ -59,6 +60,7 @@ extern volatile TaskHandle_t xAutoGainControlTask;
 extern uint8_t default_state[8192];
 extern uint8_t try_reconnect;
 extern bool mode;
+
 /*-----------------------------------------------------------*/
 void lwip_network_setup(void);
 err_t udp_connection(uint8_t *data, size_t size);

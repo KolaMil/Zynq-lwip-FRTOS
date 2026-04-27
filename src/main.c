@@ -49,24 +49,15 @@ void udp_auto_gain_control_task(void *pvParameters)
 {
 	struct pbuf *p;
 	AUTOGAINCONTROL* autogaincontrol = create_auto_gain_control_array(NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION);
-	uint16_t start_azimuth_ = 0;
-	uint16_t end_azimuth;
-	uint8_t *curr_data;
-	uint32_t couner_;
-	uint8_t *samples_;
-	uint32_t size_of_samples;
 
 	while (1)
 	{
 		if (xQueueReceive(xPbufQueueforautogaincontrolQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
 		{
-			curr_data = (uint8_t*)p->payload;
-			start_azimuth_ = curr_data[12] * 0x100 + curr_data[13];
-			end_azimuth   = curr_data[14] * 0x100 + curr_data[15];
-			couner_ = curr_data[28] * 0x10000 + curr_data[29] * 0x100 + curr_data[30];
-			size_of_samples = couner_ * 2;
-			samples_ = (uint8_t *)(curr_data + 32);
-			auto_gain_control(start_azimuth_, end_azimuth, samples_, size_of_samples, autogaincontrol);
+			// for (uint8_t dendeks = 0; dendeks < 100; dendeks++) {
+			// 	xil_printf("HEX %u : %02x\r\n", dendeks, ((uint8_t *)p->payload)[dendeks]);
+			// }
+			auto_gain_control(p, autogaincontrol);
 			pbuf_free(p);
 		}
 	}
@@ -77,11 +68,11 @@ void udp_parse_task(void *pvParameters)
 {
 	struct pbuf *p;
 	struct pbuf *old_pbuf = NULL;
+	// struct pbuf *q;
+	// struct pbuf *ref;
 	static BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 	uint8_t counter_of_packets = 1;
 	uint8_t nominal_counter_value = 10;
-	uint16_t start_azimuth_ = 0;
-	uint16_t end_azimuth;
 	uint32_t couner_;
 	uint32_t size_of_samples;
 	uint8_t *old_samples_;
@@ -95,52 +86,61 @@ void udp_parse_task(void *pvParameters)
 		{
 			if (counter_of_packets == 1)
 			{
-				old_pbuf = pbuf_alloc(PBUF_RAW, p->tot_len, PBUF_RAM);
-				if (old_pbuf)
-				{
-					pbuf_copy(old_pbuf, p);
-				}
-				pbuf_free(p);
+				old_pbuf = p;
 				o_curr_data = (uint8_t *)old_pbuf->payload;
-				start_azimuth_ = o_curr_data[12] * 0x100 + o_curr_data[13];
-				end_azimuth = o_curr_data[14] * 0x100 + o_curr_data[15];
-				couner_ = o_curr_data[28] * 0x10000 + o_curr_data[29] * 0x100 + o_curr_data[30];
-				size_of_samples = couner_ * 2;
 				old_samples_ = (uint8_t *)(o_curr_data + 32);
 			}
 			else
 			{
 				curr_data = (uint8_t *)p->payload;
-				start_azimuth_ = curr_data[12] * 0x100 + curr_data[13];
-				end_azimuth = curr_data[14] * 0x100 + curr_data[15];
 				couner_ = curr_data[28] * 0x10000 + curr_data[29] * 0x100 + curr_data[30];
 				size_of_samples = couner_ * 2;
 				new_samples_ = (uint8_t *)(curr_data + 32);
-				for (uint32_t i = 0; i < size_of_samples; i += 2)
+				static uint8_t iw;
+				static uint32_t predel_na_shag;
+				static uint32_t total_len;
+				static uint8_t kursor;
+				total_len = p->tot_len;
+				kursor = 32;
+				for (struct pbuf *q = p, *ref = old_pbuf; q != NULL; q = q->next, ref = ref->next)
 				{
-					if (new_samples_[i] > old_samples_[i] || ((new_samples_[i] == old_samples_[i]) && (new_samples_[i + 1] > old_samples_[i + 1])))
+					if (total_len > 1480)
 					{
-						old_samples_[i] = new_samples_[i];
-						old_samples_[i + 1] = new_samples_[i + 1];
+						total_len -= 1480;
+						predel_na_shag = 1480;
 					}
+					else
+					{
+						predel_na_shag = total_len % 1480;
+					}
+					for (uint32_t i = 0; i < predel_na_shag; i += 2)
+					{
+						if ((((uint8_t *)q->payload + kursor)[i] > ((uint8_t *)ref->payload + kursor)[i]) || (((((uint8_t *)q->payload + kursor)[i] == ((uint8_t *)ref->payload + kursor)[i]) && (((uint8_t *)q->payload + kursor)[i + 1] > ((uint8_t *)ref->payload + kursor)[i + 1]))))
+						{
+							((uint8_t *)ref->payload + kursor)[i] = ((uint8_t *)q->payload + kursor)[i];
+							((uint8_t *)ref->payload + kursor)[i + 1] = ((uint8_t *)q->payload + kursor)[i + 1];
+						}
+					}
+					kursor = 0;
 				}
 				pbuf_free(p);
 				if (counter_of_packets >= nominal_counter_value)
 				{
-					udp_send(udp_pcb_answer, old_pbuf);
 					if (eTaskGetState(xAutoGainControlTask) != eSuspended)
 					{
 						if (xQueueSend(xPbufQueueforautogaincontrolQueue, &old_pbuf, xHigherPriorityTaskWoken) != pdPASS)
 						{
 							pbuf_free(old_pbuf);
 						}
+						udp_send(udp_pcb_answer, old_pbuf);
 					}
-					else
+					if (eTaskGetState(xAutoGainControlTask) == eSuspended)
 					{
+						udp_send(udp_pcb_answer, old_pbuf);
 						pbuf_free(old_pbuf);
 					}
+					udp_send(udp_pcb_answer, old_pbuf);
 					counter_of_packets = 0;
-					// pbuf_free(old_pbuf);
 				}
 			}
 			counter_of_packets++;
@@ -152,7 +152,6 @@ void udp_parse_task(void *pvParameters)
 void tcp_parse_task(void *arg)
 {
 	struct pbuf *p;
-	tcp_command cmd;
 
 	while(1)
 	{

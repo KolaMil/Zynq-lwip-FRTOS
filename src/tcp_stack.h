@@ -28,12 +28,6 @@ typedef struct
     uint32_t last_update_time;
 } tcp_monitor_t;
 
-typedef struct
-{
-    uint16_t number;
-    uint16_t value;
-} tcp_command;
-
 const char* tcp_state_to_string(enum tcp_state state);
 tcp_monitor_t* create_tcp_monitor(struct tcp_pcb *pcb);
 err_t update_monitor(tcp_monitor_t *monitor);

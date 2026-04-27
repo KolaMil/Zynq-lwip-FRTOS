@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include "iwip.h"
 
 #include "pl_interface.h"
 
@@ -32,9 +33,9 @@ typedef struct
 uint8_t angle_change_step;
 
 AUTOGAINCONTROL* create_auto_gain_control_array(uint16_t nominal_number_of_lines_per_revolution);
-void filling_auto_gain_control_array(uint8_t* samples, uint16_t size_of_samples, AUTOGAINCONTROL* auto_gain_control, uint16_t line_index);
+void filling_auto_gain_control_array(struct pbuf *p, uint16_t size_of_samples, AUTOGAINCONTROL* auto_gain_control, uint16_t line_index);
 void cleaning_auto_gain_control_array(AUTOGAINCONTROL* auto_gain_control, uint16_t boundary_line_index);
 void update_gain_value (uint16_t next_line_index, AUTOGAINCONTROL* auto_gain_control);
-void auto_gain_control(uint16_t start_azimuth, uint16_t end_azimuth, uint8_t* samples, uint16_t size_of_samples, AUTOGAINCONTROL* auto_gain_control);
+void auto_gain_control(struct pbuf *p, AUTOGAINCONTROL* auto_gain_control);
 
 #endif //XILINX_MCU_AUTO_GAIN_CONTROL_H
