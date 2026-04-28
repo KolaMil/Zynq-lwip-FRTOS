@@ -23,7 +23,7 @@ auto_gain_control_constants_t autogain_control_constants[20] = {
     {0xEC54, 1, 1}  // 48   200
 };
 
-auto_gain_control_t template = 
+const auto_gain_control_t template = 
 {
 	.counter_repetition = 0,
 	.flag_change = false,
@@ -66,10 +66,12 @@ void updateGainValue (uint16_t next_line_index, auto_gain_control_t* auto_gain_c
 
 void fillingControlArray(uint16_t* samples, uint16_t size_of_samples, auto_gain_control_t* auto_gain_control, uint16_t line_index)  // search blind value
 {
+    bool strong_signal = false;
     for (uint16_t sample_index = 0; sample_index < size_of_samples; sample_index++)
     {
         if (samples[sample_index] > autogain_control_constants[0].max_permissible_value)
         {
+            strong_signal = true;
             for (int16_t weakening_line_index = autogain_control_constants[0].weakening_zone * (-1); weakening_line_index <= autogain_control_constants[0].weakening_zone; weakening_line_index++)
             {
                 uint16_t real_weakening_line_index = ((line_index + NOMINAL_LINES_NUMBER) + weakening_line_index) % NOMINAL_LINES_NUMBER;
@@ -93,6 +95,7 @@ void fillingControlArray(uint16_t* samples, uint16_t size_of_samples, auto_gain_
             break;
         }
     }
+    
     cleaningControlArray(auto_gain_control, ((line_index + NOMINAL_LINES_NUMBER) - (autogain_control_constants[0].weakening_zone + 1)) % NOMINAL_LINES_NUMBER);
     updateGainValue((line_index + 1) % NOMINAL_LINES_NUMBER, auto_gain_control);
 }

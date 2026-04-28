@@ -19,11 +19,17 @@ uint32_t estimate_packet_noise_u16(const uint8_t *data, size_t data_bytes)
 
 void noise_tracker_update_u16(noise_tracker_t *t, uint32_t packet_noise_u16)
 {
+    if (packet_noise_u16 > t->max_value_noise)
+    {
+        return;
+    }
+    
     uint32_t x_q = packet_noise_u16 << EMA_SHIFT;
     if (!t->initialized) 
     {
         t->ema_q = x_q;
         t->initialized = true;
+        t->max_value_noise = NOISE_MAX_DEFAULT_U16;
     } else 
     {
         int32_t diff = (int32_t)x_q - (int32_t)t->ema_q;

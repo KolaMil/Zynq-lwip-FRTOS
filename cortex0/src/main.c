@@ -170,8 +170,6 @@ void udp_parse_task(void *arg)
 		if (res)
 		{
 			xil_printf("\r\n Counter message %d\r\n", metainfo_parser->msg_index);
-			uint32_t noise_inst = estimate_packet_noise_u16(metainfo_parser->video_block.data, metainfo_parser->video_block.data_bytes);
-			noise_tracker_update_u16(&noise, noise_inst);
 			
 			for (size_t k = 0; k < value_loc - HEADER_SIZE - TIME_SIZE; k += 2)
 			{
@@ -189,8 +187,8 @@ void udp_parse_task(void *arg)
 				storage->end_az = storage->start_az + AVERAGE_DIFFERENCE_AZ;
 				counter_packets = 0;
 				
-				autoGainControl(storage->start_az, converted_massive, value_loc - HEADER_SIZE - TIME_SIZE, controlPtr);
 				convertTo16(storage->video_data, storage->data_size, converted_massive);
+				autoGainControl(storage->start_az, converted_massive, value_loc - HEADER_SIZE - TIME_SIZE, controlPtr);
 				
 				compose(result, storage);
 				result[9]  = (global_counter>> 24) & 0xFF;
@@ -202,7 +200,9 @@ void udp_parse_task(void *arg)
 				pbuf_take(cat240_pbuf, result, value_loc);
 				err_t err = udp_send(udp_pcb_answer, cat240_pbuf);
 				pbuf_free(cat240_pbuf);
-
+				
+				uint32_t noise_inst = estimate_packet_noise_u16(storage->video_data, storage->data_size);
+				noise_tracker_update_u16(&noise, noise_inst);
 
 				global_counter++;
 			}
