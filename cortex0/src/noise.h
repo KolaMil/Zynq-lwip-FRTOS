@@ -10,6 +10,8 @@ typedef struct
     bool initialized;
     uint16_t alpha_num;         // 1
     uint16_t alpha_den;         // 512 => alpha = 1/512 = 0.001953125
+    uint16_t alpha_num_slow;    // медленный коэффициент для резких скачков вверх
+    uint16_t alpha_den_slow;
     uint16_t max_value_noise;
     uint32_t ema_q;             // EMA in fixed-point (Q8)
     uint32_t packet_count;

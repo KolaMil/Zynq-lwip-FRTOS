@@ -38,6 +38,7 @@
 #include "iwip.h"
 #include "ttc_timer.h"
 #include "noise.h"
+#include "axi4lt_connect.h"
 
 /* Freertos defines */
 #define THREAD_STACKSIZE        1024
@@ -59,6 +60,7 @@ volatile QueueHandle_t xTcpMsgQueue;
 volatile QueueHandle_t xPbufQueue;
 volatile TaskHandle_t xIrqTaskHandle = NULL;
 volatile TaskHandle_t xIrqUDPTaskHandle = NULL;
+volatile TaskHandle_t xDmaTaskHadle = NULL;
 volatile TaskHandle_t xTcpParseTaskHandle = NULL;
 volatile MessageBufferHandle_t xMsgBuffer = NULL;
 volatile MessageBufferHandle_t xPacketBuffer = NULL;
@@ -86,6 +88,7 @@ void vStatsTask(void *arg);
 void x1emacif_input_thread(void *arg);
 void udp_parse_task(void *arg);
 void udp_send_task(void *arg);
+void vDmaCheckTask(void * arg);
 void tcp_parse_task(void *arg);
 void vTcpStatTask(void *arg);
 

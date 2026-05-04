@@ -12,6 +12,8 @@
 int main(void)
 {
 	start_cpu1();
+	Xil_ICacheEnable();
+	Xil_DCacheEnable();
 	init_platform();
 	xil_printf("\n Start PS-part of Zynq!\r\n");
 	xil_printf("\n Version: %d.%d\n", MAJOR_SOFTWARE_VERSION, MINOR_SOFTWARE_VERSION);
@@ -40,6 +42,7 @@ static void network_init_task(void *pvParameters)
 		xTaskCreate(udp_parse_task, "UDP parsing task", 16384, NULL, UDP_TASK_PRIO, &xIrqUDPTaskHandle);
 		vTaskSuspend(xIrqUDPTaskHandle);
 		xTcpMsgQueue = xQueueCreate(TCP_MSG_QUEUE_LEN, sizeof(void*));
+		xTaskCreate(vDmaCheckTask, "DMA read task", THREAD_LARGE_STACKSIZE, NULL, UDP_TASK_PRIO,  &xDmaTaskHadle);
 		xTaskCreate(tcp_parse_task, "TCP PARSE Task", THREAD_STACKSIZE, NULL, TCP_PARSE_PRIO,  &xTcpParseTaskHandle);
 		xTaskCreate(vTcpStatTask, "TCP monitoring task", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY, NULL);
 		vInitialiseTimer();
@@ -73,6 +76,18 @@ void udp_send_task(void *arg)
 		vParTestSetGPIO(IO_L23P_T3_12, flag);
     }
 }
+
+/*-----------------------------------------------------------*/
+void vDmaCheckTask(void *arg)
+{
+    xil_printf("Task DMA check");
+	while (1)
+	{
+		Xil_DCacheInvalidateRange((UINTPTR)dma_buffer, 8192);
+		vTaskDelay(50);
+	}
+}
+
 
 uint8_t test_type2[2][7943] = 
 {
@@ -128,11 +143,12 @@ void udp_parse_task(void *arg)
 	uint16_t value_loc = 159;
 	controlPtr = createControlArray();
 	noise_tracker_t noise = {
-		.ema_q = 0U,
+		.initialized = false,
 		.alpha_num = 1U,
 		.alpha_den = 1024U,   // для 1.2ms/пакет хороший базовый вариант
-		.packet_count = 0U,
-		.initialized = false
+		.max_value_noise = 0xC350,
+		.ema_q = 0U,
+		.packet_count = 0U
 	};
 	
 	storages_initializ(value_loc - HEADER_SIZE - TIME_SIZE);

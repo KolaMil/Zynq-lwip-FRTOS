@@ -33,7 +33,15 @@ void noise_tracker_update_u16(noise_tracker_t *t, uint32_t packet_noise_u16)
     } else 
     {
         int32_t diff = (int32_t)x_q - (int32_t)t->ema_q;
-        int32_t delta = (int32_t)((((int64_t)t->alpha_num) * diff) / t->alpha_den);
+        int32_t delta;
+        if (diff > 0 && (uint64_t)diff > ((uint64_t)t->ema_q * 70/100))
+        {
+            delta = (int32_t)((((int64_t)t->alpha_num_slow) * diff) / t->alpha_den_slow);
+        } else
+        {
+            delta = (int32_t)((((int64_t)t->alpha_num) * diff) / t->alpha_den);
+        }
+        
         t->ema_q = (uint32_t)((int32_t)t->ema_q + delta);
     }
     t->packet_count++;
