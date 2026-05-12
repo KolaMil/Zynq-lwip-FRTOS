@@ -17,37 +17,76 @@ uint32_t estimate_packet_noise_u16(const uint8_t *data, size_t data_bytes)
     return (uint32_t)(sum / n); // realtime noise (integer)
 }
 
-void noise_tracker_update_u16(noise_tracker_t *t, uint32_t packet_noise_u16)
+void noise_tracker_update_smoothing(noise_tracker_t *tracker, uint32_t packet_noise_u16)
 {
-    if (packet_noise_u16 > t->max_value_noise)
+    if (packet_noise_u16 > tracker->max_value_noise)
     {
         return;
     }
     
     uint32_t x_q = packet_noise_u16 << EMA_SHIFT;
-    if (!t->initialized) 
+    if (!tracker->initialized) 
     {
-        t->ema_q = x_q;
-        t->initialized = true;
-        t->max_value_noise = NOISE_MAX_DEFAULT_U16;
+        tracker->ema_q = x_q;
+        tracker->initialized = true;
+        tracker->max_value_noise = NOISE_MAX_DEFAULT_U16;
     } else 
     {
-        int32_t diff = (int32_t)x_q - (int32_t)t->ema_q;
+        int32_t diff = (int32_t)x_q - (int32_t)tracker->ema_q;
         int32_t delta;
-        if (diff > 0 && (uint64_t)diff > ((uint64_t)t->ema_q * 70/100))
+        if (diff > 0 && (uint64_t)diff > (((uint64_t)tracker->ema_q * 70/100) + (uint64_t)tracker->ema_q))
         {
-            delta = (int32_t)((((int64_t)t->alpha_num_slow) * diff) / t->alpha_den_slow);
+            delta = (int32_t)((((int64_t)tracker->alpha_num_slow) * diff) / tracker->alpha_den_slow);
         } else
         {
-            delta = (int32_t)((((int64_t)t->alpha_num) * diff) / t->alpha_den);
+            delta = (int32_t)((((int64_t)tracker->alpha_num) * diff) / tracker->alpha_den);
         }
         
-        t->ema_q = (uint32_t)((int32_t)t->ema_q + delta);
+        tracker->ema_q = (uint32_t)((int32_t)tracker->ema_q + delta);
     }
-    t->packet_count++;
+    tracker->packet_count++;
 }
 
-uint32_t noise_tracker_get_ema_u16(const noise_tracker_t *t)
+uint32_t get_noise_per_round(noise_tracker_t *tracker, uint32_t *packet_noise_u16, size_t size)
 {
-    return t->ema_q >> EMA_SHIFT;
+    if (packet_noise_u16 == NULL || size == 0 || tracker == NULL)
+    {
+        return;
+    }
+    
+    uint64_t sum = 0;
+    for (size_t i = 0; i < size; i++)
+    {
+        sum += packet_noise_u16[i];
+    }
+    tracker->ema_q = (uint32_t)(sum / size);
+
+    if (!tracker->initialized)
+    {
+        // tracker->ema_q = mean;
+        tracker->initialized = true;
+        // tracker->max_value_noise = NOISE_MAX_DEFAULT_U16;
+    }
+    return tracker->ema_q;
 }
+
+uint32_t get_noise_per_3rounds(uint32_t *packet_noise_u16, size_t size)
+{
+    if (packet_noise_u16 == NULL || size == 0)
+    {
+        return;
+    }
+    
+    uint64_t sum = 0;
+    for (size_t i = 0; i < size; i++)
+    {
+        sum += packet_noise_u16[i];
+    }
+
+    return (uint32_t)sum/size;
+}
+
+// uint32_t noise_tracker_get_ema_u16(const noise_tracker_t *tracker)
+// {
+//     return tracker->ema_q >> EMA_SHIFT;
+// }

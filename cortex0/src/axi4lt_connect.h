@@ -17,4 +17,4 @@
 
 volatile u16 dma_buffer[4096] __attribute__ ((aligned (32)));
 
-void DMA_start(u32 *buffer);
+// void DMA_start(u32 *buffer);

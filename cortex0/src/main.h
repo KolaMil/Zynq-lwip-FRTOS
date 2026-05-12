@@ -24,6 +24,7 @@
 #include "message_buffer.h"
 #include "stream_buffer.h"
 
+#include <limits.h>
 
 /* Xilinx includes. */
 #include "xil_printf.h"
@@ -51,6 +52,7 @@
 #define TCP_PARSE_PRIO          (tskIDLE_PRIORITY + 3)
 #define TCP_MSG_QUEUE_LEN       20
 #define TCP_MSG_SIZE            10
+#define ENABLED_BRAM            0
 
 /* Software version define */
 #define MAJOR_SOFTWARE_VERSION  0
