@@ -31,7 +31,6 @@ static void network_init_task(void *pvParameters)
 		xTaskCreate((TaskFunction_t)x1emacif_input_thread, "xemacif_input", THREAD_STACKSIZE, &server_netif, tskIDLE_PRIORITY, NULL);
 		udp_connection(default_state, sizeof(default_state));
 		tcp_connection_cl();
-
 		xPbufQueueudp = xQueueCreate(200, sizeof(struct pbuf*));
 		xTaskCreate(udp_parse_task, "UDP parsing task", 10000, NULL, UDP_TASK_PRIO, NULL);
 		xPbufQueueforautogaincontrolQueue = xQueueCreate(200, sizeof(struct pbuf*));
@@ -54,9 +53,6 @@ void udp_auto_gain_control_task(void *pvParameters)
 	{
 		if (xQueueReceive(xPbufQueueforautogaincontrolQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
 		{
-			// for (uint8_t dendeks = 0; dendeks < 100; dendeks++) {
-			// 	xil_printf("HEX %u : %02x\r\n", dendeks, ((uint8_t *)p->payload)[dendeks]);
-			// }
 			auto_gain_control(p, autogaincontrol);
 			pbuf_free(p);
 		}
@@ -68,15 +64,9 @@ void udp_parse_task(void *pvParameters)
 {
 	struct pbuf *p;
 	struct pbuf *old_pbuf = NULL;
-	// struct pbuf *q;
-	// struct pbuf *ref;
 	static BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 	uint8_t counter_of_packets = 1;
 	uint8_t nominal_counter_value = 10;
-	uint32_t couner_;
-	uint32_t size_of_samples;
-	uint8_t *old_samples_;
-	uint8_t *new_samples_;
 	uint8_t *curr_data;
 	uint8_t *o_curr_data;
 
@@ -88,14 +78,10 @@ void udp_parse_task(void *pvParameters)
 			{
 				old_pbuf = p;
 				o_curr_data = (uint8_t *)old_pbuf->payload;
-				old_samples_ = (uint8_t *)(o_curr_data + 32);
 			}
 			else
 			{
 				curr_data = (uint8_t *)p->payload;
-				couner_ = curr_data[28] * 0x10000 + curr_data[29] * 0x100 + curr_data[30];
-				size_of_samples = couner_ * 2;
-				new_samples_ = (uint8_t *)(curr_data + 32);
 				static uint8_t iw;
 				static uint32_t predel_na_shag;
 				static uint32_t total_len;
@@ -139,7 +125,6 @@ void udp_parse_task(void *pvParameters)
 						udp_send(udp_pcb_answer, old_pbuf);
 						pbuf_free(old_pbuf);
 					}
-					udp_send(udp_pcb_answer, old_pbuf);
 					counter_of_packets = 0;
 				}
 			}

@@ -44,13 +44,19 @@ AUTOGAINCONTROL* create_auto_gain_control_array(uint16_t nominal_number_of_lines
 }
 
 /*-----------------------------------------------------------*/
+static bool flag_first_disckret = true;
+uint32_t average_values_of_the_ruler[1200] = {0};
+uint32_t average_value_per_revolution[3] = {0};
+uint32_t average_value_over_three_revolutions = 0;
+uint8_t counter_to_3 = 0;
+static uint16_t discrete_value;
 void filling_auto_gain_control_array(struct pbuf *p, uint16_t size_of_samples, AUTOGAINCONTROL* auto_gain_control, uint16_t line_index)
 {
     static uint8_t kursor;
     static uint32_t predel_na_shag;
     static uint32_t total_len;
     total_len = p->tot_len;
-    kursor = 68;
+    kursor = 74;
     for (struct pbuf *q = p; q != NULL; q = q->next)
     {
         if (total_len > 1480)
@@ -62,9 +68,19 @@ void filling_auto_gain_control_array(struct pbuf *p, uint16_t size_of_samples, A
         {
             predel_na_shag = total_len % 1480 / 2;
         }
-        for (uint16_t sample_index = 0; sample_index < predel_na_shag - kursor; sample_index++)
+        for (uint16_t sample_index = 0; sample_index < size_of_samples; sample_index++)
         {
-            if (((uint8_t *)q->payload + kursor)[sample_index * 2] * 0x100 + ((uint8_t *)q->payload + kursor)[sample_index * 2 + 1] > autogain_control_constants[0].max_permissible_value)
+            discrete_value = ((uint8_t *)q->payload + kursor)[sample_index * 2] * 0x100 + ((uint8_t *)q->payload + kursor)[sample_index * 2 + 1];
+            if (flag_first_disckret)
+            {
+                average_values_of_the_ruler[line_index] = discrete_value;
+                flag_first_disckret = false;
+            }
+            else
+            {
+                average_values_of_the_ruler[line_index] += discrete_value;
+            }
+            if (discrete_value > autogain_control_constants[0].max_permissible_value)
             {
                 for (int16_t weakening_line_index = autogain_control_constants[0].weakening_zone * (-1); weakening_line_index <= autogain_control_constants[0].weakening_zone; weakening_line_index++)
                 {
@@ -87,16 +103,34 @@ void filling_auto_gain_control_array(struct pbuf *p, uint16_t size_of_samples, A
                     }
                 }
                 // break;
-                // xil_printf("%04x\r\n", ((uint8_t *)q->payload + kursor)[sample_index * 2 - 2] * 0x100 + ((uint8_t *)q->payload + kursor)[sample_index * 2 + 1 - 1]);
-                // xil_printf("%04x\r\n", ((uint8_t *)q->payload + kursor)[sample_index * 2] * 0x100 + ((uint8_t *)q->payload + kursor)[sample_index * 2 + 1]);
-                // xil_printf("%04x\r\n", ((uint8_t *)q->payload + kursor)[sample_index * 2 + 2] * 0x100 + ((uint8_t *)q->payload + kursor)[sample_index * 2 + 1 + 1]);
-                // xil_printf("inder_of_dalnost : %u", sample_index);
                 goto target;
             }
         }
         kursor = 0;
     }
     target :
+    average_values_of_the_ruler[line_index] = average_values_of_the_ruler[line_index] / size_of_samples;
+    xil_printf("average_values_of_the_ruler[line_index] : %2x\r\n", average_values_of_the_ruler[line_index]);
+    if (line_index == 98)
+    {
+        for (uint16_t i = 0; i <= 98; i++)
+        {
+            average_value_per_revolution[counter_to_3] += average_values_of_the_ruler[i];
+        }
+        average_value_per_revolution[counter_to_3] /= 98;
+        xil_printf("~~~~ average_value_per_revolution : %2x\r\n", average_value_per_revolution[0]);
+        if (counter_to_3 != 2)
+        {
+            counter_to_3++;
+        }
+        else {
+            average_value_over_three_revolutions = (average_value_per_revolution[0] + average_value_per_revolution[1] + average_value_per_revolution[2]) / 3;
+            xil_printf("#### average_value_over_three_revolutions : %2x\r\n", average_value_over_three_revolutions);
+            average_value_per_revolution[0] = average_value_per_revolution[1];
+            average_value_per_revolution[1] = average_value_per_revolution[2];
+        }
+    }
+    flag_first_disckret = false;
     cleaning_auto_gain_control_array(auto_gain_control, ((line_index + NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION) - (autogain_control_constants[0].weakening_zone + 1)) % NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION);
     update_gain_value((line_index + 1) % NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION, auto_gain_control);
 }
@@ -130,7 +164,6 @@ void auto_gain_control(struct pbuf *p, AUTOGAINCONTROL* auto_gain_control)
     static uint32_t line_index;
     static uint16_t size_of_samples;
     static uint16_t r = 3;
-    // xil_printf(" realno : %u\r\n", (((uint8_t *)p->payload)[28] * 0x10000 + ((uint8_t *)p->payload)[29] * 0x100 + ((uint8_t *)p->payload)[30]) * 2);
     if (r == 0.25){
         // 54 55
     }
@@ -141,19 +174,8 @@ void auto_gain_control(struct pbuf *p, AUTOGAINCONTROL* auto_gain_control)
         line_index = (((uint8_t *)p->payload)[40] * 0x100 + ((uint8_t *)p->payload)[41]) / 0x36;
         size_of_samples = (((uint8_t *)p->payload)[56] * 0x10000 + ((uint8_t *)p->payload)[57] * 0x100 + ((uint8_t *)p->payload)[58]) * 2;
     }
-    // xil_printf(" realno : %u\r\n", (((uint8_t *)p->payload)[40] * 0x100 + ((uint8_t *)p->payload)[41]) / 0x36);
-    // xil_printf(" HEX 55 : %02x\r\n", ((uint8_t *)p->payload)[55]);
-    // xil_printf(" HEX 54 : %02x\r\n", ((uint8_t *)p->payload)[54]);
-    // for (uint16_t i = 0; i < 400; i++) {
-    //     xil_printf(" HEX %u : %02x\r\n", i, ((uint8_t *)p->payload)[i]);
-    // }
-    // 56 57 58
-
-    // xil_printf(" realno : %u\r\n", (((uint8_t *)p->payload)[56] * 0x10000 + ((uint8_t *)p->payload)[57] * 0x100 + ((uint8_t *)p->payload)[58]));
-
-    line_index = (((uint8_t *)p->payload)[48] * 0x100 + ((uint8_t *)p->payload)[49]) / 0x36;
-    size_of_samples = (((uint8_t *)p->payload)[64] * 0x10000 + ((uint8_t *)p->payload)[65] * 0x100 + ((uint8_t *)p->payload)[66]) * 2;
-    // xil_printf("line_index : %u\n", line_index);
-
+    line_index = (((uint8_t *)p->payload + 54)[0] * 0x100 + ((uint8_t *)p->payload + 55)[0]) / 0x36;
+    xil_printf("line_index %u\r\n", line_index);
+    size_of_samples = (((uint8_t *)p->payload + 70)[0] * 0x10000 + ((uint8_t *)p->payload + 71)[0] * 0x100 + ((uint8_t *)p->payload + 72)[0]);
     filling_auto_gain_control_array(p, size_of_samples, auto_gain_control, line_index);
 }

@@ -30,16 +30,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9879d595-b46d-469b-9250-76bf9a46412d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/ps7_cortexa9_0/lib/libfreertos.a" beforeDir="false" afterPath="$PROJECT_DIR$/external/ps7_cortexa9_0/lib/libfreertos.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/ps7_cortexa9_0/lib/liblwip4.a" beforeDir="false" afterPath="$PROJECT_DIR$/external/ps7_cortexa9_0/lib/liblwip4.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/ps7_cortexa9_0/lib/libxil.a" beforeDir="false" afterPath="$PROJECT_DIR$/external/ps7_cortexa9_0/lib/libxil.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/external/ps7_cortexa9_0/libsrc/lwip211_v1_0/src/contrib/ports/xilinx/netif/xaxiemacif_physpeed.c" beforeDir="false" afterPath="$PROJECT_DIR$/external/ps7_cortexa9_0/libsrc/lwip211_v1_0/src/contrib/ports/xilinx/netif/xaxiemacif_physpeed.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/auto_gain_control.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/auto_gain_control.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auto_gain_control.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/auto_gain_control.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iwip.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/iwip.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/iwip.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/iwip.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tcp_stack.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/tcp_stack.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +101,12 @@
       <workItem from="1777007819454" duration="19784000" />
       <workItem from="1777036035249" duration="1110000" />
       <workItem from="1777266581050" duration="11188000" />
-      <workItem from="1777278165101" duration="4354000" />
+      <workItem from="1777278165101" duration="5328000" />
+      <workItem from="1777291926678" duration="639000" />
+      <workItem from="1777352594094" duration="6392000" />
+      <workItem from="1777376419808" duration="991000" />
+      <workItem from="1777526062249" duration="8133000" />
+      <workItem from="1778562311677" duration="15578000" />
     </task>
     <servers />
   </component>
