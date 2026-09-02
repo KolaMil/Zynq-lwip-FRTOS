@@ -1,0 +1,1517 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:207 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The target system is: Generic -  - arm
+      The host system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" failed.
+      Compiler: C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      1
+      c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/ld.exe: c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../arm-none-eabi/libc/usr/lib\\libc.a(lib_a-exit.o): in function `exit':
+      exit.c:(.text+0x2c): undefined reference to `_exit'
+      collect2.exe: error: ld returned 1 exit status
+      
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:468 (find_file)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:506 (CMAKE_DETERMINE_COMPILER_ID_WRITE)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:8 (CMAKE_DETERMINE_COMPILER_ID_BUILD)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "file"
+    variable: "src_in"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "CMakeCCompilerId.c.in"
+    candidate_directories:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/"
+    found: "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerId.c.in"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:122 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe 
+      Build flags: 
+      Id flags: -c 
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+      
+      The C compiler identification is GNU, found in:
+        C:/Users/mgre/Desktop/jjj/build/CMakeFiles/4.3.0-rc2/CompilerIdC/CMakeCCompilerId.o
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_RANLIB"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-ranlib"
+      - "ranlib"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-ranlib.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_STRIP"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-strip"
+      - "strip"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-strip.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-strip.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_LINKER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-ld"
+      - "ld"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-ld.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-ld.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_NM"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-nm"
+      - "nm"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-nm.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-nm.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_READELF"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-readelf"
+      - "readelf"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-readelf.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-readelf.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_DLLTOOL"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-dlltool"
+      - "dlltool"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-dlltool.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-dlltool.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-dlltool"
+      - "C:/Windows/System32/arm-none-eabi-dlltool.com"
+      - "C:/Windows/System32/arm-none-eabi-dlltool.exe"
+      - "C:/Windows/System32/arm-none-eabi-dlltool"
+      - "C:/Windows/arm-none-eabi-dlltool.com"
+      - "C:/Windows/arm-none-eabi-dlltool.exe"
+      - "C:/Windows/arm-none-eabi-dlltool"
+      - "C:/Windows/System32/wbem/arm-none-eabi-dlltool.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-dlltool.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-dlltool"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-dlltool.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-dlltool.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-dlltool"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-dlltool.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-dlltool.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-dlltool"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-dlltool.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-dlltool.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-dlltool"
+      - "C:/Program Files/PuTTY/arm-none-eabi-dlltool.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-dlltool.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-dlltool"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-dlltool.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-dlltool.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-dlltool"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-dlltool.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-dlltool.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-dlltool"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-dlltool.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-dlltool.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-dlltool"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-dlltool.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-dlltool.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-dlltool"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-dlltool.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-dlltool.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-dlltool"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-dlltool.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-dlltool.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-dlltool"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/dlltool.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/dlltool.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/dlltool"
+      - "C:/Windows/System32/dlltool.com"
+      - "C:/Windows/System32/dlltool.exe"
+      - "C:/Windows/System32/dlltool"
+      - "C:/Windows/dlltool.com"
+      - "C:/Windows/dlltool.exe"
+      - "C:/Windows/dlltool"
+      - "C:/Windows/System32/wbem/dlltool.com"
+      - "C:/Windows/System32/wbem/dlltool.exe"
+      - "C:/Windows/System32/wbem/dlltool"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/dlltool.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/dlltool.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/dlltool"
+      - "C:/Windows/System32/OpenSSH/dlltool.com"
+      - "C:/Windows/System32/OpenSSH/dlltool.exe"
+      - "C:/Windows/System32/OpenSSH/dlltool"
+      - "C:/Program Files/cursor/resources/app/bin/dlltool.com"
+      - "C:/Program Files/cursor/resources/app/bin/dlltool.exe"
+      - "C:/Program Files/cursor/resources/app/bin/dlltool"
+      - "C:/Program Files/PuTTY/dlltool.com"
+      - "C:/Program Files/PuTTY/dlltool.exe"
+      - "C:/Program Files/PuTTY/dlltool"
+      - "C:/Program Files/Git/cmd/dlltool.com"
+      - "C:/Program Files/Git/cmd/dlltool.exe"
+      - "C:/Program Files/Git/cmd/dlltool"
+      - "C:/Program Files/CMake/bin/dlltool.com"
+      - "C:/Program Files/CMake/bin/dlltool.exe"
+      - "C:/Program Files/CMake/bin/dlltool"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/dlltool.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/dlltool.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/dlltool"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/dlltool.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/dlltool.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/dlltool"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/dlltool.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/dlltool.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/dlltool"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/dlltool.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/dlltool.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/dlltool"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_ADDR2LINE"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-addr2line"
+      - "addr2line"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-addr2line.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-addr2line.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindBinUtils.cmake:243 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:200 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_TAPI"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-tapi"
+      - "tapi"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-tapi.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-tapi.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-tapi"
+      - "C:/Windows/System32/arm-none-eabi-tapi.com"
+      - "C:/Windows/System32/arm-none-eabi-tapi.exe"
+      - "C:/Windows/System32/arm-none-eabi-tapi"
+      - "C:/Windows/arm-none-eabi-tapi.com"
+      - "C:/Windows/arm-none-eabi-tapi.exe"
+      - "C:/Windows/arm-none-eabi-tapi"
+      - "C:/Windows/System32/wbem/arm-none-eabi-tapi.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-tapi.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-tapi"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-tapi.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-tapi.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-tapi"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-tapi.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-tapi.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-tapi"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-tapi.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-tapi.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-tapi"
+      - "C:/Program Files/PuTTY/arm-none-eabi-tapi.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-tapi.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-tapi"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-tapi.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-tapi.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-tapi"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-tapi.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-tapi.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-tapi"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-tapi.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-tapi.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-tapi"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-tapi.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-tapi.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-tapi"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-tapi.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-tapi.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-tapi"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-tapi.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-tapi.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-tapi"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/tapi.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/tapi.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/tapi"
+      - "C:/Windows/System32/tapi.com"
+      - "C:/Windows/System32/tapi.exe"
+      - "C:/Windows/System32/tapi"
+      - "C:/Windows/tapi.com"
+      - "C:/Windows/tapi.exe"
+      - "C:/Windows/tapi"
+      - "C:/Windows/System32/wbem/tapi.com"
+      - "C:/Windows/System32/wbem/tapi.exe"
+      - "C:/Windows/System32/wbem/tapi"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/tapi"
+      - "C:/Windows/System32/OpenSSH/tapi.com"
+      - "C:/Windows/System32/OpenSSH/tapi.exe"
+      - "C:/Windows/System32/OpenSSH/tapi"
+      - "C:/Program Files/cursor/resources/app/bin/tapi.com"
+      - "C:/Program Files/cursor/resources/app/bin/tapi.exe"
+      - "C:/Program Files/cursor/resources/app/bin/tapi"
+      - "C:/Program Files/PuTTY/tapi.com"
+      - "C:/Program Files/PuTTY/tapi.exe"
+      - "C:/Program Files/PuTTY/tapi"
+      - "C:/Program Files/Git/cmd/tapi.com"
+      - "C:/Program Files/Git/cmd/tapi.exe"
+      - "C:/Program Files/Git/cmd/tapi"
+      - "C:/Program Files/CMake/bin/tapi.com"
+      - "C:/Program Files/CMake/bin/tapi.exe"
+      - "C:/Program Files/CMake/bin/tapi"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/tapi.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/tapi.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/tapi"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/tapi.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/tapi.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/tapi"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/tapi.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/tapi.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/tapi"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/tapi.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/tapi.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/tapi"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ar-8.2"
+      - "arm-none-eabi-gcc-ar-8"
+      - "arm-none-eabi-gcc-ar8"
+      - "arm-none-eabi-gcc-ar"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Windows/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-8.2.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-8.2.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-8.2"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-8"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-8"
+      - "C:/Windows/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-8"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-8"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-8"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-8"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-8"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-8"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-8"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-8"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-8"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-8"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-8"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-8"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar8.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar8"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar8.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar8"
+      - "C:/Windows/arm-none-eabi-gcc-ar8.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar8"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar8.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar8"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar8.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar8"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar8.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar8"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar8.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar8"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar8.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar8"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar8.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar8"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar8.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar8"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar8.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar8"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar8"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar8"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar8"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCCompiler.cmake:201 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ranlib-8.2"
+      - "arm-none-eabi-gcc-ranlib-8"
+      - "arm-none-eabi-gcc-ranlib8"
+      - "arm-none-eabi-gcc-ranlib"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-8.2.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-8.2.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-8.2"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-8"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib8"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib8"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib8"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib8"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib8"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib8"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib8"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib8"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib8"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib8"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib8"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib8"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib8"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib8.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib8.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib8"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerId.cmake:1296 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineASMCompiler.cmake:170 (CMAKE_DETERMINE_COMPILER_ID_VENDOR)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Checking whether the ASM compiler is GNU using "--version" matched "(GNU assembler)|(GCC)|(Free Software Foundation)":
+      arm-none-eabi-gcc.exe (GCC) 8.2.0
+      Copyright (C) 2018 Free Software Foundation, Inc.
+      This is free software; see the source for copying conditions.  There is NO
+      warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+      
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-FindBinUtils.cmake:18 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineASMCompiler.cmake:268 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_ASM_COMPILER_AR"
+    description: "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ar-"
+      - "arm-none-eabi-gcc-ar-"
+      - "arm-none-eabi-gcc-ar"
+      - "arm-none-eabi-gcc-ar"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ar-"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ar-"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ar-"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ar-"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ar-"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ar.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "find-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/Compiler/GNU-FindBinUtils.cmake:30 (find_program)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineASMCompiler.cmake:268 (include)"
+      - "CMakeLists.txt:2 (project)"
+    mode: "program"
+    variable: "CMAKE_ASM_COMPILER_RANLIB"
+    description: "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: false
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: false
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "arm-none-eabi-gcc-ranlib-"
+      - "arm-none-eabi-gcc-ranlib-"
+      - "arm-none-eabi-gcc-ranlib"
+      - "arm-none-eabi-gcc-ranlib"
+    candidate_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/"
+      - "C:/Windows/System32/"
+      - "C:/Windows/"
+      - "C:/Windows/System32/wbem/"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/"
+      - "C:/Windows/System32/OpenSSH/"
+      - "C:/Program Files/cursor/resources/app/bin/"
+      - "C:/Program Files/PuTTY/"
+      - "C:/Program Files/Git/cmd/"
+      - "C:/Program Files/CMake/bin/"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/"
+    searched_directories:
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/wbem/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/WindowsPowerShell/v1.0/arm-none-eabi-gcc-ranlib-"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Windows/System32/OpenSSH/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/cursor/resources/app/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/PuTTY/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/Git/cmd/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files/CMake/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Program Files (x86)/STMicroelectronics/STM32 ST-LINK Utility/ST-LINK Utility/arm-none-eabi-gcc-ranlib-"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/Scripts/arm-none-eabi-gcc-ranlib-"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Python/Python313/arm-none-eabi-gcc-ranlib-"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-.com"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-.exe"
+      - "C:/Users/mgre/AppData/Local/Programs/Microsoft VS Code/bin/arm-none-eabi-gcc-ranlib-"
+      - "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib.com"
+    found: "C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc-ranlib.exe"
+    search_context:
+      ENV{PATH}:
+        - "C:\\Windows\\system32"
+        - "C:\\Windows"
+        - "C:\\Windows\\System32\\Wbem"
+        - "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\"
+        - "C:\\Windows\\System32\\OpenSSH\\"
+        - "C:\\Program Files\\cursor\\resources\\app\\bin"
+        - "C:\\Program Files\\PuTTY\\"
+        - "C:\\Program Files\\Git\\cmd"
+        - "C:\\Program Files\\CMake\\bin"
+        - "C:\\Program Files (x86)\\STMicroelectronics\\STM32 ST-LINK Utility\\ST-LINK Utility"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Python\\Python313\\"
+        - "C:\\Users\\mgre\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "C:/Users/mgre/Desktop/jjj/build/CMakeFiles/CMakeScratch/TryCompile-25n5ji"
+      binary: "C:/Users/mgre/Desktop/jjj/build/CMakeFiles/CMakeScratch/TryCompile-25n5ji"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/mgre/Desktop/jjj/build/CMakeFiles/CMakeScratch/TryCompile-25n5ji'
+        
+        Run Build Command(s): C:/Users/mgre/Desktop/ninja/ninja.exe -v cmTC_d21e7
+        [1/2] C:\\Xilinx\\SDK\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-gcc.exe   -v -o CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"
+        Using built-in specs.
+        COLLECT_GCC=C:\\Xilinx\\SDK\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-gcc.exe
+        Target: arm-none-eabi
+        Configured with: /proj/esdt_sdk/gnu_abe/ABE/builds/lin/arm/arm-linux/snapshots/gcc-8.2.0/configure SHELL=/bin/sh --with-bugurl=https://bugs.linaro.org --with-mpc=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32 --with-mpfr=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32 --with-gmp=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32 --with-gnu-as --with-gnu-ld --disable-libstdcxx-pch --disable-libmudflap --with-cloog=no --with-ppl=no --with-isl=no --disable-nls --enable-c99 --enable-threads=no --enable-multilib --disable-multiarch --with-multilib-list=aprofile --disable-threads --with-newlib --with-build-sysroot=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32/arm-none-eabi/libc --enable-lto --enable-plugins --enable-linker-build-id --enable-long-long --enable-shared --with-sysroot=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32/arm-none-eabi/libc --enable-languages=c,c++,lto --enable-checking=yes --disable-bootstrap --build=x86_64-unknown-linux-gnu --host=x86_64-w64-mingw32 --target=arm-none-eabi --prefix=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32
+        Thread model: single
+        gcc version 8.2.0 (GCC) 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-march=armv4t'
+         c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/8.2.0/cc1.exe -quiet -v -iprefix c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../lib/gcc/arm-none-eabi/8.2.0/ -isysroot c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../arm-none-eabi/libc -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mcpu=arm7tdmi -mfloat-abi=soft -marm -march=armv4t -auxbase-strip CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj -version -o C:\\Users\\mgre\\AppData\\Local\\Temp\\ccMtuyHs.s
+        GNU C17 (GCC) version 8.2.0 (arm-none-eabi)
+        	compiled by GNU C version 4.8.0, GMP version 6.0.0, MPFR version 3.1.3, MPC version 1.0.3, isl version none
+        GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
+        ignoring duplicate directory "c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/../../lib/gcc/arm-none-eabi/8.2.0/include"
+        ignoring nonexistent directory "c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../arm-none-eabi/libc/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32/lib/gcc/arm-none-eabi/8.2.0/../../../../include"
+        ignoring duplicate directory "c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/../../lib/gcc/arm-none-eabi/8.2.0/include-fixed"
+        ignoring duplicate directory "c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/../../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/include"
+        #include "..." search starts here:
+        #include <...> search starts here:
+         c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../lib/gcc/arm-none-eabi/8.2.0/include
+         c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../lib/gcc/arm-none-eabi/8.2.0/include-fixed
+         c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/include
+         c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../arm-none-eabi/libc/usr/include
+        End of search list.
+        GNU C17 (GCC) version 8.2.0 (arm-none-eabi)
+        	compiled by GNU C version 4.8.0, GMP version 6.0.0, MPFR version 3.1.3, MPC version 1.0.3, isl version none
+        GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096
+        Compiler executable checksum: 6faad6dd84d78612488891c610c0cd11
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-march=armv4t'
+         c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/as.exe -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj C:\\Users\\mgre\\AppData\\Local\\Temp\\ccMtuyHs.s
+        GNU assembler version 2.31 (arm-none-eabi) using BFD version (Linaro_Binutils-) 2.31
+        COMPILER_PATH=c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/8.2.0/;c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../libexec/gcc/;c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/
+        LIBRARY_PATH=c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/;c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/;c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/lib/;c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../arm-none-eabi/libc/usr/lib/
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-march=armv4t'
+        [2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f libcmTC_d21e7.a && C:\\Xilinx\\SDK\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-ar.exe qc libcmTC_d21e7.a  CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj && C:\\Xilinx\\SDK\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-ranlib.exe libcmTC_d21e7.a && cd ."
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:217 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit include dir info: rv=done
+        found start of include info
+        found start of implicit include info
+          add: [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/include]
+          add: [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/include-fixed]
+          add: [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/include]
+          add: [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../arm-none-eabi/libc/usr/include]
+        end of search list found
+        collapse include dir [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/include] ==> [C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/8.2.0/include]
+        collapse include dir [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/include-fixed] ==> [C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/8.2.0/include-fixed]
+        collapse include dir [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/include] ==> [C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/arm-none-eabi/include]
+        collapse include dir [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../arm-none-eabi/libc/usr/include] ==> [C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include]
+        implicit include dirs: [C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/8.2.0/include;C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/arm-none-eabi/8.2.0/include-fixed;C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/arm-none-eabi/include;C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/arm-none-eabi/libc/usr/include]
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeDetermineCompilerABI.cmake:253 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|"|[0-9]+>[ 	-]*Build:[ 	0-9]+ ms[ 	]*)?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        ignore line: [Change Dir: 'C:/Users/mgre/Desktop/jjj/build/CMakeFiles/CMakeScratch/TryCompile-25n5ji']
+        ignore line: []
+        ignore line: [Run Build Command(s): C:/Users/mgre/Desktop/ninja/ninja.exe -v cmTC_d21e7]
+        ignore line: [[1/2] C:\\Xilinx\\SDK\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-gcc.exe   -v -o CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj -c "C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c"]
+        ignore line: [Using built-in specs.]
+        ignore line: [COLLECT_GCC=C:\\Xilinx\\SDK\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-gcc.exe]
+        ignore line: [Target: arm-none-eabi]
+        ignore line: [Configured with: /proj/esdt_sdk/gnu_abe/ABE/builds/lin/arm/arm-linux/snapshots/gcc-8.2.0/configure SHELL=/bin/sh --with-bugurl=https://bugs.linaro.org --with-mpc=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32 --with-mpfr=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32 --with-gmp=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32 --with-gnu-as --with-gnu-ld --disable-libstdcxx-pch --disable-libmudflap --with-cloog=no --with-ppl=no --with-isl=no --disable-nls --enable-c99 --enable-threads=no --enable-multilib --disable-multiarch --with-multilib-list=aprofile --disable-threads --with-newlib --with-build-sysroot=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32/arm-none-eabi/libc --enable-lto --enable-plugins --enable-linker-build-id --enable-long-long --enable-shared --with-sysroot=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32/arm-none-eabi/libc --enable-languages=c,c++,lto --enable-checking=yes --disable-bootstrap --build=x86_64-unknown-linux-gnu --host=x86_64-w64-mingw32 --target=arm-none-eabi --prefix=/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32]
+        ignore line: [Thread model: single]
+        ignore line: [gcc version 8.2.0 (GCC) ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-march=armv4t']
+        ignore line: [ c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/8.2.0/cc1.exe -quiet -v -iprefix c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../lib/gcc/arm-none-eabi/8.2.0/ -isysroot c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../arm-none-eabi/libc -D__USES_INITFINI__ C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mcpu=arm7tdmi -mfloat-abi=soft -marm -march=armv4t -auxbase-strip CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj -version -o C:\\Users\\mgre\\AppData\\Local\\Temp\\ccMtuyHs.s]
+        ignore line: [GNU C17 (GCC) version 8.2.0 (arm-none-eabi)]
+        ignore line: [	compiled by GNU C version 4.8.0  GMP version 6.0.0  MPFR version 3.1.3  MPC version 1.0.3  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
+        ignore line: [ignoring duplicate directory "c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/../../lib/gcc/arm-none-eabi/8.2.0/include"]
+        ignore line: [ignoring nonexistent directory "c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../arm-none-eabi/libc/proj/esdt_sdk/gnu_abe/ABE/builds/win/arm/arm-none-eabi/builds/destdir/x86_64-w64-mingw32/lib/gcc/arm-none-eabi/8.2.0/../../../../include"]
+        ignore line: [ignoring duplicate directory "c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/../../lib/gcc/arm-none-eabi/8.2.0/include-fixed"]
+        ignore line: [ignoring duplicate directory "c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/lib/gcc/../../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/include"]
+        ignore line: [#include "..." search starts here:]
+        ignore line: [#include <...> search starts here:]
+        ignore line: [ c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../lib/gcc/arm-none-eabi/8.2.0/include]
+        ignore line: [ c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../lib/gcc/arm-none-eabi/8.2.0/include-fixed]
+        ignore line: [ c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/include]
+        ignore line: [ c:\\xilinx\\sdk\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\../arm-none-eabi/libc/usr/include]
+        ignore line: [End of search list.]
+        ignore line: [GNU C17 (GCC) version 8.2.0 (arm-none-eabi)]
+        ignore line: [	compiled by GNU C version 4.8.0  GMP version 6.0.0  MPFR version 3.1.3  MPC version 1.0.3  isl version none]
+        ignore line: [GGC heuristics: --param ggc-min-expand=30 --param ggc-min-heapsize=4096]
+        ignore line: [Compiler executable checksum: 6faad6dd84d78612488891c610c0cd11]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-march=armv4t']
+        ignore line: [ c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/as.exe -v -march=armv4t -mfloat-abi=soft -meabi=5 -o CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj C:\\Users\\mgre\\AppData\\Local\\Temp\\ccMtuyHs.s]
+        ignore line: [GNU assembler version 2.31 (arm-none-eabi) using BFD version (Linaro_Binutils-) 2.31]
+        ignore line: [COMPILER_PATH=c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../libexec/gcc/arm-none-eabi/8.2.0/]
+        ignore line: [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../libexec/gcc/]
+        ignore line: [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/bin/]
+        ignore line: [LIBRARY_PATH=c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/]
+        ignore line: [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/]
+        ignore line: [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../lib/gcc/arm-none-eabi/8.2.0/../../../../arm-none-eabi/lib/]
+        ignore line: [c:/xilinx/sdk/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin/../arm-none-eabi/libc/usr/lib/]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj' '-c' '-mcpu=arm7tdmi' '-mfloat-abi=soft' '-marm' '-march=armv4t']
+        ignore line: [[2/2] C:\\Windows\\system32\\cmd.exe /C "cd . && "C:\\Program Files\\CMake\\bin\\cmake.exe" -E rm -f libcmTC_d21e7.a && C:\\Xilinx\\SDK\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-ar.exe qc libcmTC_d21e7.a  CMakeFiles/cmTC_d21e7.dir/CMakeCCompilerABI.c.obj && C:\\Xilinx\\SDK\\2019.1\\gnu\\aarch32\\nt\\gcc-arm-none-eabi\\bin\\arm-none-eabi-ranlib.exe libcmTC_d21e7.a && cd ."]
+        ignore line: []
+        ignore line: []
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+...

@@ -1,6 +1,0 @@
-# Доступ к USB без root: uaccess для локального сеанса
-ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6014", ATTR{serial}=="210251A08870", MODE="0660", GROUP="plugdev", TAG+="uaccess"
-
-# Пока ftdi_sio держит адаптер OpenOCD не может взять его через libusb.
-# Отвязываем по серийнику чтобы не задеть консольный CP210x
-ACTION=="add", SUBSYSTEM=="usb", DRIVER=="ftdi_sio", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6014", ATTRS{serial}=="210251A08870", RUN+="/bin/sh -c 'echo -n %k > /sys/bus/usb/drivers/ftdi_sio/unbind'"

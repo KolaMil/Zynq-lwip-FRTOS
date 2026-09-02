@@ -67,15 +67,23 @@ void vParTestInitialise(void)
 	( void ) xStatus; /* Remove compiler warning if configASSERT() is not defined. */
 
 	/* Enable outputs and set low. */
-	XGpioPs_SetDirectionPin( &xGpio, partstGPIO_56_OUTPUT, partstDIRECTION_OUTPUT );
-	XGpioPs_SetOutputEnablePin( &xGpio, partstGPIO_56_OUTPUT, partstOUTPUT_ENABLED );
-	XGpioPs_WritePin( &xGpio, partstGPIO_56_OUTPUT, 0x0 );
-	XGpioPs_SetDirectionPin( &xGpio, partstGPIO_57_OUTPUT, partstDIRECTION_OUTPUT );
-	XGpioPs_SetOutputEnablePin( &xGpio, partstGPIO_57_OUTPUT, partstOUTPUT_ENABLED );
-	XGpioPs_WritePin( &xGpio, partstGPIO_57_OUTPUT, 0x0 );
-	XGpioPs_SetDirectionPin( &xGpio, partstGPIO_58_OUTPUT, partstDIRECTION_OUTPUT );
-	XGpioPs_SetOutputEnablePin( &xGpio, partstGPIO_58_OUTPUT, partstOUTPUT_ENABLED );
-	XGpioPs_WritePin( &xGpio, partstGPIO_58_OUTPUT, 0x0 );
+	XGpioPs_SetDirectionPin(&XGpioPsInstance, 54,1);
+    XGpioPs_SetDirectionPin(&XGpioPsInstance, 55,1);
+	XGpioPs_SetDirectionPin(&XGpioPsInstance, 56,1);
+    XGpioPs_SetDirectionPin(&XGpioPsInstance, 57,1);
+
+    XGpioPs_SetDirectionPin(&XGpioPsInstance, 58,0);
+
+    XGpioPs_SetOutputEnablePin(&XGpioPsInstance, 54,1);
+    XGpioPs_SetOutputEnablePin(&XGpioPsInstance, 55,1);
+    XGpioPs_SetOutputEnablePin(&XGpioPsInstance, 56,1);
+    XGpioPs_SetOutputEnablePin(&XGpioPsInstance, 57,1);
+
+	XGpioPs_WritePin(&XGpioPsInstance, 54, 0);
+	XGpioPs_WritePin(&XGpioPsInstance, 55, 0);
+	XGpioPs_WritePin(&XGpioPsInstance, 56, 0);
+	XGpioPs_WritePin(&XGpioPsInstance, 57, 0);
+	
 	XGpioPs_SetDirectionPin(&xGpio, LED_LEFT, 1);
 	XGpioPs_SetOutputEnablePin(&xGpio, LED_LEFT, 1);
 	XGpioPs_SetDirectionPin(&xGpio, LED_MIDDLE, 1);
@@ -88,38 +96,34 @@ void vParTestInitialise(void)
 
 void vParTestSetGPIO(UBaseType_t uxPIN, BaseType_t xValue)
 {
-	(void) uxPIN;
+	// (void) uxPIN;
 	switch (uxPIN)
 	{
-		case 0:
-			XGpioPs_WritePin( &xGpio, partstGPIO_54_OUTPUT, xValue );
-			break;
-		case 4:
-			XGpioPs_WritePin( &xGpio, partstGPIO_58_OUTPUT, xValue );
-			break;
-		case 1:
-			XGpioPs_WritePin( &xGpio, partstGPIO_55_OUTPUT, xValue );
-			break;
-		case 2:
-			XGpioPs_WritePin( &xGpio, partstGPIO_56_OUTPUT, xValue );
-			break;
-		case 3:
-			XGpioPs_WritePin( &xGpio, partstGPIO_57_OUTPUT, xValue );
-			break;
+	case 1:
+		XGpioPs_WritePin( &xGpio, partstGPIO_56_OUTPUT, xValue );
+		break;
+	case 2:
+		XGpioPs_WritePin( &xGpio, partstGPIO_57_OUTPUT, xValue );
+		break;
+	case 3:
+		XGpioPs_WritePin( &xGpio, partstGPIO_58_OUTPUT, xValue );
+		break;
 
-		case LED_LEFT:
-			XGpioPs_WritePin( &xGpio, LED_LEFT, xValue );
-			break;
+	case LED_LEFT:
+		XGpioPs_WritePin( &xGpio, LED_LEFT, xValue );
+		break;
 
-		case LED_MIDDLE:
-			XGpioPs_WritePin( &xGpio, LED_MIDDLE, xValue );
-			break;
+	case LED_MIDDLE:
+		XGpioPs_WritePin( &xGpio, LED_MIDDLE, xValue );
+		break;
 
-		case LED_RIGHT:
-			XGpioPs_WritePin( &xGpio, LED_RIGHT, xValue );
-			break;
+	case LED_RIGHT:
+		XGpioPs_WritePin( &xGpio, LED_RIGHT, xValue );
+		break;
 
-		default:
-			break;
+	default:
+		break;
 	}
+
+	XGpioPs_WritePin( &xGpio, partstGPIO_56_OUTPUT, 0x1 );
 }

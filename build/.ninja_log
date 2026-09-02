@@ -1,0 +1,14 @@
+# ninja log v7
+19	43	8099505630338637	C:/Users/mgre/Desktop/jjj/build/CMakeFiles/cmake.verify_globs	f46457aea88acc52
+61	190	8099505630822035	src/CMakeFiles/src.dir/i2c_access.c.obj	1e8cbac1f22acd46
+106	222	8099505631282592	src/CMakeFiles/src.dir/sfp.c.obj	8c23dfa82cfee92
+114	230	8099505631378293	src/CMakeFiles/src.dir/si5324.c.obj	6e6b314b51d35c61
+55	297	8099505630783194	src/CMakeFiles/src.dir/dma_functions.c.obj	5fee7dd79d9e978f
+89	302	8099505631130481	src/CMakeFiles/src.dir/main_machine_functions.c.obj	e3663faa79a96b65
+68	359	8099505630919910	src/CMakeFiles/src.dir/iic_phyreset.c.obj	d97e38d8f21ad079
+97	392	8099505631194196	src/CMakeFiles/src.dir/platform.c.obj	d0aceb16b522c7a0
+49	428	8099505630733328	src/CMakeFiles/src.dir/dds_functions.c.obj	8aff190083490af7
+129	446	8099505631537513	src/CMakeFiles/src.dir/ttc_timer.c.obj	e768e78afd670158
+137	459	8099505631590711	src/CMakeFiles/src.dir/udp_stack.c.obj	2cad098b2feb7d6e
+122	463	8099505631451052	src/CMakeFiles/src.dir/tcp_stack.c.obj	37622f8c3ca25713
+44	594	8099505630683841	src/CMakeFiles/src.dir/auto_gain_control.c.obj	33e2673c3f984271

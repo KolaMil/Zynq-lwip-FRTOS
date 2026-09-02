@@ -1,0 +1,5 @@
+C:/Users/mgre/Desktop/jjj/build/CMakeFiles/edit_cache.dir
+C:/Users/mgre/Desktop/jjj/build/CMakeFiles/rebuild_cache.dir
+C:/Users/mgre/Desktop/jjj/build/src/CMakeFiles/src.dir
+C:/Users/mgre/Desktop/jjj/build/src/CMakeFiles/edit_cache.dir
+C:/Users/mgre/Desktop/jjj/build/src/CMakeFiles/rebuild_cache.dir

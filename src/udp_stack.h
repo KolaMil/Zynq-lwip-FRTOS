@@ -1,12 +1,3 @@
-/*
- ============================================================================
- Name        : udp_stack.h
- Author      :
- Version     :
- Description : Inc for udp_stack.c
- ============================================================================
- */
-
 #ifndef SRC_UDP_STACK_H_
 #define SRC_UDP_STACK_H_
 

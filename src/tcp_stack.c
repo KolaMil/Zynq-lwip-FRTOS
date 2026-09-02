@@ -1,12 +1,3 @@
-/*
- ============================================================================
- Name        : tcp_stack.c
- Author      :
- Version     :
- Description : TCP support structure
- ============================================================================
- */
-
 #include "tcp_stack.h"
 
 const char* tcp_state_to_string(enum tcp_state state) {
@@ -33,9 +24,9 @@ tcp_monitor_t* create_tcp_monitor(struct tcp_pcb *pcb) {
     if (monitor == NULL) {
         return NULL;
     }
-    
+
     memset(monitor, 0, sizeof(tcp_monitor_t));
-    
+
     monitor->pcb = pcb;
     monitor->creation_time = xTaskGetTickCount();
     monitor->last_update_time = xTaskGetTickCount();
@@ -47,12 +38,12 @@ tcp_monitor_t* create_tcp_monitor(struct tcp_pcb *pcb) {
         } else {
             strcpy(monitor->remote_ip_str, "0.0.0.0");
         }
-    
+
     return monitor;
 }
 
 err_t update_monitor(tcp_monitor_t *monitor){
-    
+
     if (monitor == NULL || monitor->pcb == NULL) {
         return ERR_MEM;
     }

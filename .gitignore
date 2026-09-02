@@ -1,6 +1,0 @@
-cmake-build-debug/
-build*/
-*.elf
-*.map
-
-.idea/workspace.xml

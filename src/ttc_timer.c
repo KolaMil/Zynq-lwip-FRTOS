@@ -1,12 +1,3 @@
-/*
- ============================================================================
- Name        : ttc_timer.c
- Author      :
- Version     :
- Description : TTC interrupt timer configuration
- ============================================================================
- */
-
 #include "FreeRTOS.h"
 #include "task.h"
 #include "platform.h"
@@ -29,10 +20,10 @@ static const BaseType_t xInterruptIDs[ tmrTIMERS_USED ] = { XPAR_XTTCPS_0_INTR, 
 
 typedef struct
 {
-	uint32_t OutputHz;	
-	uint16_t Interval;	
-	uint8_t Prescaler;	
-	uint16_t Options;	
+	uint32_t OutputHz;
+	uint16_t Interval;
+	uint8_t Prescaler;
+	uint16_t Options;
 } TmrCntrSetup;
 
 static TmrCntrSetup xTimerSettings[ tmrTIMERS_USED ] =
@@ -64,38 +55,38 @@ void vInitialiseTimer(void)
 
 	for( xTimer = 0; xTimer < 3; xTimer++ )
 	{
-		pxTimerInstance = &( xTimerInstances[ xTimer ] );
-		pxTimerConfiguration = XTtcPs_LookupConfig( xDeviceIDs[ xTimer ] );
-		configASSERT( pxTimerConfiguration );
+		pxTimerInstance = &(xTimerInstances[xTimer]);
+		pxTimerConfiguration = XTtcPs_LookupConfig(xDeviceIDs[xTimer]);
+		configASSERT(pxTimerConfiguration);
 
-		pxTimerSettings = &( xTimerSettings[ xTimer ] );
+		pxTimerSettings = &(xTimerSettings[xTimer]);
 
-		xStatus = XTtcPs_CfgInitialize( pxTimerInstance, pxTimerConfiguration, pxTimerConfiguration->BaseAddress );
-		if( xStatus != XST_SUCCESS )
+		xStatus = XTtcPs_CfgInitialize( pxTimerInstance, pxTimerConfiguration, pxTimerConfiguration->BaseAddress);
+		if(xStatus != XST_SUCCESS)
 		{
-			XTtcPs_Stop( pxTimerInstance );
-			xStatus = XTtcPs_CfgInitialize( pxTimerInstance, pxTimerConfiguration, pxTimerConfiguration->BaseAddress );
-			configASSERT( xStatus == XST_SUCCESS );
+			XTtcPs_Stop(pxTimerInstance);
+			xStatus = XTtcPs_CfgInitialize(pxTimerInstance, pxTimerConfiguration, pxTimerConfiguration->BaseAddress);
+			configASSERT(xStatus == XST_SUCCESS);
 		}
 
-		XTtcPs_SetOptions( pxTimerInstance, pxTimerSettings->Options );
+		XTtcPs_SetOptions( pxTimerInstance, pxTimerSettings->Options);
 
-		XTtcPs_CalcIntervalFromFreq( pxTimerInstance, pxTimerSettings->OutputHz, &( pxTimerSettings->Interval ), &( pxTimerSettings->Prescaler ) );
+		XTtcPs_CalcIntervalFromFreq( pxTimerInstance, pxTimerSettings->OutputHz, &(pxTimerSettings->Interval), &(pxTimerSettings->Prescaler));
 
-		XTtcPs_SetInterval( pxTimerInstance, pxTimerSettings->Interval );
-		XTtcPs_SetPrescaler( pxTimerInstance, pxTimerSettings->Prescaler );
+		XTtcPs_SetInterval(pxTimerInstance, pxTimerSettings->Interval);
+		XTtcPs_SetPrescaler(pxTimerInstance, pxTimerSettings->Prescaler);
 		if (xTimer != 1)
 		{
-			XScuGic_SetPriorityTriggerType( &xInterruptController, xInterruptIDs[ xTimer ], uxInterruptPriorities[ xTimer ] << portPRIORITY_SHIFT, ucRisingEdge );
+			XScuGic_SetPriorityTriggerType(&xInterruptController, xInterruptIDs[xTimer], uxInterruptPriorities[xTimer] << portPRIORITY_SHIFT, ucRisingEdge);
 
-			xStatus = XScuGic_Connect( &xInterruptController, xInterruptIDs[ xTimer ], ( Xil_InterruptHandler ) prvTimerHandler, ( void * ) pxTimerInstance );
-			configASSERT( xStatus == XST_SUCCESS);
+			xStatus = XScuGic_Connect(&xInterruptController, xInterruptIDs[xTimer], (Xil_InterruptHandler) prvTimerHandler, (void *) pxTimerInstance);
+			configASSERT(xStatus == XST_SUCCESS);
 
-			XScuGic_Enable( &xInterruptController, xInterruptIDs[ xTimer ] );
+			XScuGic_Enable(&xInterruptController, xInterruptIDs[xTimer]);
 
-			XTtcPs_EnableInterrupts( pxTimerInstance, XTTCPS_IXR_INTERVAL_MASK );
+			XTtcPs_EnableInterrupts(pxTimerInstance, XTTCPS_IXR_INTERVAL_MASK);
 
-			XTtcPs_Start( pxTimerInstance );
+			XTtcPs_Start(pxTimerInstance);
 		}
 	}
 }
@@ -134,7 +125,6 @@ static void prvTimerHandler( void *pvCallBackRef )
 {
 	uint32_t ulInterruptStatus;
 	XTtcPs *pxTimer = ( XTtcPs * ) pvCallBackRef;
-	BaseType_t xHPW = pdFALSE;
 
 	ulInterruptStatus = XTtcPs_GetInterruptStatus( pxTimer );
 	XTtcPs_ClearInterruptStatus( pxTimer, ulInterruptStatus );
@@ -160,4 +150,3 @@ static void prvTimerHandler( void *pvCallBackRef )
 		TcpFastTmrFlag = 1;
 	}
 }
-

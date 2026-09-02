@@ -1,26 +1,5 @@
-/*
- ============================================================================
- Name        : main.c
- Author      :
- Version     :
- Description : FreeRTOS with LwIp and AxIdma
- ============================================================================
- */
-
 #include "main.h"
 
-int main(void)
-{
-	start_cpu1();
-	init_platform();
-	xil_printf("\n Start PS-part 0f Zynq!\r\n");
-	xil_printf("\n Version: %d.%d\n", MAJOR_SOFTWARE_VERSION, MINOR_SOFTWARE_VERSION);
-	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
-	vTaskStartScheduler();
-	while(1);
-}
-
-/*-----------------------------------------------------------*/
 static void network_init_task(void *pvParameters)
 {
 	const TickType_t x1second = pdMS_TO_TICKS(DELAY_1_SECOND);
@@ -33,7 +12,7 @@ static void network_init_task(void *pvParameters)
 		tcp_connection_cl();
 		xPbufQueueudp = xQueueCreate(200, sizeof(struct pbuf*));
 		xTaskCreate(udp_parse_task, "UDP parsing task", 10000, NULL, UDP_TASK_PRIO, NULL);
-		xPbufQueueforautogaincontrolQueue = xQueueCreate(200, sizeof(struct pbuf*));
+		// xPbufQueueforautogaincontrolQueue = xQueueCreate(200, sizeof(struct pbuf*));
 		xTaskCreate(udp_auto_gain_control_task, "UDP auto gain control task", 10000, NULL, AUTO_GAIN_CONTROL_TASK_PRIO, &xAutoGainControlTask);
 		xMsgBuffer = xMessageBufferCreate(1024);
 		xPbufQueuetcp = xQueueCreate(200, sizeof(struct pbuf*));
@@ -43,23 +22,101 @@ static void network_init_task(void *pvParameters)
 	}
 }
 
-/*-----------------------------------------------------------*/
-void udp_auto_gain_control_task(void *pvParameters)
+void DMA_set(void *arg)
 {
-	struct pbuf *p;
-	AUTOGAINCONTROL* autogaincontrol = create_auto_gain_control_array(NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION);
+	DMA_WriteReg((UINTPTR)XPAR_S2M_0_BASEADDR, (UINTPTR)0x00000010, (u32)(&dma_buffer));
 
-	while (1)
-	{
-		if (xQueueReceive(xPbufQueueforautogaincontrolQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
-		{
-			auto_gain_control(p, autogaincontrol);
-			pbuf_free(p);
-		}
-	}
+	DMA_WriteReg((UINTPTR)XPAR_S2M_0_BASEADDR, (UINTPTR)0x00000014, (u32)0x00000000);
+
+    DMA_WriteReg((UINTPTR)XPAR_S2M_0_BASEADDR, (UINTPTR)0x00000018, (u32)8192);
+
+    DMA_WriteReg((UINTPTR)XPAR_S2M_0_BASEADDR, (UINTPTR)0x0000001C, (u32)0x00000000);
+
 }
 
-/*-----------------------------------------------------------*/
+static void hw_init_task(void *pvParameters)
+{
+	ProgramSi5324();
+	ProgramSfpPhy();
+	#ifdef XPS_BOARD_ZCU102
+		IicPhyReset();
+	#endif
+
+	memset((void *)dma_buffer, 0xFF, sizeof(dma_buffer));
+	Xil_DCacheFlushRange((INTPTR)dma_buffer, sizeof(dma_buffer));
+
+	axi_gpio_objects_init_0_4_5();
+	set_gpio_0_direction();
+	start_control_rw_state_machine();
+
+	XGpio_SetDataDirection(&Gpio4, 1, 0x00000000);
+	XGpio_DiscreteWrite(&Gpio4, 1, (u32)0);
+	XGpio_SetDataDirection(&Gpio4, 2, 0xffffffff);
+
+    XGpio_SetDataDirection(&Gpio5, 1, 0x00000000);
+	XGpio_SetDataDirection(&Gpio5, 2, 0xffffffff);
+
+	DataPH1 = 0x00000000;
+	DataPH3 = 0x00000000;
+	DataPH2 = 0x00000000;
+	DataPH4 = 0x00000000;
+
+	DataAM1 = 0xffffffff;
+	DataAM3 = 0xffffffff;
+	DataAM2 = 0xffffffff;
+	DataAM4 = 0xffffffff;
+
+	DMA_set();
+
+	Bram_ConfigPtr_ps_to_fpga = XBram_LookupConfig(XPAR_AXI_BRAM_CTRL_0_DEVICE_ID);
+	if (Bram_ConfigPtr_ps_to_fpga == (XBram_Config *) NULL)
+	    {
+			xil_printf("Trouble with bram: ps-fpga");
+	    }
+
+	status = XBram_CfgInitialize(&Bram_ps_to_fpga,
+			                     Bram_ConfigPtr_ps_to_fpga,
+			                     Bram_ConfigPtr_ps_to_fpga->CtrlBaseAddress
+								 );
+	if (status != XST_SUCCESS)
+	    {
+			xil_printf("Trouble with bram: ps-fpga configure");
+	    }
+
+    // Bram fpga to ps
+	Bram_ConfigPtr_fpga_to_ps = XBram_LookupConfig(XPAR_AXI_BRAM_CTRL_1_DEVICE_ID);
+	if (Bram_ConfigPtr_fpga_to_ps == (XBram_Config *) NULL)
+	    {
+			xil_printf("Trouble with bram: fpga-ps");
+	    }
+
+	status = XBram_CfgInitialize(&Bram_fpga_to_ps,
+			                     Bram_ConfigPtr_fpga_to_ps,
+								 Bram_ConfigPtr_fpga_to_ps->CtrlBaseAddress
+								 );
+	if (status != XST_SUCCESS)
+	    {
+			xil_printf("Trouble with bram: fpga-ps don`t configure");
+	    }
+
+	vTaskDelete(NULL);
+}
+
+// void udp_auto_gain_control_task(void *pvParameters)
+// {
+// 	struct pbuf *p;
+// 	AUTOGAINCONTROL* autogaincontrol = create_auto_gain_control_array(NOMINAL_NUMBER_OF_LINES_PER_REVOLUTION);
+
+// 	while (1)
+// 	{
+// 		if (xQueueReceive(xPbufQueueforautogaincontrolQueue, &p, portMAX_DELAY) == pdPASS && p != NULL)
+// 		{
+// 			auto_gain_control(p, autogaincontrol);
+// 			pbuf_free(p);
+// 		}
+// 	}
+// }
+
 void udp_parse_task(void *pvParameters)
 {
 	struct pbuf *p;
@@ -151,10 +208,10 @@ void tcp_parse_task(void *arg)
 /*-----------------------------------------------------------*/
 void x1emacif_input_thread(void *arg)
 {
-	struct netif *netif = (struct netif *)arg;
-	while(1)
-	{
-		if(TcpFastTmrFlag)
+    struct netif *netif = (struct netif *)arg;
+    while(1)
+    {
+        if(TcpFastTmrFlag)
 		{
 			tcp_fasttmr();
 			TcpFastTmrFlag = 0;
@@ -165,6 +222,74 @@ void x1emacif_input_thread(void *arg)
 			TcpSlowTmrFlag = 0;
 		}
 		xemacif_input(netif);
-		vTaskDelay(pdMS_TO_TICKS(1));
+        vTaskDelay(pdMS_TO_TICKS(1));
+    }
+}
+
+void check_DMA(void *arg)
+{
+	uint32_t strobe = 0;
+	XGpioPs_WritePin(&XGpioPsInstance, 54, 1);
+	vTaskDelay(pdMS_TO_TICKS(1));  // if i understand right this pause for fpga wright reaction on change pin
+	strobe = XGpio_DiscreteRead(&Gpio4, 2);
+	strobe = strobe & (uint32_t)1;
+    XGpioPs_WritePin(&XGpioPsInstance, 54, 0);  // maybe if strobe not set - skip all task?
+
+	XGpio_DiscreteWrite(&Gpio4, 1, (u32)1);
+	DMA_WriteReg((UINTPTR)XPAR_S2M_0_BASEADDR, (UINTPTR)0x00000000, (u32)0xC0000000);
+
+	vTaskDelay(pdMS_TO_TICKS(1));  // here we must give pause at 0.00005 sec but can`t because 1 ms
+
+	dummy1 = DMA_ReadReg(XPAR_S2M_0_BASEADDR, DMA_CONTROL_REG_OFFSET);
+	dummy1 = dummy1 & 0x20000000;
+
+	if (dummy1 != 0x20000000)
+	{
+		xil_printf("Not ended wright");
 	}
+	XGpio_DiscreteWrite(&Gpio4, 1, (u32)0);
+
+	dummy_1 = DMA_ReadReg(XPAR_S2M_0_BASEADDR, DMA_CONTROL_REG_OFFSET);
+    dummy_1 = dummy_1 & 0x40000000;
+    if ( dummy_1 == 0 )
+    	status = 0;
+    else
+    	status = 1;
+
+	if (status == 1)
+    {
+	    DMA_WriteReg((UINTPTR)XPAR_S2M_0_BASEADDR, (UINTPTR)0x00000000, (u32)0x26000000);  //abort cmd
+		dummy_1 = 1;
+
+		while (dummy_1 == 1)
+		{
+			dummy_1 = DMA_ReadReg(XPAR_S2M_0_BASEADDR, DMA_CONTROL_REG_OFFSET);
+			dummy_1 = dummy_1 & 0x00400000;      // Check Abort in progress
+		}
+
+		// Set address and length  again
+		DMA_set();
+    }
+
+	Xil_DCacheInvalidateRange((INTPTR) &dma_buffer, (u32) 8192);
+	// next --> dma_buffer packed in udp and get out
+	// maybe set flag about buffer ready?
+}
+
+int main(void)
+{
+	// start_cpu1();
+	init_platform();
+	
+	Xil_ICacheEnable();
+	Xil_DCacheEnable();
+
+	xil_printf("\n Start PS-part of Zynq!\r\n");
+	xil_printf("\n Version: %d.%d\n", MAJOR_SOFTWARE_VERSION, MINOR_SOFTWARE_VERSION);
+	
+	xTaskCreate(hw_init_task, "Hardware init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
+	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
+	xTaskCreate(check_DMA, "DMA workspace", THREAD_LARGE_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
+	vTaskStartScheduler();
+	while(1);
 }

@@ -1,10 +1,8 @@
 /*
- ============================================================================
- Name        : tcp_stack.h
- Author      :
- Version     :
- Description : Inc for tcp_stack.c
- ============================================================================
+ * tcp_stack.h
+ *
+ *  Created on: 31 рту. 2026 у.
+ *      Author: mgre
  */
 
 #ifndef SRC_TCP_STACK_H_
