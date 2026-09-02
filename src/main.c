@@ -13,7 +13,7 @@ int main(void)
 {
 	start_cpu1();
 	init_platform();
-	xil_printf("\n Start PS-part of Zynq!\r\n");
+	xil_printf("\n Start PS-part 0f Zynq!\r\n");
 	xil_printf("\n Version: %d.%d\n", MAJOR_SOFTWARE_VERSION, MINOR_SOFTWARE_VERSION);
 	xTaskCreate(network_init_task, "Network Init", THREAD_STACKSIZE, NULL, tskIDLE_PRIORITY + 3, NULL);
 	vTaskStartScheduler();
@@ -151,10 +151,10 @@ void tcp_parse_task(void *arg)
 /*-----------------------------------------------------------*/
 void x1emacif_input_thread(void *arg)
 {
-    struct netif *netif = (struct netif *)arg;
-    while(1)
-    {
-        if(TcpFastTmrFlag)
+	struct netif *netif = (struct netif *)arg;
+	while(1)
+	{
+		if(TcpFastTmrFlag)
 		{
 			tcp_fasttmr();
 			TcpFastTmrFlag = 0;
@@ -165,6 +165,6 @@ void x1emacif_input_thread(void *arg)
 			TcpSlowTmrFlag = 0;
 		}
 		xemacif_input(netif);
-        vTaskDelay(pdMS_TO_TICKS(1));
-    }
+		vTaskDelay(pdMS_TO_TICKS(1));
+	}
 }

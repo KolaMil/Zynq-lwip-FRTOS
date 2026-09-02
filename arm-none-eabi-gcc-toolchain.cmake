@@ -5,13 +5,20 @@ set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
 
-set(TOOLCHAIN_PREFIX C:/Xilinx/SDK/2019.1/gnu/aarch32/nt/gcc-arm-none-eabi/bin)
+# Override with -DTOOLCHAIN_PREFIX=... or the ARM_TOOLCHAIN_BIN env var
+if(NOT TOOLCHAIN_PREFIX)
+    if(DEFINED ENV{ARM_TOOLCHAIN_BIN})
+        set(TOOLCHAIN_PREFIX $ENV{ARM_TOOLCHAIN_BIN})
+    else()
+        set(TOOLCHAIN_PREFIX $ENV{HOME}/toolchains/gcc-arm-none-eabi-8-2018-q4-major/bin)
+    endif()
+endif()
 
-set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}/arm-none-eabi-gcc.exe)
-set(CMAKE_CXX_COMPILER ${TOOLCHAIN_PREFIX}/arm-none-eabi-g++.exe)
-set(CMAKE_ASM_COMPILER ${TOOLCHAIN_PREFIX}/arm-none-eabi-gcc.exe)
-set(CMAKE_OBJCOPY ${TOOLCHAIN_PREFIX}/arm-none-eabi-objcopy.exe)
-set(CMAKE_SIZE ${TOOLCHAIN_PREFIX}/arm-none-eabi-size.exe)
+set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}/arm-none-eabi-gcc)
+set(CMAKE_CXX_COMPILER ${TOOLCHAIN_PREFIX}/arm-none-eabi-g++)
+set(CMAKE_ASM_COMPILER ${TOOLCHAIN_PREFIX}/arm-none-eabi-gcc)
+set(CMAKE_OBJCOPY ${TOOLCHAIN_PREFIX}/arm-none-eabi-objcopy)
+set(CMAKE_SIZE ${TOOLCHAIN_PREFIX}/arm-none-eabi-size)
 
 
 set(CMAKE_C_FLAGS "" CACHE STRING "" FORCE)

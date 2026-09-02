@@ -131,6 +131,17 @@ err_t udp_package_send(void)
 
 /*-----------------------------------------------------------*/
 volatile u8 stat_tcp_con = 0;
+
+/*-----------------------------------------------------------*/
+// Без tcp_err() lwIP молча уничтожает PCB при RST или таймауте SYN
+static void tcp_connect_error(void *arg, err_t err)
+{
+	(void)arg;
+	xil_printf("\r\n [TCP] Connection failed, err %d\r\n", err);
+	tcp_pcb = NULL;   // lwIP уже освободил PCB
+	stat_tcp_con = 0;
+}
+
 err_t tcp_connection_cl(void)
 {
 	err_t err;
@@ -148,9 +159,14 @@ err_t tcp_connection_cl(void)
 	monitor = create_tcp_monitor(tcp_pcb);
 	update_monitor(monitor);
 
+	tcp_err(tcp_pcb, tcp_connect_error);
+
 	xil_printf(" Try to connect");
 	err = tcp_connect(tcp_pcb, &remote_addr, TCP_REMOTE_PORT, client_connected);
 	vTaskDelay(pdMS_TO_TICKS(2000)); // need for callback-function client_connected true work
+	// tcp_connect() сообщает лишь о постановке SYN в очередь, исход - по состоянию PCB
+	xil_printf(" [TCP] state after 2 s: %s\r\n",
+	           tcp_pcb ? tcp_state_to_string(tcp_pcb->state) : "PCB destroyed");
 	if (err)
 	{
 		xil_printf(" Error on tcp_connect: %d\r\n", err);

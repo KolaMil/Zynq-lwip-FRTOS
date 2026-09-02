@@ -25,6 +25,8 @@ add_executable(xilinx_mcu.elf
         src/auto_gain_control.c
         src/pl_interface.c
         src/pl_interface.h
+        src/newlib_compat.c
+        src/diag.c
 )
 
 target_include_directories(xilinx_mcu.elf PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/external/ps7_cortexa9_0/include)

@@ -91,36 +91,35 @@ void vParTestSetGPIO(UBaseType_t uxPIN, BaseType_t xValue)
 	(void) uxPIN;
 	switch (uxPIN)
 	{
-	case 0:
-		XGpioPs_WritePin( &xGpio, partstGPIO_54_OUTPUT, xValue );
-		break;
-	case 4:
-		XGpioPs_WritePin( &xGpio, partstGPIO_58_OUTPUT, xValue );
-		break;
-	case 1:
-		XGpioPs_WritePin( &xGpio, partstGPIO_55_OUTPUT, xValue );
-		break;
-	case 2:
-		XGpioPs_WritePin( &xGpio, partstGPIO_56_OUTPUT, xValue );
-		break;
-	case 3:
-		XGpioPs_WritePin( &xGpio, partstGPIO_57_OUTPUT, xValue );
-		break;
-	
-	case LED_LEFT:
-		XGpioPs_WritePin( &xGpio, LED_LEFT, xValue );
-		break;
+		case 0:
+			XGpioPs_WritePin( &xGpio, partstGPIO_54_OUTPUT, xValue );
+			break;
+		case 4:
+			XGpioPs_WritePin( &xGpio, partstGPIO_58_OUTPUT, xValue );
+			break;
+		case 1:
+			XGpioPs_WritePin( &xGpio, partstGPIO_55_OUTPUT, xValue );
+			break;
+		case 2:
+			XGpioPs_WritePin( &xGpio, partstGPIO_56_OUTPUT, xValue );
+			break;
+		case 3:
+			XGpioPs_WritePin( &xGpio, partstGPIO_57_OUTPUT, xValue );
+			break;
 
-	case LED_MIDDLE:
-		XGpioPs_WritePin( &xGpio, LED_MIDDLE, xValue );
-		break;
+		case LED_LEFT:
+			XGpioPs_WritePin( &xGpio, LED_LEFT, xValue );
+			break;
 
-	case LED_RIGHT:
-		XGpioPs_WritePin( &xGpio, LED_RIGHT, xValue );
-		break;
-	
-	default:
-		break;
+		case LED_MIDDLE:
+			XGpioPs_WritePin( &xGpio, LED_MIDDLE, xValue );
+			break;
+
+		case LED_RIGHT:
+			XGpioPs_WritePin( &xGpio, LED_RIGHT, xValue );
+			break;
+
+		default:
+			break;
 	}
 }
-

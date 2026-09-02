@@ -34,8 +34,6 @@
 
 /* Lwip includes. */
 #include "lwip/pbuf.h"
-#include "lwip\priv\tcp_priv.h"
-#include "netif\xadapter.h"
 
 #include "iwip.h"
 #include "ttc_timer.h"
