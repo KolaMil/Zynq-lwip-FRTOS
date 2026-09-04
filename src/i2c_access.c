@@ -26,7 +26,6 @@ typedef struct {
 	volatile u32 TotalErrorCount;
 } XIIC_LIB;
 
-
 int I2cPhyWrite(XIIC_LIB *I2cLibPtr, u8 PhyAddr, u8 Reg, u16 Data, u16 SlaveAddr);
 int I2cPhyRead(XIIC_LIB *I2cLibPtr, u8 PhyAddr, u8 Reg, u16 *Data, u16 SlaveAddr);
 int I2cSetupHardware(XIIC_LIB *I2cLibPtr);

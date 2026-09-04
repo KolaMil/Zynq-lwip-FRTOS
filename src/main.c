@@ -276,6 +276,23 @@ void check_DMA(void *arg)
 	// maybe set flag about buffer ready?
 }
 
+void bram_work(void *arg)  // start after tcp cmd
+{
+	if (xQueueReceiveFromISR(xBramCmd, &Bram_ps_to_fpga, portMAX_DELAY) == pdTRUE)  // maybe new dopolnenie?
+	{
+		XGpio_DiscreteRead(&Gpio5, 1) & 0x00000001 == 0;
+		ps_to_fpga_data = ps_to_fpga_data | 0x00000001;
+		XGpio_DiscreteWrite(&Gpio5, 2, ps_to_fpga_data);
+
+		vTaskDelay(pdMS_TO_TICKS(1));
+
+		XGpio_DiscreteRead(&Gpio5, 1) & 0x00000001 == 0;
+
+		ps_to_fpga_data = ps_to_fpga_data & 0xfffffffe;
+		XGpio_DiscreteWrite(&Gpio5, 2, ps_to_fpga_data);
+	}
+}
+
 int main(void)
 {
 	// start_cpu1();
